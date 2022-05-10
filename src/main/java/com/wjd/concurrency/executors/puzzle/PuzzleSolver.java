@@ -34,7 +34,7 @@ public class PuzzleSolver<P, M> extends ConcurrentPuzzleSolver<P, M> {
                 super.run();
             } finally {
                 if (taskCount.decrementAndGet() == 0) {
-                    // 最后一个任务直接结束
+                    // 最后一个任务结束时，返回 null
                     solution.setValue(null);
                 }
             }
