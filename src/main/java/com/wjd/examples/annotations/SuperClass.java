@@ -1,4 +1,4 @@
-package com.wjd.demo.annotations;
+package com.wjd.examples.annotations;
 
 /**
  * @since 2022/1/1

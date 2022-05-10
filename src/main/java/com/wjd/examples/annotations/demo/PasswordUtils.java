@@ -1,4 +1,4 @@
-package com.wjd.demo.annotations.demo;
+package com.wjd.examples.annotations.demo;
 
 import java.util.List;
 

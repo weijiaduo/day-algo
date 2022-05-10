@@ -1,4 +1,4 @@
-package com.wjd.demo.annotations;
+package com.wjd.examples.annotations;
 
 public @interface RepeatableContainer {
     RepeatableAnnotation[] value();
