@@ -1,4 +1,4 @@
-package com.wjd.algorithm.structure;
+package com.wjd.algorithm.structure.sort;
 
 import java.util.Arrays;
 
@@ -21,11 +21,6 @@ public class QuickSort {
     /**
      * 从小到大
      * 一般法
-     *
-     * @param a
-     * @param left
-     * @param right
-     * @return
      */
     private static int partSortLeft(int[] a, int left, int right) {
         if (a == null || left > right) {
@@ -48,17 +43,13 @@ public class QuickSort {
             }
 
             if (lp < rp) {
-                a[lp] = a[lp] ^ a[rp];
-                a[rp] = a[lp] ^ a[rp];
-                a[lp] = a[lp] ^ a[rp];
+                swap(a, lp, rp);
             }
         }
 
         // 交换基准值
         if (left < lp) {
-            a[lp] = a[lp] ^ a[left];
-            a[left] = a[lp] ^ a[left];
-            a[lp] = a[lp] ^ a[left];
+            swap(a, lp, left);
         }
 
         return lp;
@@ -67,11 +58,6 @@ public class QuickSort {
     /**
      * 从小到大
      * 挖坑法
-     *
-     * @param a
-     * @param left
-     * @param right
-     * @return
      */
     private static int partSortLeftHole(int[] a, int left, int right) {
         if (a == null || left > right) {
@@ -105,11 +91,6 @@ public class QuickSort {
     /**
      * 从小到大
      * 前后指针法
-     *
-     * @param a
-     * @param left
-     * @param right
-     * @return
      */
     private static int partSortLeftPointer(int[] a, int left, int right) {
         if (a == null || left > right) {
@@ -123,9 +104,7 @@ public class QuickSort {
             if (a[cur] > x) {
                 --pre;
                 if (pre != cur) {
-                    a[pre] = a[pre] ^ a[cur];
-                    a[cur] = a[pre] ^ a[cur];
-                    a[pre] = a[pre] ^ a[cur];
+                    swap(a, pre, cur);
                 }
             }
             --cur;
@@ -133,12 +112,16 @@ public class QuickSort {
 
         // 基准值
         if (--pre != left) {
-            a[pre] = a[pre] ^ a[left];
-            a[left] = a[pre] ^ a[left];
-            a[pre] = a[pre] ^ a[left];
+            swap(a, pre, left);
         }
 
         return pre;
+    }
+
+    private static void swap(int[] arr, int i, int j) {
+        final int temp = arr[i];
+        arr[i] = arr[j];
+        arr[j] = temp;
     }
 
 }

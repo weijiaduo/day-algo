@@ -1,9 +1,9 @@
-package com.wjd.algorithm.structure.chart;
+package com.wjd.algorithm.structure.tree.redblack;
 
 import com.google.gson.JsonArray;
 import com.google.gson.JsonObject;
-import com.wjd.algorithm.structure.tree.Node;
-import com.wjd.algorithm.structure.tree.RedBlackTree;
+import com.wjd.algorithm.structure.tree.redblack.Node;
+import com.wjd.algorithm.structure.tree.redblack.RedBlackTree;
 
 import java.util.HashMap;
 import java.util.LinkedList;

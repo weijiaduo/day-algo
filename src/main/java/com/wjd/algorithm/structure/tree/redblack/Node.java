@@ -1,4 +1,4 @@
-package com.wjd.algorithm.structure.tree;
+package com.wjd.algorithm.structure.tree.redblack;
 
 public class Node {
     private Node parent;
