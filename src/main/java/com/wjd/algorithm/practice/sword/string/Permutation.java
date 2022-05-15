@@ -1,4 +1,4 @@
-package com.wjd.algorithm.practice.sword.str;
+package com.wjd.algorithm.practice.sword.string;
 
 import java.util.ArrayList;
 import java.util.Collections;

@@ -1,4 +1,4 @@
-package com.wjd.algorithm.practice.sword.str;
+package com.wjd.algorithm.practice.sword.string;
 
 /**
  * 请实现一个函数用来匹配包括'.'和'*'的正则表达式。

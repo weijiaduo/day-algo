@@ -1,4 +1,4 @@
-package com.wjd.algorithm.practice.sword.str;
+package com.wjd.algorithm.practice.sword.string;
 
 /**
  * 请实现一个函数用来找出字符流中第一个只出现一次的字符。

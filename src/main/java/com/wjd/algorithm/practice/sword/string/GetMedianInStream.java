@@ -1,4 +1,4 @@
-package com.wjd.algorithm.practice.sword.str;
+package com.wjd.algorithm.practice.sword.string;
 
 import java.util.LinkedList;
 import java.util.Random;

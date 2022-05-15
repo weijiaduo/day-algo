@@ -1,4 +1,4 @@
-package com.wjd.algorithm.practice.sword.str;
+package com.wjd.algorithm.practice.sword.string;
 
 /**
  * 对于一个给定的字符序列S，请你把其循环左移K位后的序列输出。
