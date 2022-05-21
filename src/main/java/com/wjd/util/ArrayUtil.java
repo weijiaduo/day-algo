@@ -36,4 +36,13 @@ public final class ArrayUtil {
         }
         System.out.println(sb);
     }
+
+    public static void print(Object[] arr) {
+        StringBuilder sb = new StringBuilder();
+        for (Object j : arr) {
+            sb.append(j.toString()).append(" ");
+        }
+        sb.deleteCharAt(sb.length() - 1);
+        System.out.println(sb);
+    }
 }
