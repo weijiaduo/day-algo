@@ -3,7 +3,6 @@ package com.wjd.algorithm.practice.leetcode.array;
 import com.wjd.algorithm.practice.leetcode.Solution;
 
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.List;
 
 /**
@@ -21,8 +20,8 @@ public class CombinationSum implements Solution<List<List<Integer>>> {
 
     @Override
     public List<List<Integer>> solve(Object args) {
-        int[] candidates = {1};
-        int target = 2;
+        int[] candidates = {2, 3, 5};
+        int target = 8;
         List<List<Integer>> result = combinationSum(candidates, target);
         System.out.println(result);
         return result;
@@ -35,47 +34,12 @@ public class CombinationSum implements Solution<List<List<Integer>>> {
         return result;
     }
 
-    private List<List<Integer>> combinationSum2(int[] candidates, int target) {
-        List<List<Integer>> result = new ArrayList<>();
-        int[] keys = new int[candidates.length];
-        Arrays.fill(keys, 0);
-        Arrays.sort(candidates);
-
-        for (int i = 0; i < candidates.length; i++) {
-            for (int j = 0; j < candidates.length; j++) {
-
-            }
-        }
-
-        int val = target;
-        int i = 0, j = 0;
-        while (i >= 0) {
-            if (candidates[j] > val) {
-                while (i >= 0 && keys[i] == 0) {
-                    i--;
-                }
-                if (i < 0) {
-                    break;
-                }
-                j++;
-                keys[i]--;
-                val += candidates[i];
-            } else if (candidates[j] < val) {
-                keys[j]++;
-                val -= candidates[j];
-            } else {
-                List<Integer> list = new ArrayList<>();
-                for (int m = 0; m <= i; m++) {
-                    for (int n = 0; n < keys[m]; n++) {
-                        list.add(candidates[m]);
-                    }
-                }
-                result.add(list);
-            }
-        }
-        return result;
-    }
-
+    /**
+     * 递归
+     * <p>
+     * 执行耗时:3 ms,击败了53.98% 的Java用户
+     * 内存消耗:41.5 MB,击败了76.28% 的Java用户
+     */
     private void find(int[] candicates, int index, int target,
                       List<List<Integer>> combines, List<Integer> list) {
         if (index >= candicates.length || target < 0) {
