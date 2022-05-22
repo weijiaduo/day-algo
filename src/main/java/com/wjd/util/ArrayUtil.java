@@ -37,6 +37,18 @@ public final class ArrayUtil {
         System.out.println(sb);
     }
 
+    public static void print(char[][] arr) {
+        StringBuilder sb = new StringBuilder();
+        for (char[] chars : arr) {
+            for (char anChar : chars) {
+                sb.append(anChar).append(" ");
+            }
+            sb.deleteCharAt(sb.length() - 1);
+            sb.append("\n");
+        }
+        System.out.println(sb);
+    }
+
     public static void print(Object[] arr) {
         StringBuilder sb = new StringBuilder();
         for (Object j : arr) {
