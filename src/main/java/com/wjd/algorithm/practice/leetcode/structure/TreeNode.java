@@ -41,7 +41,7 @@ public class TreeNode {
         TreeNode tree = new TreeNode(Integer.parseInt(s[i++]));
         LinkedList<TreeNode> queue = new LinkedList<>();
         queue.add(tree);
-        while (!queue.isEmpty() && i < s.length) {
+        while (!queue.isEmpty()) {
             TreeNode curNode = queue.poll();
 
             // 左节点
