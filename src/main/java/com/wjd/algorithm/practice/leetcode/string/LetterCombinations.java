@@ -20,7 +20,7 @@ import java.util.List;
 public class LetterCombinations implements Solution<List<String>> {
 
     @Override
-    public List<String> solve(Object args) {
+    public List<String> solve(Object ...args) {
         String digits = "23";
         List<String> result = letterCombinations(digits);
         System.out.println(result);

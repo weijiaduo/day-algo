@@ -21,7 +21,7 @@ import java.util.*;
 public class GroupsSizeX implements Solution<Boolean> {
 
     @Override
-    public Boolean solve(Object args) {
+    public Boolean solve(Object ...args) {
         int[] deck = {18,18,18,18,19,19,19,19};
         boolean result = hasGroupsSizeX(deck);
         System.out.println(result);

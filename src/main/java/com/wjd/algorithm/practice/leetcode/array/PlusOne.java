@@ -17,7 +17,7 @@ import com.wjd.util.ArrayUtil;
 public class PlusOne implements Solution<int[]> {
 
     @Override
-    public int[] solve(Object args) {
+    public int[] solve(Object ...args) {
         int[] digits = {9};
         int[] result = plusOne(digits);
         ArrayUtil.print(result);

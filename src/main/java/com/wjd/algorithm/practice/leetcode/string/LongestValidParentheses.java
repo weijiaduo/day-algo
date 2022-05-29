@@ -19,7 +19,7 @@ import java.util.LinkedList;
 public class LongestValidParentheses implements Solution<Integer> {
 
     @Override
-    public Integer solve(Object args) {
+    public Integer solve(Object ...args) {
         String s = ")()())";
         int result = longestValidParentheses(s);
         int result2 = dynamic2LongestValidParentheses(s);

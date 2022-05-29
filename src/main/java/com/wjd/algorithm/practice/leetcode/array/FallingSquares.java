@@ -15,7 +15,7 @@ import java.util.TreeMap;
 public class FallingSquares implements Solution<List<Integer>> {
 
     @Override
-    public List<Integer> solve(Object args) {
+    public List<Integer> solve(Object ...args) {
         int[][] positions = {{2,1},{2,9},{1,8}};
         List<Integer> result = fallingSquares(positions);
         System.out.println(result);

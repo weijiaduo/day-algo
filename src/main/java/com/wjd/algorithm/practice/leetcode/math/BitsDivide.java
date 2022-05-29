@@ -22,7 +22,7 @@ import com.wjd.algorithm.practice.leetcode.Solution;
 public class BitsDivide implements Solution<Integer> {
 
     @Override
-    public Integer solve(Object args) {
+    public Integer solve(Object ...args) {
         int dividend = 1;
         int divisor = 1;
         int result = divide(dividend, divisor);

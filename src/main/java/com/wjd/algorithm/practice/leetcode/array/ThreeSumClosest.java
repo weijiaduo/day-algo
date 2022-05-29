@@ -20,7 +20,7 @@ import java.util.Arrays;
 public class ThreeSumClosest implements Solution<Integer> {
 
     @Override
-    public Integer solve(Object args) {
+    public Integer solve(Object ...args) {
         int[] nums = {-1,2,1,-4};
         int target = 1;
         int result = threeSumClosest(nums, target);

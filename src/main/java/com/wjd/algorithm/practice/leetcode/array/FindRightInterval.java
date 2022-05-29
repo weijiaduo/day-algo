@@ -24,7 +24,7 @@ import java.util.Comparator;
 public class FindRightInterval implements Solution<int[]> {
 
     @Override
-    public int[] solve(Object args) {
+    public int[] solve(Object ...args) {
         int[][] intervals = {{3,4},{2,3},{1,2}};
         int[] result = doublePointFindRightInterval(intervals);
         int[] result2 = quickFindRightInterval(intervals);

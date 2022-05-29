@@ -16,7 +16,7 @@ import java.util.HashSet;
 public class ContainsDuplicate implements Solution<Boolean> {
 
     @Override
-    public Boolean solve(Object args) {
+    public Boolean solve(Object ...args) {
         int[] nums = {22, 1, 22};
         boolean result = containsDuplicate(nums);
         System.out.println(result);

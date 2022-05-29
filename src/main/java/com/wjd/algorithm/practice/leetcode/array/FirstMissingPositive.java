@@ -17,7 +17,7 @@ import com.wjd.algorithm.practice.leetcode.Solution;
 public class FirstMissingPositive implements Solution<Integer> {
 
     @Override
-    public Integer solve(Object args) {
+    public Integer solve(Object ...args) {
         int[] nums = {1};
         int result = firstMissingPositive(nums);
         System.out.println(result);

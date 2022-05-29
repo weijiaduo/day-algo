@@ -16,7 +16,7 @@ import com.wjd.algorithm.practice.leetcode.Solution;
 public class MinCostClimbingStairs implements Solution<Integer> {
 
     @Override
-    public Integer solve(Object args) {
+    public Integer solve(Object ...args) {
         int[] cost = {1, 100, 1, 1, 1, 100, 1, 1, 100, 1};
         int result = minCostClimbingStairs(cost);
         System.out.println(result);

@@ -18,7 +18,7 @@ import com.wjd.algorithm.practice.leetcode.Solution;
 public class LengthOfLastWord implements Solution<Integer> {
 
     @Override
-    public Integer solve(Object args) {
+    public Integer solve(Object ...args) {
         String s = "joyboy";
         int result = lengthOfLastWord(s);
         System.out.println(result);

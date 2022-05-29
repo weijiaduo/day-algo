@@ -15,7 +15,7 @@ import com.wjd.algorithm.practice.leetcode.Solution;
 public class Trap implements Solution<Integer> {
 
     @Override
-    public Integer solve(Object args) {
+    public Integer solve(Object ...args) {
         int[] height = {4,9,4,5,3,2};
         int result = trap(height);
         System.out.println(result);

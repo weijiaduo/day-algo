@@ -16,7 +16,7 @@ import java.util.Map;
 public class ContainsNearbyDuplicate implements Solution<Boolean> {
 
     @Override
-    public Boolean solve(Object args) {
+    public Boolean solve(Object ...args) {
         int[] nums = {1,2,3,1,2,3};
         int k = 2;
         boolean result = containsNearbyDuplicate(nums, k);

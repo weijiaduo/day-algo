@@ -17,7 +17,7 @@ import com.wjd.algorithm.practice.leetcode.Solution;
 public class StrMultiply implements Solution<String> {
 
     @Override
-    public String solve(Object args) {
+    public String solve(Object ...args) {
         String num1 = "123";
         String num2 = "456";
         String result = multiply(num1, num2);

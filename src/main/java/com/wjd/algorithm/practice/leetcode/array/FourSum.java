@@ -23,7 +23,7 @@ import java.util.List;
 public class FourSum implements Solution<List<List<Integer>>> {
 
     @Override
-    public List<List<Integer>> solve(Object args) {
+    public List<List<Integer>> solve(Object ...args) {
         int[] nums = {1,0,-1,0,-2,2};
         int target = 0;
         List<List<Integer>> result = fourSum(nums, target);

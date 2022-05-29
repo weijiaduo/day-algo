@@ -12,7 +12,7 @@ import com.wjd.algorithm.practice.leetcode.Solution;
 public class MaxAverage implements Solution<Double> {
 
     @Override
-    public Double solve(Object args) {
+    public Double solve(Object ...args) {
         int[] nums = {1, 12, -5, -6, 50, 3};
         int k = 4;
         double result = findMaxAverage(nums, k);

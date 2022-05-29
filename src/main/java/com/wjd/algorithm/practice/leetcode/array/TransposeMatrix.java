@@ -15,7 +15,7 @@ import com.wjd.util.ArrayUtil;
 public class TransposeMatrix implements Solution<int[][]> {
 
     @Override
-    public int[][] solve(Object args) {
+    public int[][] solve(Object ...args) {
         int[][] matrix = {{1, 2, 3}, {3, 4, 5}};
         int[][] result = transpose(matrix);
         ArrayUtil.print(result);

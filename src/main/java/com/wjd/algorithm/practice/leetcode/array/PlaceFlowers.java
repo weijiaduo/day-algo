@@ -14,7 +14,7 @@ import com.wjd.algorithm.practice.leetcode.Solution;
 public class PlaceFlowers implements Solution<Boolean> {
 
     @Override
-    public Boolean solve(Object args) {
+    public Boolean solve(Object ...args) {
         int[] flowerbed = {0};
         int n = 1;
         boolean result = canPlaceFlowers(flowerbed, n);

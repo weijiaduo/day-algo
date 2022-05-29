@@ -17,7 +17,7 @@ import com.wjd.util.ArrayUtil;
 public class TwoSum2 implements Solution<int[]> {
 
     @Override
-    public int[] solve(Object args) {
+    public int[] solve(Object ...args) {
         int[] numbers = {-1, 0};
         int target = -1;
         int[] result = twoSum(numbers, target);

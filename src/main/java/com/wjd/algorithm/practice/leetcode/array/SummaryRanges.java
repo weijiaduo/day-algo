@@ -22,7 +22,7 @@ import java.util.List;
 public class SummaryRanges implements Solution<List<String>> {
 
     @Override
-    public List<String> solve(Object args) {
+    public List<String> solve(Object ...args) {
         int[] nums = {0};
         List<String> result = summaryRanges(nums);
         System.out.println(result);

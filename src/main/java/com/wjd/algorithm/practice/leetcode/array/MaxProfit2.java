@@ -16,7 +16,7 @@ import com.wjd.algorithm.practice.leetcode.Solution;
 public class MaxProfit2 implements Solution<Integer> {
 
     @Override
-    public Integer solve(Object args) {
+    public Integer solve(Object ...args) {
         int[] prices = {7,6,4,3,1};
         int result = maxProfit(prices);
         System.out.println(result);

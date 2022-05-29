@@ -18,7 +18,7 @@ import java.util.List;
 public class Permute implements Solution<List<List<Integer>>> {
 
     @Override
-    public List<List<Integer>> solve(Object args) {
+    public List<List<Integer>> solve(Object ...args) {
         int[] nums = {1};
         List<List<Integer>> result = permute(nums);
         System.out.println(result);

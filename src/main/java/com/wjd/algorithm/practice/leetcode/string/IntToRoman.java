@@ -33,7 +33,7 @@ import com.wjd.algorithm.practice.leetcode.Solution;
 public class IntToRoman implements Solution<String> {
 
     @Override
-    public String solve(Object args) {
+    public String solve(Object ...args) {
         int num = 1994;
         String result = intToRoman(num);
         System.out.println(result);

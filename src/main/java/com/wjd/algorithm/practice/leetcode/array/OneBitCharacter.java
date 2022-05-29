@@ -14,7 +14,7 @@ import com.wjd.algorithm.practice.leetcode.Solution;
 public class OneBitCharacter implements Solution<Boolean> {
 
     @Override
-    public Boolean solve(Object args) {
+    public Boolean solve(Object ...args) {
         int[] bits = {1, 1, 1, 0};
         boolean result = isOneBitCharacter(bits);
         System.out.println(result);

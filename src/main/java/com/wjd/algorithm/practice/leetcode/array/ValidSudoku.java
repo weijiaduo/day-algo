@@ -24,7 +24,7 @@ import java.util.Arrays;
 public class ValidSudoku implements Solution<Boolean> {
 
     @Override
-    public Boolean solve(Object args) {
+    public Boolean solve(Object ...args) {
         char[][] board = {
                 {'8', '3', '.', '.', '7', '.', '.', '.', '.'},
                 {'6', '.', '.', '1', '9', '5', '.', '.', '.'},

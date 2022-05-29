@@ -24,7 +24,7 @@ import java.util.List;
 public class LargeGroupPositions implements Solution<List<List<Integer>>> {
 
     @Override
-    public List<List<Integer>> solve(Object args) {
+    public List<List<Integer>> solve(Object ...args) {
         String s = "abcdddeeeeaabbbcdddd";
         List<List<Integer>> result = largeGroupPositions(s);
         System.out.println(result);

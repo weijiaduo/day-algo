@@ -17,7 +17,7 @@ import com.wjd.algorithm.practice.leetcode.Solution;
 public class SingleNumber implements Solution<Integer> {
 
     @Override
-    public Integer solve(Object args) {
+    public Integer solve(Object ...args) {
         int[] nums = {2,2,1};
         int result = findSingleNumber(nums);
         System.out.println(result);

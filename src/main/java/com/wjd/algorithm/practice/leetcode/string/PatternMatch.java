@@ -24,7 +24,7 @@ import com.wjd.algorithm.practice.leetcode.Solution;
 public class PatternMatch implements Solution<Boolean> {
 
     @Override
-    public Boolean solve(Object args) {
+    public Boolean solve(Object ...args) {
         String s = "bbbb";
         String p = "b*";
         boolean result1 = deepMatch(s, p);

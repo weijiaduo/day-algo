@@ -14,7 +14,7 @@ import com.wjd.algorithm.practice.leetcode.Solution;
 public class DominantIndex implements Solution<Integer> {
 
     @Override
-    public Integer solve(Object args) {
+    public Integer solve(Object ...args) {
         int[] nums = {3, 0, 0, 0, 1};
         int result = dominantIndex(nums);
         System.out.println(result);

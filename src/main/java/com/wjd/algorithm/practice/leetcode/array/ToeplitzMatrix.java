@@ -14,7 +14,7 @@ import com.wjd.algorithm.practice.leetcode.Solution;
 public class ToeplitzMatrix implements Solution<Boolean> {
 
     @Override
-    public Boolean solve(Object args) {
+    public Boolean solve(Object ...args) {
         int[][] matrix = {{1, 2}, {2, 2}};
         boolean result = isToeplitzMatrix(matrix);
         System.out.println(result);

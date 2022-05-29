@@ -18,7 +18,7 @@ import java.util.List;
 public class GenerateParenthesis implements Solution<List<String>> {
 
     @Override
-    public List<String> solve(Object args) {
+    public List<String> solve(Object ...args) {
         int n = 1;
         List<String> result = generateParenthesis(n);
         System.out.println(result);

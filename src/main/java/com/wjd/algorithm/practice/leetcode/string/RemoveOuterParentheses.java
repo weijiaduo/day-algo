@@ -26,7 +26,7 @@ import com.wjd.algorithm.practice.leetcode.Solution;
 public class RemoveOuterParentheses implements Solution<String> {
 
     @Override
-    public String solve(Object args) {
+    public String solve(Object ...args) {
         String s = "()()";
         String result = removeOuterParentheses(s);
         System.out.println(result);

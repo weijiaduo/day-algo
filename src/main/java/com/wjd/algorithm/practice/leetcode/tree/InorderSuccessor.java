@@ -22,7 +22,7 @@ import com.wjd.algorithm.practice.leetcode.structure.TreeNode;
 public class InorderSuccessor implements Solution<TreeNode> {
 
     @Override
-    public TreeNode solve(Object args) {
+    public TreeNode solve(Object ...args) {
         String[] s = {"2", null, "3"};
         int p = 2;
         TreeNode root = TreeNode.buildTree(s);

@@ -22,7 +22,7 @@ import java.util.*;
 public class FindSubstring implements Solution<List<Integer>> {
 
     @Override
-    public List<Integer> solve(Object args) {
+    public List<Integer> solve(Object ...args) {
         String s = "barfoofoobarthefoobarman";
         String[] words = {"bar","foo","the"};
         List<Integer> result = findSubstring(s, words);

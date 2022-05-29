@@ -15,7 +15,7 @@ import com.wjd.util.ArrayUtil;
 public class SortArrayByParity implements Solution<int[]> {
 
     @Override
-    public int[] solve(Object args) {
+    public int[] solve(Object ...args) {
         int[] nums = {3,1,2,4};
         int[] result = sortArrayByParity(nums);
         ArrayUtil.print(result);

@@ -17,7 +17,7 @@ import java.util.Arrays;
 public class MaximumProduct implements Solution<Integer> {
 
     @Override
-    public Integer solve(Object args) {
+    public Integer solve(Object ...args) {
         int[] nums = {-1, -2, -3, 4};
         int result = maximumProduct(nums);
         System.out.println(result);

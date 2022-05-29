@@ -22,7 +22,7 @@ import java.util.Set;
 public class RepeatedNTimes implements Solution<Integer> {
 
     @Override
-    public Integer solve(Object args) {
+    public Integer solve(Object ...args) {
         int[] nums = {3,4,3};
         int result = repeatedNTimes(nums);
         int result2 = hashRepeatedNTimes(nums);

@@ -17,7 +17,7 @@ import java.util.List;
 public class AddToArrayForm implements Solution<List<Integer>> {
 
     @Override
-    public List<Integer> solve(Object args) {
+    public List<Integer> solve(Object ...args) {
         int[] num = {2, 1, 5};
         int k = 806;
         List<Integer> result = addToArrayForm(num, k);

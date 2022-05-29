@@ -14,7 +14,7 @@ import java.util.Arrays;
 public class PrimesCount implements Solution<Integer> {
 
     @Override
-    public Integer solve(Object args) {
+    public Integer solve(Object ...args) {
         int n = 10;
         int result = countPrimes(n);
         System.out.println(result);

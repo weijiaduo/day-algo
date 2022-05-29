@@ -13,7 +13,7 @@ import com.wjd.util.ArrayUtil;
 public class MoveZeroes implements Solution<Void> {
 
     @Override
-    public Void solve(Object args) {
+    public Void solve(Object ...args) {
         int[] nums = {2, 1, 0, 3, 12};
         moveZeroes(nums);
         ArrayUtil.print(nums);

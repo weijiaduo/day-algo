@@ -18,7 +18,7 @@ import java.util.Set;
 public class DistributeCandies implements Solution<Integer> {
 
     @Override
-    public Integer solve(Object args) {
+    public Integer solve(Object ...args) {
         int[] candyType = {1,1,2,3};
         int result = distributeCandies(candyType);
         System.out.println(result);

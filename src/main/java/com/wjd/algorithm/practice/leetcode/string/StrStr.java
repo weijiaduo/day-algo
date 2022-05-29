@@ -20,7 +20,7 @@ import com.wjd.algorithm.practice.leetcode.Solution;
 public class StrStr implements Solution<Integer> {
 
     @Override
-    public Integer solve(Object args) {
+    public Integer solve(Object ...args) {
         String haystack = "a";
         String needle = "a";
         int result = strStr(haystack, needle);

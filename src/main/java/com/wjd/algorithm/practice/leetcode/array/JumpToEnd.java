@@ -26,7 +26,7 @@ import java.util.Map;
 public class JumpToEnd implements Solution<Integer> {
 
     @Override
-    public Integer solve(Object args) {
+    public Integer solve(Object ...args) {
         int[] nums = {2,3,0,1,4};
         int result = jump(nums);
         System.out.println(result);

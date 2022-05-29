@@ -28,7 +28,7 @@ import com.wjd.algorithm.practice.leetcode.Solution;
 public class CountAndSay implements Solution<String> {
 
     @Override
-    public String solve(Object args) {
+    public String solve(Object ...args) {
         int n = 5;
         String result = countAndSay(n);
         System.out.println(result);

@@ -17,7 +17,7 @@ import com.wjd.algorithm.practice.leetcode.structure.ListNode;
  */
 public class SwapPairs implements Solution<ListNode> {
     @Override
-    public ListNode solve(Object args) {
+    public ListNode solve(Object ...args) {
         int[] values = {1,2,3,4,5};
         ListNode head = ListNode.build(values);
         ListNode result = swapPairs(head);

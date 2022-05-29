@@ -17,7 +17,7 @@ import com.wjd.util.ArrayUtil;
 public class FlipAndInvertImage implements Solution<int[][]> {
 
     @Override
-    public int[][] solve(Object args) {
+    public int[][] solve(Object ...args) {
         int[][] image = {{1, 1, 0, 0}, {1, 0, 0, 1}, {0, 1, 1, 1}, {1, 0, 1, 0}};
         int[][] result = flipAndInvertImage(image);
         ArrayUtil.print(result);

@@ -16,7 +16,7 @@ import java.util.*;
 public class GroupAnagrams implements Solution<List<List<String>>> {
 
     @Override
-    public List<List<String>> solve(Object args) {
+    public List<List<String>> solve(Object ...args) {
         String[] strs = {"eat", "tea", "tan", "ate", "nat", "bat"};
         List<List<String>> result = groupAnagrams(strs);
         System.out.println(result);

@@ -16,7 +16,7 @@ import com.wjd.algorithm.practice.leetcode.Solution;
 public class Monotonic implements Solution<Boolean> {
 
     @Override
-    public Boolean solve(Object args) {
+    public Boolean solve(Object ...args) {
         int[] nums = {1, 1, 1};
         boolean result = isMonotonic(nums);
         System.out.println(result);

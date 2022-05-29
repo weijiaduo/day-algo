@@ -19,7 +19,7 @@ import com.wjd.util.ArrayUtil;
 public class MatrixReshape implements Solution<int[][]> {
 
     @Override
-    public int[][] solve(Object args) {
+    public int[][] solve(Object ...args) {
         int[][] mat = {{1, 2}, {3, 4}};
         int r = 2;
         int c = 4;

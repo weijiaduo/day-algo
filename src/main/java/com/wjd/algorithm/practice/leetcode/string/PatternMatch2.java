@@ -25,7 +25,7 @@ import java.util.Map;
 public class PatternMatch2 implements Solution<Boolean> {
 
     @Override
-    public Boolean solve(Object args) {
+    public Boolean solve(Object ...args) {
         String s = "acdcb";
         String p = "a*c?b";
         // boolean result1 = deepMatch(s, p);

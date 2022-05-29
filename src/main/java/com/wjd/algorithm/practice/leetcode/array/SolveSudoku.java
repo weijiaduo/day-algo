@@ -25,7 +25,7 @@ public class SolveSudoku implements Solution<Void> {
     List<int[]> spaces = new ArrayList<>();
     
     @Override
-    public Void solve(Object args) {
+    public Void solve(Object ...args) {
         char[][] board = {
                 {'5','3','.','.','7','.','.','.','.'},
                 {'6','.','.','1','9','5','.','.','.'},

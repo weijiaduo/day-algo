@@ -16,7 +16,7 @@ import com.wjd.algorithm.practice.leetcode.structure.ListNode;
 public class RemoveNthFromEnd implements Solution<ListNode> {
 
     @Override
-    public ListNode solve(Object args) {
+    public ListNode solve(Object ...args) {
         int[] arr = {1};
         int n = 1;
         ListNode head = ListNode.build(arr);

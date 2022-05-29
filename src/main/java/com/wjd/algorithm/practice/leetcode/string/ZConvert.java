@@ -19,7 +19,7 @@ import com.wjd.algorithm.practice.leetcode.Solution;
 public class ZConvert implements Solution<String> {
 
     @Override
-    public String solve(Object args) {
+    public String solve(Object ...args) {
         String s = "PAYPALISHIRING";
         int numRows = 3;
         String result = convert(s, numRows);

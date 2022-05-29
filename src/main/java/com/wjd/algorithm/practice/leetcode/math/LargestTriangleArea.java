@@ -15,7 +15,7 @@ import com.wjd.algorithm.practice.leetcode.Solution;
 public class LargestTriangleArea implements Solution<Double> {
 
     @Override
-    public Double solve(Object args) {
+    public Double solve(Object ...args) {
         int[][] points = {
                 {0, 0},
                 {0, 1},

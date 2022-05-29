@@ -16,7 +16,7 @@ import com.wjd.util.ArrayUtil;
 public class SearchRange implements Solution<int[]> {
 
     @Override
-    public int[] solve(Object args) {
+    public int[] solve(Object ...args) {
         int[] nums = {5,7,7,8,8,10};
         int target = 4;
         int[] result = searchRange(nums, target);

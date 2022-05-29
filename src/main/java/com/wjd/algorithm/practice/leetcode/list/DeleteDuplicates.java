@@ -16,7 +16,7 @@ import com.wjd.algorithm.practice.leetcode.structure.ListNode;
 public class DeleteDuplicates implements Solution<ListNode> {
 
     @Override
-    public ListNode solve(Object args) {
+    public ListNode solve(Object ...args) {
         int[] values = {1,1,2,3,3};
         ListNode head = ListNode.build(values);
         ListNode result = deleteDuplicates(head);

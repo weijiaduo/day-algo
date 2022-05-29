@@ -12,7 +12,7 @@ import com.wjd.algorithm.practice.leetcode.Solution;
 public class MyPow implements Solution<Double> {
 
     @Override
-    public Double solve(Object args) {
+    public Double solve(Object ...args) {
         double x = 1;
         int n = -2147483648;
         double result = myPow(x, n);

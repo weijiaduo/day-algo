@@ -21,7 +21,7 @@ import java.util.Queue;
 public class UnivalTree implements Solution<Boolean> {
 
     @Override
-    public Boolean solve(Object args) {
+    public Boolean solve(Object ...args) {
         String[] values = {"1","2","1","1","1",null,"1"};
         TreeNode root = TreeNode.build(values);
         boolean result = isUnivalTree(root);

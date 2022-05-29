@@ -15,7 +15,7 @@ import com.wjd.util.ArrayUtil;
 public class RotateMatrix implements Solution<Void> {
 
     @Override
-    public Void solve(Object args) {
+    public Void solve(Object ...args) {
         int[][] matrix = {{1,2,3},{4,5,6},{7,8,9}};
         ArrayUtil.print(matrix);
         rotate(matrix);

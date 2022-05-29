@@ -18,7 +18,7 @@ import com.wjd.algorithm.practice.leetcode.structure.ListNode;
 public class MergeKLists implements Solution<ListNode> {
 
     @Override
-    public ListNode solve(Object args) {
+    public ListNode solve(Object ...args) {
         int[][] arr = {
                 {1, 4, 5},
                 {1, 3, 4},

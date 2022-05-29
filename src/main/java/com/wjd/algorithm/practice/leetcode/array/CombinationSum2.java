@@ -20,7 +20,7 @@ import java.util.List;
 public class CombinationSum2 implements Solution<List<List<Integer>>> {
 
     @Override
-    public List<List<Integer>> solve(Object args) {
+    public List<List<Integer>> solve(Object ...args) {
         int[] candidates = {10,1,2,7,6,1,5};
         int target = 8;
         List<List<Integer>> result = combinationSum(candidates, target);

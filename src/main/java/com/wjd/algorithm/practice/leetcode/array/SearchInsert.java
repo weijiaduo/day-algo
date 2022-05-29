@@ -14,7 +14,7 @@ import com.wjd.algorithm.practice.leetcode.Solution;
 public class SearchInsert implements Solution<Integer> {
 
     @Override
-    public Integer solve(Object args) {
+    public Integer solve(Object ...args) {
         int[] nums = {1, 3, 5, 6};
         int result = binarySearchInsert(nums, 0);
         System.out.println("Insert result = " + result);

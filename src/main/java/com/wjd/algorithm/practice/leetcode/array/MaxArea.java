@@ -14,7 +14,7 @@ import com.wjd.algorithm.practice.leetcode.Solution;
 public class MaxArea implements Solution<Integer> {
 
     @Override
-    public Integer solve(Object args) {
+    public Integer solve(Object ...args) {
         int[] height = {1, 8, 6, 2, 5, 4, 8, 3, 7};
         int result = doublePoint(height);
         System.out.println("Max area = " + result);

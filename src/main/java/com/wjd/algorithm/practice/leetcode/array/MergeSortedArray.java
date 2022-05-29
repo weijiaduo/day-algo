@@ -15,7 +15,7 @@ import com.wjd.util.ArrayUtil;
 public class MergeSortedArray implements Solution<Void> {
 
     @Override
-    public Void solve(Object args) {
+    public Void solve(Object ...args) {
         int[] nums1 = {0};
         int[] nums2 = {2};
         ArrayUtil.print(nums1);

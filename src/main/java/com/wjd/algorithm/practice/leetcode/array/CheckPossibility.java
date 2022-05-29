@@ -14,7 +14,7 @@ import com.wjd.algorithm.practice.leetcode.Solution;
 public class CheckPossibility implements Solution<Boolean> {
 
     @Override
-    public Boolean solve(Object args) {
+    public Boolean solve(Object ...args) {
         int[] nums = {3, 4, 5, 3};
         boolean result = checkPossibility(nums);
         System.out.println(result);

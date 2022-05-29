@@ -12,7 +12,7 @@ import com.wjd.algorithm.practice.leetcode.Solution;
 public class MaxSubArray implements Solution<Integer> {
 
     @Override
-    public Integer solve(Object args) {
+    public Integer solve(Object ...args) {
         int[] nums = {-2, 1, -3, 4, -1, 2, 1, -5, 4};
         int result = maxSubArray(nums);
         System.out.println("Max sub Array = " + result);

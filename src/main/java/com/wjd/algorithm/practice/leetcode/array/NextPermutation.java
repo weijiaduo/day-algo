@@ -22,7 +22,7 @@ import java.util.Arrays;
 public class NextPermutation implements Solution<Void> {
 
     @Override
-    public Void solve(Object args) {
+    public Void solve(Object ...args) {
         int[] nums = {5,1,1};
         nextPermutation(nums);
         ArrayUtil.print(nums);

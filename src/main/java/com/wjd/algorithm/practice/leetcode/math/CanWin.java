@@ -16,7 +16,7 @@ import java.util.Map;
 public class CanWin implements Solution<Boolean> {
 
     @Override
-    public Boolean solve(Object args) {
+    public Boolean solve(Object ...args) {
         int maxChoosableInteger = 10;
         int desireTotal = 40;
         boolean result = canIWin(maxChoosableInteger, desireTotal);

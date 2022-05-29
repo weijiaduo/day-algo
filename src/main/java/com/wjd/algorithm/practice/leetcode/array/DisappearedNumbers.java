@@ -15,7 +15,7 @@ import java.util.List;
 public class DisappearedNumbers implements Solution<List<Integer>> {
 
     @Override
-    public List<Integer> solve(Object args) {
+    public List<Integer> solve(Object ...args) {
         int[] nums = {4, 3, 2, 7, 8, 2, 3, 6};
         List<Integer> result = findDisappearedNumbers(nums);
         System.out.println(result);

@@ -13,7 +13,7 @@ import com.wjd.algorithm.practice.leetcode.Solution;
 public class ValidIPAddress implements Solution<String> {
 
     @Override
-    public String solve(Object args) {
+    public String solve(Object ...args) {
         String queryIP = "20EE:Fb8:85a3:0:0:8A2E:0370:7334:12";
         String result = validIPAddress(queryIP);
         System.out.println(result);

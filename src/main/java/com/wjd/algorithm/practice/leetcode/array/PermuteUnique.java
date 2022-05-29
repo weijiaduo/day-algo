@@ -19,7 +19,7 @@ import java.util.List;
 public class PermuteUnique implements Solution<List<List<Integer>>> {
 
     @Override
-    public List<List<Integer>> solve(Object args) {
+    public List<List<Integer>> solve(Object ...args) {
         int[] nums = {2,2,1,1};
         List<List<Integer>> result = permuteUnique(nums);
         System.out.println(result);

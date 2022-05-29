@@ -15,7 +15,7 @@ import java.util.List;
 public class PascalTrianglePrint2 implements Solution<List<Integer>> {
 
     @Override
-    public List<Integer> solve(Object args) {
+    public List<Integer> solve(Object ...args) {
         int numRows = 4;
         List<Integer> result = getRow(numRows);
         System.out.println(result);

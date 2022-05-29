@@ -14,7 +14,7 @@ import java.util.Arrays;
 public class ArrayPairSum implements Solution<Integer> {
 
     @Override
-    public Integer solve(Object args) {
+    public Integer solve(Object ...args) {
         int[] nums = {6, 2, 6, 5, 1, 2};
         int result = arrayPairSum(nums);
         System.out.println(result);

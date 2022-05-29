@@ -17,7 +17,7 @@ import com.wjd.algorithm.practice.leetcode.Solution;
 public class AddBinary implements Solution<String> {
 
     @Override
-    public String solve(Object args) {
+    public String solve(Object ...args) {
         String a = "1010";
         String b = "1011";
         String result = addBinary(a, b);

@@ -14,7 +14,7 @@ import com.wjd.algorithm.practice.leetcode.Solution;
 public class LengthOfLCIS implements Solution<Integer> {
 
     @Override
-    public Integer solve(Object args) {
+    public Integer solve(Object ...args) {
         int[] nums = {2, 2, 3, 2, 2};
         int result = findLengthOfLCIS(nums);
         System.out.println(result);

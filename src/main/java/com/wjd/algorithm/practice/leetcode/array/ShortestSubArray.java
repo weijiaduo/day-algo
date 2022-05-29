@@ -17,7 +17,7 @@ import java.util.Map;
 public class ShortestSubArray implements Solution<Integer> {
 
     @Override
-    public Integer solve(Object args) {
+    public Integer solve(Object ...args) {
         int[] nums = {1, 2, 2, 3, 1, 4, 2};
         int result = findShortestSubArray(nums);
         System.out.println(result);

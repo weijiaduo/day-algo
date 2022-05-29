@@ -21,7 +21,7 @@ import java.util.List;
 public class ThreeSum implements Solution<List<List<Integer>>> {
 
     @Override
-    public List<List<Integer>> solve(Object args) {
+    public List<List<Integer>> solve(Object ...args) {
         int[] nums = {-1,0,1,2,-1,-4};
         List<List<Integer>> result = threeSum(nums);
         System.out.println(result);

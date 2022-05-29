@@ -19,7 +19,7 @@ import com.wjd.algorithm.practice.leetcode.Solution;
 public class AlienSorted implements Solution<Boolean> {
 
     @Override
-    public Boolean solve(Object args) {
+    public Boolean solve(Object ...args) {
         String[] words = {"zezwvpdhkhc","nldmzkh","qvjpbis","gxntgh","knkdjzzxkv","qyymcxdjut","htjghmlc","qxgxzmgbodnj","hkmhfenu","tlbjlaw"};
         String order = "pojvhubakxzqtlesmcwydinrfg";
         boolean result = isAlienSorted(words, order);
