@@ -28,12 +28,12 @@ public class SolveNQueens implements Solution<List<List<String>>> {
     @Override
     public List<List<String>> solve(Object... args) {
         int n = 4;
-        List<List<String>> result = solveNQueues(n);
+        List<List<String>> result = solveNQueens(n);
         System.out.println(result);
         return result;
     }
 
-    public List<List<String>> solveNQueues(int n) {
+    public List<List<String>> solveNQueens(int n) {
         // return solveDFS(n);
         return backtrace(n);
     }
@@ -53,29 +53,29 @@ public class SolveNQueens implements Solution<List<List<String>>> {
     /**
      * 递归法
      */
-    private void dfs(char[][] queues, int index, List<List<String>> ans) {
-        if (index >= queues.length) {
+    private void dfs(char[][] queens, int index, List<List<String>> ans) {
+        if (index >= queens.length) {
             List<String> str = new ArrayList<>();
-            for (char[] queue : queues) {
+            for (char[] queue : queens) {
                 String s = new String(queue);
                 str.add(s);
             }
             ans.add(str);
             return;
         }
-        for (int i = 0; i < queues[index].length; i++) {
+        for (int i = 0; i < queens[index].length; i++) {
             boolean isValid = true;
             // 同一列
             for (int j = 0; j < index; j++) {
-                if (queues[j][i] == 'Q') {
+                if (queens[j][i] == 'Q') {
                     isValid = false;
                     break;
                 }
             }
             // 斜线
             for (int j = 0; isValid && j < index; j++) {
-                for (int k = 0; k < queues[j].length; k++) {
-                    if (queues[j][k] == 'Q' && Math.abs(j - index) == Math.abs(k - i)) {
+                for (int k = 0; k < queens[j].length; k++) {
+                    if (queens[j][k] == 'Q' && Math.abs(j - index) == Math.abs(k - i)) {
                         isValid = false;
                         break;
                     }
@@ -85,9 +85,9 @@ public class SolveNQueens implements Solution<List<List<String>>> {
                 continue;
             }
 
-            queues[index][i] = 'Q';
-            dfs(queues, index + 1, ans);
-            queues[index][i] = '.';
+            queens[index][i] = 'Q';
+            dfs(queens, index + 1, ans);
+            queens[index][i] = '.';
         }
     }
 
