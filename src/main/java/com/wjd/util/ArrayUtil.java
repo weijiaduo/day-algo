@@ -9,7 +9,9 @@ public final class ArrayUtil {
         for (int j : arr) {
             sb.append(j).append(" ");
         }
-        sb.deleteCharAt(sb.length() - 1);
+        if (sb.length() > 0) {
+            sb.deleteCharAt(sb.length() - 1);
+        }
         System.out.println(sb);
     }
 
@@ -55,6 +57,17 @@ public final class ArrayUtil {
             sb.append(j.toString()).append(" ");
         }
         sb.deleteCharAt(sb.length() - 1);
+        System.out.println(sb);
+    }
+
+    public static void print(char[] arr) {
+        StringBuilder sb = new StringBuilder();
+        for (char j : arr) {
+            sb.append(j).append(" ");
+        }
+        if (sb.length() > 0) {
+            sb.deleteCharAt(sb.length() - 1);
+        }
         System.out.println(sb);
     }
 }
