@@ -12,10 +12,10 @@ public class RecoverTree {
     public static void main(String[] args) {
         String[] s = {"2","3","1"};
         TreeNode2 tree = TreeNode2.buildTree(s);
-        System.out.println(TreeNode2.postTraverse(tree));
+        System.out.println(TreeNode2.postorder(tree));
 
         recoverTree(tree);
-        System.out.println(TreeNode2.innerTraverse(tree));
+        System.out.println(TreeNode2.inorder(tree));
     }
 
     public static void recoverTree(TreeNode2 root) {

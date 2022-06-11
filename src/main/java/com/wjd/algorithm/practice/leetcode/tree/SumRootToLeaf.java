@@ -24,8 +24,8 @@ public class SumRootToLeaf implements Solution<Integer> {
 
     @Override
     public Integer solve(Object... args) {
-        String[] values = {"0"};
-        TreeNode root = TreeNode.buildTree(values);
+        Integer[] values = {0};
+        TreeNode root = TreeNode.build(values);
         int result = sumRootToLeaf(root);
         System.out.println(result);
         return result;

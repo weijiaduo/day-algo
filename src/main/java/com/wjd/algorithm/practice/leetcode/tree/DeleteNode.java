@@ -19,12 +19,12 @@ public class DeleteNode implements Solution<TreeNode> {
 
     @Override
     public TreeNode solve(Object... args) {
-        String[] values = {"5","3","6","2","4",null,"7"};
+        Integer[] values = {5,3,6,2,4,null,7};
         int key = 7;
-        TreeNode root = TreeNode.buildTree(values);
-        System.out.println(TreeNode.breadthTraverse(root));
+        TreeNode root = TreeNode.build(values);
+        System.out.println(TreeNode.bfs(root));
         TreeNode result = deleteNode(root, key);
-        System.out.println(TreeNode.breadthTraverse(result));
+        System.out.println(TreeNode.bfs(result));
         return result;
     }
 

@@ -22,9 +22,9 @@ public class InorderTraversal implements Solution<List<Integer>> {
 
     @Override
     public List<Integer> solve(Object... args) {
-        String[] values = {"1", null, "2", "3"};
-        TreeNode root = TreeNode.buildTree(values);
-        System.out.println(TreeNode.breadthTraverse(root));
+        Integer[] values = {1,null,2,3};
+        TreeNode root = TreeNode.build(values);
+        System.out.println(TreeNode.bfs(root));
         List<Integer> result = inorderTraversal(root);
         System.out.println(result);
         return result;

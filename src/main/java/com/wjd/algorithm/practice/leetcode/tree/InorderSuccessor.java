@@ -23,11 +23,11 @@ public class InorderSuccessor implements Solution<TreeNode> {
 
     @Override
     public TreeNode solve(Object ...args) {
-        String[] s = {"2", null, "3"};
+        Integer[] s = {1,null,3};
         int p = 2;
-        TreeNode root = TreeNode.buildTree(s);
-        System.out.println(TreeNode.breadthTraverse(root));
-        System.out.println(TreeNode.innerTraverse(root));
+        TreeNode root = TreeNode.build(s);
+        System.out.println(TreeNode.bfs(root));
+        System.out.println(TreeNode.inorder(root));
         TreeNode result = inorderSuccessor(root, new TreeNode(p));
         if (result != null) {
             System.out.println(result.val);

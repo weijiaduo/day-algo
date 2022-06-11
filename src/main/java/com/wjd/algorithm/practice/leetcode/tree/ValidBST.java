@@ -10,9 +10,9 @@ public class ValidBST {
     public static TreeNode pre;
 
     public static void main(String[] args) {
-        String[] s = {"10", "10"};
-        TreeNode tree = TreeNode.buildTree(s);
-        System.out.println(TreeNode.postTraverse(tree));
+        Integer[] s = {10,10};
+        TreeNode tree = TreeNode.build(s);
+        System.out.println(TreeNode.postorder(tree));
 
         System.out.println(isValidBST(tree));
     }

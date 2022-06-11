@@ -18,7 +18,7 @@ public class TreeNode2 {
         }
 
         for (int i = 0; i < s.length; i++) {
-            if (s[i] == "#"){
+            if (s[i].equals("#")){
                 s[i] = null;
             }
         }
@@ -28,9 +28,6 @@ public class TreeNode2 {
 
     /**
      * 根据广度优先遍历序列（空节点为null）生成树
-     *
-     * @param s
-     * @return
      */
     public static TreeNode2 build(Object[] s) {
         if (s == null || s.length == 0) {
@@ -73,11 +70,8 @@ public class TreeNode2 {
 
     /**
      * 层次遍历
-     *
-     * @param tree
-     * @return
      */
-    public static String breadthTraverse(TreeNode2 tree){
+    public static String bfs(TreeNode2 tree){
         if (tree == null){
             return null;
         }
@@ -103,11 +97,8 @@ public class TreeNode2 {
 
     /**
      * 前序遍历
-     *
-     * @param tree
-     * @return
      */
-    public static String preTraverse(TreeNode2 tree){
+    public static String preorder(TreeNode2 tree){
         if (tree == null){
             return null;
         }
@@ -119,12 +110,12 @@ public class TreeNode2 {
 
         // 左节点
         if (tree.left != null){
-            sb.append(preTraverse(tree.left));
+            sb.append(preorder(tree.left));
         }
 
         // 右节点
         if (tree.right != null){
-            sb.append(preTraverse(tree.right));
+            sb.append(preorder(tree.right));
         }
 
         return sb.toString();
@@ -132,11 +123,8 @@ public class TreeNode2 {
 
     /**
      * 中序遍历
-     *
-     * @param tree
-     * @return
      */
-    public static String innerTraverse(TreeNode2 tree){
+    public static String inorder(TreeNode2 tree){
         if (tree == null){
             return null;
         }
@@ -145,7 +133,7 @@ public class TreeNode2 {
 
         // 左节点
         if (tree.left != null){
-            sb.append(innerTraverse(tree.left));
+            sb.append(inorder(tree.left));
         }
 
         // 根结点
@@ -153,7 +141,7 @@ public class TreeNode2 {
 
         // 右节点
         if (tree.right != null){
-            sb.append(innerTraverse(tree.right));
+            sb.append(inorder(tree.right));
         }
 
         return sb.toString();
@@ -161,11 +149,8 @@ public class TreeNode2 {
 
     /**
      * 后序遍历
-     *
-     * @param tree
-     * @return
      */
-    public static String postTraverse(TreeNode2 tree){
+    public static String postorder(TreeNode2 tree){
         if (tree == null){
             return null;
         }
@@ -174,12 +159,12 @@ public class TreeNode2 {
 
         // 左节点
         if (tree.left != null){
-            sb.append(postTraverse(tree.left));
+            sb.append(postorder(tree.left));
         }
 
         // 右节点
         if (tree.right != null){
-            sb.append(postTraverse(tree.right));
+            sb.append(postorder(tree.right));
         }
 
         // 根结点

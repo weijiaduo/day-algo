@@ -1,6 +1,8 @@
 package com.wjd.algorithm.practice.leetcode.structure;
 
+import java.util.ArrayList;
 import java.util.LinkedList;
+import java.util.List;
 
 public class TreeNode {
 
@@ -12,58 +14,41 @@ public class TreeNode {
         val = x;
     }
 
-    public static TreeNode buildTree(String[] s){
-        if (s == null || s.length == 0){
-            return null;
-        }
-
-        for (int i = 0; i < s.length; i++) {
-            if (s[i] == "#"){
-                s[i] = null;
-            }
-        }
-
-        return build(s);
-    }
-
     /**
      * 根据广度优先遍历序列（空节点为null）生成树
-     *
-     * @param s
-     * @return
      */
-    public static TreeNode build(String[] s) {
-        if (s == null || s.length == 0) {
+    public static TreeNode build(Integer[] values) {
+        if (values == null || values.length == 0) {
             return null;
         }
 
         int i = 0;
-        TreeNode tree = new TreeNode(Integer.parseInt(s[i++]));
+        TreeNode tree = new TreeNode(values[i++]);
         LinkedList<TreeNode> queue = new LinkedList<>();
         queue.add(tree);
         while (!queue.isEmpty()) {
-            TreeNode curNode = queue.poll();
+            TreeNode node = queue.poll();
 
             // 左节点
-            if (i < s.length) {
-                String leftVal = s[i++];
+            if (i < values.length) {
+                Integer leftVal = values[i++];
                 TreeNode leftNode = null;
                 if (leftVal != null) {
-                    leftNode = new TreeNode(Integer.parseInt(leftVal));
+                    leftNode = new TreeNode(leftVal);
                     queue.add(leftNode);
                 }
-                curNode.left = leftNode;
+                node.left = leftNode;
             }
 
             // 右节点
-            if (i < s.length) {
-                String rightVal = s[i++];
+            if (i < values.length) {
+                Integer rightVal = values[i++];
                 TreeNode rightNode = null;
                 if (rightVal != null) {
-                    rightNode = new TreeNode(Integer.parseInt(rightVal));
+                    rightNode = new TreeNode(rightVal);
                     queue.add(rightNode);
                 }
-                curNode.right = rightNode;
+                node.right = rightNode;
             }
         }
 
@@ -72,41 +57,44 @@ public class TreeNode {
 
     /**
      * 层次遍历
-     *
-     * @param tree
-     * @return
      */
-    public static String breadthTraverse(TreeNode tree){
+    public static List<Integer> bfs(TreeNode tree){
         if (tree == null){
             return null;
         }
 
-        StringBuilder sb = new StringBuilder();
+        List<Integer> list = new ArrayList<>();
         LinkedList<TreeNode> queue = new LinkedList<>();
         queue.add(tree);
-        while (!queue.isEmpty()){
-            TreeNode curNode = queue.poll();
-            sb.append(curNode.val);
-
-            if (curNode.left != null){
-                queue.add(curNode.left);
+        int notNull = queue.size();
+        while (!queue.isEmpty() && notNull >= 1) {
+            TreeNode node = queue.poll();
+            notNull--;
+            if (node == null) {
+                list.add(null);
+                continue;
             }
 
-            if (curNode.right != null){
-                queue.add(curNode.right);
+            list.add(node.val);
+
+            queue.add(node.left);
+            if (node.left != null) {
+                notNull = queue.size();
+            }
+
+            queue.add(node.right);
+            if (node.right != null) {
+                notNull = queue.size();
             }
         }
 
-        return sb.toString();
+        return list;
     }
 
     /**
      * 前序遍历
-     *
-     * @param tree
-     * @return
      */
-    public static String preTraverse(TreeNode tree){
+    public static String preorder(TreeNode tree){
         if (tree == null){
             return null;
         }
@@ -118,12 +106,12 @@ public class TreeNode {
 
         // 左节点
         if (tree.left != null){
-            sb.append(preTraverse(tree.left));
+            sb.append(preorder(tree.left));
         }
 
         // 右节点
         if (tree.right != null){
-            sb.append(preTraverse(tree.right));
+            sb.append(preorder(tree.right));
         }
 
         return sb.toString();
@@ -131,11 +119,8 @@ public class TreeNode {
 
     /**
      * 中序遍历
-     *
-     * @param tree
-     * @return
      */
-    public static String innerTraverse(TreeNode tree){
+    public static String inorder(TreeNode tree){
         if (tree == null){
             return null;
         }
@@ -144,7 +129,7 @@ public class TreeNode {
 
         // 左节点
         if (tree.left != null){
-            sb.append(innerTraverse(tree.left));
+            sb.append(inorder(tree.left));
         }
 
         // 根结点
@@ -152,7 +137,7 @@ public class TreeNode {
 
         // 右节点
         if (tree.right != null){
-            sb.append(innerTraverse(tree.right));
+            sb.append(inorder(tree.right));
         }
 
         return sb.toString();
@@ -160,11 +145,8 @@ public class TreeNode {
 
     /**
      * 后序遍历
-     *
-     * @param tree
-     * @return
      */
-    public static String postTraverse(TreeNode tree){
+    public static String postorder(TreeNode tree){
         if (tree == null){
             return null;
         }
@@ -173,12 +155,12 @@ public class TreeNode {
 
         // 左节点
         if (tree.left != null){
-            sb.append(postTraverse(tree.left));
+            sb.append(postorder(tree.left));
         }
 
         // 右节点
         if (tree.right != null){
-            sb.append(postTraverse(tree.right));
+            sb.append(postorder(tree.right));
         }
 
         // 根结点

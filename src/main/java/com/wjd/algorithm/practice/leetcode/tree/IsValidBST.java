@@ -25,7 +25,7 @@ public class IsValidBST implements Solution<Boolean> {
     public Boolean solve(Object... args) {
         Integer[] values = {-2147483648,-2147483648};
         TreeNode root = TreeNode.build(values);
-        System.out.println(TreeNode.breadthTraverse2(root));
+        System.out.println(TreeNode.bfs(root));
         boolean result = isValidBST(root);
         System.out.println(result);
         return result;

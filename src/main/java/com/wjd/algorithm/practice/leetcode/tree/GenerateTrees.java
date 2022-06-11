@@ -23,7 +23,7 @@ public class GenerateTrees implements Solution<List<TreeNode>> {
         int n = 2;
         List<TreeNode> result = generateTrees(n);
         for (TreeNode treeNode : result) {
-            System.out.println(TreeNode.breadthTraverse2(treeNode));
+            System.out.println(TreeNode.bfs(treeNode));
         }
         return result;
     }

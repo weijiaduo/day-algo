@@ -6,9 +6,9 @@ public class MaximumDepthOfBinaryTree {
     public static void main(String[] args) {
         String[] s = {"1","2","3","#","#","4","#","#","5"};
         TreeNode2 tree = TreeNode2.buildTree(s);
-        System.out.println(TreeNode2.preTraverse(tree));
-        System.out.println(TreeNode2.innerTraverse(tree));
-        System.out.println(TreeNode2.postTraverse(tree));
+        System.out.println(TreeNode2.preorder(tree));
+        System.out.println(TreeNode2.inorder(tree));
+        System.out.println(TreeNode2.postorder(tree));
 
         System.out.println(maxDepth(tree));
     }

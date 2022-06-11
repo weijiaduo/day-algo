@@ -11,7 +11,7 @@ public class SymmetricTree {
     public static void main(String[] args) {
         String[] s = {"1","2","2","3","4","4","3"};
         TreeNode2 tree = TreeNode2.buildTree(s);
-        System.out.println(TreeNode2.postTraverse(tree));
+        System.out.println(TreeNode2.postorder(tree));
 
         System.out.println(isSymmetric(tree));
     }

@@ -23,8 +23,8 @@ public class IsSameTree implements Solution<Boolean> {
         Integer[] values2 = {1,1,2};
         TreeNode p = TreeNode.build(values1);
         TreeNode q = TreeNode.build(values2);
-        System.out.println(TreeNode.breadthTraverse2(p));
-        System.out.println(TreeNode.breadthTraverse2(q));
+        System.out.println(TreeNode.bfs(p));
+        System.out.println(TreeNode.bfs(q));
         boolean result = isSameTree(p, q);
         System.out.println(result);
         return result;

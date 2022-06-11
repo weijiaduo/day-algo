@@ -9,9 +9,9 @@ import com.wjd.algorithm.practice.leetcode.structure.TreeNode;
 public class MinimumTreeDepth {
 
     public static void main(String[] args) {
-        String[] s = {"2","3"};
-        TreeNode tree = TreeNode.buildTree(s);
-        System.out.println(TreeNode.postTraverse(tree));
+        Integer[] s = {2,3};
+        TreeNode tree = TreeNode.build(s);
+        System.out.println(TreeNode.postorder(tree));
 
         System.out.println(getMinimumDepth(tree));
     }

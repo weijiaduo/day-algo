@@ -12,9 +12,9 @@ import java.util.LinkedList;
 public class TreeOrderTraversal {
 
     public static void main(String[] args) {
-        String[] s = {"1","2","3","#","#","4","#","#","5"};
-        TreeNode tree = TreeNode.buildTree(s);
-        System.out.println(TreeNode.postTraverse(tree));
+        Integer[] s = {1,2,3,null,null,4,null,5};
+        TreeNode tree = TreeNode.build(s);
+        System.out.println(TreeNode.postorder(tree));
 
         System.out.println(postorderTraversal(tree));
     }
