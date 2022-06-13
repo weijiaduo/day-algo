@@ -2,7 +2,6 @@ package com.wjd.algorithm.practice.leetcode.tree;
 
 import com.wjd.algorithm.practice.leetcode.Solution;
 import com.wjd.algorithm.practice.leetcode.structure.TreeNode;
-import com.wjd.algorithm.practice.leetcode.structure.TreeNode2;
 
 import java.util.ArrayList;
 import java.util.LinkedList;
@@ -42,26 +41,21 @@ public class LevelOrder implements Solution<List<List<Integer>>> {
         }
 
         Queue<TreeNode> queue = new LinkedList<>();
-        queue.add(root);
-        int count = queue.size();
-        List<Integer> level = new ArrayList<>(count);
+        queue.offer(root);
         while (!queue.isEmpty()) {
-            TreeNode node = queue.poll();
-            count--;
-            level.add(node.val);
-
-            if (node.left != null) {
-                queue.add(node.left);
+            int count = queue.size();
+            List<Integer> level = new ArrayList<>(count);
+            for (int i = 0; i < count; i++) {
+                TreeNode node = queue.poll();
+                level.add(node.val);
+                if (node.left != null) {
+                    queue.offer(node.left);
+                }
+                if (node.right != null) {
+                    queue.offer(node.right);
+                }
             }
-            if (node.right != null) {
-                queue.add(node.right);
-            }
-
-            if (count == 0) {
-                list.add(level);
-                count = queue.size();
-                level = new ArrayList<>(count);
-            }
+            list.add(level);
         }
 
         return list;
