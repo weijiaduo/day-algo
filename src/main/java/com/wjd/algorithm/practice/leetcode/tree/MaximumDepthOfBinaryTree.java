@@ -1,28 +1,42 @@
 package com.wjd.algorithm.practice.leetcode.tree;
 
-import com.wjd.algorithm.practice.leetcode.structure.TreeNode2;
+import com.wjd.algorithm.practice.leetcode.Solution;
+import com.wjd.algorithm.practice.leetcode.structure.TreeNode;
 
-public class MaximumDepthOfBinaryTree {
-    public static void main(String[] args) {
-        String[] s = {"1","2","3","#","#","4","#","#","5"};
-        TreeNode2 tree = TreeNode2.buildTree(s);
-        System.out.println(TreeNode2.preorder(tree));
-        System.out.println(TreeNode2.inorder(tree));
-        System.out.println(TreeNode2.postorder(tree));
+/**
+ * 104. 二叉树的最大深度
+ * <p>
+ * 给定一个二叉树，找出其最大深度。
+ * <p>
+ * 二叉树的深度为根节点到最远叶子节点的最长路径上的节点数。
+ * <p>
+ * @since 2022-06-13
+ */
+public class MaximumDepthOfBinaryTree implements Solution<Integer> {
 
-        System.out.println(maxDepth(tree));
+    @Override
+    public Integer solve(Object... args) {
+        Integer[] values = {3,9,20,null,null,15,7};
+        TreeNode root = TreeNode.build(values);
+        System.out.println(TreeNode.bfs(root));
+        int result = maxDepth(root);
+        System.out.println(result);
+        return result;
     }
 
-    public static int maxDepth(TreeNode2 root){
-        if (root == null){
+    /**
+     * 深度优先
+     *
+     * 执行耗时:0 ms,击败了100.00% 的Java用户
+     * 内存消耗:41 MB,击败了62.74% 的Java用户
+     */
+    public int maxDepth(TreeNode root) {
+        if (root == null) {
             return 0;
         }
 
-        int depth;
         int ld = maxDepth(root.left);
         int rd = maxDepth(root.right);
-        depth=1+ (ld>rd?ld:rd);
-
-        return depth;
+        return 1 + (Math.max(ld, rd));
     }
 }
