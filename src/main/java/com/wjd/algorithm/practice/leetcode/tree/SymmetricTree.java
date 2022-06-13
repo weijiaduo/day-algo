@@ -13,7 +13,7 @@ import java.util.Queue;
  *
  * 输入：root = [1,2,2,3,4,4,3]
  * 输出：true
- * 
+ *
  * @since 2022-06-11
  */
 public class SymmetricTree implements Solution<Boolean> {
