@@ -1,32 +1,35 @@
 package com.wjd.algorithm.practice.leetcode.structure;
 
-public class ListNode {
+public class Node {
 
     public int val;
-    public ListNode next;
+    public Node next;
 
-    public ListNode(int x) {
-        this(x, null);
+    public Node() {}
+
+    public Node(int _val) {
+        val = _val;
     }
 
-    public ListNode(int val, ListNode next) {
-        this.val = val;
-        this.next = next;
+    public Node(int _val, Node _next) {
+        val = _val;
+        next = _next;
     }
 
-    public static ListNode build(int[] values) {
+    public static Node build(int[] values) {
         if (values == null || values.length == 0) {
             return null;
         }
-        ListNode head = null;
+        Node head = null;
         for (int i = values.length - 1; i >= 0; i--) {
-            head = new ListNode(values[i], head);
+            head = new Node(values[i], head);
         }
         return head;
     }
 
-    public String string() {
-        ListNode p = this;
+    @Override
+    public String toString() {
+        Node p = this;
         StringBuilder sb = new StringBuilder();
         sb.append('[');
         while (p != null) {
@@ -39,10 +42,5 @@ public class ListNode {
         sb.deleteCharAt(sb.length() - 1);
         sb.append(']');
         return sb.toString();
-    }
-
-    @Override
-    public String toString() {
-        return "" + val;
     }
 }
