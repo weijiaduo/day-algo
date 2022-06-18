@@ -21,11 +21,7 @@ public class RemoveNthFromEnd implements Solution<ListNode> {
         int n = 1;
         ListNode head = ListNode.build(arr);
         ListNode result = removeNthFromEnd(head, n);
-        if (result != null) {
-            System.out.println(result.string());
-        } else {
-            System.out.println("[]");
-        }
+        System.out.println(ListNode.listString(result));
         return result;
     }
 

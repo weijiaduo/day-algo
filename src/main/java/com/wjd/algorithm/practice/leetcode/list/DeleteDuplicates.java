@@ -20,11 +20,7 @@ public class DeleteDuplicates implements Solution<ListNode> {
         int[] values = {1,1,2,3,3};
         ListNode head = ListNode.build(values);
         ListNode result = deleteDuplicates(head);
-        if (result != null) {
-            System.out.println(result.string());
-        } else {
-            System.out.println("[]");
-        }
+        System.out.println(ListNode.listString(result));
         return result;
     }
 

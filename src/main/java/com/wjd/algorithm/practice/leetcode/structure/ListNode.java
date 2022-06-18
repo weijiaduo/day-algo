@@ -25,14 +25,17 @@ public class ListNode {
         return head;
     }
 
-    public String string() {
-        ListNode p = this;
+    public static String listString(ListNode list) {
+        if (list == null) {
+            return null;
+        }
+        ListNode p = list;
         StringBuilder sb = new StringBuilder();
         sb.append('[');
         while (p != null) {
             sb.append(p.val).append(',');
             p = p.next;
-            if (p == this) {
+            if (p == list) {
                 break;
             }
         }

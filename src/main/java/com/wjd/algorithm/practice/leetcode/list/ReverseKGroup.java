@@ -27,11 +27,7 @@ public class ReverseKGroup implements Solution<ListNode> {
         int[] values = {1,2,3,4,5};
         ListNode head = ListNode.build(values);
         ListNode result = reverseKGroup(head, k);
-        if (result != null) {
-            System.out.println(result.string());
-        } else {
-            System.out.println("[]");
-        }
+        System.out.println(ListNode.listString(result));
         return result;
     }
 

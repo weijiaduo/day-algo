@@ -19,9 +19,9 @@ public class DeleteDuplicates2 implements Solution<ListNode> {
     public ListNode solve(Object... args) {
         int[] values = {1,2,2};
         ListNode head = ListNode.build(values);
-        System.out.println(head.string());
+        System.out.println(ListNode.listString(head));
         ListNode result = deleteDuplicates(head);
-        System.out.println(result.string());
+        System.out.println(ListNode.listString(result));
         return result;
     }
 

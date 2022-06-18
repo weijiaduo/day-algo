@@ -22,9 +22,9 @@ public class Partition implements Solution<ListNode> {
         int x = 2;
         int[] values = {2,1};
         ListNode head = ListNode.build(values);
-        System.out.println(head.string());
+        System.out.println(ListNode.listString(head));
         ListNode result = partition(head, x);
-        System.out.println(result.string());
+        System.out.println(ListNode.listString(result));
         return result;
     }
 

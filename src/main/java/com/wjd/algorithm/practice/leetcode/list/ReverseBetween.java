@@ -22,9 +22,9 @@ public class ReverseBetween implements Solution<ListNode> {
         int[] values = {5};
         int left = 1, right = 1;
         ListNode head = ListNode.build(values);
-        System.out.println(head.string());
+        System.out.println(ListNode.listString(head));
         ListNode result = reverseBetween(head, left, right);
-        System.out.println(result.string());
+        System.out.println(ListNode.listString(result));
         return null;
     }
 

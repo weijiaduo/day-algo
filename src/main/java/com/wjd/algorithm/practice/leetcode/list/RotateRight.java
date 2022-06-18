@@ -20,9 +20,9 @@ public class RotateRight implements Solution<ListNode> {
         int[] values = {1,2,3,4,5};
         int k = 3;
         ListNode head = ListNode.build(values);
-        System.out.println(head.string());
+        System.out.println(ListNode.listString(head));
         ListNode result = rotateRight(head, k);
-        System.out.println(result.string());
+        System.out.println(ListNode.listString(result));
         return null;
     }
 

@@ -29,11 +29,7 @@ public class MergeKLists implements Solution<ListNode> {
             lists[i] = ListNode.build(arr[i]);
         }
         ListNode result = mergeKLists(lists);
-        if (result != null) {
-            System.out.println(result.string());
-        } else {
-            System.out.println("[]");
-        }
+        System.out.println(ListNode.listString(result));
         return null;
     }
 
