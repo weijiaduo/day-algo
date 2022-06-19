@@ -25,7 +25,7 @@ public class InsertSorted implements Solution<Node> {
     public Node solve(Object... args) {
         int[] values = {3,3,5};
         int insertVal = 4;
-        Node head = Node.build(values);
+        Node head = Node.buildList(values);
         makeCircle(head);
         System.out.println(head);
         Node result = insert(head, insertVal);
