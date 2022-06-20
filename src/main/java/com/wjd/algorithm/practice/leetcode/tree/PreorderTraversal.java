@@ -83,4 +83,32 @@ public class PreorderTraversal implements Solution<List<Integer>> {
         return ans;
     }
 
+    /**
+     * 执行耗时:0 ms,击败了100.00% 的Java用户
+     * 内存消耗:39.5 MB,击败了58.12% 的Java用户
+     */
+    private List<Integer> iterator2(TreeNode root) {
+        List<Integer> ans = new ArrayList<>();
+        if (root == null) {
+            return ans;
+        }
+
+        Deque<TreeNode> stack = new LinkedList<>();
+        stack.push(root);
+        while (!stack.isEmpty()) {
+            // 根节点
+            TreeNode node = stack.pop();
+            ans.add(node.val);
+            // 右节点
+            if (node.right != null) {
+                stack.push(node.right);
+            }
+            // 左节点
+            if (node.left != null) {
+                stack.push(node.left);
+            }
+        }
+        return ans;
+    }
+
 }
