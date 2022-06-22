@@ -70,7 +70,7 @@ public class SurroundBoard implements Solution<Void> {
         if (i < 0 || i >= board.length || j < 0 || j >= board[0].length) {
             return;
         }
-        if (board[i][j] == 'X' || board[i][j] == 'S') {
+        if (board[i][j] != 'O') {
             return;
         }
         // 随便找个字符暂时替代O
