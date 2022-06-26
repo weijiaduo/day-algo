@@ -1,19 +1,47 @@
 package com.wjd.algorithm.practice.leetcode.list;
 
+import com.wjd.algorithm.practice.leetcode.Solution;
 import com.wjd.algorithm.practice.leetcode.structure.ListNode;
 
-public class ReorderList {
+/**
+ * 143. 重排链表
+ * <p>
+ * 给定一个单链表 L 的头节点 head ，单链表 L 表示为：
+ * <p>
+ * L0 → L1 → … → Ln - 1 → Ln
+ * <p>
+ * 请将其重新排列后变为：
+ * <p>
+ * L0 → Ln → L1 → Ln - 1 → L2 → Ln - 2 → …
+ * <p>
+ * 不能只是单纯的改变节点内部的值，而是需要实际的进行节点交换。
+ * <p>
+ * 输入：head = [1,2,3,4,5]
+ * 输出：[1,5,2,4,3]
+ *
+ * @author weijiaduo
+ * @since 2022-06-27
+ */
+public class ReorderList implements Solution<Void> {
 
-    public static void main(String[] args) {
-        ListNode head = new ListNode(1);
-        head.next = new ListNode(2);
-        head.next.next = new ListNode(3);
-        head.next.next.next = new ListNode(4);
+    @Override
+    public Void solve(Object... args) {
+        int[] values = {1, 2, 3, 4, 5};
+        ListNode head = ListNode.build(values);
 
         reorderList(head);
-        printList(head);
+        System.out.println(ListNode.listString(head));
+        return null;
     }
 
+    /**
+     * 思路：将链表对半分，翻转后半部分链表，最后重新拼装2条链表
+     * <p>
+     * 复杂度：时间O(n)，空间O(1)
+     * <p>
+     * 执行耗时:1 ms,击败了99.95% 的Java用户
+     * 内存消耗:44.7 MB,击败了5.02% 的Java
+     */
     public static void reorderList(ListNode head) {
         if (head == null || head.next == null) {
             return;
@@ -48,14 +76,5 @@ public class ReorderList {
             q.next = p;
             q = temp2;
         }
-    }
-
-    public static void printList(ListNode head){
-        ListNode p = head;
-        while (p!=null){
-            System.out.print(p.val+" ");
-            p= p.next;
-        }
-        System.out.println();
     }
 }
