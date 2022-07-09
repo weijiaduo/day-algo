@@ -1,6 +1,7 @@
 package com.wjd.algorithm.practice.leetcode.bit;
 
 import com.wjd.algorithm.practice.leetcode.Solution;
+import com.wjd.util.BitUtil;
 
 /**
  * 190. 颠倒二进制位
@@ -20,10 +21,10 @@ public class ReverseBits implements Solution<Integer> {
     @Override
     public Integer solve(Object... args) {
         String bits = "11111111111111111111111111111101";
-        int n = bitsToInt(bits);
-        System.out.println(intToBits(n));
+        int n = BitUtil.bitsToInt(bits);
+        System.out.println(BitUtil.intToBits(n));
         int result = reverseBits(n);
-        System.out.println(intToBits(result));
+        System.out.println(BitUtil.intToBits(result));
         return result;
     }
 
@@ -97,28 +98,6 @@ public class ReverseBits implements Solution<Integer> {
         n = (n >>> 4) & m4 | (n & m4) << 4;
         n = (n >>> 8) & m8 | (n & m8) << 8;
         return n >>> 16 | n << 16;
-    }
-
-    private int bitsToInt(String bits) {
-        int n = 0;
-        for (int i = 0; i < bits.length(); i++) {
-            n = (n << 1) | (bits.charAt(i) - '0');
-        }
-        return n;
-    }
-
-    private String intToBits(int n) {
-        StringBuilder sb = new StringBuilder();
-        int mask = 1 << (Integer.SIZE - 1);
-        for (int i = 0; i < Integer.SIZE; i++) {
-            if ((mask & n) == mask) {
-                sb.append(1);
-            } else {
-                sb.append(0);
-            }
-            n <<= 1;
-        }
-        return sb.toString();
     }
 
 }
