@@ -12,58 +12,108 @@ import java.util.Map;
  */
 public class Trie {
 
-    TrieNode root = new TrieNode();
+    Map<Character, Trie> children = new HashMap<>();
+    boolean isEnd = false;
 
+    /**
+     * 执行耗时:41 ms,击败了24.64% 的Java用户
+     * 内存消耗:53.4 MB,击败了7.81% 的Java用户
+     */
+    public Trie() {
+    }
+
+    /**
+     * 构建字典树
+     *
+     * @param words 初始化单词列表
+     * @return 字典树
+     */
     public static Trie build(List<String> words) {
         Trie trie = new Trie();
         for (String word : words) {
-            trie.addWord(word);
+            trie.insert(word);
         }
         return trie;
     }
 
     /**
-     * 给字典树添加单词
+     * 插入单词
+     *
      * @param word 单词
      */
-    public void addWord(String word) {
-        TrieNode cur = root;
+    public void insert(String word) {
+        Trie cur = this;
         for (int i = 0; i < word.length(); i++) {
             char ch = word.charAt(i);
-            TrieNode trieNode = cur.children.get(ch);
-            if (trieNode == null) {
-                trieNode = new TrieNode();
-                trieNode.val = ch;
-                cur.children.put(ch, trieNode);
+            Trie trie = cur.children.get(ch);
+            if (trie == null) {
+                trie = new Trie();
+                cur.children.put(ch, trie);
             }
-            cur = trieNode;
+            cur = trie;
         }
-        cur.children.putIfAbsent('#', new TrieNode());
+        cur.isEnd = true;
+    }
+
+    /**
+     * 是否包含指定单词
+     *
+     * @param word 单词
+     * @return 单词是否存在
+     */
+    public boolean search(String word) {
+        Trie trie = searchPrefix(word);
+        return trie != null && trie.isEnd;
+    }
+
+    /**
+     * 是否包含指定前缀
+     *
+     * @param prefix 前缀
+     * @return 是否有前缀
+     */
+    public boolean startsWith(String prefix) {
+        return searchPrefix(prefix) != null;
+    }
+
+    /**
+     * 搜索指定的前缀
+     *
+     * @param prefix 前缀
+     * @return 前缀的最后一个节点
+     */
+    private Trie searchPrefix(String prefix) {
+        Trie cur = this;
+        for (int i = 0; i < prefix.length(); i++) {
+            char ch = prefix.charAt(i);
+            Trie trie = cur.children.get(ch);
+            if (trie == null) {
+                return null;
+            }
+            cur = trie;
+        }
+        return cur;
     }
 
     /**
      * 查找指定单词的最短路径
+     *
      * @param word 单词
      * @return 最短路径/单词本身
      */
-    public String findMinPath(String word) {
-        TrieNode cur = root;
+    public String minPrefix(String word) {
+        Trie cur = this;
         for (int i = 0; i < word.length(); i++) {
             char ch = word.charAt(i);
             cur = cur.children.get(ch);
             if (cur == null) {
                 return word;
             }
-            if (cur.children.containsKey('#')) {
+            if (cur.isEnd) {
                 return word.substring(0, i + 1);
             }
         }
-        return word;
-    }
-
-    private static class TrieNode {
-        char val;
-        Map<Character, TrieNode> children = new HashMap<>();
+        return null;
     }
 
 }
