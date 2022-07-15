@@ -86,11 +86,10 @@ public class Trie {
         Trie cur = this;
         for (int i = 0; i < prefix.length(); i++) {
             char ch = prefix.charAt(i);
-            Trie trie = cur.children.get(ch);
-            if (trie == null) {
+            cur = cur.children.get(ch);
+            if (cur == null) {
                 return null;
             }
-            cur = trie;
         }
         return cur;
     }
@@ -114,6 +113,43 @@ public class Trie {
             }
         }
         return null;
+    }
+
+    /**
+     * 是否匹配字符串表达式
+     *
+     * @param word 字符串表达式
+     * @return true/false
+     */
+    public boolean match(String word) {
+        Trie trie = dfsMatch(this, word, 0);
+        return trie != null && trie.isEnd;
+    }
+
+    /**
+     * 匹配字符串
+     */
+    private Trie dfsMatch(Trie root, String word, int index) {
+        if (index == word.length()) {
+            return root.isEnd ? root : null;
+        }
+        char ch = word.charAt(index);
+        if (Character.isLetter(ch)) {
+            Trie child = root.children.get(ch);
+            if (child == null) {
+                return null;
+            }
+            return dfsMatch(child, word, index + 1);
+        } else {
+            // . 可以匹配任意字符
+            for (Trie t : root.children.values()) {
+                Trie ret = dfsMatch(t, word, index + 1);
+                if (ret != null) {
+                    return ret;
+                }
+            }
+            return null;
+        }
     }
 
 }
