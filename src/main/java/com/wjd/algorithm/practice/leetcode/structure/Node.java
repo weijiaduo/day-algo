@@ -29,6 +29,15 @@ public class Node {
      */
     public List<Node> neighbors;
 
+    /**
+     * 四叉树子节点
+     */
+    public boolean isLeaf;
+    public Node topLeft;
+    public Node topRight;
+    public Node bottomLeft;
+    public Node bottomRight;
+
     public Node() {
     }
 
