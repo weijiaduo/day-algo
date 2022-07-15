@@ -1,4 +1,4 @@
-package com.wjd.algorithm.practice.leetcode.array;
+package com.wjd.algorithm.practice.leetcode.graph;
 
 import com.wjd.algorithm.practice.leetcode.Solution;
 
