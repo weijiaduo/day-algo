@@ -6,7 +6,10 @@
         <sourceOutputDir name="target/generated-sources/annotations" />
         <sourceTestOutputDir name="target/generated-test-sources/test-annotations" />
         <outputRelativeToContentRoot value="true" />
-        <module name="jode-learning" />
+        <module name="design-pattern" />
+        <module name="examples" />
+        <module name="algorithm" />
+        <module name="concurrency" />
       </profile>
     </annotationProcessing>
   </component>
