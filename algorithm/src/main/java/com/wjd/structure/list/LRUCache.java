@@ -1,6 +1,4 @@
-package com.wjd.practice.leetcode.list;
-
-import com.wjd.practice.leetcode.Solution;
+package com.wjd.structure.list;
 
 import java.util.HashMap;
 import java.util.Map;
@@ -15,22 +13,7 @@ import java.util.Map;
  * @author weijiaduo
  * @since 2022/6/29
  */
-public class LRUCache implements Solution<Void> {
-
-    @Override
-    public Void solve(Object... args) {
-        LRUCache cache = new LRUCache(2);
-        cache.put(1, 1);
-        cache.put(2, 2);
-        System.out.println(cache.get(1));
-        cache.put(3, 3);
-        System.out.println(cache.get(2));
-        cache.put(4, 4);
-        System.out.println(cache.get(1));
-        System.out.println(cache.get(3));
-        System.out.println(cache.get(4));
-        return null;
-    }
+public class LRUCache {
 
     static class Node {
         int key;
