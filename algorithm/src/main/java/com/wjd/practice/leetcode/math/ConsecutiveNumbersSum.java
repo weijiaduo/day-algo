@@ -1,6 +1,6 @@
 package com.wjd.practice.leetcode.math;
 
-import com.wjd.practice.leetcode.Solution;
+import com.wjd.practice.Solution;
 
 /**
  * 829. 连续整数求和

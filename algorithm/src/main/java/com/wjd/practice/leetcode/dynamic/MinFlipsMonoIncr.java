@@ -1,6 +1,6 @@
 package com.wjd.practice.leetcode.dynamic;
 
-import com.wjd.practice.leetcode.Solution;
+import com.wjd.practice.Solution;
 
 /**
  * 926. 将字符串翻转到单调递增

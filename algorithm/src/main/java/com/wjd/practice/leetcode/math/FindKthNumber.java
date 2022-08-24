@@ -1,6 +1,6 @@
 package com.wjd.practice.leetcode.math;
 
-import com.wjd.practice.leetcode.Solution;
+import com.wjd.practice.Solution;
 
 /**
  * 668. 乘法表中第k小的数

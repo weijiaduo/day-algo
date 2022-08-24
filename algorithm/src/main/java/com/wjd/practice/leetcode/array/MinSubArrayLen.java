@@ -1,6 +1,6 @@
 package com.wjd.practice.leetcode.array;
 
-import com.wjd.practice.leetcode.Solution;
+import com.wjd.practice.Solution;
 
 /**
  * 209. 长度最小的子数组

@@ -1,6 +1,6 @@
 package com.wjd.practice.leetcode.string;
 
-import com.wjd.practice.leetcode.Solution;
+import com.wjd.practice.Solution;
 
 /**
  * 1422. 分割字符串的最大得分

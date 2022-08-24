@@ -1,6 +1,6 @@
 package com.wjd.practice.leetcode.bit;
 
-import com.wjd.practice.leetcode.Solution;
+import com.wjd.practice.Solution;
 import com.wjd.util.BitUtil;
 
 /**

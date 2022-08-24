@@ -1,6 +1,6 @@
 package com.wjd.practice.leetcode.array;
 
-import com.wjd.practice.leetcode.Solution;
+import com.wjd.practice.Solution;
 
 import java.util.Arrays;
 import java.util.LinkedHashSet;

@@ -1,4 +1,4 @@
-package com.wjd.practice.leetcode;
+package com.wjd.practice;
 
 public interface Solution<T> {
 

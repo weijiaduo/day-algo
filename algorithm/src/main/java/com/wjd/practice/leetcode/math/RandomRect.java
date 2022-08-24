@@ -1,6 +1,6 @@
 package com.wjd.practice.leetcode.math;
 
-import com.wjd.practice.leetcode.Solution;
+import com.wjd.practice.Solution;
 
 import java.util.ArrayList;
 import java.util.List;

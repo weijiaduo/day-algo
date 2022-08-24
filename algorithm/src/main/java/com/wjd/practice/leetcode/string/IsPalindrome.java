@@ -1,6 +1,6 @@
 package com.wjd.practice.leetcode.string;
 
-import com.wjd.practice.leetcode.Solution;
+import com.wjd.practice.Solution;
 
 /**
  * 125. 验证回文串

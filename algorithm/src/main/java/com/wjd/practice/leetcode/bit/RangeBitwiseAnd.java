@@ -1,6 +1,6 @@
 package com.wjd.practice.leetcode.bit;
 
-import com.wjd.practice.leetcode.Solution;
+import com.wjd.practice.Solution;
 
 /**
  * 201. 数字范围按位与

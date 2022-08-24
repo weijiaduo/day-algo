@@ -1,6 +1,6 @@
 package com.wjd.practice.leetcode.tree;
 
-import com.wjd.practice.leetcode.Solution;
+import com.wjd.practice.Solution;
 
 /**
  * 96. 不同的二叉树搜索树

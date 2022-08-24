@@ -1,6 +1,6 @@
 package com.wjd.practice.leetcode.string;
 
-import com.wjd.practice.leetcode.Solution;
+import com.wjd.practice.Solution;
 
 /**
  * 1021. 删除最外层的括号

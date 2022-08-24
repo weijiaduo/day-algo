@@ -1,6 +1,6 @@
 package com.wjd.practice.leetcode.string;
 
-import com.wjd.practice.leetcode.Solution;
+import com.wjd.practice.Solution;
 
 /**
  * 132. 分割回文串2

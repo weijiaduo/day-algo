@@ -1,7 +1,7 @@
 package com.wjd.practice.leetcode.tree;
 
 
-import com.wjd.practice.leetcode.Solution;
+import com.wjd.practice.Solution;
 import com.wjd.practice.leetcode.structure.TreeNode;
 
 import java.util.LinkedList;

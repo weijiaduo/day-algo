@@ -1,6 +1,6 @@
 package com.wjd.practice.leetcode.dynamic;
 
-import com.wjd.practice.leetcode.Solution;
+import com.wjd.practice.Solution;
 
 /**
  * 198. 打家劫舍
