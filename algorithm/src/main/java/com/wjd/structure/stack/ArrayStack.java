@@ -29,19 +29,25 @@ public class ArrayStack implements Stack {
 
     @Override
     public void push(int val) {
-        checkIndex(size);
+        if (isFull()) {
+            throw new StackOverflowError();
+        }
         elements[size++] = val;
     }
 
     @Override
     public int pop() {
-        checkIndex(size - 1);
+        if (isEmpty()) {
+            throw new IllegalStateException();
+        }
         return elements[--size];
     }
 
     @Override
     public int top() {
-        checkIndex(size - 1);
+        if (isEmpty()) {
+            throw new IllegalStateException();
+        }
         return elements[size - 1];
     }
 
@@ -50,15 +56,14 @@ public class ArrayStack implements Stack {
         return size;
     }
 
-    /**
-     * 检查索引范围
-     *
-     * @param index 索引
-     */
-    private void checkIndex(int index) {
-        if (index < 0 || index >= capacity) {
-            throw new IndexOutOfBoundsException();
-        }
+    @Override
+    public boolean isEmpty() {
+        return size == 0;
+    }
+
+    @Override
+    public boolean isFull() {
+        return size == capacity;
     }
 
 }

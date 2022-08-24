@@ -48,4 +48,27 @@ class ListStackTest {
         stack.push(3);
         assertEquals(3, stack.size());
     }
+
+    @Test
+    void isEmpty() {
+        Stack stack = new ListStack();
+        assertTrue(stack.isEmpty());
+        stack.push(1);
+        assertFalse(stack.isEmpty());
+        stack.pop();
+        assertTrue(stack.isEmpty());
+    }
+
+    @Test
+    void isFull() {
+        Stack stack = new ListStack();
+        assertFalse(stack.isFull());
+        stack.push(1);
+        stack.push(2);
+        stack.push(3);
+        assertFalse(stack.isFull());
+        stack.pop();
+        assertFalse(stack.isFull());
+    }
+
 }

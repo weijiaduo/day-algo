@@ -36,4 +36,14 @@ public interface Stack {
      */
     int size();
 
+    /**
+     * @return 是否为空
+     */
+    boolean isEmpty();
+
+    /**
+     * @return 是否已满
+     */
+    boolean isFull();
+
 }

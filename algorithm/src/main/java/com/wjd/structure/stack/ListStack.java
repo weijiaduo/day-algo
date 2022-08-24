@@ -35,8 +35,8 @@ public class ListStack implements Stack {
 
     @Override
     public int pop() {
-        if (size == 0) {
-            throw new IndexOutOfBoundsException();
+        if (isEmpty()) {
+            throw new IllegalStateException();
         }
         Node node = list.next;
         list.next = list.next.next;
@@ -46,8 +46,8 @@ public class ListStack implements Stack {
 
     @Override
     public int top() {
-        if (size == 0) {
-            throw new IndexOutOfBoundsException();
+        if (isEmpty()) {
+            throw new IllegalStateException();
         }
         return list.next.val;
     }
@@ -55,6 +55,16 @@ public class ListStack implements Stack {
     @Override
     public int size() {
         return size;
+    }
+
+    @Override
+    public boolean isEmpty() {
+        return size == 0;
+    }
+
+    @Override
+    public boolean isFull() {
+        return false;
     }
 
 }
