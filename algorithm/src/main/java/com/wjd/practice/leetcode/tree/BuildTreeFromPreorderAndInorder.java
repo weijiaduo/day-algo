@@ -1,7 +1,7 @@
 package com.wjd.practice.leetcode.tree;
 
 import com.wjd.practice.Solution;
-import com.wjd.practice.leetcode.structure.TreeNode;
+import com.wjd.structure.tree.TreeNode;
 
 /**
  * 105. 从前序与中序遍历序列构造二叉树
@@ -21,7 +21,7 @@ public class BuildTreeFromPreorderAndInorder implements Solution<TreeNode> {
         int[] preorder = {3,9,20,15,7};
         int[] inorder = {9,3,15,20,7};
         TreeNode result = buildTree(preorder, inorder);
-        System.out.println(TreeNode.bfs(result));
+        System.out.println(TreeNode.traverse(result));
         return result;
     }
 

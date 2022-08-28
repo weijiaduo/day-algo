@@ -2,7 +2,7 @@ package com.wjd.practice.leetcode.tree;
 
 
 import com.wjd.practice.Solution;
-import com.wjd.practice.leetcode.structure.TreeNode;
+import com.wjd.structure.tree.TreeNode;
 
 import java.util.LinkedList;
 import java.util.Queue;
@@ -24,7 +24,7 @@ public class MinimumTreeDepth implements Solution<Integer> {
     public Integer solve(Object... args) {
         Integer[] values = {3,9,20,null,null,15,7};
         TreeNode root = TreeNode.build(values);
-        System.out.println(TreeNode.bfs(root));
+        System.out.println(TreeNode.traverse(root));
         int result = minDepth(root);
         System.out.println(result);
         return result;

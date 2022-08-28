@@ -1,7 +1,7 @@
 package com.wjd.practice.leetcode.tree;
 
 import com.wjd.practice.Solution;
-import com.wjd.practice.leetcode.structure.TreeNode;
+import com.wjd.structure.tree.TreeNode;
 
 import java.util.ArrayDeque;
 import java.util.Queue;
@@ -30,7 +30,7 @@ public class MaxLevelSum implements Solution<Integer> {
     public Integer solve(Object... args) {
         Integer[] values = {989, null, 10250, 98693, -89388, null, null, null, -32127};
         TreeNode root = TreeNode.build(values);
-        System.out.println(TreeNode.bfs(root));
+        System.out.println(TreeNode.traverse(root));
         int result = maxLevelSum(root);
         System.out.println(result);
         return result;

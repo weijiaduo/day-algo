@@ -1,22 +1,33 @@
 package com.wjd.practice.leetcode.math;
 
-import com.wjd.practice.leetcode.structure.Point;
-
 /**
  * 求在一条直线上的点的最大数量
  */
 public class MaxPointsOnALine {
 
+    static class Point {
+
+        public int x;
+        public int y;
+
+        public Point() {
+            x = 0;
+            y = 0;
+        }
+
+        public Point(int a, int b) {
+            x = a;
+            y = b;
+        }
+    }
+
     public static void main(String[] args) {
         String a = "fdsadsadas";
-//        System.out.println(a);
+        // System.out.println(a);
     }
 
     /**
      * 在同一条直线上的点的最大数量
-     *
-     * @param points
-     * @return
      */
     public static int maxPoints(Point[] points) {
         if (points == null) {
@@ -55,10 +66,6 @@ public class MaxPointsOnALine {
 
     /**
      * 是否是同一个点
-     *
-     * @param p1
-     * @param p2
-     * @return
      */
     public static boolean isSamePoint(Point p1, Point p2) {
         if (p1 == p2) {
@@ -73,11 +80,6 @@ public class MaxPointsOnALine {
 
     /**
      * 是否在同一条直线上
-     *
-     * @param p1
-     * @param p2
-     * @param p3
-     * @return
      */
     public static boolean isOnALine(Point p1, Point p2, Point p3) {
         if (p1 == null || p2 == null || p3 == null) {
@@ -87,6 +89,6 @@ public class MaxPointsOnALine {
         int r1 = (p1.y - p2.y) * (p1.x - p3.x);
         int r2 = (p1.y - p3.y) * (p1.x - p2.x);
 
-        return (r1==r2);
+        return (r1 == r2);
     }
 }

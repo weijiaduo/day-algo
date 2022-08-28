@@ -1,7 +1,7 @@
 package com.wjd.practice.leetcode.tree;
 
 import com.wjd.practice.Solution;
-import com.wjd.practice.leetcode.structure.TreeNode;
+import com.wjd.structure.tree.TreeNode;
 
 import java.util.LinkedList;
 import java.util.Queue;
@@ -23,7 +23,7 @@ public class DeepestLeavesSum implements Solution<Integer> {
     public Integer solve(Object... args) {
         Integer[] values = {6, 7, 8, 2, 7, 1, 3, 9, null, 1, 4, null, null, null, 5};
         TreeNode root = TreeNode.build(values);
-        System.out.println(TreeNode.bfs(root));
+        System.out.println(TreeNode.traverse(root));
         int result = deepestLeavesSum(root);
         System.out.println(result);
         return result;

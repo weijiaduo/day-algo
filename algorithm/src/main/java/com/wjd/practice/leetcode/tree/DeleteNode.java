@@ -1,7 +1,7 @@
 package com.wjd.practice.leetcode.tree;
 
 import com.wjd.practice.Solution;
-import com.wjd.practice.leetcode.structure.TreeNode;
+import com.wjd.structure.tree.TreeNode;
 
 /**
  * 450. 删除二叉搜索树中的节点
@@ -22,9 +22,9 @@ public class DeleteNode implements Solution<TreeNode> {
         Integer[] values = {5,3,6,2,4,null,7};
         int key = 7;
         TreeNode root = TreeNode.build(values);
-        System.out.println(TreeNode.bfs(root));
+        System.out.println(TreeNode.traverse(root));
         TreeNode result = deleteNode(root, key);
-        System.out.println(TreeNode.bfs(result));
+        System.out.println(TreeNode.traverse(result));
         return result;
     }
 

@@ -1,7 +1,7 @@
 package com.wjd.practice.leetcode.tree;
 
 import com.wjd.practice.Solution;
-import com.wjd.practice.leetcode.structure.TreeNode;
+import com.wjd.structure.tree.TreeNode;
 
 /**
  * 129. 求根节点到叶节点数字之和
@@ -30,7 +30,7 @@ public class SumNumbers implements Solution<Integer> {
     public Integer solve(Object... args) {
         Integer[] values = {4,9,0,5,1};
         TreeNode root = TreeNode.build(values);
-        System.out.println(TreeNode.bfs(root));
+        System.out.println(TreeNode.traverse(root));
         int result = sumNumbers(root);
         System.out.println(result);
         return result;

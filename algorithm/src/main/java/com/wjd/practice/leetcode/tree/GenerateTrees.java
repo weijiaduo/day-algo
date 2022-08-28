@@ -1,7 +1,7 @@
 package com.wjd.practice.leetcode.tree;
 
 import com.wjd.practice.Solution;
-import com.wjd.practice.leetcode.structure.TreeNode;
+import com.wjd.structure.tree.TreeNode;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -23,7 +23,7 @@ public class GenerateTrees implements Solution<List<TreeNode>> {
         int n = 2;
         List<TreeNode> result = generateTrees(n);
         for (TreeNode treeNode : result) {
-            System.out.println(TreeNode.bfs(treeNode));
+            System.out.println(TreeNode.traverse(treeNode));
         }
         return result;
     }

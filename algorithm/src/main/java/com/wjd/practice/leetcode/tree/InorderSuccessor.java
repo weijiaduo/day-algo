@@ -1,7 +1,7 @@
 package com.wjd.practice.leetcode.tree;
 
 import com.wjd.practice.Solution;
-import com.wjd.practice.leetcode.structure.TreeNode;
+import com.wjd.structure.tree.TreeNode;
 
 /**
  * @since 2022/5/16
@@ -13,8 +13,8 @@ import com.wjd.practice.leetcode.structure.TreeNode;
  * <p>
  * 输入: root = [2,1,3], p = 1
  * <p>
- *   2
- *  / \
+ * 2
+ * / \
  * 1   3
  * <p>
  * 输出: 2
@@ -22,18 +22,13 @@ import com.wjd.practice.leetcode.structure.TreeNode;
 public class InorderSuccessor implements Solution<TreeNode> {
 
     @Override
-    public TreeNode solve(Object ...args) {
-        Integer[] s = {1,null,3};
+    public TreeNode solve(Object... args) {
+        Integer[] s = {1, null, 3};
         int p = 2;
         TreeNode root = TreeNode.build(s);
-        System.out.println(TreeNode.bfs(root));
-        System.out.println(TreeNode.inorder(root));
+        System.out.println(TreeNode.traverse(root));
         TreeNode result = inorderSuccessor(root, new TreeNode(p));
-        if (result != null) {
-            System.out.println(result.val);
-        } else {
-            System.out.println("null");
-        }
+        System.out.println(result);
         return null;
     }
 

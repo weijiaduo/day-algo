@@ -1,7 +1,7 @@
 package com.wjd.practice.leetcode.tree;
 
 import com.wjd.practice.Solution;
-import com.wjd.practice.leetcode.structure.TreeNode;
+import com.wjd.structure.tree.TreeNode;
 
 /**
  * 100. 相同的树
@@ -23,8 +23,8 @@ public class IsSameTree implements Solution<Boolean> {
         Integer[] values2 = {1,1,2};
         TreeNode p = TreeNode.build(values1);
         TreeNode q = TreeNode.build(values2);
-        System.out.println(TreeNode.bfs(p));
-        System.out.println(TreeNode.bfs(q));
+        System.out.println(TreeNode.traverse(p));
+        System.out.println(TreeNode.traverse(q));
         boolean result = isSameTree(p, q);
         System.out.println(result);
         return result;

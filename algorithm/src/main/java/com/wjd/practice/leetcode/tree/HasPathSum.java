@@ -1,7 +1,7 @@
 package com.wjd.practice.leetcode.tree;
 
 import com.wjd.practice.Solution;
-import com.wjd.practice.leetcode.structure.TreeNode;
+import com.wjd.structure.tree.TreeNode;
 
 /**
  * 112. 路径总和
@@ -24,7 +24,7 @@ public class HasPathSum implements Solution<Boolean> {
         Integer[] values = {1,2,3};
         int targetSum = 5;
         TreeNode root = TreeNode.build(values);
-        System.out.println(TreeNode.bfs(root));
+        System.out.println(TreeNode.traverse(root));
         boolean result = hasPathSum(root, targetSum);
         System.out.println(result);
         return result;

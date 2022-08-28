@@ -1,7 +1,7 @@
 package com.wjd.practice.leetcode.tree;
 
 import com.wjd.practice.Solution;
-import com.wjd.practice.leetcode.structure.TreeNode;
+import com.wjd.structure.tree.TreeNode;
 
 import java.util.ArrayList;
 import java.util.LinkedList;
@@ -46,7 +46,7 @@ public class CBTInserter implements Solution<Void> {
         CBTInserter cbtInserter = new CBTInserter(root);
         System.out.println(cbtInserter.insert(3));
         System.out.println(cbtInserter.insert(4));
-        System.out.println(TreeNode.bfs(cbtInserter.getRoot()));
+        System.out.println(TreeNode.traverse(cbtInserter.getRoot()));
         return null;
     }
 

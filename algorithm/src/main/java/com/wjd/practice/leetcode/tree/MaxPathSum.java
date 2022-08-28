@@ -1,7 +1,7 @@
 package com.wjd.practice.leetcode.tree;
 
 import com.wjd.practice.Solution;
-import com.wjd.practice.leetcode.structure.TreeNode;
+import com.wjd.structure.tree.TreeNode;
 
 /**
  * 124. 二叉树中的最大路径和
@@ -29,7 +29,7 @@ public class MaxPathSum implements Solution<Integer> {
     public Integer solve(Object... args) {
         Integer[] values = {5,4,8,11,null,13,4,7,2,null,null,null,1};
         TreeNode root = TreeNode.build(values);
-        System.out.println(TreeNode.bfs(root));
+        System.out.println(TreeNode.traverse(root));
         int result = maxPathSum(root);
         System.out.println(result);
         return result;

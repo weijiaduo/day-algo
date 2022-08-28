@@ -1,7 +1,7 @@
 package com.wjd.practice.leetcode.tree;
 
 import com.wjd.practice.Solution;
-import com.wjd.practice.leetcode.structure.TreeNode;
+import com.wjd.structure.tree.TreeNode;
 
 import java.util.ArrayList;
 import java.util.Deque;
@@ -24,7 +24,7 @@ public class PreorderTraversal implements Solution<List<Integer>> {
     public List<Integer> solve(Object... args) {
         Integer[] values = {2,1,3,null,4};
         TreeNode root = TreeNode.build(values);
-        System.out.println(TreeNode.bfs(root));
+        System.out.println(TreeNode.traverse(root));
         List<Integer> result = preorderTraversal(root);
         System.out.println(result);
         return result;

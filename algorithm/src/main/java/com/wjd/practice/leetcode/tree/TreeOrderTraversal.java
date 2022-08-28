@@ -1,6 +1,6 @@
 package com.wjd.practice.leetcode.tree;
 
-import com.wjd.practice.leetcode.structure.TreeNode;
+import com.wjd.structure.tree.TreeNode;
 
 import java.util.ArrayList;
 import java.util.Collections;
@@ -12,10 +12,8 @@ import java.util.LinkedList;
 public class TreeOrderTraversal {
 
     public static void main(String[] args) {
-        Integer[] s = {1,2,3,null,null,4,null,5};
+        Integer[] s = {1, 2, 3, null, null, 4, null, 5};
         TreeNode tree = TreeNode.build(s);
-        System.out.println(TreeNode.postorder(tree));
-
         System.out.println(postorderTraversal(tree));
     }
 
@@ -52,10 +50,10 @@ public class TreeOrderTraversal {
                 result.add(cur.val);
                 visited.add(cur);
 
-                if (cur.right!=null) {
+                if (cur.right != null) {
                     stack.push(cur.right);
                 }
-                if (cur.left!=null) {
+                if (cur.left != null) {
                     stack.push(cur.left);
                 }
             }

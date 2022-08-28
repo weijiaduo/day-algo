@@ -2,7 +2,7 @@ package com.wjd.practice.leetcode.tree;
 
 import com.wjd.practice.Solution;
 import com.wjd.practice.leetcode.structure.ListNode;
-import com.wjd.practice.leetcode.structure.TreeNode;
+import com.wjd.structure.tree.TreeNode;
 
 /**
  * 109. 有序链表转换二叉搜索树
@@ -24,7 +24,7 @@ public class SortedListToBST implements Solution<TreeNode> {
         ListNode head = ListNode.build(values);
         System.out.println(ListNode.listString(head));
         TreeNode result = inorderSortedListToBST(head);
-        System.out.println(TreeNode.bfs(result));
+        System.out.println(TreeNode.traverse(result));
         return result;
     }
 

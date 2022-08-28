@@ -1,7 +1,7 @@
 package com.wjd.practice.leetcode.tree;
 
 import com.wjd.practice.Solution;
-import com.wjd.practice.leetcode.structure.TreeNode;
+import com.wjd.structure.tree.TreeNode;
 
 import java.util.ArrayDeque;
 import java.util.Deque;
@@ -24,7 +24,7 @@ public class BSTIterator implements Solution<Void> {
     public Void solve(Object... args) {
         Integer[] values = {7, 3, 15, null, null, 9, 20};
         TreeNode root = TreeNode.build(values);
-        System.out.println(TreeNode.bfs(root));
+        System.out.println(TreeNode.traverse(root));
 
         BSTIterator iterator = new BSTIterator(root);
         while (iterator.hasNext()) {

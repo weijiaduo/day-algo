@@ -1,7 +1,7 @@
 package com.wjd.practice.leetcode.tree;
 
 import com.wjd.practice.Solution;
-import com.wjd.practice.leetcode.structure.TreeNode;
+import com.wjd.structure.tree.TreeNode;
 
 import java.util.LinkedList;
 import java.util.Queue;
@@ -23,7 +23,7 @@ public class FindBottomLeftValue implements Solution<Integer> {
     public Integer solve(Object... args) {
         Integer[] values = {1,2,3,4,null,5,6,null,null,7};
         TreeNode root = TreeNode.build(values);
-        System.out.println(TreeNode.bfs(root));
+        System.out.println(TreeNode.traverse(root));
         int result = findBottomLeftValue(root);
         System.out.println(result);
         return result;

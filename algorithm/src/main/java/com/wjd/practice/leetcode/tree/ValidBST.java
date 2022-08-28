@@ -1,6 +1,6 @@
 package com.wjd.practice.leetcode.tree;
 
-import com.wjd.practice.leetcode.structure.TreeNode;
+import com.wjd.structure.tree.TreeNode;
 
 /**
  * 验证一棵树是二叉搜索树
@@ -10,9 +10,8 @@ public class ValidBST {
     public static TreeNode pre;
 
     public static void main(String[] args) {
-        Integer[] s = {10,10};
+        Integer[] s = {10, 10};
         TreeNode tree = TreeNode.build(s);
-        System.out.println(TreeNode.postorder(tree));
 
         System.out.println(isValidBST(tree));
     }
@@ -26,7 +25,7 @@ public class ValidBST {
             return false;
         }
 
-        if (pre!=null && pre.val >= root.val){
+        if (pre != null && pre.val >= root.val) {
             return false;
         }
 

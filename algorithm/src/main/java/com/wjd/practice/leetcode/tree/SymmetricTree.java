@@ -1,7 +1,7 @@
 package com.wjd.practice.leetcode.tree;
 
 import com.wjd.practice.Solution;
-import com.wjd.practice.leetcode.structure.TreeNode;
+import com.wjd.structure.tree.TreeNode;
 
 import java.util.LinkedList;
 import java.util.Queue;
@@ -22,7 +22,7 @@ public class SymmetricTree implements Solution<Boolean> {
     public Boolean solve(Object... args) {
         Integer[] values = {1,2,2,3,4,4,3};
         TreeNode root = TreeNode.build(values);
-        System.out.println(TreeNode.bfs(root));
+        System.out.println(TreeNode.traverse(root));
         boolean result = isSymmetric(root);
         System.out.println(result);
         return result;

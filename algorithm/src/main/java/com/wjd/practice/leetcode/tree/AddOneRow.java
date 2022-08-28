@@ -1,7 +1,7 @@
 package com.wjd.practice.leetcode.tree;
 
 import com.wjd.practice.Solution;
-import com.wjd.practice.leetcode.structure.TreeNode;
+import com.wjd.structure.tree.TreeNode;
 
 import java.util.LinkedList;
 import java.util.Queue;
@@ -32,9 +32,9 @@ public class AddOneRow implements Solution<TreeNode> {
         int depth = 3;
         Integer[] values = {4, 2, null, 3, 1};
         TreeNode root = TreeNode.build(values);
-        System.out.println(TreeNode.bfs(root));
+        System.out.println(TreeNode.traverse(root));
         TreeNode result = addOneRow(root, val, depth);
-        System.out.println(TreeNode.bfs(result));
+        System.out.println(TreeNode.traverse(result));
         return result;
     }
 

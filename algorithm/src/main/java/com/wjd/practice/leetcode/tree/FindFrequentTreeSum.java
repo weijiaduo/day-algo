@@ -1,7 +1,7 @@
 package com.wjd.practice.leetcode.tree;
 
 import com.wjd.practice.Solution;
-import com.wjd.practice.leetcode.structure.TreeNode;
+import com.wjd.structure.tree.TreeNode;
 import com.wjd.util.ArrayUtil;
 
 import java.util.*;
@@ -24,7 +24,7 @@ public class FindFrequentTreeSum implements Solution<int[]> {
     public int[] solve(Object... args) {
         Integer[] values = {5,2,-5};
         TreeNode root = TreeNode.build(values);
-        System.out.println(TreeNode.bfs(root));
+        System.out.println(TreeNode.traverse(root));
         int[] result = findFrequentTreeSum(root);
         ArrayUtil.print(result);
         return result;

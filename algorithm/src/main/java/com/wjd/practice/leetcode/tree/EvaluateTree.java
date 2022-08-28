@@ -1,7 +1,7 @@
 package com.wjd.practice.leetcode.tree;
 
 import com.wjd.practice.Solution;
-import com.wjd.practice.leetcode.structure.TreeNode;
+import com.wjd.structure.tree.TreeNode;
 
 /**
  * 双周赛 82
@@ -34,7 +34,7 @@ public class EvaluateTree implements Solution<Boolean> {
     public Boolean solve(Object... args) {
         Integer[] values = {2, 1, 3, null, null, 0, 1};
         TreeNode root = TreeNode.build(values);
-        System.out.println(TreeNode.bfs(root));
+        System.out.println(TreeNode.traverse(root));
         boolean result = evaluateTree(root);
         System.out.println(result);
         return result;

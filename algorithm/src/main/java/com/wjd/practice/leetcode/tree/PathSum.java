@@ -1,7 +1,7 @@
 package com.wjd.practice.leetcode.tree;
 
 import com.wjd.practice.Solution;
-import com.wjd.practice.leetcode.structure.TreeNode;
+import com.wjd.structure.tree.TreeNode;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -25,7 +25,7 @@ public class PathSum implements Solution<List<List<Integer>>> {
         Integer[] values = {1,2};
         int targetSum = 0;
         TreeNode root = TreeNode.build(values);
-        System.out.println(TreeNode.bfs(root));
+        System.out.println(TreeNode.traverse(root));
         List<List<Integer>> result = pathSum(root, targetSum);
         System.out.println(result);
         return result;

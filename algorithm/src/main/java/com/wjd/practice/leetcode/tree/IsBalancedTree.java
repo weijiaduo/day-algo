@@ -1,7 +1,7 @@
 package com.wjd.practice.leetcode.tree;
 
 import com.wjd.practice.Solution;
-import com.wjd.practice.leetcode.structure.TreeNode;
+import com.wjd.structure.tree.TreeNode;
 
 /**
  * 110. 平衡二叉树
@@ -21,7 +21,7 @@ public class IsBalancedTree implements Solution<Boolean> {
     public Boolean solve(Object... args) {
         Integer[] values = {1,2,2,3,3,null,null,4,4};
         TreeNode root = TreeNode.build(values);
-        System.out.println(TreeNode.bfs(root));
+        System.out.println(TreeNode.traverse(root));
         boolean result = isBalanced(root);
         System.out.println(result);
         return result;

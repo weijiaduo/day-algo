@@ -1,7 +1,7 @@
 package com.wjd.practice.leetcode.tree;
 
 import com.wjd.practice.Solution;
-import com.wjd.practice.leetcode.structure.TreeNode;
+import com.wjd.structure.tree.TreeNode;
 
 import java.util.ArrayList;
 import java.util.LinkedList;
@@ -25,7 +25,7 @@ public class RightSideView implements Solution<List<Integer>> {
     public List<Integer> solve(Object... args) {
         Integer[] values = {1, null, 3};
         TreeNode root = TreeNode.build(values);
-        System.out.println(TreeNode.bfs(root));
+        System.out.println(TreeNode.traverse(root));
         List<Integer> result = rightSideView(root);
         System.out.println(result);
         return result;

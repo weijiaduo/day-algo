@@ -1,6 +1,5 @@
 package com.wjd.algorithm.tree.build;
 
-import com.wjd.algorithm.tree.traverse.BuildLevelTraverse;
 import com.wjd.structure.tree.TreeNode;
 import org.junit.jupiter.api.Test;
 
@@ -18,7 +17,7 @@ class LevelTreeBuilderTest {
 
         TreeBuilder<Integer[]> builder = new LevelTreeBuilder();
         TreeNode root = builder.build(values);
-        List<Integer> list = TreeNode.bfs(root);
+        List<Integer> list = TreeNode.traverse(root);
         String actual = String.valueOf(list);
 
         assertEquals(expect, actual);

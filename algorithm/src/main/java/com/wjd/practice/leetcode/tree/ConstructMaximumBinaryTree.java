@@ -1,7 +1,7 @@
 package com.wjd.practice.leetcode.tree;
 
 import com.wjd.practice.Solution;
-import com.wjd.practice.leetcode.structure.TreeNode;
+import com.wjd.structure.tree.TreeNode;
 
 import java.util.ArrayDeque;
 import java.util.Arrays;
@@ -31,7 +31,7 @@ public class ConstructMaximumBinaryTree implements Solution<TreeNode> {
     public TreeNode solve(Object... args) {
         int[] nums = {3, 2, 1};
         TreeNode result = constructMaximumBinaryTree(nums);
-        System.out.println(TreeNode.bfs(result));
+        System.out.println(TreeNode.traverse(result));
         return result;
     }
 

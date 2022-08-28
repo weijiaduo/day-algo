@@ -1,7 +1,7 @@
 package com.wjd.practice.leetcode.tree;
 
 import com.wjd.practice.Solution;
-import com.wjd.practice.leetcode.structure.TreeNode;
+import com.wjd.structure.tree.TreeNode;
 
 /**
  * 108. 将有序数组转换为二叉搜索树
@@ -22,7 +22,7 @@ public class SortedArrayToBST implements Solution<TreeNode> {
     public TreeNode solve(Object... args) {
         int[] nums = {1,3};
         TreeNode result = sortedArrayToBST(nums);
-        System.out.println(TreeNode.bfs(result));
+        System.out.println(TreeNode.traverse(result));
         return result;
     }
 
