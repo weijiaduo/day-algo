@@ -6,7 +6,7 @@ package com.wjd.structure.queue;
  * @author weijiaduo
  * @since 2022/8/19
  */
-public class CircularDeque {
+public class CircularDeque implements Deque {
 
     private final int[] elements;
     private final int capacity;
@@ -19,6 +19,7 @@ public class CircularDeque {
         front = rear = 0;
     }
 
+    @Override
     public boolean insertFront(int value) {
         if (isFull()) {
             return false;
@@ -28,6 +29,7 @@ public class CircularDeque {
         return true;
     }
 
+    @Override
     public boolean insertLast(int value) {
         if (isFull()) {
             return false;
@@ -37,6 +39,7 @@ public class CircularDeque {
         return true;
     }
 
+    @Override
     public boolean deleteFront() {
         if (isEmpty()) {
             return false;
@@ -45,6 +48,7 @@ public class CircularDeque {
         return true;
     }
 
+    @Override
     public boolean deleteLast() {
         if (isEmpty()) {
             return false;
@@ -53,6 +57,7 @@ public class CircularDeque {
         return true;
     }
 
+    @Override
     public int getFront() {
         if (isEmpty()) {
             return -1;
@@ -61,6 +66,7 @@ public class CircularDeque {
         return elements[index];
     }
 
+    @Override
     public int getRear() {
         if (isEmpty()) {
             return -1;
@@ -68,10 +74,12 @@ public class CircularDeque {
         return elements[rear];
     }
 
+    @Override
     public boolean isEmpty() {
         return front == rear;
     }
 
+    @Override
     public boolean isFull() {
         return (front + 1) % capacity == rear;
     }
