@@ -45,6 +45,13 @@ public class SortTest {
     }
 
     @Test
+    void testMerge() {
+        int[] actual = Arrays.copyOf(arr, arr.length);
+        new MergeSort().sort(actual);
+        assertArrayEquals(expect, actual);
+    }
+
+    @Test
     void testBubbleTime() {
         long start = System.nanoTime();
         Sort sort = new BubbleSort();
