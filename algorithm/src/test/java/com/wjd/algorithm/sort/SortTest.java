@@ -1,6 +1,7 @@
 package com.wjd.algorithm.sort;
 
 import java.util.Arrays;
+import java.util.Random;
 
 import org.junit.jupiter.api.Test;
 
@@ -41,6 +42,38 @@ public class SortTest {
         int[] actual = Arrays.copyOf(arr, arr.length);
         new QuickSort().sort(actual);
         assertArrayEquals(expect, actual);
+    }
+
+    @Test
+    void testBubbleTime() {
+        long start = System.nanoTime();
+        Sort sort = new BubbleSort();
+        Random random = new Random(1);
+        for (int i = 0; i < 10000; i++) {
+            int size = 50 + random.nextInt(200);
+            int[] arr = new int[size];
+            for (int j = 0; j < size; j++) {
+                arr[j] = random.nextInt();
+            }
+            sort.sort(arr);
+        }
+        System.out.println(System.nanoTime() - start);
+    }
+
+    @Test
+    void testInsertTime() {
+        long start = System.nanoTime();
+        Sort sort = new InsertSort();
+        Random random = new Random(1);
+        for (int i = 0; i < 10000; i++) {
+            int size = 50 + random.nextInt(200);
+            int[] arr = new int[size];
+            for (int j = 0; j < size; j++) {
+                arr[j] = random.nextInt();
+            }
+            sort.sort(arr);
+        }
+        System.out.println(System.nanoTime() - start);
     }
 
 }

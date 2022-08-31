@@ -25,32 +25,6 @@ public class QuickSort implements Sort {
     }
 
     /**
-     * 查找排序后的第k个元素（k范围是[0, n-1]）
-     *
-     * @param arr 数组
-     * @param k   索引k
-     * @return arr[k]
-     */
-    public int findKth(int[] arr, int k) {
-        int n = arr.length;
-        if (k < 0 || k >= n) {
-            return -1;
-        }
-        int start = 0, end = n;
-        while (start < end) {
-            int m = partition(arr, start, end);
-            if (m == k) {
-                return arr[m];
-            } else if (m > k) {
-                end = m;
-            } else {
-                start = m + 1;
-            }
-        }
-        return -1;
-    }
-
-    /**
      * 递归排序
      *
      * @param arr   数组

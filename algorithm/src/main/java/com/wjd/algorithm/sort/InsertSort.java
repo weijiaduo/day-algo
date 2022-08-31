@@ -18,8 +18,10 @@ public class InsertSort implements Sort {
     public void sort(int[] arr) {
         int n = arr.length;
         for (int i = 1; i < n; i++) {
+            // 未排序区间数据元素
             int x = arr[i];
             int j = i;
+            // 插入到已排序区间合适的位置
             for (; j > 0 && x < arr[j - 1]; j--) {
                 arr[j] = arr[j - 1];
             }
