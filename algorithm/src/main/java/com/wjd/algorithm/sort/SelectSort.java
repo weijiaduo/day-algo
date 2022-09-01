@@ -19,7 +19,6 @@ public class SelectSort implements Sort {
     @Override
     public void sort(int[] arr) {
         int n = arr.length;
-        System.out.println(Arrays.toString(arr));
         for (int i = 0; i < n; i++) {
             // 寻找未排序区间内的最小值
             int min = i;
@@ -30,7 +29,6 @@ public class SelectSort implements Sort {
             }
             // 将最小值插入到已排序区间的末尾
             swap(arr, min, i);
-            System.out.println(Arrays.toString(arr));
         }
     }
 

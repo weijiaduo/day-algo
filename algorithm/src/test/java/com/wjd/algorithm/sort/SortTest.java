@@ -13,72 +13,44 @@ import static org.junit.jupiter.api.Assertions.*;
  */
 public class SortTest {
 
-    int[] arr = {0, 3, 1, 6, 2, 5, 4};
-    int[] expect = {0, 1, 2, 3, 4, 5, 6};
-
     @Test
     void testBubble() {
-        int[] actual = Arrays.copyOf(arr, arr.length);
-        new BubbleSort().sort(actual);
-        assertArrayEquals(expect, actual);
+        testSort(new BubbleSort());
     }
 
     @Test
     void testSelect() {
-        int[] actual = Arrays.copyOf(arr, arr.length);
-        new SelectSort().sort(actual);
-        assertArrayEquals(expect, actual);
+        testSort(new SelectSort());
     }
 
     @Test
     void testInsert() {
-        int[] actual = Arrays.copyOf(arr, arr.length);
-        new InsertSort().sort(actual);
-        assertArrayEquals(expect, actual);
+        testSort(new InsertSort());
     }
 
     @Test
     void testQuick() {
-        int[] actual = Arrays.copyOf(arr, arr.length);
-        new QuickSort().sort(actual);
-        assertArrayEquals(expect, actual);
+        testSort(new QuickSort());
     }
 
     @Test
     void testMerge() {
-        int[] actual = Arrays.copyOf(arr, arr.length);
-        new MergeSort().sort(actual);
-        assertArrayEquals(expect, actual);
+        testSort(new MergeSort());
     }
 
-    @Test
-    void testBubbleTime() {
+    private void testSort(Sort sort) {
         long start = System.nanoTime();
-        Sort sort = new BubbleSort();
-        Random random = new Random(1);
-        for (int i = 0; i < 10000; i++) {
-            int size = 50 + random.nextInt(200);
-            int[] arr = new int[size];
+        Random random = new Random();
+        for (int i = 0; i < 1000; i++) {
+            int size = 50 + random.nextInt(150);
+            int[] expect = new int[size];
             for (int j = 0; j < size; j++) {
-                arr[j] = random.nextInt();
+                expect[j] = random.nextInt(1000);
             }
-            sort.sort(arr);
-        }
-        System.out.println(System.nanoTime() - start);
-    }
-
-    @Test
-    void testInsertTime() {
-        long start = System.nanoTime();
-        Sort sort = new InsertSort();
-        Random random = new Random(1);
-        for (int i = 0; i < 10000; i++) {
-            int size = 50 + random.nextInt(200);
-            int[] arr = new int[size];
-            for (int j = 0; j < size; j++) {
-                arr[j] = random.nextInt();
-            }
-            sort.sort(arr);
+            int[] actual = Arrays.copyOf(expect, expect.length);
+            Arrays.sort(expect);
+            sort.sort(actual);
+            assertArrayEquals(actual, expect);
         }
         System.out.println(System.nanoTime() - start);
     }
