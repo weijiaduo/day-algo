@@ -33,8 +33,11 @@ public class QuickSort implements Sort {
      */
     private void partSort(int[] arr, int start, int end) {
         if (start < end) {
+            // 分区
             int m = partition(arr, start, end);
+            // 左边排序
             partSort(arr, start, m);
+            // 右边排序
             partSort(arr, m + 1, end);
         }
     }
@@ -48,15 +51,19 @@ public class QuickSort implements Sort {
      * @return 分隔点索引
      */
     private int partition(int[] arr, int start, int end) {
+        // 选取分区点
         int p = pivot(arr, start, end - 1);
+        // 将分区点放到最前面
         swap(arr, start, p);
         int ref = arr[start];
         int lp = start;
+        // 将数据与分区点对比，分成小于和大于2部分
         for (int i = lp + 1; i < end; i++) {
             if (arr[i] <= ref) {
                 swap(arr, ++lp, i);
             }
         }
+        // 将分区点放到它最终的位置
         swap(arr, start, lp);
         return lp;
     }

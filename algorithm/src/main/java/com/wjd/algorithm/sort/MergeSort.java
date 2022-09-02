@@ -55,9 +55,11 @@ public class MergeSort implements Sort {
                 tempArr[k++] = arr[j++];
             }
         }
+        // 左边剩余元素
         while (i < mid) {
             tempArr[k++] = arr[i++];
         }
+        // 右边剩余元素
         while (j < end) {
             tempArr[k++] = arr[j++];
         }
