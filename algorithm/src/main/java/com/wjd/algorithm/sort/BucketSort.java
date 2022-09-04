@@ -25,8 +25,8 @@ public class BucketSort implements Sort {
 
     @Override
     public void sort(int[] arr) {
-        // 初始化桶
-        intBuckets(arr);
+        // 初始化桶参数
+        initBuckets(arr);
 
         // 划分到不同的桶里面
         for (int num : arr) {
@@ -52,7 +52,7 @@ public class BucketSort implements Sort {
     /**
      * 初始化桶
      */
-    private void intBuckets(int[] arr) {
+    private void initBuckets(int[] arr) {
         int min = Integer.MAX_VALUE;
         int max = Integer.MIN_VALUE;
         for (int num : arr) {
