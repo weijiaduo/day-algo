@@ -17,11 +17,11 @@ public class CountSort implements Sort {
     @Override
     public void sort(int[] arr) {
         // 初始化参数
-        initRange(arr);
+        initCounts(arr);
 
         // 统计所有数字的数量
         for (int num : arr) {
-            counts[toIndex(num)]++;
+            counts[countIndex(num)]++;
         }
 
         // 累计数量和
@@ -32,7 +32,7 @@ public class CountSort implements Sort {
         // 倒序遍历获取排序结果
         int[] copy = Arrays.copyOf(arr, arr.length);
         for (int i = copy.length - 1; i >= 0; i--) {
-            int index = toIndex(copy[i]);
+            int index = countIndex(copy[i]);
             counts[index]--;
             arr[counts[index]] = copy[i];
         }
@@ -43,7 +43,7 @@ public class CountSort implements Sort {
      *
      * @param arr 数组
      */
-    private void initRange(int[] arr) {
+    private void initCounts(int[] arr) {
         int min = Integer.MAX_VALUE;
         int max = Integer.MIN_VALUE;
         for (int num : arr) {
@@ -60,7 +60,7 @@ public class CountSort implements Sort {
         counts = new int[n];
     }
 
-    private int toIndex(int val) {
+    private int countIndex(int val) {
         return val - min;
     }
 
