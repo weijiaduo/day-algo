@@ -4,6 +4,12 @@ import java.util.Arrays;
 
 /**
  * 计数排序
+ * <p>
+ * 时间复杂度：O(n)
+ * <p>
+ * 空间复杂度：空间 O(n)
+ * <p>
+ * 稳定性：稳定
  *
  * @author weijiaduo
  * @since 2022/9/5
