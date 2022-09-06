@@ -30,8 +30,7 @@ public class BucketSort implements Sort {
 
         // 划分到不同的桶里面
         for (int num : arr) {
-            int index = bucketIndex(num);
-            List<Integer> list = getBucket(index);
+            List<Integer> list = getBucket(index(num));
             list.add(num);
         }
 
@@ -88,7 +87,7 @@ public class BucketSort implements Sort {
      * @param val 指定值
      * @return 桶索引
      */
-    private int bucketIndex(int val) {
+    private int index(int val) {
         return (val - min) / width;
     }
 

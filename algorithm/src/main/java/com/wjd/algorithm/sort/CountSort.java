@@ -21,18 +21,19 @@ public class CountSort implements Sort {
 
         // 统计所有数字的数量
         for (int num : arr) {
-            counts[countIndex(num)]++;
+            counts[index(num)]++;
         }
 
         // 累计数量和
-        for (int i = 1, n = counts.length; i < n; i++) {
+        int n = counts.length;
+        for (int i = 1; i < n; i++) {
             counts[i] += counts[i - 1];
         }
 
         // 倒序遍历获取排序结果
         int[] copy = Arrays.copyOf(arr, arr.length);
         for (int i = copy.length - 1; i >= 0; i--) {
-            int index = countIndex(copy[i]);
+            int index = index(copy[i]);
             counts[index]--;
             arr[counts[index]] = copy[i];
         }
@@ -60,7 +61,7 @@ public class CountSort implements Sort {
         counts = new int[n];
     }
 
-    private int countIndex(int val) {
+    private int index(int val) {
         return val - min;
     }
 
