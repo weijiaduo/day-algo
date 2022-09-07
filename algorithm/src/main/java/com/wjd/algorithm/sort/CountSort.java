@@ -7,7 +7,7 @@ import java.util.Arrays;
  * <p>
  * 时间复杂度：O(n)
  * <p>
- * 空间复杂度：空间 O(n)
+ * 空间复杂度：O(n)
  * <p>
  * 稳定性：稳定
  *

@@ -5,7 +5,7 @@ package com.wjd.algorithm.sort;
  * <p>
  * 时间复杂度：最好 O(n) 最差 O(n^2) 平均 O(n^2)
  * <p>
- * 空间复杂度：空间 O(1)
+ * 空间复杂度：O(1)
  * <p>
  * 稳定性：稳定
  *

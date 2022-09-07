@@ -7,7 +7,7 @@ import java.util.Arrays;
  * <p>
  * 时间复杂度：O(n)
  * <p>
- * 空间复杂度：空间 O(n)
+ * 空间复杂度：O(n)
  * <p>
  * 稳定性：稳定
  *
@@ -40,22 +40,22 @@ public class RadixSort implements Sort {
      */
     private void countSort(int[] arr, int exp) {
         // 统计每个数字（0-9）的次数
-        int[] count = new int[10];
+        int[] counts = new int[10];
         for (int a : arr) {
-            count[(a / exp) % 10]++;
+            counts[(a / exp) % 10]++;
         }
 
         // 累计数字的次数和
-        for (int i = 1; i < count.length; i++) {
-            count[i] += count[i - 1];
+        for (int i = 1; i < counts.length; i++) {
+            counts[i] += counts[i - 1];
         }
 
         // 更新排序结果到原数组
         int[] copy = Arrays.copyOf(arr, arr.length);
         for (int i = copy.length - 1; i >= 0; i--) {
             int index = (copy[i] / exp) % 10;
-            count[index]--;
-            arr[count[index]] = copy[i];
+            counts[index]--;
+            arr[counts[index]] = copy[i];
         }
     }
 
