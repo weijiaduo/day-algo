@@ -16,9 +16,6 @@ import java.util.*;
  */
 public class BucketSort implements Sort {
 
-    List<List<Integer>> buckets;
-    int min;
-    int max;
     int width;
 
     public BucketSort() {
@@ -31,33 +28,7 @@ public class BucketSort implements Sort {
 
     @Override
     public void sort(int[] arr) {
-        // 初始化桶参数
-        initBuckets(arr);
-
-        // 划分到不同的桶里面
-        for (int num : arr) {
-            List<Integer> list = getBucket(index(num));
-            list.add(num);
-        }
-
-        // 单独对每个桶进行排序，桶之间已经是有序的了
-        for (List<Integer> bucket : buckets) {
-            Collections.sort(bucket);
-        }
-
-        // 按桶的顺序遍历所有数据，就是已经拍好序的了
-        int k = 0;
-        for (List<Integer> bucket : buckets) {
-            for (Integer num : bucket) {
-                arr[k++] = num;
-            }
-        }
-    }
-
-    /**
-     * 初始化桶
-     */
-    private void initBuckets(int[] arr) {
+        // 找出数据的范围（最小最大值）
         int min = Integer.MAX_VALUE;
         int max = Integer.MIN_VALUE;
         for (int num : arr) {
@@ -68,33 +39,33 @@ public class BucketSort implements Sort {
                 min = num;
             }
         }
-        this.min = min;
-        this.max = max;
+
+        // 根据数据范围平均划分桶
         int n = (max - min + width) / width;
-        buckets = new ArrayList<>(n);
+        List<List<Integer>> buckets = new ArrayList<>(n);
         for (int i = 0; i < n; i++) {
             buckets.add(new ArrayList<>());
         }
-    }
 
-    /**
-     * 获取指定桶
-     *
-     * @param index 指定索引
-     * @return 指定桶
-     */
-    private List<Integer> getBucket(int index) {
-        return buckets.get(index);
-    }
+        // 把不同范围的数据划分到不同的桶里面
+        for (int num : arr) {
+            int index = (num - min) / width;
+            List<Integer> list = buckets.get(index);
+            list.add(num);
+        }
 
-    /**
-     * 指定值对应的桶索引
-     *
-     * @param val 指定值
-     * @return 桶索引
-     */
-    private int index(int val) {
-        return (val - min) / width;
+        // 桶之间已经是有序的了，只需对桶内排序
+        for (List<Integer> bucket : buckets) {
+            Collections.sort(bucket);
+        }
+
+        // 按桶的顺序遍历所有数据，就是已经排好序的了
+        int k = 0;
+        for (List<Integer> bucket : buckets) {
+            for (Integer num : bucket) {
+                arr[k++] = num;
+            }
+        }
     }
 
 }
