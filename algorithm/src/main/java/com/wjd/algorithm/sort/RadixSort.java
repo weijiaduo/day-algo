@@ -26,9 +26,18 @@ public class RadixSort implements Sort {
             }
         }
 
+        // 计算基数大小
+        int radix = 0;
+        while(max > 0) {
+            max = max / 10;
+            radix++;
+        }
+
         // 从低位到高位对数组进行排序
-        for (int exp = 1; max / exp > 0; exp *= 10) {
+        int exp = 1;
+        for (int i = 0; i < radix; i++) {
             countSort(arr, exp);
+            exp *= 10;
         }
     }
 
