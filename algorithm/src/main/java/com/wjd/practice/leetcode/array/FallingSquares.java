@@ -1,7 +1,7 @@
 package com.wjd.practice.leetcode.array;
 
 import com.wjd.practice.Solution;
-import com.wjd.structure.segmenttree.MaxSegmentTree;
+import com.wjd.structure.segmenttree.MaxLinkSegmentTree;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -67,7 +67,7 @@ public class FallingSquares implements Solution<List<Integer>> {
     private List<Integer> segmentTreeFallingSquares(int[][] positions) {
         List<Integer> ans = new ArrayList<>(positions.length);
         int low = 1, high = (int) 1e8;
-        MaxSegmentTree segmentTree = new MaxSegmentTree(low, high);
+        MaxLinkSegmentTree segmentTree = new MaxLinkSegmentTree(low, high);
         for (int[] position : positions) {
             int x = position[0];
             int w = position[1];
