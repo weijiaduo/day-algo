@@ -1,7 +1,8 @@
 package com.wjd.practice.leetcode.array;
 
 import com.wjd.practice.Solution;
-import com.wjd.structure.segmenttree.MaxSegmentTree;
+import com.wjd.structure.segmenttree.MaxArraySegmentTree;
+import com.wjd.structure.segmenttree.MaxLinkSegmentTree;
 
 /**
  * 6206. 最长递增子序列 II
@@ -23,11 +24,16 @@ public class LengthOfLIS2 implements Solution<Integer> {
 
     @Override
     public Integer solve(Object... args) {
-        int[] nums = {7, 4, 5, 1, 8, 12, 4, 7};
-        int k = 5;
+        int[] nums = {1};
+        int k = 1;
         int result = lengthOfLIS(nums, k);
         System.out.println(result);
         return result;
+    }
+
+    private int lengthOfLIS(int[] nums, int k) {
+        // return link(nums, k);
+        return array(nums, k);
     }
 
     /**
@@ -42,12 +48,42 @@ public class LengthOfLIS2 implements Solution<Integer> {
      * @param k    间距
      * @return 最长子序列长度
      */
-    private int lengthOfLIS(int[] nums, int k) {
+    private int link(int[] nums, int k) {
         int ans = 0;
         int low = 1, high = (int) 1e5;
-        MaxSegmentTree tree = new MaxSegmentTree(low, high);
+        MaxLinkSegmentTree tree = new MaxLinkSegmentTree(low, high);
         for (int num : nums) {
-            int max = tree.query(Math.max(1, num - k), Math.max(1, num - 1)) + 1;
+            int max = 1;
+            if (num > 1) {
+                max = tree.query(Math.max(low, num - k), num - 1) + 1;
+            }
+            tree.update(num, num, max);
+            ans = Math.max(ans, max);
+        }
+        return ans;
+    }
+
+    /**
+     * 思路：数组实现线段树
+     * <p>
+     * 复杂度：时间 O(nlogn) 空间 O(n)
+     * <p>
+     * 执行用时：135 ms, 在所有 Java 提交中击败了 100.00% 的用户
+     * 内存消耗：57.1 MB, 在所有 Java 提交中击败了 100.00% 的用户
+     *
+     * @param nums 数组
+     * @param k    间距
+     * @return 最长子序列长度
+     */
+    private int array(int[] nums, int k) {
+        int ans = 0;
+        int low = 1, high = (int) 1e5;
+        MaxArraySegmentTree tree = new MaxArraySegmentTree(high);
+        for (int num : nums) {
+            int max = 1;
+            if (num > 1) {
+                max = tree.query(Math.max(low, num - k), num - 1) + 1;
+            }
             tree.update(num, num, max);
             ans = Math.max(ans, max);
         }
