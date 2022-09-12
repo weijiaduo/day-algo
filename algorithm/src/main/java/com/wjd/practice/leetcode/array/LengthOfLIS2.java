@@ -78,7 +78,7 @@ public class LengthOfLIS2 implements Solution<Integer> {
     private int array(int[] nums, int k) {
         int ans = 0;
         int low = 1, high = (int) 1e5;
-        MaxArraySegmentTree tree = new MaxArraySegmentTree(high);
+        MaxArraySegmentTree tree = new MaxArraySegmentTree(low, high);
         for (int num : nums) {
             int max = 1;
             if (num > 1) {

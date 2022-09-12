@@ -8,8 +8,8 @@ package com.wjd.structure.segmenttree;
  */
 public class MaxArraySegmentTree extends ArraySegmentTree {
 
-    public MaxArraySegmentTree(int n) {
-        super(n);
+    public MaxArraySegmentTree(int low, int high) {
+        super(low, high);
     }
 
     /**
@@ -17,7 +17,7 @@ public class MaxArraySegmentTree extends ArraySegmentTree {
      */
     @Override
     protected int mergeQuery(Node node, int start, int end, Integer lVal, Integer rVal) {
-        int max = 0;
+        int max = Integer.MIN_VALUE;
         if (lVal != null) {
             max = lVal;
         }

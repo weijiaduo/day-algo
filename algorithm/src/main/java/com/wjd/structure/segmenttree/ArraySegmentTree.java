@@ -28,18 +28,23 @@ public abstract class ArraySegmentTree implements SegmentTree {
      */
     protected final Node[] tree;
     /**
+     * 区间最小值
+     */
+    protected final int low;
+    /**
      * 区间最大值
      */
-    protected final int max;
+    protected final int high;
     /**
      * 当前节点数量
      */
     protected int size;
 
-    public ArraySegmentTree(int max) {
+    public ArraySegmentTree(int low, int high) {
         // 树节点数量要比区间最大值大很多
-        this.max = max;
-        int n = 4 * max;
+        this.low = low;
+        this.high = high;
+        int n = 4 * high; // 估点 4n
         tree = new Node[n];
 
         // 初始化根节点
@@ -49,7 +54,7 @@ public abstract class ArraySegmentTree implements SegmentTree {
 
     @Override
     public int query(int l, int r) {
-        return query(tree[1], 1, max, l, r);
+        return query(tree[1], low, high, l, r);
     }
 
     /**
@@ -86,7 +91,7 @@ public abstract class ArraySegmentTree implements SegmentTree {
 
     @Override
     public void update(int l, int r, int val) {
-        update(tree[1], 1, max, l, r, val);
+        update(tree[1], low, high, l, r, val);
     }
 
     /**
