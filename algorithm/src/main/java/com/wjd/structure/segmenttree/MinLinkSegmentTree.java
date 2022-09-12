@@ -14,7 +14,7 @@ public class MinLinkSegmentTree extends LinkSegmentTree {
 
     @Override
     protected int mergeQuery(Node node, int start, int end, Integer lVal, Integer rVal) {
-        int min = high + 1;
+        int min = Integer.MAX_VALUE;
         if (lVal != null) {
             min = lVal;
         }
