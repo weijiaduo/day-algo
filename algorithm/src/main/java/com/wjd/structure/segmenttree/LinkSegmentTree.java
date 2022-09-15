@@ -37,9 +37,9 @@ public abstract class LinkSegmentTree implements SegmentTree {
     protected final int high;
 
     public LinkSegmentTree(int low, int high) {
-        this.root = new Node();
         this.low = low;
         this.high = high;
+        this.root = new Node();
     }
 
     /**
@@ -69,7 +69,7 @@ public abstract class LinkSegmentTree implements SegmentTree {
             return node.val;
         }
 
-        // 动态向下更新
+        // 访问节点前，先向下推送更新
         pushDown(node, start, end);
 
         // 分别取左右子区间的值
@@ -82,7 +82,7 @@ public abstract class LinkSegmentTree implements SegmentTree {
             rResult = query(node.right, mid + 1, end, l, r);
         }
 
-        // 合并区间查询结果
+        // 合并子区间的查询结果
         return mergeQuery(node, start, end, lResult, rResult);
     }
 
@@ -115,7 +115,7 @@ public abstract class LinkSegmentTree implements SegmentTree {
             return;
         }
 
-        // 向下更新
+        // 访问节点前，先向下推送更新
         pushDown(node, start, end);
 
         // 递归更新左右子区间
@@ -127,7 +127,7 @@ public abstract class LinkSegmentTree implements SegmentTree {
             update(node.right, mid + 1, end, l, r, val);
         }
 
-        // 向上更新
+        // 子节点更新后，向上推送更新
         pushUp(node, start, end);
     }
 
@@ -150,7 +150,7 @@ public abstract class LinkSegmentTree implements SegmentTree {
      * @param end   当前区间[start, end]的右边界
      */
     protected void pushDown(Node node, int start, int end) {
-        // 动态开点
+        // 动态开点，指向动态创建的对象
         if (node.left == null) {
             node.left = new Node();
         }

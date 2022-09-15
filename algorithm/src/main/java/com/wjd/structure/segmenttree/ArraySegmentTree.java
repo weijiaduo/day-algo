@@ -41,10 +41,11 @@ public abstract class ArraySegmentTree implements SegmentTree {
     protected int size;
 
     public ArraySegmentTree(int low, int high) {
-        // 树节点数量要比区间最大值大很多
         this.low = low;
         this.high = high;
-        int n = 4 * high; // 估点 4n
+
+        // 区间估点 4n
+        int n = 4 * high;
         tree = new Node[n];
 
         // 初始化根节点
@@ -72,10 +73,10 @@ public abstract class ArraySegmentTree implements SegmentTree {
             return node.val;
         }
 
-        // 动态向下更新
+        // 访问节点前，先向下推送更新
         pushDown(node, start, end);
 
-        // 分别取左右子区间的值
+        // 分别查询左右子区间的值
         Integer lResult = null, rResult = null;
         int mid = middle(start, end);
         if (l <= mid) {
@@ -85,7 +86,7 @@ public abstract class ArraySegmentTree implements SegmentTree {
             rResult = query(tree[node.right], mid + 1, end, l, r);
         }
 
-        // 合并区间查询结果
+        // 合并子区间的查询结果
         return mergeQuery(node, start, end, lResult, rResult);
     }
 
@@ -111,7 +112,7 @@ public abstract class ArraySegmentTree implements SegmentTree {
             return;
         }
 
-        // 向下更新
+        // 访问节点前，先向下推送更新
         pushDown(node, start, end);
 
         // 递归更新左右子区间
@@ -123,7 +124,7 @@ public abstract class ArraySegmentTree implements SegmentTree {
             update(tree[node.right], mid + 1, end, l, r, val);
         }
 
-        // 向上更新
+        // 子节点更新后，向上推送更新
         pushUp(node, start, end);
     }
 
@@ -146,7 +147,7 @@ public abstract class ArraySegmentTree implements SegmentTree {
      * @param end   当前区间[start, end]的右边界
      */
     protected void pushDown(Node node, int start, int end) {
-        // 动态开点
+        // 动态开点，新节点总是添加到数组末尾
         if (node.left == 0) {
             node.left = ++size;
             tree[node.left] = new Node();
