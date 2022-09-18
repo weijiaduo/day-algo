@@ -1,26 +1,25 @@
-package com.wjd.structure;
+package com.wjd.structure.trie;
 
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
 /**
- * 字典树
+ * 字符字典树
  *
  * @author weijiaduo
  * @since 2022/7/8
  */
-public class Trie {
-
-    Map<Character, Trie> children = new HashMap<>();
-    boolean isEnd = false;
+public class CharacterTrie {
 
     /**
-     * 执行耗时:41 ms,击败了24.64% 的Java用户
-     * 内存消耗:53.4 MB,击败了7.81% 的Java用户
+     * 下一层节点
      */
-    public Trie() {
-    }
+    Map<Character, CharacterTrie> children = new HashMap<>();
+    /**
+     * 是否是字符串末尾节点
+     */
+    boolean isEnd = false;
 
     /**
      * 构建字典树
@@ -28,8 +27,8 @@ public class Trie {
      * @param words 初始化单词列表
      * @return 字典树
      */
-    public static Trie build(List<String> words) {
-        Trie trie = new Trie();
+    public static CharacterTrie build(List<String> words) {
+        CharacterTrie trie = new CharacterTrie();
         for (String word : words) {
             trie.insert(word);
         }
@@ -42,12 +41,12 @@ public class Trie {
      * @param word 单词
      */
     public void insert(String word) {
-        Trie cur = this;
+        CharacterTrie cur = this;
         for (int i = 0; i < word.length(); i++) {
             char ch = word.charAt(i);
-            Trie trie = cur.children.get(ch);
+            CharacterTrie trie = cur.children.get(ch);
             if (trie == null) {
-                trie = new Trie();
+                trie = new CharacterTrie();
                 cur.children.put(ch, trie);
             }
             cur = trie;
@@ -62,7 +61,7 @@ public class Trie {
      * @return 单词是否存在
      */
     public boolean search(String word) {
-        Trie trie = searchPrefix(word);
+        CharacterTrie trie = searchPrefix(word);
         return trie != null && trie.isEnd;
     }
 
@@ -82,8 +81,8 @@ public class Trie {
      * @param prefix 前缀
      * @return 前缀的最后一个节点
      */
-    private Trie searchPrefix(String prefix) {
-        Trie cur = this;
+    private CharacterTrie searchPrefix(String prefix) {
+        CharacterTrie cur = this;
         for (int i = 0; i < prefix.length(); i++) {
             char ch = prefix.charAt(i);
             cur = cur.children.get(ch);
@@ -101,7 +100,7 @@ public class Trie {
      * @return 最短路径/单词本身
      */
     public String minPrefix(String word) {
-        Trie cur = this;
+        CharacterTrie cur = this;
         for (int i = 0; i < word.length(); i++) {
             char ch = word.charAt(i);
             cur = cur.children.get(ch);
@@ -122,28 +121,28 @@ public class Trie {
      * @return true/false
      */
     public boolean match(String word) {
-        Trie trie = dfsMatch(this, word, 0);
+        CharacterTrie trie = dfsMatch(this, word, 0);
         return trie != null && trie.isEnd;
     }
 
     /**
      * 匹配字符串
      */
-    private Trie dfsMatch(Trie root, String word, int index) {
+    private CharacterTrie dfsMatch(CharacterTrie root, String word, int index) {
         if (index == word.length()) {
             return root.isEnd ? root : null;
         }
         char ch = word.charAt(index);
         if (Character.isLetter(ch)) {
-            Trie child = root.children.get(ch);
+            CharacterTrie child = root.children.get(ch);
             if (child == null) {
                 return null;
             }
             return dfsMatch(child, word, index + 1);
         } else {
             // . 可以匹配任意字符
-            for (Trie t : root.children.values()) {
-                Trie ret = dfsMatch(t, word, index + 1);
+            for (CharacterTrie t : root.children.values()) {
+                CharacterTrie ret = dfsMatch(t, word, index + 1);
                 if (ret != null) {
                     return ret;
                 }
