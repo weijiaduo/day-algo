@@ -1,7 +1,6 @@
 package com.wjd.structure.skiplist;
 
-import java.util.Arrays;
-import java.util.Random;
+import java.util.*;
 
 /**
  * 跳表（数组实现）
@@ -11,13 +10,16 @@ import java.util.Random;
  */
 public class ArraySkipList<T extends Comparable<T>> implements SkipList<T> {
 
-    static class Node {
-        Object value;
-        Node[] next;
+    class Node {
+        T value;
+        List<Node> forwards;
 
-        Node(Object value, int levels) {
+        Node(T value, int levels) {
             this.value = value;
-            next = new Node[levels];
+            forwards = new ArrayList<>(levels);
+            for (int i = 0; i < levels; i++) {
+                forwards.add(null);
+            }
         }
     }
 
@@ -61,9 +63,23 @@ public class ArraySkipList<T extends Comparable<T>> implements SkipList<T> {
      */
     @Override
     public boolean search(T value) {
-        Node[] processors = findProcessors(value);
-        Node target = processors[0].next[0];
-        return target != null && value.equals(target.value);
+        Node p = head, q = null;
+        // 从上往下一直找，直到最底层的原始链表为止
+        for (int i = levels - 1; i >= 0; i--) {
+            // 在当前层遍历，直到找到 value 所在区间
+            Node right = p.forwards.get(i);
+            while (right != null && value.compareTo(right.value) > 0) {
+                p = right;
+                right = p.forwards.get(i);
+            }
+            // 记录上一层的转折点
+            q = p;
+        }
+        if (q != null) {
+            Node target = q.forwards.get(0);
+            return target != null && value.equals(target.value);
+        }
+        return false;
     }
 
     /**
@@ -71,13 +87,14 @@ public class ArraySkipList<T extends Comparable<T>> implements SkipList<T> {
      */
     @Override
     public void add(T value) {
-        Node[] processors = findProcessors(value);
+        List<Node> processors = findProcessors(value);
         int lv = randomLevel();
         levels = Math.max(levels, lv);
         Node newNode = new Node(value, levels);
         for (int i = 0; i < lv; i++) {
-            newNode.next[i] = processors[i].next[i];
-            processors[i].next[i] = newNode;
+            Node processor = processors.get(i);
+            newNode.forwards.set(i, processor.forwards.get(i));
+            processor.forwards.set(i, newNode);
         }
     }
 
@@ -86,23 +103,25 @@ public class ArraySkipList<T extends Comparable<T>> implements SkipList<T> {
      */
     @Override
     public boolean erase(T value) {
-        Node[] processors = findProcessors(value);
-        Node target = processors[0].next[0];
+        List<Node> processors = findProcessors(value);
+        Node target = processors.get(0).forwards.get(0);
         if (target == null || !value.equals(target.value)) {
             return false;
         }
 
-        // 删除指定节点
+        // 从下往上，逐层删除指定节点
         for (int i = 0; i < levels; i++) {
-            if (processors[i].next[i] != target) {
+            Node processor = processors.get(i);
+            Node delNode = processor.forwards.get(i);
+            if (delNode == null || delNode != target) {
                 break;
             }
-            processors[i].next[i] = target.next[i];
+            processor.forwards.set(i, delNode.forwards.get(i));
         }
 
-        // 更新层级，最顶层只有头节点时，降低层级
+        // 降低层级，最顶层只有头节点时
         for (; levels > 1; levels--) {
-            if (head.next[levels - 1] != null) {
+            if (head.forwards.get(levels - 1) != null) {
                 break;
             }
         }
@@ -116,16 +135,21 @@ public class ArraySkipList<T extends Comparable<T>> implements SkipList<T> {
      * @param value 指定值
      * @return 前置路径
      */
-    @SuppressWarnings("unchecked")
-    private Node[] findProcessors(T value) {
-        Node[] path = new Node[maxLevels];
-        Arrays.fill(path, head);
-        Node cur = head;
+    private List<Node> findProcessors(T value) {
+        List<Node> path = new ArrayList<>(maxLevels);
+        for (int i = 0; i < maxLevels; i++) {
+            path.add(head);
+        }
+        Node p = head;
         for (int i = levels - 1; i >= 0; i--) {
-            while (cur.next[i] != null && value.compareTo((T) cur.next[i].value) > 0) {
-                cur = cur.next[i];
+            // 在当前层遍历，直到找到 value 所在区间
+            Node right = p.forwards.get(i);
+            while (right != null && value.compareTo(right.value) > 0) {
+                p = right;
+                right = p.forwards.get(i);
             }
-            path[i] = cur;
+            // 记录上一层的转折点
+            path.set(i, p);
         }
         return path;
     }
@@ -150,10 +174,10 @@ public class ArraySkipList<T extends Comparable<T>> implements SkipList<T> {
         StringBuilder sb = new StringBuilder();
         for (int i = levels - 1; i >= 0; i--) {
             sb.append("[");
-            Node cur = head.next[i];
-            while (cur != null) {
-                sb.append(cur.value).append(",");
-                cur = cur.next[i];
+            Node p = head.forwards.get(i);
+            while (p != null) {
+                sb.append(p.value).append(",");
+                p = p.forwards.get(i);
             }
             sb.deleteCharAt(sb.length() - 1);
             sb.append("]\n");

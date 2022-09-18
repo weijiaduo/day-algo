@@ -10,11 +10,12 @@ import java.util.*;
  */
 public class LinkedSkipList<T extends Comparable<T>> implements SkipList<T> {
 
-    static class Node {
-        Object value;
+    class Node {
+        T value;
         Node right;
         Node down;
-        public Node(Object value, Node right, Node down) {
+
+        public Node(T value, Node right, Node down) {
             this.value = value;
             this.right = right;
             this.down = down;
@@ -49,31 +50,41 @@ public class LinkedSkipList<T extends Comparable<T>> implements SkipList<T> {
 
     public LinkedSkipList(int maxLevels) {
         this.maxLevels = maxLevels;
-        this.head = new Node(-1, null, null);
+        this.head = new Node(null, null, null);
     }
 
-    /**
-     * {@inheritDoc}
-     */
     @Override
     public boolean search(T value) {
-        Node[] processors = findProcessors(value);
-        Node target = processors[0].right;
-        return target != null && value.equals(target.value);
+        Node p = head, q = null;
+        // 从上往下一直找，直到最底层的原始链表为止
+        while (p != null) {
+            // 在当前层遍历，直到找到 value 所在区间
+            while (p.right != null && value.compareTo(p.right.value) > 0) {
+                p = p.right;
+            }
+            // 记录上一层的转折点
+            q = p;
+            // 搜索下一层
+            p = p.down;
+        }
+        return q != null && q.right != null && q.right.value.equals(value);
     }
 
-    /**
-     * {@inheritDoc}
-     */
     @Override
     public void add(T value) {
-        Node[] processors = findProcessors(value);
-        int levels = processors.length;
-        boolean insertUp = true;
+        List<Node> processors = findProcessors(value);
+        int levels = processors.size();
+
         Node newNode = null;
+        boolean insertUp = true;
         for (int i = 0; i < levels && insertUp; i++) {
-            newNode = new Node(value, processors[i].right, newNode);
-            processors[i].right = newNode;
+            Node processor = processors.get(i);
+            // 新节点指向下一层的同值节点
+            newNode = new Node(value, processor.right, newNode);
+            // 在当前层插入新节点
+            processor.right = newNode;
+
+            // 是否要继续往上一层插入节点
             insertUp = random.nextDouble() < FACTOR;
         }
 
@@ -83,23 +94,24 @@ public class LinkedSkipList<T extends Comparable<T>> implements SkipList<T> {
         }
     }
 
-    /**
-     * {@inheritDoc}
-     */
     @Override
     public boolean erase(T value) {
-        Node[] processors = findProcessors(value);
-        Node target = processors[0].right;
+        List<Node> processors = findProcessors(value);
+
+        // 验证删除节点是否存在，没有找到则直接返回
+        Node target = processors.get(0).right;
         if (target == null || !value.equals(target.value)) {
             return false;
         }
 
-        // 删除指定节点
+        // 从下往上，逐层删除指定节点
         for (Node processor : processors) {
-            if (processor.right == null || !processor.right.value.equals(value)) {
+            // 指定 value 值的节点在每一层都删完了，就跳出循环
+            Node delNode = processor.right;
+            if (delNode == null || !delNode.value.equals(value)) {
                 break;
             }
-            processor.right = processor.right.right;
+            processor.right = delNode.right;
         }
 
         // 更新层级
@@ -109,10 +121,11 @@ public class LinkedSkipList<T extends Comparable<T>> implements SkipList<T> {
     }
 
     /**
-     *  提升层级
+     * 提升层级
      */
     private void levelUp() {
-        head = new Node(-1, null, head);
+        // 最上层只有一个头节点
+        head = new Node(null, null, head);
     }
 
     /**
@@ -120,7 +133,7 @@ public class LinkedSkipList<T extends Comparable<T>> implements SkipList<T> {
      */
     private void levelDown() {
         while (head.down != null) {
-            // 连续2层为空时，才降低层级，因为最上一层可以暂时为空
+            // 连续 2 层为空时，才降低层级，因为最上层只有 1 个头节点
             if (head.right != null || head.down.right != null) {
                 break;
             }
@@ -136,22 +149,25 @@ public class LinkedSkipList<T extends Comparable<T>> implements SkipList<T> {
      * @param value 指定值
      * @return 前置路径
      */
-    @SuppressWarnings("unchecked")
-    private Node[] findProcessors(T value) {
+    private List<Node> findProcessors(T value) {
         Deque<Node> stack = new ArrayDeque<>();
         Node p = head;
+        // 从上往下一直找，直到最底层的原始链表为止
         while (p != null) {
-            while (p.right != null && value.compareTo((T) p.right.value) > 0) {
+            // 在当前层遍历，直到找到 value 所在区间
+            while (p.right != null && value.compareTo(p.right.value) > 0) {
                 p = p.right;
             }
+            // 记录上一层的转折点
             stack.push(p);
+            // 搜索下一层
             p = p.down;
         }
 
-        Node[] path = new Node[stack.size()];
-        int k = 0;
+        // 路径是倒序摆放的，最接近值 value 的在索引 0 的位置
+        List<Node> path = new ArrayList<>(stack.size());
         while (!stack.isEmpty()) {
-            path[k++] = stack.pop();
+            path.add(stack.pop());
         }
         return path;
     }
@@ -165,7 +181,7 @@ public class LinkedSkipList<T extends Comparable<T>> implements SkipList<T> {
             Node q = p.right;
             while (q != null) {
                 values.add(q.value);
-                q =q.right;
+                q = q.right;
             }
             sb.append(values).append('\n');
             p = p.down;
