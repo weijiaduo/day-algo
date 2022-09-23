@@ -25,12 +25,17 @@ public class DoubleList implements List {
      */
     private Node head;
     /**
+     * 尾节点
+     */
+    private Node tail;
+    /**
      * 链表大小
      */
     private int size;
 
     public DoubleList() {
         head = new Node(-1);
+        tail = head;
         size = 0;
     }
 
@@ -47,17 +52,20 @@ public class DoubleList implements List {
 
     @Override
     public void add(int val) {
-        Node p = head;
-        while (p.next != null) {
-            p = p.next;
-        }
-        link(p, new Node(val));
+        Node newNode = new Node(val);
+        link(tail, newNode);
+        tail = newNode;
         size++;
     }
 
     @Override
     public void insert(int index, int val) {
         checkPosition(index);
+
+        if (index == size) {
+            add(val);
+            return;
+        }
 
         Node p = head;
         for (int i = 0; i < index && p.next != null; i++) {
@@ -81,6 +89,9 @@ public class DoubleList implements List {
 
         Node node = p.next;
         unlink(p);
+        if (tail == node) {
+            tail = p;
+        }
         size--;
         return node.val;
     }
