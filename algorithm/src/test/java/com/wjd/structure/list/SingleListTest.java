@@ -70,4 +70,17 @@ class SingleListTest {
         assertEquals(2, list.size());
     }
 
+    @Test
+    void tempTest() {
+        List list = new SingleList();
+        list.insert(0, 7);
+        list.insert(0, 2);
+        list.insert(0, 1);
+        list.insert(3, 0);
+        list.remove(2);
+        list.insert(0, 6);
+        list.add(4);
+        assertEquals(4, list.get(4));
+    }
+
 }
