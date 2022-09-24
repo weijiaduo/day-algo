@@ -29,6 +29,11 @@ public class SortTest {
     }
 
     @Test
+    void testShell() {
+        testSort(new ShellSort());
+    }
+
+    @Test
     void testQuick() {
         testSort(new QuickSort());
     }
@@ -40,8 +45,8 @@ public class SortTest {
 
     private void testSort(Sort sort) {
         long start = System.nanoTime();
-        Random random = new Random();
-        for (int i = 0; i < 1000; i++) {
+        Random random = new Random(14);
+        for (int i = 0; i < 100000; i++) {
             int size = 50 + random.nextInt(150);
             int[] expect = new int[size];
             for (int j = 0; j < size; j++) {
