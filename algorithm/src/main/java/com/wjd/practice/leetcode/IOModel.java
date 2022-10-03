@@ -65,7 +65,7 @@ public class IOModel {
      * @return 解析后的数据
      */
     Object parse(String line, Class<?> type) {
-        Object ret = null;
+        Object ret = line;
         if (boolean.class.equals(type) || Boolean.class.equals(type)) {
             ret = IOUtils.toBool(line);
         } else if (char.class.equals(type) || Character.class.equals(type)) {
