@@ -145,6 +145,9 @@ public final class IOUtils {
         if (line.contains("[")) {
             line = line.replaceAll("[\\[\\]]", "");
         }
+        if (line.startsWith("\"")) {
+            line = line.replaceAll("\"", "");
+        }
         String[] tokens = line.split(",");
         int n = tokens.length;
         String[] arr = new String[n];
