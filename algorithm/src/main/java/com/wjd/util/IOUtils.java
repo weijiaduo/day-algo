@@ -6,6 +6,51 @@ package com.wjd.util;
  */
 public final class IOUtils {
 
+    /**
+     * 解析字符串
+     *
+     * @param line 一行字符串
+     * @param type 实际数据类型
+     * @return 解析后的数据
+     */
+    public static Object parse(String line, Class<?> type) {
+        Object ret = line;
+        if (boolean.class.equals(type) || Boolean.class.equals(type)) {
+            ret = toBool(line);
+        } else if (char.class.equals(type) || Character.class.equals(type)) {
+            ret = toChar(line);
+        } else if (int.class.equals(type) || Integer.class.equals(type)) {
+            ret = toInt(line);
+        } else if (long.class.equals(type) || Long.class.equals(type)) {
+            ret = toLong(line);
+        } else if (double.class.equals(type) || Double.class.equals(type)) {
+            ret = toDouble(line);
+        } else if (boolean[].class.equals(type)) {
+            ret = toBoolArray(line);
+        } else if (Boolean[].class.equals(type)) {
+            ret = toBoxBoolArray(line);
+        } else if (char[].class.equals(type)) {
+            ret = toCharArray(line);
+        } else if (Character[].class.equals(type)) {
+            ret = toBoxCharArray(line);
+        } else if (int[].class.equals(type)) {
+            ret = toIntArray(line);
+        } else if (Integer[].class.equals(type)) {
+            ret = toBoxIntArray(line);
+        } else if (long[].class.equals(type)) {
+            ret = toLongArray(line);
+        } else if (Long[].class.equals(type)) {
+            ret = toBoxLongArray(line);
+        } else if (double[].class.equals(type)) {
+            ret = toDoubleArray(line);
+        } else if (Double[].class.equals(type)) {
+            ret = toBoxDoubleArray(line);
+        } else if (String[].class.equals(type)) {
+            ret = toStringArray(line);
+        }
+        return ret;
+    }
+
     public static Boolean toBool(String line) {
         return Boolean.parseBoolean(line);
     }
