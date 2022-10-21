@@ -47,6 +47,8 @@ public final class IOUtils {
             ret = toBoxDoubleArray(line);
         } else if (String[].class.equals(type)) {
             ret = toStringArray(line);
+        } else if (int[][].class.equals(type)) {
+            ret = toIntMatrix(line);
         }
         return ret;
     }
@@ -197,6 +199,16 @@ public final class IOUtils {
         int n = tokens.length;
         String[] arr = new String[n];
         System.arraycopy(tokens, 0, arr, 0, n);
+        return arr;
+    }
+
+    public static int[][] toIntMatrix(String line) {
+        String[] tokens = line.split("],");
+        int m = tokens.length;
+        int[][] arr = new int[m][];
+        for (int i = 0; i < m; i++) {
+            arr[i] = toIntArray(tokens[i]);
+        }
         return arr;
     }
 
