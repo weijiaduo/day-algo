@@ -25,6 +25,8 @@ public final class IOUtils {
             ret = toLong(line);
         } else if (double.class.equals(type) || Double.class.equals(type)) {
             ret = toDouble(line);
+        } else if (String.class.equals(type)) {
+            ret = toStr(line);
         } else if (boolean[].class.equals(type)) {
             ret = toBoolArray(line);
         } else if (Boolean[].class.equals(type)) {
@@ -71,6 +73,13 @@ public final class IOUtils {
 
     public static Double toDouble(String line) {
         return Double.parseDouble(line);
+    }
+
+    public static String toStr(String line) {
+        if (line.startsWith("\"") && line.endsWith("\"")) {
+            line = line.substring(1, line.length() - 1);
+        }
+        return line;
     }
 
     public static boolean[] toBoolArray(String line) {
@@ -192,13 +201,12 @@ public final class IOUtils {
         if (line.contains("[")) {
             line = line.replaceAll("[\\[\\]]", "");
         }
-        if (line.startsWith("\"")) {
-            line = line.replaceAll("\"", "");
-        }
         String[] tokens = line.split(",");
         int n = tokens.length;
         String[] arr = new String[n];
-        System.arraycopy(tokens, 0, arr, 0, n);
+        for (int i = 0; i < n; i++) {
+            arr[i] = toStr(tokens[i]);
+        }
         return arr;
     }
 
