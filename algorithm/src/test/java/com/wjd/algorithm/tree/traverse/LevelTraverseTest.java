@@ -12,7 +12,7 @@ class LevelTraverseTest {
 
     @Test
     void traverse() {
-        Traverse traverse = new LevelTraverse();
+        LevelTraverse traverse = new LevelTraverse();
 
         Integer[] values = {3,9,20,null,null,15,7};
         Integer[] expectArr = {3, 9, 20, 15, 7};

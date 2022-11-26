@@ -12,7 +12,7 @@ class PostorderTraverseTest {
 
     @Test
     void traverse() {
-        Traverse traverse = new PostorderTraverse();
+        PostorderTraverse traverse = new PostorderTraverse();
 
         Integer[] values = {1, null, 2, 3};
         Integer[] expectArr = {3, 2, 1};

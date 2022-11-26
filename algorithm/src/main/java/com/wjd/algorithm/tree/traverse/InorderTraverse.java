@@ -2,7 +2,6 @@ package com.wjd.algorithm.tree.traverse;
 
 import com.wjd.structure.tree.TreeNode;
 
-import java.util.ArrayList;
 import java.util.Deque;
 import java.util.LinkedList;
 import java.util.List;
@@ -13,7 +12,7 @@ import java.util.List;
  * @author weijiaduo
  * @since 2022/8/28
  */
-public class InorderTraverse implements Traverse {
+public class InorderTraverse implements ListTraverse {
 
     /**
      * 遍历实现类型：
@@ -29,54 +28,54 @@ public class InorderTraverse implements Traverse {
 
     @Override
     public List<TreeNode> traverse(TreeNode root) {
-        List<TreeNode> list = new ArrayList<>();
+        ListVisitor visitor = new ListVisitor();
         if (type == 3) {
-            mark(root, list);
+            mark(root, visitor);
         } else if (type == 2) {
-            iterate(root, list);
+            iterate(root, visitor);
         } else {
-            recursive(root, list);
+            recursive(root, visitor);
         }
-        return list;
+        return visitor.getList();
     }
 
     /**
      * 递归实现
      *
      * @param root 根节点
-     * @param list 节点列表
+     * @param visitor 访问者
      */
-    private void recursive(TreeNode root, List<TreeNode> list) {
+    private void recursive(TreeNode root, Visitor visitor) {
         if (root == null) {
             return;
         }
-        recursive(root.left, list);
-        list.add(root);
-        recursive(root.right, list);
+        recursive(root.left, visitor);
+        visitor.visit(root);
+        recursive(root.right, visitor);
     }
 
     /**
      * 迭代实现，递归改成迭代
      *
      * @param root 根节点
-     * @param list 节点列表
+     * @param visitor 访问者
      */
-    private void iterate(TreeNode root, List<TreeNode> list) {
+    private void iterate(TreeNode root, Visitor visitor) {
         Deque<TreeNode> stack = new LinkedList<>();
         TreeNode cur = root;
         while (cur != null || !stack.isEmpty()) {
-            while (cur != null) {
+            if (cur != null) {
+                // 保存现场 nextPC
                 stack.push(cur);
-                // 左子节点
+                // 左节点
                 cur = cur.left;
+            } else {
+                // 根节点
+                cur= stack.pop();
+                visitor.visit(cur);
+                // 右节点
+                cur = cur.right;
             }
-
-            // 根节点
-            cur = stack.pop();
-            list.add(cur);
-
-            // 右子节点
-            cur = cur.right;
         }
     }
 
@@ -84,9 +83,9 @@ public class InorderTraverse implements Traverse {
      * 标记实现，标记访问过的节点
      *
      * @param root 根节点
-     * @param list 节点列表
+     * @param visitor 访问者
      */
-    private void mark(TreeNode root, List<TreeNode> list) {
+    private void mark(TreeNode root, Visitor visitor) {
         Deque<TreeNode> stack = new LinkedList<>();
         Deque<Boolean> marks = new LinkedList<>();
         stack.push(root);
@@ -98,7 +97,7 @@ public class InorderTraverse implements Traverse {
                 continue;
             }
             if (mark) {
-                list.add(node);
+                visitor.visit(node);
             } else {
                 // 倒序添加
                 // 右子节点

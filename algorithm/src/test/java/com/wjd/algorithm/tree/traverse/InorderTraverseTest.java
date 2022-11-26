@@ -12,7 +12,7 @@ class InorderTraverseTest {
 
     @Test
     void traverse() {
-        Traverse traverse = new InorderTraverse();
+        InorderTraverse traverse = new InorderTraverse();
 
         Integer[] values = {1, null, 2, 3};
         Integer[] expectArr = {1, 3, 2};
