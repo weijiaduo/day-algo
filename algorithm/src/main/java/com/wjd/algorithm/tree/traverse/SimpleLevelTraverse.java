@@ -12,7 +12,7 @@ import java.util.Queue;
  * @author weijiaduo
  * @since 2022/8/28
  */
-public class LevelTraverse implements ListTraverse {
+public class SimpleLevelTraverse implements ListTraverse {
 
     @Override
     public List<TreeNode> traverse(TreeNode root) {

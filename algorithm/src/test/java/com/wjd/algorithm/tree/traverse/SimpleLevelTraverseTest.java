@@ -8,11 +8,11 @@ import java.util.List;
 
 import static org.junit.jupiter.api.Assertions.*;
 
-class LevelTraverseTest {
+class SimpleLevelTraverseTest {
 
     @Test
     void traverse() {
-        LevelTraverse traverse = new LevelTraverse();
+        SimpleLevelTraverse traverse = new SimpleLevelTraverse();
 
         Integer[] values = {3,9,20,null,null,15,7};
         Integer[] expectArr = {3, 9, 20, 15, 7};
