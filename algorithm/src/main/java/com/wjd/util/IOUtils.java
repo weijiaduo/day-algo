@@ -1,5 +1,7 @@
 package com.wjd.util;
 
+import com.wjd.structure.tree.TreeNode;
+
 /**
  * @author weijiaduo
  * @since 2022/10/1
@@ -51,6 +53,9 @@ public final class IOUtils {
             ret = toStringArray(line);
         } else if (int[][].class.equals(type)) {
             ret = toIntMatrix(line);
+        } else if (TreeNode.class.equals(type)) {
+            Integer[] values = toBoxIntArray(line);
+            ret = TreeNode.build(values);
         }
         return ret;
     }

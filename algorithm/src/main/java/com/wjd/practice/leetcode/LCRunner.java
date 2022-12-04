@@ -62,31 +62,23 @@ public class LCRunner {
                 break;
             }
 
+            // 打印输入
+            System.out.println("input:");
+            for (Object in : args) {
+                System.out.println(StringUtils.toStr(in));
+            }
+
             Constructor<?> constructor = cls.getConstructor();
             Object instance = constructor.newInstance();
             Object actual = solveMethod.invoke(instance, args);
 
-            print(args, expect, actual);
+            // 打印输出
+            System.out.println("expect:");
+            System.out.println(StringUtils.toStr(expect));
+            System.out.println("actual:");
+            System.out.println(StringUtils.toStr(actual));
+            System.out.println();
         }
-    }
-
-    /**
-     * 打印用例的输入、期望输出、实际输出
-     *
-     * @param input  输入
-     * @param expect 期望输出
-     * @param actual 实际输出
-     */
-    static void print(Object[] input, Object expect, Object actual) {
-        System.out.println("input:");
-        for (Object in : input) {
-            System.out.println(StringUtils.toStr(in));
-        }
-        System.out.println("expect:");
-        System.out.println(StringUtils.toStr(expect));
-        System.out.println("actual:");
-        System.out.println(StringUtils.toStr(actual));
-        System.out.println();
     }
 
 }

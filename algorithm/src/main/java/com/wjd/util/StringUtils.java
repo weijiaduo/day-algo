@@ -1,5 +1,7 @@
 package com.wjd.util;
 
+import com.wjd.structure.tree.TreeNode;
+
 import java.util.Arrays;
 
 /**
@@ -13,6 +15,11 @@ public final class StringUtils {
     public static String toStr(Object object) {
         if (object == null) {
             return "null";
+        }
+
+        // 二叉树
+        if (object instanceof TreeNode) {
+            return TreeNode.traverse((TreeNode) object).toString();
         }
 
         // 非数组对象
