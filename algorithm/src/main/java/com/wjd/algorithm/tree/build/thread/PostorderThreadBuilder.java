@@ -21,6 +21,7 @@ public class PostorderThreadBuilder implements ThreadBuilder {
         if (prev.right == null) {
             prev.rTag = true;
         }
+        prev = null;
         return newRoot;
     }
 

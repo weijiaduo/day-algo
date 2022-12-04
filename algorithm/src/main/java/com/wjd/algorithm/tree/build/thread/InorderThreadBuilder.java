@@ -21,8 +21,10 @@ public class InorderThreadBuilder implements ThreadBuilder {
         ThreadTreeNode newRoot = new ThreadTreeNode(root);
         prev = null;
         dfs(newRoot);
-        prev.right = null;
-        prev.rTag = true;
+        if (prev.right == null) {
+            prev.rTag = true;
+        }
+        prev = null;
         return newRoot;
     }
 
