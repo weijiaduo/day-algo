@@ -15,8 +15,8 @@ public class UseCaseTracker {
             UseCase useCase = m.getAnnotation(UseCase.class);
             if (useCase != null) {
                 System.out.println("Found Use Case: " + useCase.id() + " " + useCase.description());
+                useCases.remove(Integer.valueOf(useCase.id()));
             }
-            useCases.remove(new Integer(useCase.id()));
         }
         for (int i : useCases) {
             System.out.println("Warning: Missing use case-" + i);

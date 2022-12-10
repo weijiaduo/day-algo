@@ -10,7 +10,7 @@ import java.util.Random;
  */
 public class GetMedianInStream {
 
-    private static LinkedList<Integer> list = new LinkedList<>();
+    private static final LinkedList<Integer> list = new LinkedList<>();
 
     public static void main(String[] args) {
         Random random = new Random();
@@ -36,9 +36,9 @@ public class GetMedianInStream {
         Double res;
         int size = list.size();
         if (size % 2 == 0) {
-            res = new Double((list.get(size / 2 - 1) + list.get(size / 2)) / 2.0);
+            res = (list.get(size / 2 - 1) + list.get(size / 2)) / 2.0;
         } else {
-            res = new Double(list.get(list.size() / 2));
+            res = Double.valueOf(list.get(list.size() / 2));
         }
         return res;
     }
