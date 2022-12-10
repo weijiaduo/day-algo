@@ -9,5 +9,5 @@ import com.wjd.structure.tree.general.Node;
  * @author weijiaduo
  * @since 2022/12/10
  */
-public interface GeneralTreeBuilder<V> extends TreeBuilder<V, Node> {
+public interface GeneralTreeBuilder<V> extends TreeBuilder<Node, V> {
 }
