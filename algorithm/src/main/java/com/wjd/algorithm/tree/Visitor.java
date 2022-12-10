@@ -1,4 +1,4 @@
-package com.wjd.algorithm.tree.binary.traverse;
+package com.wjd.algorithm.tree;
 
 import com.wjd.structure.tree.binary.TreeNode;
 
@@ -8,8 +8,8 @@ import com.wjd.structure.tree.binary.TreeNode;
  * @author weijiaduo
  * @since 2022/11/26
  */
-public interface Visitor {
+public interface Visitor<T> {
 
-    void visit(TreeNode node);
+    void visit(T node);
 
 }

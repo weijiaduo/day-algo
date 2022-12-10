@@ -1,5 +1,7 @@
 package com.wjd.algorithm.tree.binary.traverse;
 
+import com.wjd.algorithm.tree.ListVisitor;
+import com.wjd.algorithm.tree.Traverse;
 import com.wjd.structure.tree.binary.TreeNode;
 
 import java.util.LinkedList;
@@ -14,22 +16,28 @@ import java.util.Queue;
  * @author weijiaduo
  * @since 2022/8/28
  */
-public class BuildLevelTraverse implements ListTraverse {
+public class BuildLevelTraverse implements Traverse<TreeNode> {
+
+    /**
+     * 列表访问者
+     */
+    private ListVisitor<TreeNode> visitor;
 
     @Override
     public List<TreeNode> traverse(TreeNode root) {
-        ListVisitor visitor = new ListVisitor();
-        bfs(root, visitor);
-        return visitor.getList();
+        visitor = new ListVisitor<>();
+        bfs(root);
+        List<TreeNode> list = visitor.getList();
+        visitor = null;
+        return list;
     }
 
     /**
      * 广度优先遍历
      *
      * @param root 根节点
-     * @param visitor 访问者
      */
-    private void bfs(TreeNode root, Visitor visitor) {
+    private void bfs(TreeNode root) {
         if (root == null) {
             return;
         }

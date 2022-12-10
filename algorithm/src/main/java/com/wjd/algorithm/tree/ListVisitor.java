@@ -1,5 +1,6 @@
-package com.wjd.algorithm.tree.binary.traverse;
+package com.wjd.algorithm.tree;
 
+import com.wjd.algorithm.tree.Visitor;
 import com.wjd.structure.tree.binary.TreeNode;
 
 import java.util.ArrayList;
@@ -11,16 +12,16 @@ import java.util.List;
  * @author weijiaduo
  * @since 2022/11/26
  */
-public class ListVisitor implements Visitor {
+public class ListVisitor<T> implements Visitor<T> {
 
-    final private List<TreeNode> list = new ArrayList<>();
+    final private List<T> list = new ArrayList<>();
 
     @Override
-    public void visit(TreeNode node) {
+    public void visit(T node) {
         list.add(node);
     }
 
-    public List<TreeNode> getList() {
+    public List<T> getList() {
         return list;
     }
 
