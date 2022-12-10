@@ -1,5 +1,6 @@
 package com.wjd.structure.tree.general;
 
+import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -20,4 +21,16 @@ public class Node {
      */
     public List<Node> children;
 
+    /**
+     * @param val 节点值
+     */
+    public Node(int val) {
+        this.val = val;
+        children = new ArrayList<>();
+    }
+
+    @Override
+    public String toString() {
+        return "" + val;
+    }
 }
