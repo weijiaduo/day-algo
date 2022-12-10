@@ -52,13 +52,14 @@ public class BuildLevelTraverse implements Traverse<Node> {
                 continue;
             }
 
-            if (node.children != null && !node.children.isEmpty()) {
-                for (Node child : node.children) {
+            // 子节点列表
+            List<Node> children = node.children;
+            if (children != null && !children.isEmpty()) {
+                for (Node child : children) {
                     queue.offer(child);
                 }
                 notNull = queue.size();
             }
-
             // 每组子节点以 null 结尾
             queue.offer(null);
         }

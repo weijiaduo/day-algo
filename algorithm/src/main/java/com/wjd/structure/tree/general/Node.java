@@ -1,5 +1,7 @@
 package com.wjd.structure.tree.general;
 
+import com.wjd.algorithm.tree.general.build.LevelGeneralTreeBuilder;
+
 import java.util.ArrayList;
 import java.util.List;
 
@@ -27,6 +29,16 @@ public class Node {
     public Node(int val) {
         this.val = val;
         children = new ArrayList<>();
+    }
+
+    /**
+     * 构建树
+     *
+     * @param values 层次遍历的输出结果
+     * @return 树根节点
+     */
+    public static Node build(Integer[] values) {
+        return new LevelGeneralTreeBuilder().build(values);
     }
 
     @Override
