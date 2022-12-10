@@ -1,6 +1,7 @@
 package com.wjd.structure.tree.general;
 
 import com.wjd.algorithm.tree.general.build.LevelGeneralTreeBuilder;
+import com.wjd.algorithm.tree.general.traverse.SimpleLevelTraverse;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -39,6 +40,21 @@ public class Node {
      */
     public static Node build(Integer[] values) {
         return new LevelGeneralTreeBuilder().build(values);
+    }
+
+    /**
+     * 按层次遍历树的数据
+     *
+     * @param tree 树根节点
+     * @return 层次数据
+     */
+    public static List<Integer> traverse(Node tree) {
+        List<Node> list = new SimpleLevelTraverse().traverse(tree);
+        List<Integer> ret = new ArrayList<>(list.size());
+        for (Node node : list) {
+            ret.add(node.val);
+        }
+        return ret;
     }
 
     @Override
