@@ -1,4 +1,4 @@
-package com.wjd.algorithm.tree.binary.build;
+package com.wjd.algorithm.tree;
 
 import com.wjd.structure.tree.binary.TreeNode;
 
@@ -8,8 +8,8 @@ import com.wjd.structure.tree.binary.TreeNode;
  * @author weijiaduo
  * @since 2022/8/28
  */
-public interface TreeBuilder<T> {
+public interface TreeBuilder<V, T> {
 
-    TreeNode build(T values);
+    T build(V values);
 
 }

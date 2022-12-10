@@ -6,12 +6,12 @@ import java.util.ArrayDeque;
 import java.util.Queue;
 
 /**
- * 层序遍历构建树
+ * 基于层序的二叉树构建器
  *
  * @author weijiaduo
  * @since 2022/8/28
  */
-public class LevelTreeBuilder implements TreeBuilder<Integer[]> {
+public class LevelTreeBuilder implements BinaryTreeBuilder<Integer[]> {
 
     @Override
     public TreeNode build(Integer[] values) {

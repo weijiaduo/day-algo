@@ -8,7 +8,7 @@ import com.wjd.structure.tree.binary.TreeNode;
  * @author weijiaduo
  * @since 2022/11/26
  */
-public class PreAndInTreeBuilder implements TreeBuilder<int[][]> {
+public class PreAndInTreeBuilder implements BinaryTreeBuilder<int[][]> {
 
     @Override
     public TreeNode build(int[][] values) {
