@@ -1,6 +1,7 @@
 package com.wjd.util;
 
 import com.wjd.structure.tree.binary.TreeNode;
+import com.wjd.structure.tree.general.Node;
 
 /**
  * @author weijiaduo
@@ -56,28 +57,51 @@ public final class IOUtils {
         } else if (TreeNode.class.equals(type)) {
             Integer[] values = toBoxIntArray(line);
             ret = TreeNode.build(values);
+        } else if (Node.class.equals(type)) {
+            Integer[] values = toBoxIntArray(line);
+            ret = Node.build(values);
         }
         return ret;
     }
 
     public static Boolean toBool(String line) {
-        return Boolean.parseBoolean(line);
+        try {
+            return Boolean.parseBoolean(line);
+        } catch (Exception e) {
+            return null;
+        }
     }
 
     public static Character toChar(String line) {
-        return line.charAt(0);
+        try {
+            return line.charAt(0);
+        } catch (Exception e) {
+            return null;
+        }
     }
 
     public static Integer toInt(String line) {
-        return Integer.parseInt(line);
+        try {
+            return Integer.parseInt(line);
+        } catch (Exception e) {
+            return null;
+        }
     }
 
     public static Long toLong(String line) {
-        return Long.parseLong(line);
+        try {
+            return Long.parseLong(line);
+        } catch (Exception e) {
+            return null;
+        }
     }
 
     public static Double toDouble(String line) {
-        return Double.parseDouble(line);
+        try {
+            return Double.parseDouble(line);
+        } catch (Exception e) {
+            return null;
+        }
     }
 
     public static String toStr(String line) {
@@ -88,116 +112,116 @@ public final class IOUtils {
     }
 
     public static boolean[] toBoolArray(String line) {
+        Boolean[] a = toBoxBoolArray(line);
+        int n = a.length;
+        boolean[] arr = new boolean[n];
+        for (int i = 0; i < n; i++) {
+            arr[i] = a[i];
+        }
+        return arr;
+    }
+
+    public static Boolean[] toBoxBoolArray(String line) {
         if (line.contains("[")) {
             line = line.replaceAll("[\\[\\]]", "");
         }
         String[] tokens = line.split(",");
         int n = tokens.length;
-        boolean[] arr = new boolean[n];
+        Boolean[] arr = new Boolean[n];
         for (int i = 0; i < n; i++) {
             arr[i] = toBool(tokens[i]);
         }
         return arr;
     }
 
-    public static Boolean[] toBoxBoolArray(String line) {
-        boolean[] a = toBoolArray(line);
+    public static char[] toCharArray(String line) {
+        Character[] a = toBoxCharArray(line);
         int n = a.length;
-        Boolean[] arr = new Boolean[n];
+        char[] arr = new char[n];
         for (int i = 0; i < n; i++) {
             arr[i] = a[i];
         }
         return arr;
     }
 
-    public static char[] toCharArray(String line) {
+    public static Character[] toBoxCharArray(String line) {
         if (line.contains("[")) {
             line = line.replaceAll("[\\[\\]]", "");
         }
         String[] tokens = line.split(",");
         int n = tokens.length;
-        char[] arr = new char[n];
+        Character[] arr = new Character[n];
         for (int i = 0; i < n; i++) {
             arr[i] = toChar(tokens[i]);
         }
         return arr;
     }
 
-    public static Character[] toBoxCharArray(String line) {
-        char[] a = toCharArray(line);
+    public static int[] toIntArray(String line) {
+        Integer[] a = toBoxIntArray(line);
         int n = a.length;
-        Character[] arr = new Character[n];
+        int[] arr = new int[n];
         for (int i = 0; i < n; i++) {
             arr[i] = a[i];
         }
         return arr;
     }
 
-    public static int[] toIntArray(String line) {
+    public static Integer[] toBoxIntArray(String line) {
         if (line.contains("[")) {
             line = line.replaceAll("[\\[\\]]", "");
         }
         String[] tokens = line.split(",");
         int n = tokens.length;
-        int[] arr = new int[n];
+        Integer[] arr = new Integer[n];
         for (int i = 0; i < n; i++) {
             arr[i] = toInt(tokens[i]);
         }
         return arr;
     }
 
-    public static Integer[] toBoxIntArray(String line) {
-        int[] a = toIntArray(line);
+    public static long[] toLongArray(String line) {
+        Long[] a = toBoxLongArray(line);
         int n = a.length;
-        Integer[] arr = new Integer[n];
+        long[] arr = new long[n];
         for (int i = 0; i < n; i++) {
             arr[i] = a[i];
         }
         return arr;
     }
 
-    public static long[] toLongArray(String line) {
+    public static Long[] toBoxLongArray(String line) {
         if (line.contains("[")) {
             line = line.replaceAll("[\\[\\]]", "");
         }
         String[] tokens = line.split(",");
         int n = tokens.length;
-        long[] arr = new long[n];
+        Long[] arr = new Long[n];
         for (int i = 0; i < n; i++) {
             arr[i] = toLong(tokens[i]);
         }
         return arr;
     }
 
-    public static Long[] toBoxLongArray(String line) {
-        long[] a = toLongArray(line);
-        int n = a.length;
-        Long[] arr = new Long[n];
-        for (int i = 0; i < n; i++) {
-            arr[i] = a[i];
-        }
-        return arr;
-    }
-
     public static double[] toDoubleArray(String line) {
-        if (line.contains("[")) {
-            line = line.replaceAll("[\\[\\]]", "");
-        }
-        String[] tokens = line.split(",");
-        int n = tokens.length;
+        Double[] a = toBoxDoubleArray(line);
+        int n = a.length;
         double[] arr = new double[n];
         for (int i = 0; i < n; i++) {
-            arr[i] = toDouble(tokens[i]);
+            arr[i] = a[i];
         }
         return arr;
     }
 
     public static Double[] toBoxDoubleArray(String line) {
-        double[] a = toDoubleArray(line);
-        int n = a.length;
+        if (line.contains("[")) {
+            line = line.replaceAll("[\\[\\]]", "");
+        }
+        String[] tokens = line.split(",");
+        int n = tokens.length;
         Double[] arr = new Double[n];
         for (int i = 0; i < n; i++) {
-            arr[i] = a[i];
+            arr[i] = toDouble(tokens[i]);
         }
         return arr;
     }

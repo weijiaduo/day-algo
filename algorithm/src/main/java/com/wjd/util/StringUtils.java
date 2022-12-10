@@ -1,6 +1,7 @@
 package com.wjd.util;
 
 import com.wjd.structure.tree.binary.TreeNode;
+import com.wjd.structure.tree.general.Node;
 
 import java.util.Arrays;
 
@@ -15,6 +16,11 @@ public final class StringUtils {
     public static String toStr(Object object) {
         if (object == null) {
             return "null";
+        }
+
+        // 树
+        if (object instanceof Node) {
+            return Node.traverse((Node) object).toString();
         }
 
         // 二叉树
