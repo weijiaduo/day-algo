@@ -2,17 +2,20 @@ package com.wjd.algorithm.tree.general.traverse;
 
 import com.wjd.algorithm.tree.ListVisitor;
 import com.wjd.algorithm.tree.Traverse;
+import com.wjd.structure.tree.binary.TreeNode;
 import com.wjd.structure.tree.general.Node;
 
+import java.util.Deque;
+import java.util.LinkedList;
 import java.util.List;
 
 /**
- * 通用树-前序遍历
+ * 通用树-后序遍历
  *
  * @author weijiaduo
- * @since 2022/12/11
+ * @since 2022/8/28
  */
-public class PreorderTraverse implements Traverse<Node> {
+public class PostorderTraverse implements Traverse<Node> {
 
     /**
      * 列表访问者
@@ -32,16 +35,16 @@ public class PreorderTraverse implements Traverse<Node> {
     }
 
     @Override
-    public List<Node> traverse(Node node) {
+    public List<Node> traverse(Node root) {
         visitor = new ListVisitor<>();
-        recursive(node);
+        recursive(root);
         List<Node> list = visitor.getList();
         visitor = null;
         return list;
     }
 
     /**
-     * 递归遍历
+     * 递归实现
      *
      * @param root 根节点
      */
@@ -50,12 +53,12 @@ public class PreorderTraverse implements Traverse<Node> {
             return;
         }
 
-        visitor.visit(root);
         if (root.children != null) {
             for (Node child : root.children) {
                 recursive(child);
             }
         }
+        visitor.visit(root);
     }
 
 }
