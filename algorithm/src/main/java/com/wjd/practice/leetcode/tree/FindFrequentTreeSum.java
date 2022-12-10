@@ -1,7 +1,7 @@
 package com.wjd.practice.leetcode.tree;
 
 import com.wjd.practice.Solution;
-import com.wjd.structure.tree.TreeNode;
+import com.wjd.structure.tree.binary.TreeNode;
 import com.wjd.util.ArrayUtil;
 
 import java.util.*;

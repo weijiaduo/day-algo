@@ -1,6 +1,6 @@
 package com.wjd.practice.leetcode.tree;
 
-import com.wjd.structure.tree.TreeNode;
+import com.wjd.structure.tree.binary.TreeNode;
 
 /**
  * 验证一棵树是二叉搜索树

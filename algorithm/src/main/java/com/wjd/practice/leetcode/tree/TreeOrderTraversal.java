@@ -1,6 +1,6 @@
 package com.wjd.practice.leetcode.tree;
 
-import com.wjd.structure.tree.TreeNode;
+import com.wjd.structure.tree.binary.TreeNode;
 
 import java.util.ArrayList;
 import java.util.Collections;

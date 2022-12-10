@@ -2,7 +2,7 @@ package com.wjd.practice.leetcode.tree;
 
 import com.wjd.practice.Solution;
 import com.wjd.practice.leetcode.structure.ListNode;
-import com.wjd.structure.tree.TreeNode;
+import com.wjd.structure.tree.binary.TreeNode;
 
 /**
  * 109. 有序链表转换二叉搜索树

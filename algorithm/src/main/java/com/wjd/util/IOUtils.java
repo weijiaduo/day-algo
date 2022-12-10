@@ -1,6 +1,6 @@
 package com.wjd.util;
 
-import com.wjd.structure.tree.TreeNode;
+import com.wjd.structure.tree.binary.TreeNode;
 
 /**
  * @author weijiaduo
