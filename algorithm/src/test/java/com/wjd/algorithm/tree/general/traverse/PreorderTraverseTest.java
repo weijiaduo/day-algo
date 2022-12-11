@@ -38,4 +38,19 @@ class PreorderTraverseTest {
         assertEquals(expect, actual);
     }
 
+    @Test
+    void testMark() {
+        Integer[] values = {1, null, 3, 2, 4, null, 5, 6};
+        Integer[] expectArr = {1, 3, 5, 6, 2, 4};
+        String expect = Arrays.toString(expectArr);
+
+        PreorderTraverse traverse = new PreorderTraverse();
+        traverse.setType(3);
+        Node tree = Node.build(values);
+        List<Node> list = traverse.traverse(tree);
+        String actual = String.valueOf(list);
+
+        assertEquals(expect, actual);
+    }
+
 }

@@ -34,12 +34,14 @@ public class PreorderTraverse implements Traverse<Node> {
     }
 
     @Override
-    public List<Node> traverse(Node node) {
+    public List<Node> traverse(Node root) {
         visitor = new ListVisitor<>();
-        if (type == 2) {
-            iterate(node);
+        if (type == 3) {
+            mark(root);
+        } else if (type == 2) {
+            iterate(root);
         } else {
-            recursive(node);
+            recursive(root);
         }
         List<Node> list = visitor.getList();
         visitor = null;
@@ -84,6 +86,36 @@ public class PreorderTraverse implements Traverse<Node> {
                 for (int i = children.size() - 1; i >= 0; i--) {
                     stack.push(children.get(i));
                 }
+            }
+        }
+    }
+
+    /**
+     * 标记实现
+     *
+     * @param root 树根节点
+     */
+    private void mark(Node root) {
+        Deque<Node> stack = new ArrayDeque<>();
+        Deque<Boolean> marks = new ArrayDeque<>();
+        stack.push(root);
+        marks.push(false);
+        while (!stack.isEmpty()) {
+            Node node = stack.pop();
+            Boolean mark = marks.pop();
+            if (mark) {
+                visitor.visit(node);
+            } else {
+                // 倒序添加
+                List<Node> children = node.children;
+                if (children != null) {
+                    for (int i = children.size() - 1; i >= 0; i--) {
+                        stack.push(children.get(i));
+                        marks.push(false);
+                    }
+                }
+                stack.push(node);
+                marks.push(true);
             }
         }
     }
