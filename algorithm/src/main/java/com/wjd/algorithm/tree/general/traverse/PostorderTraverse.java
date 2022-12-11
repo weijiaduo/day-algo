@@ -2,11 +2,10 @@ package com.wjd.algorithm.tree.general.traverse;
 
 import com.wjd.algorithm.tree.ListVisitor;
 import com.wjd.algorithm.tree.Traverse;
-import com.wjd.structure.tree.binary.TreeNode;
 import com.wjd.structure.tree.general.Node;
 
+import java.util.ArrayDeque;
 import java.util.Deque;
-import java.util.LinkedList;
 import java.util.List;
 
 /**
@@ -37,7 +36,11 @@ public class PostorderTraverse implements Traverse<Node> {
     @Override
     public List<Node> traverse(Node root) {
         visitor = new ListVisitor<>();
-        recursive(root);
+        if (type == 2) {
+            iterate(root);
+        } else {
+            recursive(root);
+        }
         List<Node> list = visitor.getList();
         visitor = null;
         return list;
@@ -59,6 +62,37 @@ public class PostorderTraverse implements Traverse<Node> {
             }
         }
         visitor.visit(root);
+    }
+
+    /**
+     * 迭代实现
+     *
+     * @param root 树根节点
+     */
+    private void iterate(Node root) {
+        if (root == null) {
+            return;
+        }
+
+        Deque<Node> stack = new ArrayDeque<>();
+        stack.push(root);
+        Node prev = null;
+        while (!stack.isEmpty()) {
+            Node node = stack.peek();
+            List<Node> children = node.children;
+            if (children != null && !children.isEmpty()
+                    && children.get(children.size() - 1) != prev) {
+                // 子节点未访问
+                for (int i = children.size() - 1; i >= 0; i--) {
+                    stack.push(children.get(i));
+                }
+            } else {
+                // 子节点已经访问完了
+                node = stack.pop();
+                visitor.visit(node);
+                prev = node;
+            }
+        }
     }
 
 }
