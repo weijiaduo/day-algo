@@ -4,6 +4,8 @@ import com.wjd.algorithm.tree.ListVisitor;
 import com.wjd.algorithm.tree.Traverse;
 import com.wjd.structure.tree.general.Node;
 
+import java.util.ArrayDeque;
+import java.util.Deque;
 import java.util.List;
 
 /**
@@ -34,7 +36,11 @@ public class PreorderTraverse implements Traverse<Node> {
     @Override
     public List<Node> traverse(Node node) {
         visitor = new ListVisitor<>();
-        recursive(node);
+        if (type == 2) {
+            iterate(node);
+        } else {
+            recursive(node);
+        }
         List<Node> list = visitor.getList();
         visitor = null;
         return list;
@@ -54,6 +60,30 @@ public class PreorderTraverse implements Traverse<Node> {
         if (root.children != null) {
             for (Node child : root.children) {
                 recursive(child);
+            }
+        }
+    }
+
+    /**
+     * 迭代实现
+     *
+     * @param root 树根节点
+     */
+    private void iterate(Node root) {
+        if (root == null) {
+            return;
+        }
+
+        Deque<Node> stack = new ArrayDeque<>();
+        stack.add(root);
+        while (!stack.isEmpty()) {
+            Node node = stack.pop();
+            visitor.visit(node);
+            List<Node> children = node.children;
+            if (children != null && !children.isEmpty()) {
+                for (int i = children.size() - 1; i >= 0; i--) {
+                    stack.push(children.get(i));
+                }
             }
         }
     }
