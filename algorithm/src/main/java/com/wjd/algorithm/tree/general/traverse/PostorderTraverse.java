@@ -36,7 +36,9 @@ public class PostorderTraverse implements Traverse<Node> {
     @Override
     public List<Node> traverse(Node root) {
         visitor = new ListVisitor<>();
-        if (type == 2) {
+        if (type == 3) {
+            mark(root);
+        } else if (type == 2) {
             iterate(root);
         } else {
             recursive(root);
@@ -91,6 +93,40 @@ public class PostorderTraverse implements Traverse<Node> {
                 node = stack.pop();
                 visitor.visit(node);
                 prev = node;
+            }
+        }
+    }
+
+    /**
+     * 标记实现
+     *
+     * @param root 根节点
+     */
+    private void mark(Node root) {
+        if (root == null) {
+            return;
+        }
+
+        Deque<Node> stack = new ArrayDeque<>();
+        Deque<Boolean> marks = new ArrayDeque<>();
+        stack.push(root);
+        marks.push(false);
+        while (!stack.isEmpty()) {
+            Node node = stack.pop();
+            Boolean mark = marks.pop();
+            if (mark) {
+                visitor.visit(node);
+            } else {
+                // 倒序添加
+                stack.push(node);
+                marks.push(true);
+                List<Node> children = node.children;
+                if (children != null) {
+                    for (int i = children.size() - 1; i >= 0; i--) {
+                        stack.push(children.get(i));
+                        marks.push(false);
+                    }
+                }
             }
         }
     }

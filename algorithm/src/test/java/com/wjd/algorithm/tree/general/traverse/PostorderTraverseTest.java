@@ -37,4 +37,20 @@ class PostorderTraverseTest {
 
         assertEquals(expect, actual);
     }
+
+    @Test
+    void testMarkTraverse() {
+        Integer[] values = {1, null, 3, 2, 4, null, 5, 6};
+        Integer[] expectArr = {5, 6, 3, 2, 4, 1};
+        String expect = Arrays.toString(expectArr);
+
+        PostorderTraverse traverse = new PostorderTraverse();
+        traverse.setType(3);
+        Node tree = Node.build(values);
+        List<Node> list = traverse.traverse(tree);
+        String actual = String.valueOf(list);
+
+        assertEquals(expect, actual);
+    }
+
 }
