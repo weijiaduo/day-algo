@@ -9,7 +9,7 @@ import java.util.List;
 
 import static org.junit.jupiter.api.Assertions.*;
 
-class TransformBinaryTreeTest {
+class BinaryTreeTransformerTest {
 
     @Test
     void testTransTo() {
