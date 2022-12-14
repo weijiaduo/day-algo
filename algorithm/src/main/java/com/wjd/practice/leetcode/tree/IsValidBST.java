@@ -17,13 +17,14 @@ import com.wjd.structure.tree.binary.TreeNode;
  * 输入：root = [2,1,3]
  * 输出：true
  * <p>
+ *
  * @since 2022/6/11
  */
 public class IsValidBST implements Solution<Boolean> {
 
     @Override
     public Boolean solve(Object... args) {
-        Integer[] values = {-2147483648,-2147483648};
+        Integer[] values = {-2147483648, -2147483648};
         TreeNode root = TreeNode.build(values);
         System.out.println(TreeNode.traverse(root));
         boolean result = isValidBST(root);
@@ -54,6 +55,40 @@ public class IsValidBST implements Solution<Boolean> {
         }
         return isValid(root.left, min, root.val)
                 && isValid(root.right, root.val, max);
+    }
+
+    TreeNode pre = null;
+
+    /**
+     * 思路：使用中序遍历验证，中序遍历结果是从小打大，则表示是有效的二叉搜索树
+     * <p>
+     * 复杂度：时间 O(logn) 空间 O(logn)
+     * <p>
+     * 执行用时：0 ms, 在所有 Java 提交中击败了 100.00% 的用户
+     * 内存消耗：40.8 MB, 在所有 Java 提交中击败了 89.53% 的用户
+     *
+     * @param root 根节点
+     * @return 是否是二叉搜索树
+     */
+    private boolean inorderValid(TreeNode root) {
+        if (root == null) {
+            return true;
+        }
+
+        if (!inorderValid(root.left)) {
+            return false;
+        }
+
+        if (pre != null && pre.val >= root.val) {
+            return false;
+        }
+
+        pre = root;
+        if (!inorderValid(root.right)) {
+            return false;
+        }
+
+        return true;
     }
 
 }
