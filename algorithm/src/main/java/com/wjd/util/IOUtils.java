@@ -125,6 +125,10 @@ public final class IOUtils {
         if (line.contains("[")) {
             line = line.replaceAll("[\\[\\]]", "");
         }
+        if (line.isEmpty()) {
+            return new Boolean[0];
+        }
+
         String[] tokens = line.split(",");
         int n = tokens.length;
         Boolean[] arr = new Boolean[n];
@@ -148,6 +152,10 @@ public final class IOUtils {
         if (line.contains("[")) {
             line = line.replaceAll("[\\[\\]]", "");
         }
+        if (line.isEmpty()) {
+            return new Character[0];
+        }
+
         String[] tokens = line.split(",");
         int n = tokens.length;
         Character[] arr = new Character[n];
@@ -171,6 +179,10 @@ public final class IOUtils {
         if (line.contains("[")) {
             line = line.replaceAll("[\\[\\]]", "");
         }
+        if (line.isEmpty()) {
+            return new Integer[0];
+        }
+
         String[] tokens = line.split(",");
         int n = tokens.length;
         Integer[] arr = new Integer[n];
@@ -194,6 +206,10 @@ public final class IOUtils {
         if (line.contains("[")) {
             line = line.replaceAll("[\\[\\]]", "");
         }
+        if (line.isEmpty()) {
+            return new Long[0];
+        }
+
         String[] tokens = line.split(",");
         int n = tokens.length;
         Long[] arr = new Long[n];
@@ -217,6 +233,10 @@ public final class IOUtils {
         if (line.contains("[")) {
             line = line.replaceAll("[\\[\\]]", "");
         }
+        if (line.isEmpty()) {
+            return new Double[0];
+        }
+
         String[] tokens = line.split(",");
         int n = tokens.length;
         Double[] arr = new Double[n];
@@ -230,6 +250,10 @@ public final class IOUtils {
         if (line.contains("[")) {
             line = line.replaceAll("[\\[\\]]", "");
         }
+        if (line.isEmpty()) {
+            return new String[0];
+        }
+
         String[] tokens = line.split(",");
         int n = tokens.length;
         String[] arr = new String[n];
