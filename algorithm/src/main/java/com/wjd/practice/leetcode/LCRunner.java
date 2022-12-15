@@ -7,6 +7,7 @@ import java.io.FileInputStream;
 import java.io.InputStream;
 import java.lang.reflect.Constructor;
 import java.lang.reflect.Method;
+import java.lang.reflect.Modifier;
 import java.util.Objects;
 
 /**
@@ -37,13 +38,7 @@ public class LCRunner {
      */
     public static void run(Class<?> cls) throws Exception {
         // 获取执行的方法
-        Method solveMethod = null;
-        for (Method method : cls.getDeclaredMethods()) {
-            if ("solve".equals(method.getName())) {
-                solveMethod = method;
-                break;
-            }
-        }
+        Method solveMethod = getExecuteMethod(cls);
         if (solveMethod == null) {
             return;
         }
@@ -79,6 +74,28 @@ public class LCRunner {
             System.out.println(StringUtils.toStr(actual));
             System.out.println();
         }
+    }
+
+    /**
+     * 获取执行的方法
+     *
+     * @param cls 指定类
+     * @return 执行方法
+     */
+    private static Method getExecuteMethod(Class<?> cls) {
+        // 优先找指定的 solve 方法
+        for (Method method : cls.getDeclaredMethods()) {
+            if ("solve".equals(method.getName())) {
+                return method;
+            }
+        }
+        // 然后找 public 方法
+        for (Method method : cls.getDeclaredMethods()) {
+            if (Modifier.isPublic(method.getModifiers())) {
+                return method;
+            }
+        }
+        return null;
     }
 
 }
