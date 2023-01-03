@@ -343,14 +343,20 @@ public class BTNode<K extends Comparable<K>, V> {
      * @return 删除后的根节点
      */
     public BTNode<K, V> delete(int index) {
+        if (isEmpty() || index == 0) {
+            throw new IllegalStateException(String.format("index: %d, size: %d", index, size));
+        }
+
         if (isLeaf()) {
-            // 叶子节点，直接删除，删除后可能会变成元素为空的空节点
-            // 空节点将由后续的 underflow 处理掉，或者由根节点处理掉
+            // 叶子节点
+            // 直接删除，删除后可能会变成元素为空的空节点
+            // 空节点将由父节点的 underflow 处理掉，或者由根节点处理掉
             removeEntry(index);
             return this;
         }
 
-        // 内部节点，使用前驱节点或后驱节点进行替换
+        // 内部节点
+        // 使用前驱节点或后驱节点进行替换
         int rpIndex = getReplacer(this, index);
         BTNode<K, V> child = getChild(rpIndex);
         BTNode<K, V> newChild;
@@ -485,14 +491,21 @@ public class BTNode<K extends Comparable<K>, V> {
      * @return 可替换子节点索引
      */
     private int getReplacer(BTNode<K, V> root, int index) {
-        BTNode<K, V> right = root.getChild(index);
+        BTNode<K, V> right = null;
+        if (index <= root.size) {
+            right = root.getChild(index);
+        }
         if (right == null) {
             return index - 1;
         }
-        BTNode<K, V> left = root.getChild(index - 1);
+        BTNode<K, V> left = null;
+        if (index > 0) {
+            left = root.getChild(index - 1);
+        }
         if (left == null) {
             return index;
         }
+
         if (left.canBorrow()) {
             return index - 1;
         } else {
@@ -510,6 +523,7 @@ public class BTNode<K extends Comparable<K>, V> {
         if (root == null) {
             return null;
         }
+
         if (root.isLeaf()) {
             return root.getEntry(root.size);
         }
@@ -526,6 +540,7 @@ public class BTNode<K extends Comparable<K>, V> {
         if (root == null) {
             return null;
         }
+
         if (root.isLeaf()) {
             return root.delete(root.size);
         }
@@ -542,6 +557,7 @@ public class BTNode<K extends Comparable<K>, V> {
         if (root == null) {
             return null;
         }
+
         if (root.isLeaf()) {
             return root.getEntry(1);
         }
@@ -558,6 +574,7 @@ public class BTNode<K extends Comparable<K>, V> {
         if (root == null) {
             return null;
         }
+
         if (root.isLeaf()) {
             return root.delete(1);
         }
@@ -576,6 +593,8 @@ public class BTNode<K extends Comparable<K>, V> {
 
     /**
      * 添加新元素
+     * <p>
+     * 此处不执行节点分裂的情况，需要分裂时应调用 add() 方法
      *
      * @param entry 元素
      */
@@ -636,6 +655,7 @@ public class BTNode<K extends Comparable<K>, V> {
             throw new IllegalStateException(String.format("index: %d, size: %d", index, size));
         }
 
+        // 保留子节点，只替换元素的 key-value
         Entry<K, V> oldEntry = getEntry(index);
         elements[index] = entry;
         entry.pointer = oldEntry.pointer;
