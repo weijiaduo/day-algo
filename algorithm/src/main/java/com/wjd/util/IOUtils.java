@@ -66,7 +66,7 @@ public final class IOUtils {
 
     public static Boolean toBool(String line) {
         try {
-            return Boolean.parseBoolean(line);
+            return Boolean.parseBoolean(line.trim());
         } catch (Exception e) {
             return null;
         }
@@ -74,7 +74,7 @@ public final class IOUtils {
 
     public static Character toChar(String line) {
         try {
-            return line.charAt(0);
+            return line.trim().charAt(0);
         } catch (Exception e) {
             return null;
         }
@@ -82,7 +82,7 @@ public final class IOUtils {
 
     public static Integer toInt(String line) {
         try {
-            return Integer.parseInt(line);
+            return Integer.parseInt(line.trim());
         } catch (Exception e) {
             return null;
         }
@@ -90,7 +90,7 @@ public final class IOUtils {
 
     public static Long toLong(String line) {
         try {
-            return Long.parseLong(line);
+            return Long.parseLong(line.trim());
         } catch (Exception e) {
             return null;
         }
@@ -98,7 +98,7 @@ public final class IOUtils {
 
     public static Double toDouble(String line) {
         try {
-            return Double.parseDouble(line);
+            return Double.parseDouble(line.trim());
         } catch (Exception e) {
             return null;
         }
@@ -269,6 +269,16 @@ public final class IOUtils {
         int[][] arr = new int[m][];
         for (int i = 0; i < m; i++) {
             arr[i] = toIntArray(tokens[i]);
+        }
+        return arr;
+    }
+
+    public static Integer[][] toBoxIntMatrix(String line) {
+        String[] tokens = line.split("],");
+        int m = tokens.length;
+        Integer[][] arr = new Integer[m][];
+        for (int i = 0; i < m; i++) {
+            arr[i] = toBoxIntArray(tokens[i]);
         }
         return arr;
     }
