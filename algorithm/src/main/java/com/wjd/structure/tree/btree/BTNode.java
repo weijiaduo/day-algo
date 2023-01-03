@@ -40,7 +40,7 @@ public class BTNode<K extends Comparable<K>, V> {
         this.threshold = (m + 1) / 2 - 1;
         elements = new Object[m];
         // 最左子节点占位
-        elements[0] = new Entry(null, null);
+        elements[0] = new Entry<K, V>(null, null);
         size = 0;
     }
 
@@ -110,8 +110,8 @@ public class BTNode<K extends Comparable<K>, V> {
      *
      * @return 元素集合
      */
-    public List<Entry> entries() {
-        List<Entry> entries = new ArrayList<>(size);
+    public List<Entry<K, V>> entries() {
+        List<Entry<K, V>> entries = new ArrayList<>(size);
         // 元素从索引 1 开始
         for (int i = 1; i <= size; i++) {
             entries.add(getEntry(i));
@@ -271,7 +271,7 @@ public class BTNode<K extends Comparable<K>, V> {
      */
     public BTNode<K, V> add(K key, V value) {
         BTNode<K, V> node = new BTNode<>(m);
-        node.addEntry(new Entry(key, value));
+        node.addEntry(new Entry<>(key, value));
         return add(key, node);
     }
 
@@ -294,15 +294,15 @@ public class BTNode<K extends Comparable<K>, V> {
         // 1. 当前空间足够插入
         int newSize = size + node.size();
         if (newSize < m) {
-            for (Entry entry : node.entries()) {
+            for (Entry<K, V> entry : node.entries()) {
                 insertEntry(++index, entry);
             }
             return this;
         }
 
         // 2. 当前空间不够，需要分裂成 3 个节点
-        List<Entry> allEntries = new ArrayList<>(newSize);
-        List<Entry> curEntries = entries();
+        List<Entry<K, V>> allEntries = new ArrayList<>(newSize);
+        List<Entry<K, V>> curEntries = entries();
         for (int i = 0; i < index && i < size; i++) {
             allEntries.add(curEntries.get(i));
         }
@@ -356,13 +356,13 @@ public class BTNode<K extends Comparable<K>, V> {
         BTNode<K, V> newChild;
         if (rpIndex < index) {
             // 前驱节点
-            BTNode<K, V>.Entry max = max(child);
+            Entry<K, V> max = max(child);
             newChild = removeMax(child);
             setChild(rpIndex, newChild);
             setEntry(index, max);
         } else {
             // 后驱节点
-            BTNode<K, V>.Entry min = min(child);
+            Entry<K, V> min = min(child);
             newChild = removeMin(child);
             setChild(rpIndex, newChild);
             setEntry(index, min);
@@ -411,11 +411,11 @@ public class BTNode<K extends Comparable<K>, V> {
             cur = right;
         }
         // 父节点合并到左子节点
-        Entry parentEntry = getEntry(index);
+        Entry<K, V> parentEntry = getEntry(index);
         left.addEntry(parentEntry);
         // 右子节点合并到左子节点
         left.setChild(left.size, cur.firstChild());
-        for (Entry entry : cur.entries()) {
+        for (Entry<K, V> entry : cur.entries()) {
             left.addEntry(entry);
         }
         removeEntry(index);
@@ -436,8 +436,8 @@ public class BTNode<K extends Comparable<K>, V> {
             setChild(index, right);
         }
 
-        Entry parentEntry = getEntry(index);
-        Entry leftEntry = left.getEntry(left.size);
+        Entry<K, V> parentEntry = getEntry(index);
+        Entry<K, V> leftEntry = left.getEntry(left.size);
         BTNode<K, V> leftRight = left.lastChild();
 
         // 父节点转到右子节点
@@ -463,8 +463,8 @@ public class BTNode<K extends Comparable<K>, V> {
             setChild(index, left);
         }
 
-        Entry parentEntry = getEntry(index + 1);
-        Entry rightEntry = right.getEntry(1);
+        Entry<K, V> parentEntry = getEntry(index + 1);
+        Entry<K, V> rightEntry = right.getEntry(1);
         BTNode<K, V> rightLeft = right.firstChild();
 
         // 父节点转到左子节点
@@ -506,7 +506,7 @@ public class BTNode<K extends Comparable<K>, V> {
      * @param root 当前根节点
      * @return 最大值
      */
-    private BTNode<K, V>.Entry max(BTNode<K, V> root) {
+    private Entry<K, V> max(BTNode<K, V> root) {
         if (root == null) {
             return null;
         }
@@ -538,7 +538,7 @@ public class BTNode<K extends Comparable<K>, V> {
      * @param root 当前根节点
      * @return 最小值
      */
-    private BTNode<K, V>.Entry min(BTNode<K, V> root) {
+    private Entry<K, V> min(BTNode<K, V> root) {
         if (root == null) {
             return null;
         }
@@ -570,8 +570,8 @@ public class BTNode<K extends Comparable<K>, V> {
      * @param index 索引
      * @return 元素
      */
-    private Entry getEntry(int index) {
-        return (Entry) elements[index];
+    private Entry<K, V> getEntry(int index) {
+        return (Entry<K, V>) elements[index];
     }
 
     /**
@@ -579,7 +579,7 @@ public class BTNode<K extends Comparable<K>, V> {
      *
      * @param entry 元素
      */
-    private void addEntry(Entry entry) {
+    private void addEntry(Entry<K, V> entry) {
         if (isFull()) {
             throw new IllegalStateException(String.format("size: %d", size));
         }
@@ -593,7 +593,7 @@ public class BTNode<K extends Comparable<K>, V> {
      * @param index 插入索引
      * @param entry 元素
      */
-    private void insertEntry(int index, Entry entry) {
+    private void insertEntry(int index, Entry<K, V> entry) {
         if (isFull() || index == 0) {
             throw new IllegalStateException(String.format("index: %d, size: %d", index, size));
         }
@@ -631,12 +631,12 @@ public class BTNode<K extends Comparable<K>, V> {
      * @param index 索引
      * @param entry 元素
      */
-    private void setEntry(int index, Entry entry) {
+    private void setEntry(int index, Entry<K, V> entry) {
         if (index == 0) {
             throw new IllegalStateException(String.format("index: %d, size: %d", index, size));
         }
 
-        Entry oldEntry = getEntry(index);
+        Entry<K, V> oldEntry = getEntry(index);
         elements[index] = entry;
         entry.pointer = oldEntry.pointer;
     }
@@ -653,7 +653,7 @@ public class BTNode<K extends Comparable<K>, V> {
     /**
      * 单个元素
      */
-    class Entry implements Comparable<Entry> {
+    static class Entry<K extends Comparable<K>, V> {
         /**
          * key
          */
@@ -671,11 +671,6 @@ public class BTNode<K extends Comparable<K>, V> {
             this.key = key;
             this.value = value;
             pointer = null;
-        }
-
-        @Override
-        public int compareTo(Entry o) {
-            return key.compareTo(o.key);
         }
 
         @Override
