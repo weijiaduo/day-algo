@@ -38,7 +38,7 @@ public class BTNode<K extends Comparable<K>, V> {
         this.m = m;
         this.threshold = half(m);
         elements = new Object[m];
-        // 最左子节点占位
+        // 最左元素占位，用于存放最左子节点指针
         elements[0] = new Entry<K, V>(null, null);
         size = 0;
     }
@@ -54,7 +54,7 @@ public class BTNode<K extends Comparable<K>, V> {
      * 半数阈值 ceil(m / 2) - 1
      *
      * @param m 当前值
-     * @return 半数
+     * @return 半数阈值
      */
     private int half(int m) {
         return (m + 1) / 2 - 1;
@@ -81,7 +81,7 @@ public class BTNode<K extends Comparable<K>, V> {
     /**
      * 节点是否合法
      * <p>
-     * 节点的元素数量要求满足: >= ceil(m/2) - 1
+     * 节点的元素数量要求大于等于阈值
      *
      * @return true合法/false非法
      */
@@ -92,7 +92,7 @@ public class BTNode<K extends Comparable<K>, V> {
     /**
      * 是否可借用元素给别的节点
      * <p>
-     * 当节点数量超过一半容量时，则可以外借元素
+     * 当节点的元素数量大于阈值时，才可以外借元素
      *
      * @return true可借用/false不可借用
      */
@@ -102,6 +102,8 @@ public class BTNode<K extends Comparable<K>, V> {
 
     /**
      * 是否是叶子节点
+     * <p>
+     * 没有任何一个非空子节点时才是叶子节点
      *
      * @return true叶子节点/false内部节点
      */
@@ -115,7 +117,7 @@ public class BTNode<K extends Comparable<K>, V> {
     }
 
     /**
-     * 所有元素
+     * 获取所有的元素
      *
      * @return 元素集合
      */
@@ -129,7 +131,7 @@ public class BTNode<K extends Comparable<K>, V> {
     }
 
     /**
-     * 所有 key
+     * 获取所有的 key
      *
      * @return key 集合
      */
@@ -143,7 +145,7 @@ public class BTNode<K extends Comparable<K>, V> {
     }
 
     /**
-     * 所有 value
+     * 获取所有的 value
      *
      * @return value 集合
      */
@@ -177,7 +179,7 @@ public class BTNode<K extends Comparable<K>, V> {
     }
 
     /**
-     * 设置指定位置的值
+     * 设置指定位置的 value
      *
      * @param index 索引
      * @param value 值
@@ -187,9 +189,9 @@ public class BTNode<K extends Comparable<K>, V> {
     }
 
     /**
-     * 所有子节点
+     * 获取所有的子节点
      * <p>
-     * 注意：是所有可能的子节点，也包括 null 子节点
+     * 注意：是所有可能的子节点，也包括了 null 子节点
      *
      * @return 子节点集合
      */
@@ -235,7 +237,7 @@ public class BTNode<K extends Comparable<K>, V> {
     }
 
     /**
-     * 更新设置指定位置的子节点
+     * 更新指定位置的子节点
      *
      * @param index 索引
      * @param node  子节点
@@ -365,6 +367,8 @@ public class BTNode<K extends Comparable<K>, V> {
 
     /**
      * 删除指定位置的元素
+     * <p>
+     * 删除元素后，节点可能会产生下溢，从而返回了一个空元素节点
      *
      * @param index 索引
      * @return 删除后的根节点
@@ -382,7 +386,8 @@ public class BTNode<K extends Comparable<K>, V> {
             return this;
         }
 
-        // 内部节点，使用前驱或后驱进行替换
+        // 内部节点
+        // 使用前驱或后驱进行替换
         int rpIndex = getReplacer(this, index);
         BTNode<K, V> child = getChild(rpIndex);
         BTNode<K, V> newChild;
@@ -628,9 +633,28 @@ public class BTNode<K extends Comparable<K>, V> {
     }
 
     /**
-     * 添加新元素
+     * 更新指定位置的元素
      * <p>
-     * 此处不执行节点分裂的情况，需要分裂时应调用 {@code overflow()} 方法
+     * 要求原始元素必须存在，否则应该使用 {@code insertEntry()}
+     *
+     * @param index 索引
+     * @param entry 元素
+     */
+    private void setEntry(int index, Entry<K, V> entry) {
+        Entry<K, V> oldEntry = getEntry(index);
+        if (oldEntry == null || index == 0) {
+            throw new IllegalStateException(String.format("index: %d, size: %d", index, size));
+        }
+
+        // 保留子节点，只替换元素的 key-value
+        elements[index] = entry;
+        entry.pointer = oldEntry.pointer;
+    }
+
+    /**
+     * 追加新元素
+     * <p>
+     * 此方法不会产生节点分裂，需要分裂时应调用 {@code overflow()} 方法
      *
      * @param entry 元素
      */
@@ -643,7 +667,9 @@ public class BTNode<K extends Comparable<K>, V> {
     }
 
     /**
-     * 插入指定元素
+     * 插入新元素
+     * <p>
+     * 此方法不会产生节点分裂，需要分裂时应调用 {@code overflow()} 方法
      *
      * @param index 插入索引
      * @param entry 元素
@@ -678,25 +704,6 @@ public class BTNode<K extends Comparable<K>, V> {
         }
         elements[size] = null;
         size--;
-    }
-
-    /**
-     * 设置指定元素
-     * <p>
-     * 要求原始元素必须存在，否则应该使用 {@code insertEntry()}
-     *
-     * @param index 索引
-     * @param entry 元素
-     */
-    private void setEntry(int index, Entry<K, V> entry) {
-        Entry<K, V> oldEntry = getEntry(index);
-        if (oldEntry == null || index == 0) {
-            throw new IllegalStateException(String.format("index: %d, size: %d", index, size));
-        }
-
-        // 保留子节点，只替换元素的 key-value
-        elements[index] = entry;
-        entry.pointer = oldEntry.pointer;
     }
 
     @Override
