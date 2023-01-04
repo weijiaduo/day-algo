@@ -87,14 +87,10 @@ public class BTreeImpl<K extends Comparable<K>, V> implements BTree<K, V> {
 
         // 3. 内部节点，添加到子树的叶子节点中
         BTNode<K, V> child = root.getChild(index);
-        BTNode<K, V> newChild = put(child, key, value);
-        if (child != newChild) {
-            // 子树发生了分裂，需递归向上
-            return root.add(key, newChild);
-        } else {
-            // 子树没有发生分裂
-            return root;
-        }
+        child = put(child, key, value);
+
+        // 添加元素后子树可能发生了分裂
+        return root.overflow(index, child);
     }
 
     @Override

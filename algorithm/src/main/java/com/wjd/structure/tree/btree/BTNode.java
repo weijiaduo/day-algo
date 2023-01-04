@@ -36,8 +36,7 @@ public class BTNode<K extends Comparable<K>, V> {
 
     public BTNode(int m) {
         this.m = m;
-        // 半数阈值 ceil(m / 2) - 1
-        this.threshold = (m + 1) / 2 - 1;
+        this.threshold = half(m);
         elements = new Object[m];
         // 最左子节点占位
         elements[0] = new Entry<K, V>(null, null);
@@ -49,6 +48,16 @@ public class BTNode<K extends Comparable<K>, V> {
      */
     public int size() {
         return size;
+    }
+
+    /**
+     * 半数阈值 ceil(m / 2) - 1
+     *
+     * @param m 当前值
+     * @return 半数
+     */
+    private int half(int m) {
+        return (m + 1) / 2 - 1;
     }
 
     /**
@@ -179,6 +188,8 @@ public class BTNode<K extends Comparable<K>, V> {
 
     /**
      * 所有子节点
+     * <p>
+     * 注意：是所有可能的子节点，也包括 null 子节点
      *
      * @return 子节点集合
      */
@@ -192,6 +203,10 @@ public class BTNode<K extends Comparable<K>, V> {
     }
 
     /**
+     * 返回第一个子节点
+     * <p>
+     * 注意：不是第一个非空子节点，而是第 1 个元素的左子节点
+     *
      * @return 第一个子节点
      */
     public BTNode<K, V> firstChild() {
@@ -199,6 +214,10 @@ public class BTNode<K extends Comparable<K>, V> {
     }
 
     /**
+     * 返回最后一个子节点
+     * <p>
+     * 注意：不是最后一个非空子节点，而是最后 1 个元素的右子节点
+     *
      * @return 最后一个子节点
      */
     public BTNode<K, V> lastChild() {
@@ -272,22 +291,30 @@ public class BTNode<K extends Comparable<K>, V> {
     public BTNode<K, V> add(K key, V value) {
         BTNode<K, V> node = new BTNode<>(m);
         node.addEntry(new Entry<>(key, value));
-        return add(key, node);
+        int index = binary(key);
+        return overflow(index, node);
     }
 
     /**
-     * 添加新节点到当前节点
+     * 节点上溢处理
+     * <p>
+     * 子树添加新元素后，可能会分裂成新节点，替代原有的子节点
      *
-     * @param node 新节点
+     * @param index 索引
+     * @param node  新节点
      * @return 添加后的当前节点
      */
-    public BTNode<K, V> add(K key, BTNode<K, V> node) {
-        if (node == null || node.size() == 0) {
+    public BTNode<K, V> overflow(int index, BTNode<K, V> node) {
+        if (node == null || node.isEmpty()) {
             return this;
         }
 
-        // key 的插入索引位置
-        int index = binary(key);
+        // 还是旧节点，无需处理
+        BTNode<K, V> cur = getChild(index);
+        if (cur == node) {
+            return this;
+        }
+
         // 新子节点替代旧子节点的位置
         setChild(index, node.firstChild());
 
@@ -379,6 +406,8 @@ public class BTNode<K extends Comparable<K>, V> {
     }
 
     /**
+     * 节点下溢处理
+     * <p>
      * 存在非法子节点时，可能需要对父节点进行下溢操作
      *
      * @param index 父节点索引
