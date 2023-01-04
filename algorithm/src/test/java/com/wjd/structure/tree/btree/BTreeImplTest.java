@@ -1,7 +1,6 @@
 package com.wjd.structure.tree.btree;
 
 import com.wjd.algorithm.tree.btree.build.BTreeLevelBuilder;
-import com.wjd.algorithm.tree.btree.traverse.BTreeLevelTraverse;
 import com.wjd.util.IOUtils;
 import org.junit.jupiter.api.Test;
 
@@ -10,22 +9,16 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
-import static org.junit.jupiter.api.Assertions.*;
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertNull;
 
 class BTreeImplTest {
 
     @Test
     void testGet() {
-        int m = 4;
-        List<List<Integer>> values = Arrays.asList(
-                List.of(21, 22),
-                List.of(11, 12),
-                null,
-                List.of(31, 32, 33),
-                List.of(1, 2)
-        );
-
-        BTreeImpl<Integer, Integer> btree = buildBTree(m, values);
+        String s = "[[21, 22], [11, 12], [], [31, 32, 33], [1, 2]]";
+        List<List<Integer>> values = toListList(s);
+        BTreeImpl<Integer, Integer> btree = buildBTree(values);
 
         // 验证存在的值
         assertEquals(1, btree.get(1));
@@ -52,6 +45,7 @@ class BTreeImplTest {
     void testPut() {
         int m = 5;
         BTreeImpl<Integer, Integer> btree = new BTreeImpl<>(m);
+
         // 1. 空树插入
         btree.put(39, 39);
         btree.put(22, 22);
@@ -89,80 +83,120 @@ class BTreeImplTest {
     }
 
     /**
-     * 验证删除叶子节点的情况
+     * 验证删除叶子节点元素，节点仍然合法
      */
     @Test
-    void testLeafRemove() {
-        int m = 5;
+    void testLeafRemoveNormal() {
         String s = "[[33], [22, 27, 30], [36, 41], [13, 17, 21], [23, 24, 25, 26], [28, 29], [31, 32], [34, 35], [39, 40], [53, 97]]";
         List<List<Integer>> values = toListList(s);
-        BTreeImpl<Integer, Integer> btree = buildBTree(m, values);
+        BTreeImpl<Integer, Integer> btree = buildBTree(values);
 
-        // 1. 删除叶子节点元素，节点仍然合法
         btree.remove(21);
         assertEquals("[[33], [22, 27, 30], [36, 41], [13, 17], [23, 24, 25, 26], [28, 29], [31, 32], [34, 35], [39, 40], [53, 97]]", btree.toString());
+    }
 
-        // 2. 删除叶子节点元素，节点变成非法，右兄弟可借
+    /**
+     * 验证删除叶子节点元素，节点变成非法，左兄弟可借
+     */
+    @Test
+    void testLeafRemoveBorrowLeft() {
+        String s = "[[33], [23, 27, 30], [36, 41], [17, 22], [24, 25, 26], [28, 29], [31, 32], [34, 35], [39, 40], [53, 78, 81, 97]]";
+        List<List<Integer>> values = toListList(s);
+        BTreeImpl<Integer, Integer> btree = buildBTree(values);
+
+        btree.remove(29);
+        assertEquals("[[33], [23, 26, 30], [36, 41], [17, 22], [24, 25], [27, 28], [31, 32], [34, 35], [39, 40], [53, 78, 81, 97]]", btree.toString());
+    }
+
+    /**
+     * 验证删除叶子节点元素，节点变成非法，右兄弟可借
+     */
+    @Test
+    void testLeafRemoveBorrowRight() {
+        String s = "[[33], [22, 27, 30], [36, 41], [13, 17], [23, 24, 25, 26], [28, 29], [31, 32], [34, 35], [39, 40], [53, 97]]";
+        List<List<Integer>> values = toListList(s);
+        BTreeImpl<Integer, Integer> btree = buildBTree(values);
+
         btree.remove(13);
         assertEquals("[[33], [23, 27, 30], [36, 41], [17, 22], [24, 25, 26], [28, 29], [31, 32], [34, 35], [39, 40], [53, 97]]", btree.toString());
-
-        // 3. 删除叶子节点元素，节点变成非法，左兄弟可借
-        btree.remove(29);
-        assertEquals("[[33], [23, 26, 30], [36, 41], [17, 22], [24, 25], [27, 28], [31, 32], [34, 35], [39, 40], [53, 97]]", btree.toString());
-
-        // 4. 删除叶子节点元素，节点变成非法，父子节点合并
-        btree.remove(24);
-        assertEquals("[[33], [26, 30], [36, 41], [17, 22, 23, 25], [27, 28], [31, 32], [34, 35], [39, 40], [53, 97]]", btree.toString());
     }
 
     /**
-     * 验证删除内部节点的情况
+     * 验证删除叶子节点元素，节点变成非法，父子节点合并
      */
     @Test
-    void testInternalRemove() {
-        int m = 5;
+    void testLeafRemoveUnderflow() {
+        String s = "[[33], [23, 26, 30], [36, 41], [17, 22], [24, 25], [27, 28], [31, 32], [34, 35], [39, 40], [53, 78, 81, 97]]";
+        List<List<Integer>> values = toListList(s);
+        BTreeImpl<Integer, Integer> btree = buildBTree(values);
+
+        btree.remove(24);
+        assertEquals("[[33], [26, 30], [36, 41], [17, 22, 23, 25], [27, 28], [31, 32], [34, 35], [39, 40], [53, 78, 81, 97]]", btree.toString());
+    }
+
+    /**
+     * 验证删除内部节点元素，使用前驱节点替代，然后删除
+     */
+    @Test
+    void testInternalRemoveReplacePrev() {
         String s = "[[33], [22, 27, 30], [36, 41], [13, 17, 21], [23, 24, 25, 26], [28, 29], [31, 32], [34, 35], [39, 40], [53, 97]]";
         List<List<Integer>> values = toListList(s);
-        BTreeImpl<Integer, Integer> btree = buildBTree(m, values);
+        BTreeImpl<Integer, Integer> btree = buildBTree(values);
 
-        // 1. 删除内部节点元素，使用前驱节点替代，然后删除
-        btree.remove(22);
-        assertEquals("[[33], [21, 27, 30], [36, 41], [13, 17], [23, 24, 25, 26], [28, 29], [31, 32], [34, 35], [39, 40], [53, 97]]", btree.toString());
-
-        // 2. 删除内部节点元素，使用后驱节点替代，然后删除
-        btree.remove(21);
-        assertEquals("[[33], [23, 27, 30], [36, 41], [13, 17], [24, 25, 26], [28, 29], [31, 32], [34, 35], [39, 40], [53, 97]]", btree.toString());
-
-        // 3. 删除内部节点元素，节点变成非法，左兄弟可借
-        btree.remove(36);
-        assertEquals("[[30], [23, 27], [33, 41], [13, 17], [24, 25, 26], [28, 29], [31, 32], [34, 35, 39, 40], [53, 97]]", btree.toString());
-
-        // 4. 删除内部节点元素，节点变成非法，父子节点合并
-        btree.remove(25);
-        btree.remove(23);
-        assertEquals("[[27, 30, 33, 41], [13, 17, 24, 26], [28, 29], [31, 32], [34, 35, 39, 40], [53, 97]]", btree.toString());
+        btree.remove(33);
+        assertEquals("[[32], [22, 27], [36, 41], [13, 17, 21], [23, 24, 25, 26], [28, 29, 30, 31], [34, 35], [39, 40], [53, 97]]", btree.toString());
     }
 
     /**
-     * 验证节点元素满了以后的分裂
+     * 验证删除内部节点元素，使用后驱节点替代，然后删除
      */
     @Test
-    void testBTNodeAdd() {
-        List<List<Integer>> expect = Arrays.asList(
-                List.of(3),
-                List.of(1, 2),
-                List.of(4)
-        );
-        int m = 4;
-        BTNode<Integer, Integer> root = new BTNode<>(m);
-        root = root.add(1, 1);
-        root = root.add(2, 2);
-        root = root.add(3, 3);
-        // 节点分裂
-        root = root.add(4, 4);
+    void testInternalRemoveReplaceNext() {
+        String s = "[[33], [22, 27], [36, 41, 62], [13, 17, 21], [23, 24, 25, 26], [28, 29], [34, 35], [39, 40], [53, 57], [78, 81]]";
+        List<List<Integer>> values = toListList(s);
+        BTreeImpl<Integer, Integer> btree = buildBTree(values);
 
-        List<List<Integer>> actual = new BTreeLevelTraverse<Integer, Integer>().traverse(root);
-        assertEquals(expect.toString(), actual.toString());
+        btree.remove(33);
+        assertEquals("[[34], [22, 27], [41, 62], [13, 17, 21], [23, 24, 25, 26], [28, 29], [35, 36, 39, 40], [53, 57], [78, 81]]", btree.toString());
+    }
+
+    /**
+     * 删除内部节点元素，节点变成非法，左兄弟可借
+     */
+    @Test
+    void testInternalRemoveBorrowLeft() {
+        String s = "[[33], [22, 27, 30], [36, 41], [13, 17], [23, 24, 25, 26], [28, 29], [31, 32], [34, 35], [39, 40], [53, 97]]";
+        List<List<Integer>> values = toListList(s);
+        BTreeImpl<Integer, Integer> btree = buildBTree(values);
+
+        btree.remove(36);
+        assertEquals("[[30], [22, 27], [33, 41], [13, 17], [23, 24, 25, 26], [28, 29], [31, 32], [34, 35, 39, 40], [53, 97]]", btree.toString());
+    }
+
+    /**
+     * 删除内部节点元素，节点变成非法，右兄弟可借
+     */
+    @Test
+    void testInternalRemoveBorrowRight() {
+        String s = "[[33], [22, 27], [36, 41, 62], [13, 17], [23, 24], [28, 29], [34, 35], [39, 40], [53, 57], [78, 79, 83, 85]]";
+        List<List<Integer>> values = toListList(s);
+        BTreeImpl<Integer, Integer> btree = buildBTree(values);
+
+        btree.remove(22);
+        assertEquals("[[36], [27, 33], [41, 62], [13, 17, 23, 24], [28, 29], [34, 35], [39, 40], [53, 57], [78, 79, 83, 85]]", btree.toString());
+    }
+
+    /**
+     * 删除内部节点元素，节点变成非法，父子节点合并
+     */
+    @Test
+    void testInternalRemoveUnderflow() {
+        String s = "[[30], [23, 27], [33, 41], [13, 17], [24, 26], [28, 29], [31, 32], [34, 35, 39, 40], [53, 97]]";
+        List<List<Integer>> values = toListList(s);
+        BTreeImpl<Integer, Integer> btree = buildBTree(values);
+
+        btree.remove(23);
+        assertEquals("[[27, 30, 33, 41], [13, 17, 24, 26], [28, 29], [31, 32], [34, 35, 39, 40], [53, 97]]", btree.toString());
     }
 
     /**
@@ -190,11 +224,19 @@ class BTreeImplTest {
      * @param values 层序遍历列表
      * @return B-树
      */
-    private BTreeImpl<Integer, Integer> buildBTree(int m, List<List<Integer>> values) {
+    private BTreeImpl<Integer, Integer> buildBTree(List<List<Integer>> values) {
         try {
-            BTreeImpl<Integer, Integer> btree = new BTreeImpl<>(m);
             BTNode<Integer, Integer> root = new BTreeLevelBuilder().build(values);
-            // 因为没有开放根节点，所以直接通过反射来设值
+            // 获取 m 值
+            Field mField = BTNode.class.getDeclaredField("m");
+            mField.setAccessible(true);
+            int m = mField.getInt(root);
+            mField.setAccessible(false);
+
+            // 生成B-树对象
+            BTreeImpl<Integer, Integer> btree = new BTreeImpl<>(m);
+
+            // 设置根节点
             Field rootField = BTreeImpl.class.getDeclaredField("root");
             rootField.setAccessible(true);
             rootField.set(btree, root);
