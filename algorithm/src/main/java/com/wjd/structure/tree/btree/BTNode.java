@@ -382,19 +382,18 @@ public class BTNode<K extends Comparable<K>, V> {
             return this;
         }
 
-        // 内部节点
-        // 使用前驱节点或后驱节点进行替换
+        // 内部节点，使用前驱或后驱进行替换
         int rpIndex = getReplacer(this, index);
         BTNode<K, V> child = getChild(rpIndex);
         BTNode<K, V> newChild;
         if (rpIndex < index) {
-            // 前驱节点
+            // 前驱元素替换
             Entry<K, V> max = max(child);
             newChild = removeMax(child);
             setChild(rpIndex, newChild);
             setEntry(index, max);
         } else {
-            // 后驱节点
+            // 后驱元素替换
             Entry<K, V> min = min(child);
             newChild = removeMin(child);
             setChild(rpIndex, newChild);
@@ -438,7 +437,7 @@ public class BTNode<K extends Comparable<K>, V> {
             }
         }
 
-        // 2. 合并父元素 + 左右子节点，然后往上递归
+        // 2. 合并父元素 + 左右子节点
         if (left == null) {
             // 始终把当前节点作为合并时的右子节点
             index += 1;
@@ -571,9 +570,13 @@ public class BTNode<K extends Comparable<K>, V> {
         }
 
         if (root.isLeaf()) {
-            return root.delete(root.size);
+            root.removeEntry(root.size);
+            return root;
         }
-        return removeMax(root.lastChild());
+
+        int index = root.size;
+        removeMax(root.getChild(index));
+        return root.underflow(index);
     }
 
     /**
@@ -605,9 +608,13 @@ public class BTNode<K extends Comparable<K>, V> {
         }
 
         if (root.isLeaf()) {
-            return root.delete(1);
+            root.removeEntry(1);
+            return root;
         }
-        return removeMin(root.firstChild());
+
+        int index = 0;
+        removeMin(root.getChild(index));
+        return root.underflow(index);
     }
 
     /**
@@ -623,7 +630,7 @@ public class BTNode<K extends Comparable<K>, V> {
     /**
      * 添加新元素
      * <p>
-     * 此处不执行节点分裂的情况，需要分裂时应调用 add() 方法
+     * 此处不执行节点分裂的情况，需要分裂时应调用 {@code overflow()} 方法
      *
      * @param entry 元素
      */
@@ -675,17 +682,19 @@ public class BTNode<K extends Comparable<K>, V> {
 
     /**
      * 设置指定元素
+     * <p>
+     * 要求原始元素必须存在，否则应该使用 {@code insertEntry()}
      *
      * @param index 索引
      * @param entry 元素
      */
     private void setEntry(int index, Entry<K, V> entry) {
-        if (index == 0) {
+        Entry<K, V> oldEntry = getEntry(index);
+        if (oldEntry == null || index == 0) {
             throw new IllegalStateException(String.format("index: %d, size: %d", index, size));
         }
 
         // 保留子节点，只替换元素的 key-value
-        Entry<K, V> oldEntry = getEntry(index);
         elements[index] = entry;
         entry.pointer = oldEntry.pointer;
     }
