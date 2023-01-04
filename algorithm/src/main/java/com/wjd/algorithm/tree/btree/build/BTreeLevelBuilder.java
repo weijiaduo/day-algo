@@ -20,8 +20,9 @@ public class BTreeLevelBuilder implements BTreeBuilder<Integer, Integer, List<Li
             return null;
         }
 
+        // 由于不知道 m 的原始值，暂时只能通过元素数量推测
         int m = 0;
-        for(List<Integer> list : values) {
+        for (List<Integer> list : values) {
             if (list == null) {
                 continue;
             }
@@ -46,7 +47,7 @@ public class BTreeLevelBuilder implements BTreeBuilder<Integer, Integer, List<Li
             int childSize = node.size() + 1;
             for (int j = 0; j < childSize && i < values.size(); j++) {
                 List<Integer> childValues = values.get(i++);
-                if (childValues == null) {
+                if (childValues == null || childValues.isEmpty()) {
                     node.setChild(j, null);
                 } else {
                     BTNode<Integer, Integer> child = new BTNode<>(m);

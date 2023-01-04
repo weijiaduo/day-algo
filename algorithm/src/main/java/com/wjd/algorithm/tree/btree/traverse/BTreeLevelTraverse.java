@@ -30,7 +30,7 @@ public class BTreeLevelTraverse<K extends Comparable<K>, V> {
             BTNode<K, V> node = queue.poll();
             notNull--;
             if (node == null) {
-                values.add(null);
+                values.add(new ArrayList<>(0));
                 continue;
             }
 

@@ -14,7 +14,7 @@ class BTreeLevelTraverseTest {
         List<List<Integer>> expect = Arrays.asList(
                 Arrays.asList(21, 22),
                 Arrays.asList(11, 12),
-                null,
+                List.of(),
                 Arrays.asList(31, 32, 33),
                 Arrays.asList(1, 2)
         );
