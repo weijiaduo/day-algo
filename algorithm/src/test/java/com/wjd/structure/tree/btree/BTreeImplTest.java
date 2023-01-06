@@ -18,7 +18,7 @@ class BTreeImplTest {
     void testGet() {
         String s = "[[21, 22], [11, 12], [], [31, 32, 33], [1, 2]]";
         List<List<Integer>> values = toListList(s);
-        BTreeImpl<Integer, Integer> btree = buildBTree(values);
+        BTree<Integer, Integer> btree = buildBTree(values);
 
         // 验证存在的值
         assertEquals(1, btree.get(1));
@@ -44,7 +44,7 @@ class BTreeImplTest {
     @Test
     void testPut() {
         int m = 5;
-        BTreeImpl<Integer, Integer> btree = new BTreeImpl<>(m);
+        BTree<Integer, Integer> btree = new BTreeImpl<>(m);
 
         // 1. 空树插入
         btree.put(39, 39);
@@ -89,7 +89,7 @@ class BTreeImplTest {
     void testLeafRemoveNormal() {
         String s = "[[33], [22, 27, 30], [36, 41], [13, 17, 21], [23, 24, 25, 26], [28, 29], [31, 32], [34, 35], [39, 40], [53, 97]]";
         List<List<Integer>> values = toListList(s);
-        BTreeImpl<Integer, Integer> btree = buildBTree(values);
+        BTree<Integer, Integer> btree = buildBTree(values);
 
         btree.remove(21);
         assertEquals("[[33], [22, 27, 30], [36, 41], [13, 17], [23, 24, 25, 26], [28, 29], [31, 32], [34, 35], [39, 40], [53, 97]]", btree.toString());
@@ -102,7 +102,7 @@ class BTreeImplTest {
     void testLeafRemoveBorrowLeft() {
         String s = "[[33], [23, 27, 30], [36, 41], [17, 22], [24, 25, 26], [28, 29], [31, 32], [34, 35], [39, 40], [53, 78, 81, 97]]";
         List<List<Integer>> values = toListList(s);
-        BTreeImpl<Integer, Integer> btree = buildBTree(values);
+        BTree<Integer, Integer> btree = buildBTree(values);
 
         btree.remove(29);
         assertEquals("[[33], [23, 26, 30], [36, 41], [17, 22], [24, 25], [27, 28], [31, 32], [34, 35], [39, 40], [53, 78, 81, 97]]", btree.toString());
@@ -115,7 +115,7 @@ class BTreeImplTest {
     void testLeafRemoveBorrowRight() {
         String s = "[[33], [22, 27, 30], [36, 41], [13, 17], [23, 24, 25, 26], [28, 29], [31, 32], [34, 35], [39, 40], [53, 97]]";
         List<List<Integer>> values = toListList(s);
-        BTreeImpl<Integer, Integer> btree = buildBTree(values);
+        BTree<Integer, Integer> btree = buildBTree(values);
 
         btree.remove(13);
         assertEquals("[[33], [23, 27, 30], [36, 41], [17, 22], [24, 25, 26], [28, 29], [31, 32], [34, 35], [39, 40], [53, 97]]", btree.toString());
@@ -128,7 +128,7 @@ class BTreeImplTest {
     void testLeafRemoveUnderflow() {
         String s = "[[33], [23, 26, 30], [36, 41], [17, 22], [24, 25], [27, 28], [31, 32], [34, 35], [39, 40], [53, 78, 81, 97]]";
         List<List<Integer>> values = toListList(s);
-        BTreeImpl<Integer, Integer> btree = buildBTree(values);
+        BTree<Integer, Integer> btree = buildBTree(values);
 
         btree.remove(24);
         assertEquals("[[33], [26, 30], [36, 41], [17, 22, 23, 25], [27, 28], [31, 32], [34, 35], [39, 40], [53, 78, 81, 97]]", btree.toString());
@@ -141,7 +141,7 @@ class BTreeImplTest {
     void testInternalRemoveReplacePrev() {
         String s = "[[33], [22, 27, 30], [36, 41], [13, 17, 21], [23, 24, 25, 26], [28, 29], [31, 32], [34, 35], [39, 40], [53, 97]]";
         List<List<Integer>> values = toListList(s);
-        BTreeImpl<Integer, Integer> btree = buildBTree(values);
+        BTree<Integer, Integer> btree = buildBTree(values);
 
         btree.remove(33);
         assertEquals("[[32], [22, 27], [36, 41], [13, 17, 21], [23, 24, 25, 26], [28, 29, 30, 31], [34, 35], [39, 40], [53, 97]]", btree.toString());
@@ -154,7 +154,7 @@ class BTreeImplTest {
     void testInternalRemoveReplaceNext() {
         String s = "[[33], [22, 27], [36, 41, 62], [13, 17, 21], [23, 24, 25, 26], [28, 29], [34, 35], [39, 40], [53, 57], [78, 81]]";
         List<List<Integer>> values = toListList(s);
-        BTreeImpl<Integer, Integer> btree = buildBTree(values);
+        BTree<Integer, Integer> btree = buildBTree(values);
 
         btree.remove(33);
         assertEquals("[[34], [22, 27], [41, 62], [13, 17, 21], [23, 24, 25, 26], [28, 29], [35, 36, 39, 40], [53, 57], [78, 81]]", btree.toString());
@@ -167,7 +167,7 @@ class BTreeImplTest {
     void testInternalRemoveBorrowLeft() {
         String s = "[[33], [22, 27, 30], [36, 41], [13, 17], [23, 24, 25, 26], [28, 29], [31, 32], [34, 35], [39, 40], [53, 97]]";
         List<List<Integer>> values = toListList(s);
-        BTreeImpl<Integer, Integer> btree = buildBTree(values);
+        BTree<Integer, Integer> btree = buildBTree(values);
 
         btree.remove(36);
         assertEquals("[[30], [22, 27], [33, 41], [13, 17], [23, 24, 25, 26], [28, 29], [31, 32], [34, 35, 39, 40], [53, 97]]", btree.toString());
@@ -180,7 +180,7 @@ class BTreeImplTest {
     void testInternalRemoveBorrowRight() {
         String s = "[[33], [22, 27], [36, 41, 62], [13, 17], [23, 24], [28, 29], [34, 35], [39, 40], [53, 57], [78, 79, 83, 85]]";
         List<List<Integer>> values = toListList(s);
-        BTreeImpl<Integer, Integer> btree = buildBTree(values);
+        BTree<Integer, Integer> btree = buildBTree(values);
 
         btree.remove(22);
         assertEquals("[[36], [27, 33], [41, 62], [13, 17, 23, 24], [28, 29], [34, 35], [39, 40], [53, 57], [78, 79, 83, 85]]", btree.toString());
@@ -193,7 +193,7 @@ class BTreeImplTest {
     void testInternalRemoveUnderflow() {
         String s = "[[30], [23, 27], [33, 41], [13, 17], [24, 26], [28, 29], [31, 32], [34, 35, 39, 40], [53, 97]]";
         List<List<Integer>> values = toListList(s);
-        BTreeImpl<Integer, Integer> btree = buildBTree(values);
+        BTree<Integer, Integer> btree = buildBTree(values);
 
         btree.remove(23);
         assertEquals("[[27, 30, 33, 41], [13, 17, 24, 26], [28, 29], [31, 32], [34, 35, 39, 40], [53, 97]]", btree.toString());
