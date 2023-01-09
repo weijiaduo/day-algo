@@ -247,14 +247,14 @@ public class BTNode<K extends Comparable<K>, V> {
     }
 
     /**
-     * 二分查找指定 key 的位置
+     * 查找指定 key 的位置
      * <p>
      * 返回最后一个小于等于 key 的位置
      *
      * @param key key
      * @return key 的位置
      */
-    public int binary(K key) {
+    public int findIndex(K key) {
         // 第 0 位是占位元素，还没算在内
         return 1 + binaryle(keys(), key);
     }
@@ -293,7 +293,7 @@ public class BTNode<K extends Comparable<K>, V> {
     public BTNode<K, V> add(K key, V value) {
         BTNode<K, V> node = new BTNode<>(m);
         node.addEntry(new Entry<>(key, value));
-        int index = binary(key);
+        int index = findIndex(key);
         return overflow(index, node);
     }
 

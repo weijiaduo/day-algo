@@ -40,8 +40,8 @@ public class BTreeImpl<K extends Comparable<K>, V> implements BTree<K, V> {
             return null;
         }
 
-        // 二分查找当前 key 所在的位置
-        int index = root.binary(key);
+        // 查找当前 key 所在的位置
+        int index = root.findIndex(key);
         if (key.equals(root.getKey(index))) {
             // 找到 key 对应的节点
             return root.getValue(index);
@@ -72,7 +72,7 @@ public class BTreeImpl<K extends Comparable<K>, V> implements BTree<K, V> {
         }
 
         // 验证是否已存在，存在则只需更新
-        int index = root.binary(key);
+        int index = root.findIndex(key);
         if (key.equals(root.getKey(index))) {
             // 更新节点
             root.setValue(index, value);
@@ -115,7 +115,7 @@ public class BTreeImpl<K extends Comparable<K>, V> implements BTree<K, V> {
         }
 
         // 找到对应节点后移除元素
-        int index = root.binary(key);
+        int index = root.findIndex(key);
         if (key.equals(root.getKey(index))) {
             return root.delete(index);
         }
