@@ -311,18 +311,16 @@ public class BTNode<K extends Comparable<K>, V> {
             return this;
         }
 
-        // 还是旧节点，无需处理
+        // 还是旧节点，说明子节点没有上溢，无需处理
         BTNode<K, V> cur = getChild(index);
         if (cur == node) {
             return this;
         }
 
-        // 新子节点替代旧子节点的位置
-        setChild(index, node.firstChild());
-
         // 1. 当前空间足够插入
-        int newSize = size + node.size();
-        if (newSize < m) {
+        if (size + node.size() < m) {
+            // 新子节点的左子节点替代旧子节点的位置
+            setChild(index, node.firstChild());
             for (Entry<K, V> entry : node.entries()) {
                 insertEntry(++index, entry);
             }
@@ -330,12 +328,27 @@ public class BTNode<K extends Comparable<K>, V> {
         }
 
         // 2. 当前空间不够，需要分裂成 3 个节点
+        return splitNodes(index, node);
+    }
+
+    /**
+     * 子节点上溢后，父节点已满，则需要分裂节点，将 1 个节点拆分成 3 个节点
+     *
+     * @param index   上溢子节点的父元素索引
+     * @param newNode 上溢的子节点
+     * @return 分裂后新的父节点
+     */
+    private BTNode<K, V> splitNodes(int index, BTNode<K, V> newNode) {
+        // 新子节点的左子节点替代旧子节点的位置
+        setChild(index, newNode.firstChild());
+
+        int newSize = size + newNode.size();
         List<Entry<K, V>> allEntries = new ArrayList<>(newSize);
         List<Entry<K, V>> curEntries = entries();
         for (int i = 0; i < index && i < size; i++) {
             allEntries.add(curEntries.get(i));
         }
-        allEntries.addAll(node.entries());
+        allEntries.addAll(newNode.entries());
         for (int i = index; i < size; i++) {
             allEntries.add(curEntries.get(i));
         }
@@ -429,51 +442,35 @@ public class BTNode<K extends Comparable<K>, V> {
         if (index > 0) {
             left = getChild(index - 1);
             if (left != null && left.canBorrow()) {
-                borrowLeft(index);
-                return this;
+                return borrowLeft(index);
             }
         }
         BTNode<K, V> right = null;
         if (index < size) {
             right = getChild(index + 1);
             if (right != null && right.canBorrow()) {
-                borrowRight(index);
-                return this;
+                return borrowRight(index);
             }
+        }
+        if (left == null && right == null) {
+            return this;
         }
 
         // 2. 合并父元素 + 左右子节点
-        if (left == null) {
-            // 始终把当前节点作为合并时的右子节点
-            index += 1;
-            left = cur;
-            cur = right;
-        }
-        // 父节点合并到左子节点
-        Entry<K, V> parentEntry = getEntry(index);
-        left.addEntry(parentEntry);
-        // 右子节点合并到左子节点
-        left.setChild(left.size, cur.firstChild());
-        for (Entry<K, V> entry : cur.entries()) {
-            left.addEntry(entry);
-        }
-        removeEntry(index);
-
-        return this;
+        // 始终把当前节点作为合并时的右子节点
+        return mergeNodes(left != null ? index : index + 1);
     }
 
     /**
-     * 借用左子节点的值，实际就是右旋
+     * 借用左子节点的值
+     * <p>
+     * 实际就是右旋，将父节点转到右子节点，左子节点的元素转到父节点
      *
      * @param index 父节点索引
      */
-    private void borrowLeft(int index) {
+    private BTNode<K, V> borrowLeft(int index) {
         BTNode<K, V> left = getChild(index - 1);
         BTNode<K, V> right = getChild(index);
-        if (right == null) {
-            right = new BTNode<>(m);
-            setChild(index, right);
-        }
 
         Entry<K, V> parentEntry = getEntry(index);
         Entry<K, V> leftEntry = left.getEntry(left.size);
@@ -487,20 +484,19 @@ public class BTNode<K extends Comparable<K>, V> {
         setEntry(index, leftEntry);
         setChild(index, right);
         right.setChild(0, leftRight);
+        return this;
     }
 
     /**
-     * 借用右子节点的值，实际就是左旋
+     * 借用右子节点的值
+     * <p>
+     * 实际就是左旋，将父元素转到左子节点，右子节点的元素转到父节点
      *
      * @param index 父节点索引
      */
-    private void borrowRight(int index) {
+    private BTNode<K, V> borrowRight(int index) {
         BTNode<K, V> right = getChild(index + 1);
         BTNode<K, V> left = getChild(index);
-        if (left == null) {
-            left = new BTNode<>(m);
-            setChild(index, left);
-        }
 
         Entry<K, V> parentEntry = getEntry(index + 1);
         Entry<K, V> rightEntry = right.getEntry(1);
@@ -514,6 +510,35 @@ public class BTNode<K extends Comparable<K>, V> {
         setEntry(index + 1, rightEntry);
         setChild(index + 1, right);
         left.setChild(left.size, rightLeft);
+        return this;
+    }
+
+    /**
+     * 父节点元素 + 右子节点，全都合并到左子节点
+     * <p>
+     * 因为父节点元素和右子节点是一一对应的，所以都是按照“父 + 右 --> 左”进行合并
+     * <p>
+     * 方便同时删除父节点元素和右子节点
+     *
+     * @param index 父元素索引
+     */
+    private BTNode<K, V> mergeNodes(int index) {
+        BTNode<K, V> left = getChild(index - 1);
+        BTNode<K, V> right = getChild(index);
+
+        // 父节点元素合并到左子节点
+        Entry<K, V> parentEntry = getEntry(index);
+        left.addEntry(parentEntry);
+
+        // 右子节点合并到左子节点
+        left.setChild(left.size, right.firstChild());
+        for (Entry<K, V> entry : right.entries()) {
+            left.addEntry(entry);
+        }
+
+        // 移除父节点元素
+        removeEntry(index);
+        return this;
     }
 
     /**

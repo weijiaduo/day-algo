@@ -21,8 +21,8 @@ public class BTreeLevelTraverse<K extends Comparable<K>, V> {
      * @param root B-树根节点
      * @return 层次遍历列表
      */
-    public List<List<V>> traverse(BTNode<K, V> root) {
-        List<List<V>> values = new ArrayList<>();
+    public List<List<K>> traverse(BTNode<K, V> root) {
+        List<List<K>> values = new ArrayList<>();
         Queue<BTNode<K, V>> queue = new LinkedList<>();
         queue.offer(root);
         int notNull = queue.size();
@@ -34,8 +34,8 @@ public class BTreeLevelTraverse<K extends Comparable<K>, V> {
                 continue;
             }
 
-            // 当前节点的所有元素值
-            values.add(new ArrayList<>(node.values()));
+            // 当前节点的元素 key 集合
+            values.add(new ArrayList<>(node.keys()));
 
             // 子节点
             for (BTNode<K, V> child : node.children()) {
