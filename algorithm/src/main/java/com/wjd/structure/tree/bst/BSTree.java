@@ -21,16 +21,14 @@ public interface BSTree {
      * 删除指定值的节点
      *
      * @param val 指定值
-     * @return val对应的节点/null
      */
-    TreeNode delete(int val);
+    void remove(int val);
 
     /**
      * 插入节点
      *
      * @param val 新节点值
-     * @return 新节点/null插入失败
      */
-    TreeNode insert(int val);
+    void insert(int val);
 
 }

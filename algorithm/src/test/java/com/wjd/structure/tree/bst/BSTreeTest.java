@@ -77,12 +77,10 @@ class BSTreeTest {
         int caseSize = 1000;
         Random random = new Random();
         for (int i = 0; i < caseSize; i++) {
-            Set<Integer> existSet = new HashSet<>();
             int size = 50 + random.nextInt(150);
             int[] values = new int[size];
             for (int j = 0; j < size; j++) {
                 values[j] = random.nextInt(1000);
-                existSet.add(values[j]);
             }
             BSTreeImpl bsTree = new BSTreeImpl(values);
 
@@ -90,10 +88,8 @@ class BSTreeTest {
             int testSize = 50 + random.nextInt(50);
             for (int j = 0; j < testSize; j++) {
                 int val = random.nextInt(1000);
-                TreeNode node = bsTree.delete(val);
-                assertEquals(existSet.contains(val), node != null);
+                bsTree.remove(val);
                 assertNull(bsTree.query(val));
-                existSet.remove(val);
             }
         }
     }
@@ -103,12 +99,10 @@ class BSTreeTest {
         int caseSize = 1000;
         Random random = new Random();
         for (int i = 0; i < caseSize; i++) {
-            Set<Integer> existSet = new HashSet<>();
             int size = 50 + random.nextInt(150);
             int[] values = new int[size];
             for (int j = 0; j < size; j++) {
                 values[j] = random.nextInt(1000);
-                existSet.add(values[j]);
             }
             BSTreeImpl bsTree = new BSTreeImpl(values);
 
@@ -116,12 +110,8 @@ class BSTreeTest {
             int testSize = 50 + random.nextInt(50);
             for (int j = 0; j < testSize; j++) {
                 int val = random.nextInt(1000);
-                TreeNode node = bsTree.insert(val);
-                assertEquals(existSet.contains(val), node == null);
-                if (node != null) {
-                    existSet.add(val);
-                    assertEquals(val, node.val);
-                }
+                bsTree.insert(val);
+                assertNotNull(bsTree.query(val));
             }
 
             // 中序遍历整棵树，看是否是有序的

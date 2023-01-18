@@ -39,7 +39,7 @@ public class BSTreeImpl implements BSTree {
         while (node != null) {
             if (node.val == val) {
                 return node;
-            } else if (node.val > val) {
+            } else if (val < node.val) {
                 node = node.left;
             } else {
                 node = node.right;
@@ -49,122 +49,112 @@ public class BSTreeImpl implements BSTree {
     }
 
     @Override
-    public TreeNode delete(int val) {
-        TreeNode node = root, parent = null;
-        while (node != null) {
-            if (node.val == val) {
-                deleteNode(node, parent);
-                return node;
-            } else if (node.val > val) {
-                parent = node;
-                node = node.left;
-            } else {
-                parent = node;
-                node = node.right;
-            }
+    public void insert(int val) {
+        root = insert(root, val);
+    }
+
+    /**
+     * 插入指定值
+     *
+     * @param root 当前节点
+     * @param val  插入值
+     * @return 当前节点
+     */
+    private TreeNode insert(TreeNode root, int val) {
+        if (root == null) {
+            return new TreeNode(val);
         }
-        return null;
+        if (val == root.val) {
+            return root;
+        }
+        if (val < root.val) {
+            root.left = insert(root.left, val);
+        } else {
+            root.right = insert(root.right, val);
+        }
+        return root;
+    }
+
+    @Override
+    public void remove(int val) {
+        root = remove(root, val);
+    }
+
+    /**
+     * 移除指定节点
+     *
+     * @param root 当前节点
+     * @param val  指定删除值
+     * @return 当前节点
+     */
+    private TreeNode remove(TreeNode root, int val) {
+        if (root == null) {
+            return null;
+        }
+        if (root.val == val) {
+            return deleteNode(root);
+        }
+        if (val < root.val) {
+            root.left = remove(root.left, val);
+        } else {
+            root.right = remove(root.right, val);
+        }
+        return root;
     }
 
     /**
      * 删除指定节点
      *
-     * @param node   被删除节点
-     * @param parent 被删除节点的父节点
+     * @param node 指定节点
+     * @return 新节点
      */
-    private void deleteNode(TreeNode node, TreeNode parent) {
-        if (node.left == null && node.right == null) {
-            // 被删除节点没有子节点
-            if (parent == null) {
-                root = null;
-            } else {
-                if (parent.left == node) {
-                    parent.left = null;
-                } else {
-                    parent.right = null;
-                }
-            }
-        } else if (node.left == null) {
-            // 被删除节点左子树为空
-            if (parent == null) {
-                root = node.right;
-            } else {
-                if (parent.left == node) {
-                    parent.left = node.right;
-                } else {
-                    parent.right = node.right;
-                }
-            }
-            node.right = null;
+    private TreeNode deleteNode(TreeNode node) {
+        if (node.left == null) {
+            return node.right;
         } else if (node.right == null) {
-            // 被删除节点右子树为空
-            if (parent == null) {
-                root = node.left;
-            } else {
-                if (parent.left == node) {
-                    parent.left = node.left;
-                } else {
-                    parent.right = node.left;
-                }
-            }
-            node.left = null;
+            return node.left;
         } else {
-            // 先移除当前节点右边的最小值
-            TreeNode next = node.right, pp = null;
-            while (next.left != null) {
-                pp = next;
-                next = next.left;
-            }
-            if (pp == null) {
-                node.right = next.right;
-            } else {
-                pp.left = next.right;
-            }
-            next.right = null;
-
-            // 再用右边最小值替代被删除节点
-            next.left = node.left;
-            next.right = node.right;
-            if (parent == null) {
-                root = next;
-            } else {
-                if (parent.left == node) {
-                    parent.left = next;
-                } else {
-                    parent.right = next;
-                }
-            }
-            node.left = node.right = null;
+            TreeNode t = node;
+            // 后继节点替代当前节点
+            node = min(t.right);
+            node.right = deleteMin(t.right);
+            // 左节点赋值要放 deleteMin 之后
+            node.left = t.left;
         }
+        return node;
     }
 
-    @Override
-    public TreeNode insert(int val) {
+    /**
+     * 删除最小节点
+     *
+     * @param root 根节点
+     * @return 根节点
+     */
+    private TreeNode deleteMin(TreeNode root) {
         if (root == null) {
-            root = new TreeNode(val);
+            return null;
+        }
+        if (root.left == null) {
+            return root.right;
+        }
+        root.left = deleteMin(root.left);
+        return root;
+    }
+
+    /**
+     * 最小值节点
+     *
+     * @param root 根节点
+     * @return 最小值节点
+     */
+    private TreeNode min(TreeNode root) {
+        if (root == null) {
+            return null;
+        }
+        if (root.left == null) {
             return root;
         }
-
-        // 已存在相同值时不插入
-        TreeNode node = root;
-        while (node.val != val) {
-            if (node.val > val) {
-                if (node.left == null) {
-                    node.left = new TreeNode(val);
-                    return node.left;
-                } else {
-                    node = node.left;
-                }
-            } else {
-                if (node.right == null) {
-                    node.right = new TreeNode(val);
-                    return node.right;
-                } else {
-                    node = node.right;
-                }
-            }
-        }
-        return null;
+        return min(root.left);
     }
 
 }
