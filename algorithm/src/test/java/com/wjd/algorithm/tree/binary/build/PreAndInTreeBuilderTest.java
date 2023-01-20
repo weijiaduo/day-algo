@@ -1,13 +1,12 @@
 package com.wjd.algorithm.tree.binary.build;
 
-import com.wjd.algorithm.tree.binary.build.PreAndInTreeBuilder;
 import com.wjd.structure.tree.binary.TreeNode;
 import org.junit.jupiter.api.Test;
 
 import java.util.Arrays;
 import java.util.List;
 
-import static org.junit.jupiter.api.Assertions.*;
+import static org.junit.jupiter.api.Assertions.assertEquals;
 
 class PreAndInTreeBuilderTest {
 

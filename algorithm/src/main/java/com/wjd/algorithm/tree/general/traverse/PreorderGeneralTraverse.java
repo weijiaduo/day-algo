@@ -1,7 +1,6 @@
 package com.wjd.algorithm.tree.general.traverse;
 
 import com.wjd.algorithm.tree.ListVisitor;
-import com.wjd.algorithm.tree.Traverse;
 import com.wjd.structure.tree.general.Node;
 
 import java.util.ArrayDeque;
@@ -9,12 +8,12 @@ import java.util.Deque;
 import java.util.List;
 
 /**
- * 通用树-后序遍历
+ * 通用树-前序遍历
  *
  * @author weijiaduo
- * @since 2022/8/28
+ * @since 2022/12/11
  */
-public class PostorderTraverse implements Traverse<Node> {
+public class PreorderGeneralTraverse implements GeneralTraverse {
 
     /**
      * 列表访问者
@@ -49,7 +48,7 @@ public class PostorderTraverse implements Traverse<Node> {
     }
 
     /**
-     * 递归实现
+     * 递归遍历
      *
      * @param root 根节点
      */
@@ -58,12 +57,12 @@ public class PostorderTraverse implements Traverse<Node> {
             return;
         }
 
+        visitor.visit(root);
         if (root.children != null) {
             for (Node child : root.children) {
                 recursive(child);
             }
         }
-        visitor.visit(root);
     }
 
     /**
@@ -77,22 +76,15 @@ public class PostorderTraverse implements Traverse<Node> {
         }
 
         Deque<Node> stack = new ArrayDeque<>();
-        stack.push(root);
-        Node prev = null;
+        stack.add(root);
         while (!stack.isEmpty()) {
-            Node node = stack.peek();
+            Node node = stack.pop();
+            visitor.visit(node);
             List<Node> children = node.children;
-            if (children != null && !children.isEmpty()
-                    && children.get(children.size() - 1) != prev) {
-                // 子节点未访问
+            if (children != null && !children.isEmpty()) {
                 for (int i = children.size() - 1; i >= 0; i--) {
                     stack.push(children.get(i));
                 }
-            } else {
-                // 子节点已经访问完了
-                node = stack.pop();
-                visitor.visit(node);
-                prev = node;
             }
         }
     }
@@ -100,13 +92,9 @@ public class PostorderTraverse implements Traverse<Node> {
     /**
      * 标记实现
      *
-     * @param root 根节点
+     * @param root 树根节点
      */
     private void mark(Node root) {
-        if (root == null) {
-            return;
-        }
-
         Deque<Node> stack = new ArrayDeque<>();
         Deque<Boolean> marks = new ArrayDeque<>();
         stack.push(root);
@@ -118,8 +106,6 @@ public class PostorderTraverse implements Traverse<Node> {
                 visitor.visit(node);
             } else {
                 // 倒序添加
-                stack.push(node);
-                marks.push(true);
                 List<Node> children = node.children;
                 if (children != null) {
                     for (int i = children.size() - 1; i >= 0; i--) {
@@ -127,6 +113,8 @@ public class PostorderTraverse implements Traverse<Node> {
                         marks.push(false);
                     }
                 }
+                stack.push(node);
+                marks.push(true);
             }
         }
     }

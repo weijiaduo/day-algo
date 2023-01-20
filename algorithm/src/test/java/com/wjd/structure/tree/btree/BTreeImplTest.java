@@ -1,6 +1,6 @@
 package com.wjd.structure.tree.btree;
 
-import com.wjd.algorithm.tree.btree.build.BTreeLevelBuilder;
+import com.wjd.algorithm.tree.btree.build.LevelBTreeBuilder;
 import com.wjd.util.IOUtils;
 import org.junit.jupiter.api.Test;
 
@@ -226,7 +226,7 @@ class BTreeImplTest {
      */
     private BTreeImpl<Integer, Integer> buildBTree(List<List<Integer>> values) {
         try {
-            BTNode<Integer, Integer> root = new BTreeLevelBuilder().build(values);
+            BTNode<Integer, Integer> root = new LevelBTreeBuilder().build(values);
             // 获取 m 值
             Field mField = BTNode.class.getDeclaredField("m");
             mField.setAccessible(true);

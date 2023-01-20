@@ -1,7 +1,6 @@
 package com.wjd.algorithm.tree.general.traverse;
 
 import com.wjd.algorithm.tree.ListVisitor;
-import com.wjd.algorithm.tree.Traverse;
 import com.wjd.structure.tree.general.Node;
 
 import java.util.ArrayDeque;
@@ -14,7 +13,7 @@ import java.util.Queue;
  * @author weijiaduo
  * @since 2022/12/10
  */
-public class SimpleLevelTraverse implements Traverse<Node> {
+public class SimpleLevelGeneralTraverse implements GeneralTraverse {
 
     /**
      * 列表访问者

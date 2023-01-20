@@ -12,7 +12,7 @@ import java.util.Queue;
  * @author weijiaduo
  * @since 2022/12/10
  */
-public class LevelGeneralTreeBuilder implements GeneralTreeBuilder<Integer[]> {
+public class LevelGeneralBuilder implements GeneralBuilder<Integer[]> {
 
     @Override
     public Node build(Integer[] values) {

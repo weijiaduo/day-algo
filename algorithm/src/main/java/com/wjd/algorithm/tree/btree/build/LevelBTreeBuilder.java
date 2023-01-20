@@ -12,7 +12,7 @@ import java.util.Queue;
  * @author weijiaduo
  * @since 2023/1/2
  */
-public class BTreeLevelBuilder implements BTreeBuilder<Integer, Integer, List<List<Integer>>> {
+public class LevelBTreeBuilder implements BTreeBuilder<Integer, Integer, List<List<Integer>>> {
 
     @Override
     public BTNode<Integer, Integer> build(List<List<Integer>> values) {

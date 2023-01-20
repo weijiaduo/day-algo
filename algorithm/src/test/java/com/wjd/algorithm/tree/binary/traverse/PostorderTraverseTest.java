@@ -1,6 +1,5 @@
 package com.wjd.algorithm.tree.binary.traverse;
 
-import com.wjd.algorithm.tree.binary.traverse.PostorderTraverse;
 import com.wjd.structure.tree.binary.TreeNode;
 import org.junit.jupiter.api.Test;
 

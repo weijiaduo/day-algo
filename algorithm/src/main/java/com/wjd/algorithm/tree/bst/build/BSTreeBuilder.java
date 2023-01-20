@@ -9,5 +9,5 @@ import com.wjd.structure.tree.binary.TreeNode;
  * @author weijiaduo
  * @since 2022/12/10
  */
-public interface BinarySearchTreeBuilder<V> extends TreeBuilder<TreeNode, V> {
+public interface BSTreeBuilder<V> extends TreeBuilder<TreeNode, V> {
 }

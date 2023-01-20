@@ -1,6 +1,6 @@
 package com.wjd.structure.tree.bplus;
 
-import com.wjd.algorithm.tree.bplus.traverse.BPTreeLevelTraverse;
+import com.wjd.algorithm.tree.bplus.traverse.LevelBPTreeTraverse;
 
 /**
  * B+ 树实现类
@@ -146,6 +146,6 @@ public class BPTreeImpl<K extends Comparable<K>, V> implements BPTree<K, V> {
 
     @Override
     public String toString() {
-        return new BPTreeLevelTraverse<K, V>().traverse(root).toString();
+        return new LevelBPTreeTraverse<K, V>().traverse(root).toString();
     }
 }

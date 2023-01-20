@@ -8,7 +8,7 @@ import com.wjd.structure.tree.binary.TreeNode;
  * @author weijiaduo
  * @since 2022/12/17
  */
-public class PreorderTreeBuilder implements BinarySearchTreeBuilder<Integer[]> {
+public class PreorderBSTreeBuilder implements BSTreeBuilder<Integer[]> {
 
     @Override
     public TreeNode build(Integer[] values) {

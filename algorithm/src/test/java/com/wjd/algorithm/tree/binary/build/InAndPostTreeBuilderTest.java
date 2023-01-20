@@ -1,6 +1,5 @@
 package com.wjd.algorithm.tree.binary.build;
 
-import com.wjd.algorithm.tree.binary.build.InAndPostTreeBuilder;
 import com.wjd.structure.tree.binary.TreeNode;
 import org.junit.jupiter.api.Test;
 

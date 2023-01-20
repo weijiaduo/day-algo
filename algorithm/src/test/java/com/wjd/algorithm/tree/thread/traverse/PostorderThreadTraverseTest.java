@@ -1,8 +1,6 @@
 package com.wjd.algorithm.tree.thread.traverse;
 
 import com.wjd.algorithm.tree.binary.traverse.PostorderTraverse;
-import com.wjd.algorithm.tree.thread.traverse.PostorderThreadTraverse;
-import com.wjd.algorithm.tree.thread.traverse.ThreadTraverse;
 import com.wjd.structure.tree.binary.TreeNode;
 import com.wjd.structure.tree.thread.ThreadNode;
 import org.junit.jupiter.api.Test;

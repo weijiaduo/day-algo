@@ -8,14 +8,14 @@ import java.util.List;
 
 import static org.junit.jupiter.api.Assertions.*;
 
-class PreorderTreeBuilderTest {
+class PreorderBSTreeBuilderTest {
 
     @Test
     void testBuild() {
         Integer[] values = {8, 5, 1, 7, 10, 12};
         List<Integer> expect = Arrays.asList(8, 5, 10, 1, 7, null, 12);
 
-        TreeNode root = new PreorderTreeBuilder().build(values);
+        TreeNode root = new PreorderBSTreeBuilder().build(values);
         List<Integer> actual = TreeNode.traverse(root);
 
         assertEquals(expect.toString(), actual.toString());

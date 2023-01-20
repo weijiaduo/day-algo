@@ -8,7 +8,7 @@ import java.util.List;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
-class PostorderTraverseTest {
+class PostorderGeneralTraverseTest {
 
     @Test
     void testRecursiveTraverse() {
@@ -17,7 +17,7 @@ class PostorderTraverseTest {
         String expect = Arrays.toString(expectArr);
 
         Node tree = Node.build(values);
-        List<Node> list = new PostorderTraverse().traverse(tree);
+        List<Node> list = new PostorderGeneralTraverse().traverse(tree);
         String actual = String.valueOf(list);
 
         assertEquals(expect, actual);
@@ -29,7 +29,7 @@ class PostorderTraverseTest {
         Integer[] expectArr = {5, 6, 3, 2, 4, 1};
         String expect = Arrays.toString(expectArr);
 
-        PostorderTraverse traverse = new PostorderTraverse();
+        PostorderGeneralTraverse traverse = new PostorderGeneralTraverse();
         traverse.setType(2);
         Node tree = Node.build(values);
         List<Node> list = traverse.traverse(tree);
@@ -44,7 +44,7 @@ class PostorderTraverseTest {
         Integer[] expectArr = {5, 6, 3, 2, 4, 1};
         String expect = Arrays.toString(expectArr);
 
-        PostorderTraverse traverse = new PostorderTraverse();
+        PostorderGeneralTraverse traverse = new PostorderGeneralTraverse();
         traverse.setType(3);
         Node tree = Node.build(values);
         List<Node> list = traverse.traverse(tree);

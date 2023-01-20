@@ -7,7 +7,7 @@ import org.junit.jupiter.api.Test;
 import java.util.Arrays;
 import java.util.List;
 
-class BTreeLevelTraverseTest {
+class LevelBTreeTraverseTest {
 
     @Test
     void testTraverse() {
@@ -40,7 +40,7 @@ class BTreeLevelTraverseTest {
         root.setChild(0, child0);
         root.setChild(2, child1);
 
-        List<List<Integer>> actual = new BTreeLevelTraverse<Integer, Integer>().traverse(root);
+        List<List<Integer>> actual = new LevelBTreeTraverse<Integer, Integer>().traverse(root);
         System.out.println(actual);
         Assertions.assertEquals(expect.toString(), actual.toString());
     }

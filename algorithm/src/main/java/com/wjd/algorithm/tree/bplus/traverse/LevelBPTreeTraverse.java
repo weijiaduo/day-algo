@@ -1,6 +1,7 @@
-package com.wjd.algorithm.tree.btree.traverse;
+package com.wjd.algorithm.tree.bplus.traverse;
 
-import com.wjd.structure.tree.btree.BTNode;
+
+import com.wjd.structure.tree.bplus.BPTNode;
 
 import java.util.ArrayList;
 import java.util.LinkedList;
@@ -8,12 +9,12 @@ import java.util.List;
 import java.util.Queue;
 
 /**
- * B-树层序遍历
+ * B+树层序遍历
  *
  * @author weijiaduo
  * @since 2023/1/2
  */
-public class BTreeLevelTraverse<K extends Comparable<K>, V> {
+public class LevelBPTreeTraverse<K extends Comparable<K>, V> implements BPTreeTraverse<K, V> {
 
     /**
      * 层次遍历
@@ -21,13 +22,13 @@ public class BTreeLevelTraverse<K extends Comparable<K>, V> {
      * @param root B-树根节点
      * @return 层次遍历列表
      */
-    public List<List<K>> traverse(BTNode<K, V> root) {
+    public List<List<K>> traverse(BPTNode<K, V> root) {
         List<List<K>> values = new ArrayList<>();
-        Queue<BTNode<K, V>> queue = new LinkedList<>();
+        Queue<BPTNode<K, V>> queue = new LinkedList<>();
         queue.offer(root);
         int notNull = queue.size();
         while (notNull > 0) {
-            BTNode<K, V> node = queue.poll();
+            BPTNode<K, V> node = queue.poll();
             notNull--;
             if (node == null) {
                 values.add(new ArrayList<>(0));
@@ -38,7 +39,7 @@ public class BTreeLevelTraverse<K extends Comparable<K>, V> {
             values.add(new ArrayList<>(node.keys()));
 
             // 子节点
-            for (BTNode<K, V> child : node.children()) {
+            for (BPTNode<K, V> child : node.children()) {
                 queue.offer(child);
                 if (child != null) {
                     notNull = queue.size();

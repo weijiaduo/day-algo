@@ -10,7 +10,7 @@ import java.util.List;
 
 import static org.junit.jupiter.api.Assertions.*;
 
-class BPTreeLevelTraverseTest {
+class LevelBPTreeTraverseTest {
 
     @Test
     void testTraverse() throws Exception {
@@ -44,7 +44,7 @@ class BPTreeLevelTraverseTest {
         root.setChild(1, child1);
         root.setChild(2, child2);
 
-        List<List<Integer>> actual = new BPTreeLevelTraverse<Integer, Integer>().traverse(root);
+        List<List<Integer>> actual = new LevelBPTreeTraverse<Integer, Integer>().traverse(root);
         System.out.println(actual);
 
         assertEquals(expect, actual.toString());
