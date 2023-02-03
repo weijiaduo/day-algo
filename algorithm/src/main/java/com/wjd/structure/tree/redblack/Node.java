@@ -1,11 +1,30 @@
 package com.wjd.structure.tree.redblack;
 
+/**
+ * 红黑树节点
+ */
 public class Node {
-    private Node parent;
-    private Node left;
-    private Node right;
-    int val;
-    boolean isRed;
+
+    /**
+     * 父节点
+     */
+    public Node parent;
+    /**
+     * 左子节点
+     */
+    public Node left;
+    /**
+     * 右子节点
+     */
+    public Node right;
+    /**
+     * 节点值
+     */
+    public int val;
+    /**
+     * 是否是红色节点
+     */
+    public boolean isRed;
 
     public Node getParent() {
         return parent;

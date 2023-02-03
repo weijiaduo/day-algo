@@ -2,19 +2,20 @@ package com.wjd.structure.tree.redblack;
 
 import java.util.*;
 
-public class RedBlackTree {
+/**
+ * 红黑树
+ */
+public class RBTreeImpl {
 
     /**
      * 根节点
      */
     private Node root;
 
-    private int size;
-
     /**
-     * 红色节点只能是左节点
+     * 节点数量
      */
-    private boolean avl = false;
+    private int size;
 
     /**
      * 获取指定值的节点
@@ -25,13 +26,13 @@ public class RedBlackTree {
     public Node get(int val) {
         Node p = root;
         while (p != null) {
-            if (p.getVal() == val) {
+            if (p.val == val) {
                 return p;
             }
-            if (p.getVal() > val) {
-                p = p.getLeft();
+            if (p.val > val) {
+                p = p.left;
             } else {
-                p = p.getRight();
+                p = p.right;
             }
         }
         return null;
@@ -42,27 +43,24 @@ public class RedBlackTree {
      *
      * @param val 值
      */
-    public void insert(int val) {
+    public Node insert(int val) {
         Node insertNode = new Node();
         insertNode.setRed(true);
         insertNode.setLeft(null);
         insertNode.setRight(null);
         insertNode.setVal(val);
-        boolean success = add(insertNode);
-        if (!success) {
-            return;
+        root = add(root, insertNode);
+        if (isBlack(insertNode)) {
+            return null;
         }
 
-        if (isAvl()) {
-            fixUpAVLInsert(insertNode);
-        } else {
-            fixUpInsert(insertNode);
-        }
+        fixUpInsert(insertNode);
         size++;
+        return insertNode;
     }
 
     private void fixUpInsert(Node node) {
-        Node parent = node.getParent();
+        Node parent = node.parent;
         Node insertNode = node;
         while (parent != null) {
             // 1. 父节点是黑色
@@ -71,21 +69,21 @@ public class RedBlackTree {
             }
 
             // 2. 父节点是红色
-            Node grandparent = parent.getParent();
-            if (parent == grandparent.getLeft()) {
+            Node grandparent = parent.parent;
+            if (parent == grandparent.left) {
                 // 父节点是左节点
                 // 2.1 插入节点是右节点
-                if (insertNode == parent.getRight()) {
+                if (insertNode == parent.right) {
                     rotateLeft(parent);
 
                     // 转到 2.2
                     insertNode = parent;
-                    parent = insertNode.getParent();
-                    grandparent = parent.getParent();
+                    parent = insertNode.parent;
+                    grandparent = parent.parent;
                 }
 
                 // 2.2 插入节点是左节点
-                if (insertNode == parent.getLeft()) {
+                if (insertNode == parent.left) {
                     rotateRight(grandparent);
                     setRed(parent);
                     setBlack(insertNode);
@@ -94,17 +92,17 @@ public class RedBlackTree {
             } else {
                 // 父节点是右节点
                 // 2.1 插入节点是左节点
-                if (insertNode == parent.getLeft()) {
+                if (insertNode == parent.left) {
                     rotateRight(parent);
 
                     // 转到 2.2
                     insertNode = parent;
-                    parent = insertNode.getParent();
-                    grandparent = parent.getParent();
+                    parent = insertNode.parent;
+                    grandparent = parent.parent;
                 }
 
                 // 2.2 插入节点是右节点
-                if (insertNode == parent.getRight()) {
+                if (insertNode == parent.right) {
                     rotateLeft(grandparent);
                     setRed(parent);
                     setBlack(insertNode);
@@ -113,58 +111,7 @@ public class RedBlackTree {
             }
 
             insertNode = parent;
-            parent = insertNode.getParent();
-        }
-        setBlack(root);
-    }
-
-    private void fixUpAVLInsert(Node node) {
-        Node parent = node.getParent();
-        Node insertNode = node;
-        while (parent != null) {
-            if (isBlack(parent)) {
-                // 1. 父节点是黑色
-                // 1.1 插入节点是左节点，右兄弟节点必是黑色
-                if (insertNode == parent.getLeft()) {
-                    break;
-                }
-
-                // 2.1 插入节点是右节点
-                if (isBlack(parent.getLeft())) {
-                    // 2.1.1 左兄弟节点是黑色
-                    rotateLeft(parent);
-                    setBlack(insertNode);
-                    setRed(parent);
-                } else {
-                    // 2.1.2 左兄弟节点是红色
-                    setBlack(parent.getLeft());
-                    setBlack(parent.getRight());
-                    setRed(parent);
-                }
-            } else {
-                // 2. 父节点是红色，则父节点必是左节点，且左兄弟节点必是黑色
-                Node grandparent = parent.getParent();
-                // 2.1 插入节点是右节点
-                if (insertNode == parent.getRight()) {
-                    rotateLeft(parent);
-
-                    // 转到 2.2
-                    insertNode = parent;
-                    parent = insertNode.getParent();
-                    grandparent = parent.getParent();
-                }
-
-                // 2.2 插入节点是左节点
-                if (insertNode == parent.getLeft()) {
-                    rotateRight(grandparent);
-                    setBlack(parent.getLeft());
-                    setBlack(parent.getRight());
-                    setRed(parent);
-                }
-            }
-
-            insertNode = parent;
-            parent = insertNode.getParent();
+            parent = insertNode.parent;
         }
         setBlack(root);
     }
@@ -174,27 +121,28 @@ public class RedBlackTree {
      *
      * @param val 值
      */
-    public void delete(int val) {
+    public Node delete(int val) {
         Node deleteNode = get(val);
         if (deleteNode == null) {
-            return;
+            return null;
         }
 
         // 交换删除节点
-        Node exchangeNode = getExchangeNode(deleteNode);
-        deleteNode.setVal(exchangeNode.getVal());
-        exchangeNode.setVal(val);
-        deleteNode = exchangeNode;
+        Node swapNode = getSwapNode(deleteNode);
+        deleteNode.setVal(swapNode.getVal());
+        swapNode.setVal(val);
+        deleteNode = swapNode;
 
         // 修正树结构
         fixUpDelete(deleteNode);
 
         // 从树中移除节点
         remove(deleteNode);
+        return deleteNode;
     }
 
     private void fixUpDelete(Node node) {
-        Node parent = node.getParent();
+        Node parent = node.parent;
         Node deleteNode = node;
         while (parent != null) {
             // 1. 删除节点是红色，父节点必是黑色
@@ -203,11 +151,11 @@ public class RedBlackTree {
             }
 
             // 2. 删除节点是黑色，兄弟节点必定存在
-            if (deleteNode == parent.getLeft()) {
+            if (deleteNode == parent.left) {
                 // 删除节点是左节点
-                Node sibling = parent.getRight();
-                Node siblingLeft = sibling.getLeft();
-                Node siblingRight = sibling.getRight();
+                Node sibling = parent.right;
+                Node siblingLeft = sibling.left;
+                Node siblingRight = sibling.right;
 
                 // 2.1 侄子中存在红色，兄弟节点必是黑色
                 if (isRed(siblingLeft) || isRed(siblingRight)) {
@@ -219,8 +167,8 @@ public class RedBlackTree {
                         setRed(sibling);
                         setBlack(siblingLeft);
                         sibling = siblingLeft;
-                        siblingLeft = sibling.getLeft();
-                        siblingRight = sibling.getRight();
+                        siblingLeft = sibling.left;
+                        siblingRight = sibling.right;
                     }
 
                     // 2.1.2 远侄子是红色
@@ -249,13 +197,13 @@ public class RedBlackTree {
                     // 2.3.2 父节点是黑色
                     setRed(sibling);
                     deleteNode = parent;
-                    parent = deleteNode.getParent();
+                    parent = deleteNode.parent;
                 }
             } else {
                 // 删除节点是右节点
-                Node sibling = parent.getLeft();
-                Node siblingLeft = sibling.getLeft();
-                Node siblingRight = sibling.getRight();
+                Node sibling = parent.left;
+                Node siblingLeft = sibling.left;
+                Node siblingRight = sibling.right;
 
                 // 2.1 侄子中存在红色，兄弟节点必是黑色
                 if (isRed(siblingLeft) || isRed(siblingRight)) {
@@ -267,8 +215,8 @@ public class RedBlackTree {
                         setRed(sibling);
                         setBlack(siblingRight);
                         sibling = siblingRight;
-                        siblingLeft = sibling.getLeft();
-                        siblingRight = sibling.getRight();
+                        siblingLeft = sibling.left;
+                        siblingRight = sibling.right;
                     }
 
                     // 2.1.2 远侄子是红色
@@ -297,7 +245,7 @@ public class RedBlackTree {
                     // 2.3.2 父节点是黑色
                     setRed(sibling);
                     deleteNode = parent;
-                    parent = deleteNode.getParent();
+                    parent = deleteNode.parent;
                 }
             }
         }
@@ -305,22 +253,23 @@ public class RedBlackTree {
     }
 
     private void rotateRight(Node node) {
-        if (node == null || node.getLeft() == null) {
+        if (node == null || node.left == null) {
             return;
         }
-        Node parent = node.getParent();
-        Node left = node.getLeft();
+
+        Node parent = node.parent;
+        Node left = node.left;
         left.setParent(parent);
         if (parent != null) {
-            if (node == parent.getLeft()) {
+            if (node == parent.left) {
                 parent.setLeft(left);
             } else {
                 parent.setRight(left);
             }
         }
-        node.setLeft(left.getRight());
-        if (node.getLeft() != null) {
-            node.getLeft().setParent(node);
+        node.setLeft(left.right);
+        if (node.left != null) {
+            node.left.setParent(node);
         }
         node.setParent(left);
         left.setRight(node);
@@ -331,22 +280,23 @@ public class RedBlackTree {
     }
 
     private void rotateLeft(Node node) {
-        if (node == null || node.getRight() == null) {
+        if (node == null || node.right == null) {
             return;
         }
-        Node parent = node.getParent();
-        Node right = node.getRight();
+
+        Node parent = node.parent;
+        Node right = node.right;
         right.setParent(parent);
         if (parent != null) {
-            if (node == parent.getLeft()) {
+            if (node == parent.left) {
                 parent.setLeft(right);
             } else {
                 parent.setRight(right);
             }
         }
-        node.setRight(right.getLeft());
-        if (node.getRight() != null) {
-            node.getRight().setParent(node);
+        node.setRight(right.left);
+        if (node.right != null) {
+            node.right.setParent(node);
         }
         node.setParent(right);
         right.setLeft(node);
@@ -359,37 +309,20 @@ public class RedBlackTree {
     /**
      * 添加节点到树中
      *
-     * @param node 需要添加的节点
-     * @return 是否添加成功 true/false
+     * @param root    根节点
+     * @param newNode 新节点
+     * @return 根节点
      */
-    private boolean add(Node node) {
-        Node parent = root;
-        while (parent != null) {
-            if (parent.getVal() == node.getVal()) {
-                return false;
-            }
-            Node temp;
-            if (parent.getVal() < node.getVal()) {
-                temp = parent.getRight();
-            } else {
-                temp = parent.getLeft();
-            }
-            if (temp == null) {
-                break;
-            }
-            parent = temp;
+    private Node add(Node root, Node newNode) {
+        if (root == null) {
+            return newNode;
         }
-        node.setParent(parent);
-        if (parent == null) {
-            root = node;
-        } else {
-            if (parent.getVal() < node.getVal()) {
-                parent.setRight(node);
-            } else {
-                parent.setLeft(node);
-            }
+        if (newNode.val < root.val) {
+            root.left = add(root.left, newNode);
+        } else if (newNode.val > root.val) {
+            root.right = add(root.right, newNode);
         }
-        return true;
+        return root;
     }
 
     /**
@@ -399,14 +332,14 @@ public class RedBlackTree {
      */
     private void remove(Node node) {
         size--;
-        if (node.getParent() == null) {
+        if (node.parent == null) {
             root = null;
             return;
         }
-        if (node == node.getParent().getLeft()) {
-            node.getParent().setLeft(node.getRight());
+        if (node == node.parent.left) {
+            node.parent.setLeft(node.right);
         } else {
-            node.getParent().setRight(node.getLeft());
+            node.parent.setRight(node.left);
         }
     }
 
@@ -416,25 +349,25 @@ public class RedBlackTree {
      * @param node 需要交换的节点
      * @return 可交换节点
      */
-    private Node getExchangeNode(Node node) {
-        if (node.getLeft() == null && node.getRight() == null) {
+    private Node getSwapNode(Node node) {
+        if (node.left == null && node.right == null) {
             return node;
         }
-        Node exchangeNode;
-        if (node.getRight() != null) {
+        Node swapNode;
+        if (node.right != null) {
             // 右子树最小值
-            exchangeNode = node.getRight();
-            while (exchangeNode.getLeft() != null) {
-                exchangeNode = exchangeNode.getLeft();
+            swapNode = node.right;
+            while (swapNode.left != null) {
+                swapNode = swapNode.left;
             }
         } else {
             // 左子树最大值
-            exchangeNode = node.getLeft();
-            while (exchangeNode.getRight() != null) {
-                exchangeNode = exchangeNode.getRight();
+            swapNode = node.left;
+            while (swapNode.right != null) {
+                swapNode = swapNode.right;
             }
         }
-        return exchangeNode;
+        return swapNode;
     }
 
     public int getHeight() {
@@ -447,11 +380,11 @@ public class RedBlackTree {
         int levelNodes = nodeList.size();
         while (!nodeList.isEmpty()) {
             Node curNode = nodeList.pop();
-            if (curNode.getLeft() != null) {
-                nodeList.add(curNode.getLeft());
+            if (curNode.left != null) {
+                nodeList.add(curNode.left);
             }
-            if (curNode.getRight() != null) {
-                nodeList.add(curNode.getRight());
+            if (curNode.right != null) {
+                nodeList.add(curNode.right);
             }
             levelNodes--;
             if (levelNodes == 0) {
@@ -494,11 +427,4 @@ public class RedBlackTree {
         return size;
     }
 
-    public boolean isAvl() {
-        return avl;
-    }
-
-    public void setAvl(boolean avl) {
-        this.avl = avl;
-    }
 }

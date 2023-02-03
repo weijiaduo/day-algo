@@ -3,7 +3,7 @@ package com.wjd.algorithm.tree.redblack.traverse;
 import com.google.gson.JsonArray;
 import com.google.gson.JsonObject;
 import com.wjd.structure.tree.redblack.Node;
-import com.wjd.structure.tree.redblack.RedBlackTree;
+import com.wjd.structure.tree.redblack.RBTreeImpl;
 
 import java.util.HashMap;
 import java.util.LinkedList;
@@ -18,7 +18,7 @@ public class RedBlackEcharts {
     private static final int X_MAX = 1024;
     private static final int Y_MAX = 768;
 
-    private RedBlackTree redBlackTree;
+    private RBTreeImpl redBlackTree;
     private int treeHeight;
 
     private JsonObject option;
@@ -33,7 +33,7 @@ public class RedBlackEcharts {
     private int xSymbolGap = symbolSize;
     private int ySymbolGap = symbolSize;
 
-    public RedBlackEcharts(RedBlackTree redBlackTree) {
+    public RedBlackEcharts(RBTreeImpl redBlackTree) {
         this.redBlackTree = redBlackTree;
         treeHeight = redBlackTree.getHeight();
         nodes = new HashMap<>();
