@@ -4,11 +4,11 @@ import org.junit.jupiter.api.Test;
 
 import static org.junit.jupiter.api.Assertions.*;
 
-class SimpleRBTreeImplTest {
+class LLRBTreeTest {
 
     @Test
     void testTwoLInsert() {
-        RBTree rbTree = new SimpleRBTreeImpl();
+        RBTree rbTree = new LLRBTree();
         assertEquals("[]", rbTree.toString());
         rbTree.insert(10);
         assertEquals("[b10]", rbTree.toString());
@@ -18,7 +18,7 @@ class SimpleRBTreeImplTest {
 
     @Test
     void testTwoRInsert() {
-        RBTree rbTree = new SimpleRBTreeImpl();
+        RBTree rbTree = new LLRBTree();
         assertEquals("[]", rbTree.toString());
         rbTree.insert(5);
         assertEquals("[b5]", rbTree.toString());
@@ -28,7 +28,7 @@ class SimpleRBTreeImplTest {
 
     @Test
     void testThreeLInsert() {
-        RBTree rbTree = new SimpleRBTreeImpl();
+        RBTree rbTree = new LLRBTree();
         rbTree.insert(10);
         rbTree.insert(5);
         assertEquals("[b10, r5]", rbTree.toString());
@@ -47,7 +47,7 @@ class SimpleRBTreeImplTest {
 
     @Test
     void testThreeMInsert() {
-        RBTree rbTree = new SimpleRBTreeImpl();
+        RBTree rbTree = new LLRBTree();
         rbTree.insert(10);
         rbTree.insert(5);
         assertEquals("[b10, r5]", rbTree.toString());
@@ -66,7 +66,7 @@ class SimpleRBTreeImplTest {
 
     @Test
     void testThreeRInsert() {
-        RBTree rbTree = new SimpleRBTreeImpl();
+        RBTree rbTree = new LLRBTree();
         rbTree.insert(5);
         rbTree.insert(10);
         assertEquals("[b10, r5]", rbTree.toString());
@@ -88,7 +88,7 @@ class SimpleRBTreeImplTest {
 
     @Test
     void testGet() {
-        RBTree rbTree = new SimpleRBTreeImpl();
+        RBTree rbTree = new LLRBTree();
         rbTree.insert(5);
         rbTree.insert(10);
         rbTree.insert(16);
@@ -121,7 +121,7 @@ class SimpleRBTreeImplTest {
 
     @Test
     void testTwoLeafDelete() {
-        RBTree rbTree = new SimpleRBTreeImpl();
+        RBTree rbTree = new LLRBTree();
         rbTree.insert(5);
         rbTree.insert(10);
         rbTree.insert(16);
@@ -137,7 +137,7 @@ class SimpleRBTreeImplTest {
 
     @Test
     void testTwoInternalDelete() {
-        RBTree rbTree = new SimpleRBTreeImpl();
+        RBTree rbTree = new LLRBTree();
         rbTree.insert(5);
         rbTree.insert(10);
         rbTree.insert(16);
@@ -153,7 +153,7 @@ class SimpleRBTreeImplTest {
 
     @Test
     void testThreeLLeafDelete() {
-        RBTree rbTree = new SimpleRBTreeImpl();
+        RBTree rbTree = new LLRBTree();
         rbTree.insert(10);
         rbTree.insert(5);
         rbTree.insert(7);
@@ -169,7 +169,7 @@ class SimpleRBTreeImplTest {
 
     @Test
     void testThreeLDoubleDelete() {
-        RBTree rbTree = new SimpleRBTreeImpl();
+        RBTree rbTree = new LLRBTree();
         rbTree.insert(10);
         rbTree.insert(5);
         rbTree.insert(7);
@@ -184,7 +184,7 @@ class SimpleRBTreeImplTest {
 
     @Test
     void testThreeRSingleDelete() {
-        RBTree rbTree = new SimpleRBTreeImpl();
+        RBTree rbTree = new LLRBTree();
         rbTree.insert(10);
         rbTree.insert(5);
         rbTree.insert(7);
@@ -200,7 +200,7 @@ class SimpleRBTreeImplTest {
 
     @Test
     void testDeleteMin() {
-        SimpleRBTreeImpl rbTree = new SimpleRBTreeImpl();
+        LLRBTree rbTree = new LLRBTree();
         rbTree.insert(5);
         rbTree.insert(10);
         rbTree.insert(16);
@@ -216,7 +216,7 @@ class SimpleRBTreeImplTest {
 
     @Test
     void testDeleteMax() {
-        SimpleRBTreeImpl rbTree = new SimpleRBTreeImpl();
+        LLRBTree rbTree = new LLRBTree();
         rbTree.insert(5);
         rbTree.insert(10);
         rbTree.insert(16);
