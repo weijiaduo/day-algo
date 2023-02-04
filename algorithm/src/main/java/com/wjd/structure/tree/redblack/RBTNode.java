@@ -9,6 +9,10 @@ package com.wjd.structure.tree.redblack;
 public class RBTNode {
 
     /**
+     * 父节点
+     */
+    public RBTNode parent;
+    /**
      * 左子节点
      */
     public RBTNode left;
@@ -23,7 +27,7 @@ public class RBTNode {
     /**
      * 节点颜色
      */
-    boolean color = true;
+    public boolean color = true;
 
     public RBTNode(int val) {
         this.val = val;
