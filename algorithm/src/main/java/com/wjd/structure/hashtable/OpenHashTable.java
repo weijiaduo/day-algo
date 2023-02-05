@@ -71,7 +71,6 @@ public class OpenHashTable implements HashTable {
             // 更新节点
             if (node.key == key) {
                 node.value = value;
-                size++;
                 succeed = true;
                 break;
             }
