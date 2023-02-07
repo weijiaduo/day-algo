@@ -203,63 +203,107 @@ public class BLRBTree implements RBTree {
         // 删除红色节点，不影响平衡性
         while (!isRed(h) && p != null) {
             if (h == p.left) {
-                // 1. 兄弟节点是红色，转成黑色再处理
+                // 1. 兄弟是红色，先转成黑色
                 RBTNode s = p.right;
                 if (isRed(s)) {
                     rotateLeft(p);
-                    continue;
                 }
-
-                // 2. 从兄弟借一个红色孩子
-                RBTNode sl = s.left, sr = s.right;
-                if (isRed(sl) || isRed(sr)) {
-                    // 2.1 远侄子是黑色，近侄子是红色
-                    if (!isRed(sr)) {
-                        rotateRight(s);
-                    }
-                    // 2.2 远侄子是红色
-                    p = rotateLeft(p);
-                    setColor(p.left, BLACK);
-                    setColor(p.right, BLACK);
+                // 2. 从兄弟借红色孩子
+                if (borrowRight(h)) {
                     break;
                 }
-
-                // 3. 没能从兄弟借到，父节点下溢合并
-                setColor(s, RED);
-                // 3.1 父节点是红色，下溢结束
-                if (isRed(p)) {
-                    setColor(p, BLACK);
+                // 3. 父节点下溢合并
+                if (underflow(h)) {
                     break;
                 }
-                // 3.2 父节点是黑色，级联下溢
             } else {
                 // 镜像处理
                 RBTNode s = p.left;
                 if (isRed(s)) {
                     rotateRight(p);
-                    continue;
                 }
-
-                RBTNode sl = s.left, sr = s.right;
-                if (isRed(sl) || isRed(sr)) {
-                    if (!isRed(sl)) {
-                        rotateLeft(s);
-                    }
-                    p = rotateRight(p);
-                    setColor(p.left, BLACK);
-                    setColor(p.right, BLACK);
+                if (borrowLeft(h)) {
                     break;
                 }
-
-                setColor(s, RED);
-                if (isRed(p)) {
-                    setColor(p, BLACK);
+                if (underflow(h)) {
                     break;
                 }
             }
             h = p;
             p = h.parent;
         }
+    }
+
+    /**
+     * 父节点下溢，父子节点合并
+     *
+     * @param h 当前节点
+     * @return true下溢后已平衡/false下溢后未平衡
+     */
+    private boolean underflow(RBTNode h) {
+        RBTNode p = h.parent;
+        RBTNode s;
+        if (p.left == h) {
+            s = p.right;
+        } else {
+            s = p.left;
+        }
+        boolean balanced = isRed(p);
+        setColor(p, BLACK);
+        setColor(s, RED);
+        return balanced;
+    }
+
+    /**
+     * 从右兄弟借一个红色节点过来
+     *
+     * @param h 当前节点
+     * @return true借用成功/false借用失败
+     */
+    private boolean borrowRight(RBTNode h) {
+        RBTNode p = h.parent;
+        RBTNode s = p.right;
+        RBTNode sl = s.left, sr = s.right;
+        if (!isRed(sl) && !isRed(sr)) {
+            // 没有红色节点可借
+            return false;
+        }
+
+        // 远侄子是黑色，近侄子是红色
+        if (!isRed(sr)) {
+            rotateRight(s);
+        }
+        // 远侄子是红色
+        p = rotateLeft(p);
+        setColor(p.left, BLACK);
+        setColor(p.right, BLACK);
+        return true;
+    }
+
+    /**
+     * 从左兄弟借一个红色节点过来
+     *
+     * @param h 当前节点
+     * @return true借用成功/false借用失败
+     */
+    private boolean borrowLeft(RBTNode h) {
+        RBTNode p = h.parent;
+        RBTNode s = p.left;
+        RBTNode sl = s.left, sr = s.right;
+        if (!isRed(sl) && !isRed(sr)) {
+            // 没有红色节点可借
+            return false;
+        }
+
+        // 远侄子是黑色，近侄子是红色
+        if (!isRed(sl)) {
+            rotateLeft(s);
+        }
+        // 远侄子是红色
+        p = rotateRight(p);
+        setColor(p.left, BLACK);
+        setColor(p.right, BLACK);
+        return true;
     }
 
     /**
