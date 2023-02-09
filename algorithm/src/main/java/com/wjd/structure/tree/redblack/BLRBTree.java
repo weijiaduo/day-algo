@@ -98,30 +98,37 @@ public class BLRBTree implements RBTree {
      * @param h 新插入的节点
      */
     private void balanceInsertion(RBTNode h) {
+        // 父节点是黑色时，不用调整
         RBTNode p = h.parent;
-        while (isRed(p)) {
-            RBTNode gp = p.parent;
-            if (p == gp.left) {
-                // LR 双红节点
-                if (h == p.right) {
-                    rotateLeft(p);
-                }
-                // LL 双红节点
-                p = rotateRight(gp);
-            } else {
-                // RL 双红节点
-                if (h == p.left) {
-                    rotateRight(p);
-                }
-                // RR 双红节点
-                p = rotateLeft(gp);
-            }
-            setColor(p, RED);
-            setColor(p.left, BLACK);
-            setColor(p.right, BLACK);
-            h = p;
-            p = h.parent;
+        if (!isRed(p)) {
+            return;
         }
+
+        // 父节点都是红色
+        RBTNode gp = p.parent;
+        if (p == gp.left) {
+            // LR 双红节点
+            if (h == p.right) {
+                rotateLeft(p);
+            }
+            // LL 双红节点
+            p = rotateRight(gp);
+        } else {
+            // RL 双红节点
+            if (h == p.left) {
+                rotateRight(p);
+            }
+            // RR 双红节点
+            p = rotateLeft(gp);
+        }
+
+        // 父子反色
+        setColor(p, RED);
+        setColor(p.left, BLACK);
+        setColor(p.right, BLACK);
+
+        // 递归往上处理
+        balanceInsertion(p);
     }
 
     @Override
@@ -199,39 +206,43 @@ public class BLRBTree implements RBTree {
      * @param h 被删除节点
      */
     private void balanceDeletion(RBTNode h) {
-        RBTNode p = h.parent;
         // 删除红色节点，不影响平衡性
-        while (!isRed(h) && p != null) {
-            if (h == p.left) {
-                // 1. 兄弟是红色，先转成黑色
-                RBTNode s = p.right;
-                if (isRed(s)) {
-                    rotateLeft(p);
-                }
-                // 2. 从兄弟借红色孩子
-                if (borrowRight(h)) {
-                    break;
-                }
-                // 3. 父节点下溢合并
-                if (underflow(h)) {
-                    break;
-                }
-            } else {
-                // 镜像处理
-                RBTNode s = p.left;
-                if (isRed(s)) {
-                    rotateRight(p);
-                }
-                if (borrowLeft(h)) {
-                    break;
-                }
-                if (underflow(h)) {
-                    break;
-                }
-            }
-            h = p;
-            p = h.parent;
+        RBTNode p = h.parent;
+        if (p == null || isRed(h)) {
+            return;
         }
+
+        // 删除黑色节点
+        if (h == p.left) {
+            // 1. 兄弟是红色，先转成黑色
+            RBTNode s = p.right;
+            if (isRed(s)) {
+                rotateLeft(p);
+            }
+            // 2. 从兄弟借红色孩子
+            if (borrowRight(h)) {
+                return;
+            }
+            // 3. 父节点下溢合并
+            if (underflow(h)) {
+                return;
+            }
+        } else {
+            // 镜像处理
+            RBTNode s = p.left;
+            if (isRed(s)) {
+                rotateRight(p);
+            }
+            if (borrowLeft(h)) {
+                return;
+            }
+            if (underflow(h)) {
+                return;
+            }
+        }
+
+        // 递归向上调整
+        balanceDeletion(p);
     }
 
     /**
