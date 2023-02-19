@@ -1,0 +1,18 @@
+Java HotSpot(TM) 64-Bit Server VM (25.25-b02) for windows-amd64 JRE (1.8.0_25-b18), built on Oct  7 2014 14:25:37 by "java_re" with MS VC++ 10.0 (VS2010)
+Memory: 4k page, physical 16571704k(5326420k free), swap 22863160k(3660656k free)
+CommandLine flags: -XX:+HeapDumpOnOutOfMemoryError -XX:HeapDumpPath=./ -XX:InitialHeapSize=41943040 -XX:MaxHeapSize=41943040 -XX:MaxNewSize=20971520 -XX:NewSize=20971520 -XX:OldPLABSize=16 -XX:PretenureSizeThreshold=20971520 -XX:+PrintGC -XX:+PrintGCDetails -XX:+PrintGCTimeStamps -XX:SurvivorRatio=8 -XX:+UseCompressedClassPointers -XX:+UseCompressedOops -XX:+UseConcMarkSweepGC -XX:-UseLargePagesIndividualAllocation -XX:+UseParNewGC 
+0.107: [GC (Allocation Failure) 0.107: [ParNew: 16384K->2048K(18432K), 0.0695919 secs] 16384K->13871K(38912K), 0.0697482 secs] [Times: user=0.23 sys=0.02, real=0.07 secs] 
+0.179: [GC (Allocation Failure) 0.179: [ParNew: 18432K->18432K(18432K), 0.0000137 secs]0.179: [CMS: 11823K->17395K(20480K), 0.0437342 secs] 30255K->27185K(38912K), [Metaspace: 3336K->3336K(1056768K)], 0.0438379 secs] [Times: user=0.05 sys=0.00, real=0.04 secs] 
+0.223: [GC (CMS Initial Mark) [1 CMS-initial-mark: 17395K(20480K)] 27506K(38912K), 0.0114770 secs] [Times: user=0.00 sys=0.00, real=0.01 secs] 
+0.235: [CMS-concurrent-mark-start]
+0.236: [Full GC (Allocation Failure) 0.236: [CMS0.254: [CMS-concurrent-mark: 0.017/0.019 secs] [Times: user=0.03 sys=0.00, real=0.02 secs] 
+ (concurrent mode failure): 17395K->17395K(20480K), 0.0751732 secs] 30560K->30328K(38912K), [Metaspace: 3336K->3336K(1056768K)], 0.0752560 secs] [Times: user=0.08 sys=0.00, real=0.08 secs] 
+0.311: [Full GC (Allocation Failure) 0.311: [CMS: 17395K->17395K(20480K), 0.0402602 secs] 30328K->30299K(38912K), [Metaspace: 3336K->3336K(1056768K)], 0.0403127 secs] [Times: user=0.05 sys=0.00, real=0.04 secs] 
+Heap
+ par new generation   total 18432K, used 13302K [0x00000000fd800000, 0x00000000fec00000, 0x00000000fec00000)
+  eden space 16384K,  81% used [0x00000000fd800000, 0x00000000fe4fd808, 0x00000000fe800000)
+  from space 2048K,   0% used [0x00000000fea00000, 0x00000000fea00000, 0x00000000fec00000)
+  to   space 2048K,   0% used [0x00000000fe800000, 0x00000000fe800000, 0x00000000fea00000)
+ concurrent mark-sweep generation total 20480K, used 17395K [0x00000000fec00000, 0x0000000100000000, 0x0000000100000000)
+ Metaspace       used 3367K, capacity 4496K, committed 4864K, reserved 1056768K
+  class space    used 363K, capacity 388K, committed 512K, reserved 1048576K
