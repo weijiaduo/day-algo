@@ -1,5 +1,3 @@
 # Default ignored files
 **/target/
 /.idea/
-/log/
-/src/
