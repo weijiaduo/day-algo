@@ -1,7 +1,7 @@
 package com.wjd.util;
 
 import com.wjd.structure.tree.binary.TreeNode;
-import com.wjd.structure.tree.general.Node;
+import com.wjd.structure.tree.generic.Node;
 
 /**
  * @author weijiaduo

@@ -1,7 +1,7 @@
-package com.wjd.structure.tree.general;
+package com.wjd.structure.tree.generic;
 
-import com.wjd.algorithm.tree.general.build.LevelGeneralBuilder;
-import com.wjd.algorithm.tree.general.traverse.BuildLevelGeneralTraverse;
+import com.wjd.algorithm.tree.generic.build.LevelGenericBuilder;
+import com.wjd.algorithm.tree.generic.traverse.BuildLevelGenericTraverse;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -39,7 +39,7 @@ public class Node {
      * @return 树根节点
      */
     public static Node build(Integer[] values) {
-        return new LevelGeneralBuilder().build(values);
+        return new LevelGenericBuilder().build(values);
     }
 
     /**
@@ -59,7 +59,7 @@ public class Node {
      * @return 层次数据
      */
     public static List<Integer> traverse(Node tree) {
-        List<Node> list = new BuildLevelGeneralTraverse().traverse(tree);
+        List<Node> list = new BuildLevelGenericTraverse().traverse(tree);
         List<Integer> ret = new ArrayList<>(list.size());
         for (Node node : list) {
             ret.add(node != null ? node.val : null);

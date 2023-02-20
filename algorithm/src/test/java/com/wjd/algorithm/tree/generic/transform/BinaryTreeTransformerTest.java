@@ -1,7 +1,7 @@
-package com.wjd.algorithm.tree.general.transform;
+package com.wjd.algorithm.tree.generic.transform;
 
 import com.wjd.structure.tree.binary.TreeNode;
-import com.wjd.structure.tree.general.Node;
+import com.wjd.structure.tree.generic.Node;
 import org.junit.jupiter.api.Test;
 
 import java.util.Arrays;

@@ -1,6 +1,6 @@
-package com.wjd.algorithm.tree.general.build;
+package com.wjd.algorithm.tree.generic.build;
 
-import com.wjd.structure.tree.general.Node;
+import com.wjd.structure.tree.generic.Node;
 
 import java.util.ArrayDeque;
 import java.util.ArrayList;
@@ -12,7 +12,7 @@ import java.util.Queue;
  * @author weijiaduo
  * @since 2022/12/10
  */
-public class LevelGeneralBuilder implements GeneralBuilder<Integer[]> {
+public class LevelGenericBuilder implements GenericBuilder<Integer[]> {
 
     @Override
     public Node build(Integer[] values) {

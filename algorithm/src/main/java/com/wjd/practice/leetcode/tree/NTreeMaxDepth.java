@@ -1,6 +1,6 @@
 package com.wjd.practice.leetcode.tree;
 
-import com.wjd.structure.tree.general.Node;
+import com.wjd.structure.tree.generic.Node;
 
 /**
  * 559. N 叉树的最大深度
