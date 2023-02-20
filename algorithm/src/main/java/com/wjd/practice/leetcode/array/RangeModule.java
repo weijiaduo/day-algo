@@ -1,7 +1,7 @@
 package com.wjd.practice.leetcode.array;
 
 import com.wjd.practice.Solution;
-import com.wjd.structure.segmenttree.MinLinkSegmentTree;
+import com.wjd.structure.tree.segment.MinLinkSegmentTree;
 
 /**
  * 715. Range 模块

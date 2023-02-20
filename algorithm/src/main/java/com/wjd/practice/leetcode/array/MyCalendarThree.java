@@ -1,7 +1,7 @@
 package com.wjd.practice.leetcode.array;
 
 import com.wjd.practice.Solution;
-import com.wjd.structure.segmenttree.LinkSegmentTree;
+import com.wjd.structure.tree.segment.LinkSegmentTree;
 
 import java.util.Map;
 import java.util.TreeMap;

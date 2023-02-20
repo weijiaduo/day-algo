@@ -1,8 +1,8 @@
-package com.wjd.structure.binaryindextree;
+package com.wjd.structure.tree.binaryindex;
 
 import org.junit.jupiter.api.Test;
 
-import static org.junit.jupiter.api.Assertions.*;
+import static org.junit.jupiter.api.Assertions.assertEquals;
 
 class BinaryIndexTreeTest {
 

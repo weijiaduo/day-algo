@@ -477,7 +477,7 @@ class BPTreeImplTest {
         while (min != null && !min.isLeaf()) {
             min = min.getChild(0);
         }
-        assertTrue(min instanceof BPTLeaf<Integer, Integer>);
+        assertTrue(min instanceof BPTLeaf);
 
         List<Integer> expect = Arrays.asList(2, 3, 9, 10, 11, 12, 14, 23, 25, 30, 33, 37, 48, 50, 52, 55, 59, 61, 64, 71, 72);
         List<Integer> actual = new ArrayList<>();
@@ -523,7 +523,7 @@ class BPTreeImplTest {
         while (max != null && !max.isLeaf()) {
             max = max.getChild(max.size);
         }
-        assertTrue(max instanceof BPTLeaf<Integer, Integer>);
+        assertTrue(max instanceof BPTLeaf);
 
         List<Integer> expect = Arrays.asList(2, 3, 9, 10, 11, 12, 14, 23, 25, 30, 33, 37, 48, 50, 52, 55, 59, 61, 64, 71, 72);
         Collections.reverse(expect);

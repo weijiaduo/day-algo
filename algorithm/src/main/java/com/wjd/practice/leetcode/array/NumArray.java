@@ -1,7 +1,7 @@
 package com.wjd.practice.leetcode.array;
 
 import com.wjd.practice.Solution;
-import com.wjd.structure.segmenttree.LinkSegmentTree;
+import com.wjd.structure.tree.segment.LinkSegmentTree;
 
 /**
  * 307. 区域和检索 - 数组可修改

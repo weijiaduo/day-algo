@@ -1,12 +1,12 @@
-package com.wjd.structure.segmenttree;
+package com.wjd.structure.tree.segment;
 
 /**
- * 数组线段树模板（动态估点）
+ * 指针线段树模板（动态开点）
  *
  * @author weijiaduo
- * @since 2022/9/12
+ * @since 2022/7/7
  */
-public abstract class ArraySegmentTree implements SegmentTree {
+public abstract class LinkSegmentTree implements SegmentTree {
 
     public static class Node {
         /**
@@ -18,15 +18,15 @@ public abstract class ArraySegmentTree implements SegmentTree {
          */
         public int add;
         /**
-         * 左右节点数组下标
+         * 左右节点
          */
-        public int left, right;
+        public Node left, right;
     }
 
     /**
-     * 树节点数组
+     * 根节点
      */
-    protected final Node[] tree;
+    protected final Node root;
     /**
      * 区间最小值
      */
@@ -35,27 +35,23 @@ public abstract class ArraySegmentTree implements SegmentTree {
      * 区间最大值
      */
     protected final int high;
-    /**
-     * 当前节点数量
-     */
-    protected int size;
 
-    public ArraySegmentTree(int low, int high) {
+    public LinkSegmentTree(int low, int high) {
         this.low = low;
         this.high = high;
-
-        // 区间估点 4n
-        int n = 4 * high;
-        tree = new Node[n];
-
-        // 初始化根节点
-        tree[1] = new Node();
-        size = 1;
+        this.root = new Node();
     }
 
+    /**
+     * 查询指定区间的值
+     *
+     * @param l 目标区间[l, r]的左边界
+     * @param r 目标区间[l, r]的右边界
+     * @return 区间值
+     */
     @Override
     public int query(int l, int r) {
-        return query(tree[1], low, high, l, r);
+        return query(root, low, high, l, r);
     }
 
     /**
@@ -76,23 +72,30 @@ public abstract class ArraySegmentTree implements SegmentTree {
         // 访问节点前，先向下推送更新
         pushDown(node, start, end);
 
-        // 分别查询左右子区间的值
+        // 分别取左右子区间的值
         Integer lResult = null, rResult = null;
         int mid = middle(start, end);
         if (l <= mid) {
-            lResult = query(tree[node.left], start, mid, l, r);
+            lResult = query(node.left, start, mid, l, r);
         }
         if (r > mid) {
-            rResult = query(tree[node.right], mid + 1, end, l, r);
+            rResult = query(node.right, mid + 1, end, l, r);
         }
 
         // 合并子区间的查询结果
         return mergeQuery(node, start, end, lResult, rResult);
     }
 
+    /**
+     * 更新指定区间的值
+     *
+     * @param l   目标区间[l, r]的左边界
+     * @param r   目标区间[l, r]的右边界
+     * @param val 更新的值
+     */
     @Override
     public void update(int l, int r, int val) {
-        update(tree[1], low, high, l, r, val);
+        update(root, low, high, l, r, val);
     }
 
     /**
@@ -118,10 +121,10 @@ public abstract class ArraySegmentTree implements SegmentTree {
         // 递归更新左右子区间
         int mid = middle(start, end);
         if (l <= mid) {
-            update(tree[node.left], start, mid, l, r, val);
+            update(node.left, start, mid, l, r, val);
         }
         if (r > mid) {
-            update(tree[node.right], mid + 1, end, l, r, val);
+            update(node.right, mid + 1, end, l, r, val);
         }
 
         // 子节点更新后，向上推送更新
@@ -147,14 +150,12 @@ public abstract class ArraySegmentTree implements SegmentTree {
      * @param end   当前区间[start, end]的右边界
      */
     protected void pushDown(Node node, int start, int end) {
-        // 动态开点，新节点总是添加到数组末尾
-        if (node.left == 0) {
-            node.left = ++size;
-            tree[node.left] = new Node();
+        // 动态开点，指向动态创建的对象
+        if (node.left == null) {
+            node.left = new Node();
         }
-        if (node.right == 0) {
-            node.right = ++size;
-            tree[node.right] = new Node();
+        if (node.right == null) {
+            node.right = new Node();
         }
 
         // 没有懒标记，无需再往下推
@@ -164,8 +165,8 @@ public abstract class ArraySegmentTree implements SegmentTree {
 
         // 把懒标记下推给子节点
         int mid = middle(start, end);
-        writeDown(tree[node.left], start, mid, node.add);
-        writeDown(tree[node.right], mid + 1, end, node.add);
+        writeDown(node.left, start, mid, node.add);
+        writeDown(node.right, mid + 1, end, node.add);
 
         // 懒标记已处理
         node.add = 0;

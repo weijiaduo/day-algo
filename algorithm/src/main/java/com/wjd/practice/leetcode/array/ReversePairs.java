@@ -1,6 +1,6 @@
 package com.wjd.practice.leetcode.array;
 
-import com.wjd.structure.binaryindextree.BinaryIndexTree;
+import com.wjd.structure.tree.binaryindex.BinaryIndexTree;
 
 import java.util.HashMap;
 import java.util.Map;

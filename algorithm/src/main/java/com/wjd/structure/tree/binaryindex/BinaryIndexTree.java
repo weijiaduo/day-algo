@@ -1,4 +1,4 @@
-package com.wjd.structure.binaryindextree;
+package com.wjd.structure.tree.binaryindex;
 
 /**
  * 树状数组（二叉索引树）

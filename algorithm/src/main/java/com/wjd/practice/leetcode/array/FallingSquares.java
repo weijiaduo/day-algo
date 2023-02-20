@@ -1,7 +1,7 @@
 package com.wjd.practice.leetcode.array;
 
 import com.wjd.practice.Solution;
-import com.wjd.structure.segmenttree.MaxLinkSegmentTree;
+import com.wjd.structure.tree.segment.MaxLinkSegmentTree;
 
 import java.util.ArrayList;
 import java.util.List;

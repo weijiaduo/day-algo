@@ -1,4 +1,4 @@
-package com.wjd.structure.trie;
+package com.wjd.structure.tree.trie;
 
 import java.util.List;
 

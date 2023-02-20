@@ -1,4 +1,4 @@
-package com.wjd.structure.ufs;
+package com.wjd.structure.tree.ufs;
 
 /**
  * 并查集-路径压缩 + 按秩合并

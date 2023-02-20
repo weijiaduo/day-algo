@@ -1,4 +1,4 @@
-package com.wjd.structure.ufs;
+package com.wjd.structure.tree.ufs;
 
 import java.util.HashMap;
 import java.util.Map;

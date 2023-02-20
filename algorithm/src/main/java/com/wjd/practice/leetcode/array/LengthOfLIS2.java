@@ -1,8 +1,8 @@
 package com.wjd.practice.leetcode.array;
 
 import com.wjd.practice.Solution;
-import com.wjd.structure.segmenttree.MaxArraySegmentTree;
-import com.wjd.structure.segmenttree.MaxLinkSegmentTree;
+import com.wjd.structure.tree.segment.MaxArraySegmentTree;
+import com.wjd.structure.tree.segment.MaxLinkSegmentTree;
 
 /**
  * 6206. 最长递增子序列 II

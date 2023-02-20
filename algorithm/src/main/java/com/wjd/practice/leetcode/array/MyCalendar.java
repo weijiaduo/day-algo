@@ -1,7 +1,7 @@
 package com.wjd.practice.leetcode.array;
 
 import com.wjd.practice.Solution;
-import com.wjd.structure.segmenttree.SumLinkSegmentTree;
+import com.wjd.structure.tree.segment.SumLinkSegmentTree;
 
 import java.util.ArrayList;
 import java.util.List;

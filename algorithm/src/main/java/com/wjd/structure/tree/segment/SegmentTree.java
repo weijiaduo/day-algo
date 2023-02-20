@@ -1,4 +1,4 @@
-package com.wjd.structure.segmenttree;
+package com.wjd.structure.tree.segment;
 
 /**
  * 线段树
