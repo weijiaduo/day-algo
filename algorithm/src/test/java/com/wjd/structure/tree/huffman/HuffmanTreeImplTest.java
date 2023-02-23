@@ -12,15 +12,23 @@ class HuffmanTreeImplTest {
     @Test
     void testGetCode() {
         Map<String, Integer> weightMap = new HashMap<>();
-        weightMap.put("A", 5);
-        weightMap.put("B", 1);
-        weightMap.put("C", 6);
-        weightMap.put("D", 3);
+        weightMap.put("C", 32);
+        weightMap.put("D", 41);
+        weightMap.put("E", 120);
+        weightMap.put("K", 7);
+        weightMap.put("L", 42);
+        weightMap.put("M", 24);
+        weightMap.put("U", 37);
+        weightMap.put("Z", 2);
 
         HuffmanTree huffmanTree = HuffmanTreeImpl.build(weightMap);
-        assertEquals("11", huffmanTree.getCode("A"));
-        assertEquals("100", huffmanTree.getCode("B"));
-        assertEquals("0", huffmanTree.getCode("C"));
+        assertEquals("1110", huffmanTree.getCode("C"));
         assertEquals("101", huffmanTree.getCode("D"));
+        assertEquals("0", huffmanTree.getCode("E"));
+        assertEquals("111101", huffmanTree.getCode("K"));
+        assertEquals("110", huffmanTree.getCode("L"));
+        assertEquals("11111", huffmanTree.getCode("M"));
+        assertEquals("100", huffmanTree.getCode("U"));
+        assertEquals("111100", huffmanTree.getCode("Z"));
     }
 }
