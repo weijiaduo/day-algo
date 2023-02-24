@@ -13,7 +13,7 @@ public class HeapImpl implements Heap<Integer> {
     /**
      * 堆，从 1 开始
      */
-    private Integer[] elements;
+    private final Integer[] elements;
     /**
      * 堆大小
      */
@@ -23,24 +23,28 @@ public class HeapImpl implements Heap<Integer> {
      */
     private final Comparator<Integer> cmp;
 
-    public HeapImpl(Integer[] elements) {
-        this((a, b) -> b - a, elements);
+    public HeapImpl(int capacity) {
+        elements = new Integer[capacity + 1];
+        cmp = (a, b) -> b - a;
+        size = 0;
     }
 
-    public HeapImpl(Comparator<Integer> cmp, Integer[] elements) {
+    public HeapImpl(Integer[] elements) {
+        this(elements, (a, b) -> b - a);
+    }
+
+    public HeapImpl(Integer[] elements, Comparator<Integer> cmp) {
         this.cmp = cmp;
-        build(elements);
+        size = elements.length;
+        this.elements = new Integer[size + 1];
+        System.arraycopy(elements, 0, this.elements, 1, size);
+        build();
     }
 
     /**
      * 构建堆
-     *
-     * @param values 初始化值
      */
-    private void build(Integer[] values) {
-        size = values.length;
-        elements = new Integer[size + 1];
-        System.arraycopy(values, 0, elements, 1, size);
+    private void build() {
         for (int i = size / 2; i > 0; i--) {
             siftDown(i);
         }
@@ -49,7 +53,7 @@ public class HeapImpl implements Heap<Integer> {
     @Override
     public Integer removeFirst() {
         if (size <= 0) {
-            throw new IllegalStateException("size: " + size);
+            throw new IllegalStateException("Heap isEmpty!");
         }
 
         Integer val = elements[1];
@@ -60,7 +64,10 @@ public class HeapImpl implements Heap<Integer> {
 
     @Override
     public void insert(Integer val) {
-        ensureCapacity(size + 1);
+        if (size + 1 >= elements.length) {
+            throw new IllegalStateException("Heap isFull!");
+        }
+
         elements[++size] = val;
         siftUp(size);
     }
@@ -75,11 +82,11 @@ public class HeapImpl implements Heap<Integer> {
         while (i < size) {
             int m = i;
             int l = left(i);
-            if (l <= size && cmp.compare(elements[l], elements[m]) < 0) {
+            if (l <= size && less(l, m)) {
                 m = l;
             }
             int r = right(i);
-            if (r <= size && cmp.compare(elements[r], elements[m]) < 0) {
+            if (r <= size && less(r, m)) {
                 m = r;
             }
             if (m == i) {
@@ -99,7 +106,7 @@ public class HeapImpl implements Heap<Integer> {
         int i = index;
         while (i > 0) {
             int p = parent(i);
-            if (p > 0 && cmp.compare(elements[i], elements[p]) < 0) {
+            if (p > 0 && less(i, p)) {
                 swap(i, p);
                 i = p;
             } else {
@@ -138,6 +145,23 @@ public class HeapImpl implements Heap<Integer> {
         return 2 * i + 1;
     }
 
+    /**
+     * elements[i] 是否小于 elements[j]
+     *
+     * @param i 索引 i
+     * @param j 索引 j
+     * @return true/false
+     */
+    private boolean less(int i, int j) {
+        return cmp.compare(elements[i], elements[j]) < 0;
+    }
+
+    /**
+     * 交换2个元素的位置
+     *
+     * @param i 索引 i
+     * @param j 索引 j
+     */
     private void swap(int i, int j) {
         if (i == j) {
             return;
@@ -145,28 +169,6 @@ public class HeapImpl implements Heap<Integer> {
         int t = elements[i];
         elements[i] = elements[j];
         elements[j] = t;
-    }
-
-    /**
-     * 确保空间足够
-     *
-     * @param capacity 所需大小
-     */
-    private void ensureCapacity(int capacity) {
-        if (capacity + 1 >= elements.length) {
-            resize();
-        }
-    }
-
-    /**
-     * 空间扩容
-     */
-    private void resize() {
-        int capacity = elements.length;
-        int newCapacity = capacity << 1;
-        Integer[] newElements = new Integer[newCapacity];
-        System.arraycopy(elements, 1, newElements, 1, capacity - 1);
-        elements = newElements;
     }
 
     @Override
