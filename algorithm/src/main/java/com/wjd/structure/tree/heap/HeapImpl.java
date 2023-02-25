@@ -24,9 +24,13 @@ public class HeapImpl<T extends Comparable<T>> implements Heap<T> {
     private final Comparator<T> cmp;
 
     public HeapImpl(int capacity) {
+        this(capacity, Comparator.reverseOrder());
+    }
+
+    public HeapImpl(int capacity, Comparator<T> cmp) {
         //noinspection unchecked
         elements = (T[]) new Comparable[capacity + 1];
-        cmp = Comparator.reverseOrder();
+        this.cmp = cmp;
         size = 0;
     }
 
