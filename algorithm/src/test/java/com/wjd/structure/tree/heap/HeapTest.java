@@ -9,14 +9,14 @@ class HeapTest {
     @Test
     void testBuild() {
         Integer[] values = new Integer[]{1, 2, 3, 4, 5, 6, 7};
-        Heap<Integer> heap = new HeapImpl(values);
+        Heap<Integer> heap = new HeapImpl<>(values);
         assertEquals("[null, 7, 5, 6, 4, 2, 1, 3]", heap.toString());
     }
 
     @Test
     void testRemoveFirst() {
         Integer[] values = new Integer[]{1, 2, 3, 4, 5, 6, 7};
-        Heap<Integer> heap = new HeapImpl(values);
+        Heap<Integer> heap = new HeapImpl<>(values);
         assertEquals("[null, 7, 5, 6, 4, 2, 1, 3]", heap.toString());
 
         assertEquals(7, heap.removeFirst());
@@ -35,7 +35,7 @@ class HeapTest {
 
     @Test
     void testInsert() {
-        Heap<Integer> heap = new HeapImpl(20);
+        Heap<Integer> heap = new HeapImpl<>(20);
         Integer[] values = new Integer[]{7, 5, 6, 4, 2, 1, 3};
         for (int val : values) {
             heap.insert(val);

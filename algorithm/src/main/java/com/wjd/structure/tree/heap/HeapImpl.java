@@ -8,12 +8,12 @@ import java.util.Comparator;
  * @author weijiaduo
  * @since 2023/2/24
  */
-public class HeapImpl implements Heap<Integer> {
+public class HeapImpl<T extends Comparable<T>> implements Heap<T> {
 
     /**
      * 堆，从 1 开始
      */
-    private final Integer[] elements;
+    private final T[] elements;
     /**
      * 堆大小
      */
@@ -21,22 +21,24 @@ public class HeapImpl implements Heap<Integer> {
     /**
      * 值比较器
      */
-    private final Comparator<Integer> cmp;
+    private final Comparator<T> cmp;
 
     public HeapImpl(int capacity) {
-        elements = new Integer[capacity + 1];
-        cmp = (a, b) -> b - a;
+        //noinspection unchecked
+        elements = (T[]) new Comparable[capacity + 1];
+        cmp = Comparator.reverseOrder();
         size = 0;
     }
 
-    public HeapImpl(Integer[] elements) {
-        this(elements, (a, b) -> b - a);
+    public HeapImpl(T[] elements) {
+        this(elements, Comparator.reverseOrder());
     }
 
-    public HeapImpl(Integer[] elements, Comparator<Integer> cmp) {
+    public HeapImpl(T[] elements, Comparator<T> cmp) {
         this.cmp = cmp;
         size = elements.length;
-        this.elements = new Integer[size + 1];
+        //noinspection unchecked
+        this.elements = (T[]) new Comparable[size + 1];
         System.arraycopy(elements, 0, this.elements, 1, size);
         build();
     }
@@ -51,19 +53,19 @@ public class HeapImpl implements Heap<Integer> {
     }
 
     @Override
-    public Integer removeFirst() {
+    public T removeFirst() {
         if (size <= 0) {
             throw new IllegalStateException("Heap isEmpty!");
         }
 
-        Integer val = elements[1];
+        T val = elements[1];
         swap(1, size--);
         siftDown(1);
         return val;
     }
 
     @Override
-    public void insert(Integer val) {
+    public void insert(T val) {
         if (size + 1 >= elements.length) {
             throw new IllegalStateException("Heap isFull!");
         }
@@ -82,11 +84,11 @@ public class HeapImpl implements Heap<Integer> {
         while (i < size) {
             int m = i;
             int l = left(i);
-            if (l <= size && less(l, m)) {
+            if (l <= size && prior(l, m)) {
                 m = l;
             }
             int r = right(i);
-            if (r <= size && less(r, m)) {
+            if (r <= size && prior(r, m)) {
                 m = r;
             }
             if (m == i) {
@@ -106,7 +108,7 @@ public class HeapImpl implements Heap<Integer> {
         int i = index;
         while (i > 0) {
             int p = parent(i);
-            if (p > 0 && less(i, p)) {
+            if (p > 0 && prior(i, p)) {
                 swap(i, p);
                 i = p;
             } else {
@@ -152,7 +154,7 @@ public class HeapImpl implements Heap<Integer> {
      * @param j 索引 j
      * @return true/false
      */
-    private boolean less(int i, int j) {
+    private boolean prior(int i, int j) {
         return cmp.compare(elements[i], elements[j]) < 0;
     }
 
@@ -166,7 +168,7 @@ public class HeapImpl implements Heap<Integer> {
         if (i == j) {
             return;
         }
-        int t = elements[i];
+        T t = elements[i];
         elements[i] = elements[j];
         elements[j] = t;
     }
