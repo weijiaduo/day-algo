@@ -43,6 +43,11 @@ public class SortTest {
         testSort(new MergeSort());
     }
 
+    @Test
+    void testHeap() {
+        testSort(new HeapSort());
+    }
+
     private void testSort(Sort sort) {
         long start = System.nanoTime();
         Random random = new Random(14);
