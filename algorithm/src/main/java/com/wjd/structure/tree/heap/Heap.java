@@ -9,6 +9,13 @@ package com.wjd.structure.tree.heap;
 public interface Heap<T> {
 
     /**
+     * 插入新值
+     *
+     * @param val 新值
+     */
+    void insert(T val);
+
+    /**
      * 移除第一个节点
      *
      * @return 第一个节点值
@@ -16,10 +23,13 @@ public interface Heap<T> {
     T removeFirst();
 
     /**
-     * 插入新值
-     *
-     * @param val 新值
+     * @return 第一个元素
      */
-    void insert(T val);
+    T first();
+
+    /**
+     * @return 元素数量
+     */
+    int size();
 
 }

@@ -53,6 +53,16 @@ public class HeapImpl<T extends Comparable<T>> implements Heap<T> {
     }
 
     @Override
+    public void insert(T val) {
+        if (size + 1 >= elements.length) {
+            throw new IllegalStateException("Heap isFull!");
+        }
+
+        elements[++size] = val;
+        siftUp(size);
+    }
+
+    @Override
     public T removeFirst() {
         if (size <= 0) {
             throw new IllegalStateException("Heap isEmpty!");
@@ -65,13 +75,16 @@ public class HeapImpl<T extends Comparable<T>> implements Heap<T> {
     }
 
     @Override
-    public void insert(T val) {
-        if (size + 1 >= elements.length) {
-            throw new IllegalStateException("Heap isFull!");
+    public T first() {
+        if (size <= 0) {
+            throw new IllegalStateException("Heap isEmpty!");
         }
+        return elements[1];
+    }
 
-        elements[++size] = val;
-        siftUp(size);
+    @Override
+    public int size() {
+        return size;
     }
 
     /**
