@@ -1,4 +1,4 @@
-package com.wjd.practice.other.list;
+package com.wjd.practice.list;
 
 import com.wjd.practice.Solution;
 import com.wjd.practice.leetcode.structure.Node;

@@ -1,4 +1,4 @@
-package com.wjd.practice.other.stack;
+package com.wjd.practice.stack;
 
 import java.util.ArrayDeque;
 import java.util.Deque;

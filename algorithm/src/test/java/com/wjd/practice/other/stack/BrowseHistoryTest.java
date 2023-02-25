@@ -1,5 +1,6 @@
 package com.wjd.practice.other.stack;
 
+import com.wjd.practice.stack.BrowseHistory;
 import org.junit.jupiter.api.Test;
 
 import static org.junit.jupiter.api.Assertions.*;

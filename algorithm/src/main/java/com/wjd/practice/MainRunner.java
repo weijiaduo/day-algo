@@ -1,6 +1,6 @@
 package com.wjd.practice;
 
-import com.wjd.practice.other.stack.ComputeExpression;
+import com.wjd.practice.stack.ComputeExpression;
 
 import java.lang.reflect.Constructor;
 import java.lang.reflect.Method;

@@ -1,4 +1,4 @@
-package com.wjd.practice.other.stack;
+package com.wjd.practice.stack;
 
 import com.wjd.practice.Solution;
 
