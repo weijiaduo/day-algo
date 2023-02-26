@@ -1,4 +1,6 @@
-# 一日复一日，明日何其多
+# jode-day
+
+一日复一日，明日何其多。
 
 > https://weijiaduo.github.io/
 
@@ -28,6 +30,10 @@
 
 - [堆](./algorithm/src/main/java/com/wjd/structure/tree/heap/HeapImpl.java)
 - [索引堆](./algorithm/src/main/java/com/wjd/structure/tree/heap/IndexHeapImpl.java)
+- [左倾堆]
+- [斜堆]
+- [二项堆]
+- [斐波那契堆]
 
 ### 二叉搜索树
 
@@ -62,7 +68,9 @@
 
 ## 1.2 算法
 
-### 排序
+### 数组
+
+#### 排序
 
 - [冒泡排序](./algorithm/src/main/java/com/wjd/algorithm/sort/BubbleSort.java)
 - [选择排序](./algorithm/src/main/java/com/wjd/algorithm/sort/SelectSort.java)
@@ -75,14 +83,16 @@
 - [计数排序](./algorithm/src/main/java/com/wjd/algorithm/sort/CountSort.java)
 - [基数排序](./algorithm/src/main/java/com/wjd/algorithm/sort/RadixSort.java)
 
-### 二分查找
+#### 二分法
 
 - [第一个等于](./algorithm/src/main/java/com/wjd/algorithm/binary/FirstEqualSearch.java)
 - [第一个大于等于](./algorithm/src/main/java/com/wjd/algorithm/binary/FirstNotLessThanSearch.java)
 - [最后一个等于](./algorithm/src/main/java/com/wjd/algorithm/binary/LastEqualSearch.java)
 - [最后一个小于等于](./algorithm/src/main/java/com/wjd/algorithm/binary/LastNotGreatThanSearch.java)
 
-### 二叉树构建
+### 树
+
+#### 二叉树构建
 
 - [层序构建](./algorithm/src/main/java/com/wjd/algorithm/tree/binary/build/LevelTreeBuilder.java)
 - [中序+后序构建](./algorithm/src/main/java/com/wjd/algorithm/tree/binary/build/InAndPostTreeBuilder.java)
@@ -91,10 +101,39 @@
 - [中序线索树构建](./algorithm/src/main/java/com/wjd/algorithm/tree/thread/build/InorderThreadBuilder.java)
 - [后序线索树构建](./algorithm/src/main/java/com/wjd/algorithm/tree/thread/build/PostorderThreadBuilder.java)
 
-### 二叉树遍历
+#### 二叉树遍历
 
 - [构建层序遍历](./algorithm/src/main/java/com/wjd/algorithm/tree/binary/traverse/BuildLevelTraverse.java)
 - [简单层序遍历](./algorithm/src/main/java/com/wjd/algorithm/tree/binary/traverse/SimpleLevelTraverse.java)
 - [前序遍历](./algorithm/src/main/java/com/wjd/algorithm/tree/binary/traverse/PreorderTraverse.java)
 - [中序遍历](./algorithm/src/main/java/com/wjd/algorithm/tree/binary/traverse/InorderTraverse.java)
 - [后序遍历](./algorithm/src/main/java/com/wjd/algorithm/tree/binary/traverse/PostorderTraverse.java)
+- [Z 形遍历]
+
+### 图
+
+#### 图的遍历
+
+- [广度优先搜索（BFS）]
+- [深度优先搜索（DFS）]
+- [拓扑排序]
+
+#### 最小生成树（MST）
+
+- [Prim 算法]
+- [Kruskal 算法]
+
+#### 最短路径
+
+- [Dijkstra 算法]
+- [Floyd 算法]
+
+### 字符串
+
+#### 字符串匹配
+
+- [BF 算法]
+- [RK 算法]
+- [BM 算法]
+- [KMP 算法]
+- [AC 自动机]
