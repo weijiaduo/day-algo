@@ -97,9 +97,9 @@
 - [层序构建](./algorithm/src/main/java/com/wjd/algorithm/tree/binary/build/LevelTreeBuilder.java)
 - [中序+后序构建](./algorithm/src/main/java/com/wjd/algorithm/tree/binary/build/InAndPostTreeBuilder.java)
 - [中序+前序构建](./algorithm/src/main/java/com/wjd/algorithm/tree/binary/build/PreAndInTreeBuilder.java)
-- [前序线索树构建](./algorithm/src/main/java/com/wjd/algorithm/tree/thread/build/PreorderThreadBuilder.java)
-- [中序线索树构建](./algorithm/src/main/java/com/wjd/algorithm/tree/thread/build/InorderThreadBuilder.java)
-- [后序线索树构建](./algorithm/src/main/java/com/wjd/algorithm/tree/thread/build/PostorderThreadBuilder.java)
+- [前序线索二叉树构建](./algorithm/src/main/java/com/wjd/algorithm/tree/thread/build/PreorderThreadBuilder.java)
+- [中序线索二叉树构建](./algorithm/src/main/java/com/wjd/algorithm/tree/thread/build/InorderThreadBuilder.java)
+- [后序线索二叉树构建](./algorithm/src/main/java/com/wjd/algorithm/tree/thread/build/PostorderThreadBuilder.java)
 
 #### 二叉树遍历
 
@@ -109,6 +109,12 @@
 - [中序遍历](./algorithm/src/main/java/com/wjd/algorithm/tree/binary/traverse/InorderTraverse.java)
 - [后序遍历](./algorithm/src/main/java/com/wjd/algorithm/tree/binary/traverse/PostorderTraverse.java)
 - [Z 形遍历](./algorithm/src/main/java/com/wjd/algorithm/tree/binary/traverse/PostorderTraverse.java)
+- [Morris-前序遍历]
+- [Morris-中序遍历]
+- [Morris-后序遍历]
+- [线索二叉树-前序遍历](./algorithm/src/main/java/com/wjd/algorithm/tree/thread/traverse/PreorderThreadTraverse.java)
+- [线索二叉树-中序遍历](./algorithm/src/main/java/com/wjd/algorithm/tree/thread/traverse/InorderThreadTraverse.java)
+- [线索二叉树-后序遍历](./algorithm/src/main/java/com/wjd/algorithm/tree/thread/traverse/PostorderThreadTraverse.java)
 
 ### 图
 
