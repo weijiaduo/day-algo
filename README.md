@@ -156,7 +156,7 @@
     - [基于 BFS 的路径](./algorithm/src/main/java/com/wjd/algorithm/graph/undirected/path/impl/BreadthFirstPaths.java)
   - [连通分量](./algorithm/src/main/java/com/wjd/algorithm/graph/undirected/connected/impl/ConnectedComponentImpl.java)
   - [环检测](./algorithm/src/main/java/com/wjd/algorithm/graph/undirected/cycle/impl/CycleImpl.java)
-  - [二分性]
+  - [二分图](./algorithm/src/main/java/com/wjd/algorithm/graph/undirected/bipartite/impl/BipartiteImpl.java)
 - 有向图
   - [可达性（路径）]
   - [强连通分量]
