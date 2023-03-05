@@ -16,15 +16,6 @@ import java.util.Queue;
 public class BreadthFirstSearch implements Search {
 
     /**
-     * 搜索的无向图
-     */
-    private final Graph g;
-
-    /**
-     * 搜索起始顶点
-     */
-    private final int s;
-    /**
      * 标记数组
      */
     private final boolean[] marked;
@@ -34,33 +25,31 @@ public class BreadthFirstSearch implements Search {
     private int count;
 
     public BreadthFirstSearch(Graph g, int s) {
-        this.g = g;
-        this.s = s;
         marked = new boolean[g.vs()];
         Arrays.fill(marked, false);
-        bfs(s);
+        bfs(g, s);
     }
 
     /**
      * 广度搜索
      *
+     * @param g 无向图
      * @param v 当前顶点
      */
-    private void bfs(int v) {
+    private void bfs(Graph g, int v) {
         Queue<Integer> queue = new LinkedList<>();
         queue.offer(v);
+        marked[v] = true;
+        count = 1;
         while (!queue.isEmpty()) {
             int w = queue.poll();
-            if (marked[w]) {
-                continue;
-            }
-            
-            marked[w] = true;
-            count++;
-            for (int i : g.adj(w)) {
-                if (!marked[i]) {
-                    queue.offer(i);
+            for (int x : g.adj(w)) {
+                if (marked[x]) {
+                    continue;
                 }
+                queue.offer(x);
+                marked[x] = true;
+                count++;
             }
         }
     }

@@ -14,15 +14,6 @@ import java.util.Arrays;
 public class DepthFirstSearch implements Search {
 
     /**
-     * 搜索的无向图
-     */
-    private final Graph g;
-
-    /**
-     * 搜索起始顶点
-     */
-    private final int s;
-    /**
      * 标记数组
      */
     private final boolean[] marked;
@@ -32,27 +23,24 @@ public class DepthFirstSearch implements Search {
     private int count;
 
     public DepthFirstSearch(Graph g, int s) {
-        this.g = g;
-        this.s = s;
         marked = new boolean[g.vs()];
         Arrays.fill(marked, false);
-        dfs(s);
+        dfs(g, s);
     }
 
     /**
      * 深度搜索
      *
+     * @param g 无向图
      * @param v 当前顶点
      */
-    private void dfs(int v) {
-        if (marked[v]) {
-            return;
-        }
-
+    private void dfs(Graph g, int v) {
         marked[v] = true;
         count++;
         for (int w : g.adj(v)) {
-            dfs(w);
+            if (!marked[w]) {
+                dfs(g, w);
+            }
         }
     }
 
