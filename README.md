@@ -151,12 +151,14 @@
 ### 可达性和连通性
 
 - 无向图
-  - [可达性]
+  - 可达性（路径）
+    - [基于 DFS 的路径](./algorithm/src/main/java/com/wjd/algorithm/graph/undirected/path/impl/DepthFirstPaths.java)
+    - [基于 BFS 的路径](./algorithm/src/main/java/com/wjd/algorithm/graph/undirected/path/impl/BreadthFirstPaths.java)
   - [环检测]
   - [连通性]
   - [二分性]
 - 有向图
-  - [可达性]
+  - [可达性（路径）]
   - [环检测]
   - [强连通性]
   - [顶点对的可达性]
