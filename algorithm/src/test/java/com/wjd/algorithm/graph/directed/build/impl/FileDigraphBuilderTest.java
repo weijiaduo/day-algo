@@ -14,11 +14,11 @@ class FileDigraphBuilderTest {
 
     @Test
     void build() {
-        DigraphBuilder builder = new FileDigraphBuilder("tinyG.txt");
+        DigraphBuilder builder = new FileDigraphBuilder("tinyDG.txt");
         Digraph dg = builder.build();
 
         assertEquals(13, dg.vs());
-        assertEquals(13, dg.es());
+        assertEquals(22, dg.es());
 
         Iterable<Integer> it = dg.adj(0);
         List<Integer> actual = new ArrayList<>();
@@ -26,7 +26,7 @@ class FileDigraphBuilderTest {
             actual.add(i);
         }
         Collections.sort(actual);
-        assertEquals("[1, 2, 5, 6]", actual.toString());
+        assertEquals("[1, 5]", actual.toString());
 
         it = dg.adj(4);
         actual = new ArrayList<>();
@@ -34,7 +34,7 @@ class FileDigraphBuilderTest {
             actual.add(i);
         }
         Collections.sort(actual);
-        assertEquals("[3]", actual.toString());
+        assertEquals("[2, 3]", actual.toString());
 
         it = dg.adj(9);
         actual = new ArrayList<>();
@@ -42,7 +42,7 @@ class FileDigraphBuilderTest {
             actual.add(i);
         }
         Collections.sort(actual);
-        assertEquals("[10, 11, 12]", actual.toString());
+        assertEquals("[10, 11]", actual.toString());
 
         it = dg.adj(7);
         actual = new ArrayList<>();
@@ -50,6 +50,6 @@ class FileDigraphBuilderTest {
             actual.add(i);
         }
         Collections.sort(actual);
-        assertEquals("[8]", actual.toString());
+        assertEquals("[6, 9]", actual.toString());
     }
 }
