@@ -144,8 +144,8 @@
   - [广度优先搜索（BFS）](./algorithm/src/main/java/com/wjd/algorithm/graph/undirected/search/impl/BreadthFirstSearch.java)
   - [深度优先搜索（DFS）](./algorithm/src/main/java/com/wjd/algorithm/graph/undirected/search/impl/DepthFirstSearch.java)
 - 有向图
-  - [广度优先搜索（BFS）]
-  - [深度优先搜索（DFS）]
+  - [广度优先搜索（BFS）](./algorithm/src/main/java/com/wjd/algorithm/graph/directed/search/impl/DirectedBFS.java)
+  - [深度优先搜索（DFS）](./algorithm/src/main/java/com/wjd/algorithm/graph/directed/search/impl/DirectedDFS.java)
   - [拓扑排序]
 
 ### 可达性和连通性
