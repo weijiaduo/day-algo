@@ -42,12 +42,17 @@ public class MatrixGraph implements Graph {
 
     @Override
     public void addEdge(int v, int w) {
-        if (adj[v][w]) {
+        if (hasEdge(v, w)) {
             return;
         }
         adj[v][w] = true;
         adj[w][v] = true;
         es++;
+    }
+
+    @Override
+    public boolean hasEdge(int v, int w) {
+        return adj[v][w];
     }
 
     @Override

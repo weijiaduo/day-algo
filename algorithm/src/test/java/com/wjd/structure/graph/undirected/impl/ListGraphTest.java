@@ -34,6 +34,20 @@ class ListGraphTest {
     }
 
     @Test
+    void hasEdge() {
+        Graph g = new ListGraph(20);
+        g.addEdge(19, 2);
+        g.addEdge(1, 3);
+        g.addEdge(4, 8);
+        g.addEdge(1, 12);
+
+        assertTrue(g.hasEdge(19, 2));
+        assertTrue(g.hasEdge(1, 3));
+        assertTrue(g.hasEdge(4, 8));
+        assertTrue(g.hasEdge(1, 12));
+    }
+
+    @Test
     void adj() {
         Graph g = new ListGraph(20);
         g.addEdge(19, 2);

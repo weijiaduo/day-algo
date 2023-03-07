@@ -45,9 +45,22 @@ public class ListGraph implements Graph {
 
     @Override
     public void addEdge(int v, int w) {
+        if (hasEdge(v, w)) {
+            return;
+        }
         adj[v].add(w);
         adj[w].add(v);
         es++;
+    }
+
+    @Override
+    public boolean hasEdge(int v, int w) {
+        for (int x : adj[v]) {
+            if (x == w) {
+                return true;
+            }
+        }
+        return false;
     }
 
     @Override

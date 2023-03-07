@@ -27,6 +27,15 @@ public interface Graph {
     void addEdge(int v, int w);
 
     /**
+     * 是否存在边
+     *
+     * @param v <v, w>
+     * @param w <v, w>
+     * @return true存在边/false不存在边
+     */
+    boolean hasEdge(int v, int w);
+
+    /**
      * 指定顶点的相邻边
      *
      * @param v 指定顶点编号
