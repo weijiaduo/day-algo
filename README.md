@@ -75,8 +75,8 @@
   - [邻接多重表]
   - [无向符号图]
 - 有向图
-  - [邻接矩阵]
-  - [邻接表]
+  - [邻接矩阵](./algorithm/src/main/java/com/wjd/structure/graph/directed/impl/MatrixDigraph.java)
+  - [邻接表](./algorithm/src/main/java/com/wjd/structure/graph/directed/impl/ListDigraph.java)
   - [十字链表]
   - [有向符号图]
 
