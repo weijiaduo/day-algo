@@ -12,9 +12,9 @@ import java.util.List;
  * @author weijiaduo
  * @since 2023/3/7
  */
-public class GeneralFunctionHandler extends BaseRuleHandler<ExprParser.GeneralFuncContext> {
+public class GeneralFuncHandler extends BaseRuleHandler<ExprParser.GeneralFuncContext> {
 
-    public GeneralFunctionHandler(ExprVisitor visitor) {
+    public GeneralFuncHandler(ExprVisitor visitor) {
         super(visitor);
     }
 

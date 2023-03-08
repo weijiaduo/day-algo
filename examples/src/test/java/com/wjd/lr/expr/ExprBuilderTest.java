@@ -1,8 +1,8 @@
 package com.wjd.lr.expr;
 
 import com.wjd.lr.expr.handler.ColumnRefHandler;
-import com.wjd.lr.expr.handler.GeneralFunctionHandler;
-import com.wjd.lr.expr.handler.NativeFunctionHandler;
+import com.wjd.lr.expr.handler.GeneralFuncHandler;
+import com.wjd.lr.expr.handler.NativeFuncHandler;
 import com.wjd.lr.expr.handler.TemplateHandler;
 import com.wjd.lr.expr.template.TemplateContext;
 import com.wjd.lr.expr.template.variable.VariableContext;
@@ -162,8 +162,8 @@ class ExprBuilderTest {
         variableContext.registerByPath("Param.unitPrice", 10.2);
 
         visitor.registerHandler("template", new TemplateHandler(visitor, templateContext));
-        visitor.registerHandler("general_func", new GeneralFunctionHandler(visitor));
-        visitor.registerHandler("native_func", new NativeFunctionHandler(visitor));
+        visitor.registerHandler("general_func", new GeneralFuncHandler(visitor));
+        visitor.registerHandler("native_func", new NativeFuncHandler(visitor));
         visitor.registerHandler("column_ref", new ColumnRefHandler(visitor));
         return visitor;
     }

@@ -12,9 +12,9 @@ import java.util.List;
  * @author weijiaduo
  * @since 2023/3/7
  */
-public class NativeFunctionHandler extends BaseRuleHandler<ExprParser.NativeFuncContext> {
+public class NativeFuncHandler extends BaseRuleHandler<ExprParser.NativeFuncContext> {
 
-    public NativeFunctionHandler(ExprVisitor visitor) {
+    public NativeFuncHandler(ExprVisitor visitor) {
         super(visitor);
     }
 
