@@ -2,10 +2,6 @@ package com.wjd.lr.expr;
 
 import com.wjd.lr.expr.antlr.ExprLexer;
 import com.wjd.lr.expr.antlr.ExprParser;
-import com.wjd.lr.expr.handler.ColumnRefHandler;
-import com.wjd.lr.expr.handler.GeneralFuncHandler;
-import com.wjd.lr.expr.handler.NativeFuncHandler;
-import com.wjd.lr.expr.handler.TemplateHandler;
 import org.antlr.v4.runtime.CharStream;
 import org.antlr.v4.runtime.CharStreams;
 import org.antlr.v4.runtime.CommonTokenStream;
@@ -51,19 +47,7 @@ public class ExprBuilder {
         if (visitor != null) {
             return visitor;
         }
-        visitor = getDefaultVisitor();
-        return visitor;
-    }
-
-    /**
-     * 默认访问者
-     */
-    private ExprVisitor getDefaultVisitor() {
-        ExprVisitor visitor = new ExprVisitor();
-        visitor.registerHandler("template", new TemplateHandler(visitor));
-        visitor.registerHandler("general_func", new GeneralFuncHandler(visitor));
-        visitor.registerHandler("native_func", new NativeFuncHandler(visitor));
-        visitor.registerHandler("column_ref", new ColumnRefHandler(visitor));
+        visitor = ExprVisitor.getDefaultVisitor();
         return visitor;
     }
 

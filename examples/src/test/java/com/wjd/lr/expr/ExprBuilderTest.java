@@ -151,7 +151,7 @@ class ExprBuilderTest {
     }
 
     private ExprVisitor mockExprVisitor() {
-        ExprVisitor visitor = new ExprVisitor();
+        ExprVisitor visitor = ExprVisitor.getDefaultVisitor();
 
         // 模拟上下文环境的变量值
         TemplateContext templateContext = new TemplateContext();
@@ -160,11 +160,8 @@ class ExprBuilderTest {
         variableContext.register("userName", "admin");
         variableContext.registerByPath("Param.freight", 2.1);
         variableContext.registerByPath("Param.unitPrice", 10.2);
-
         visitor.registerHandler("template", new TemplateHandler(visitor, templateContext));
-        visitor.registerHandler("general_func", new GeneralFuncHandler(visitor));
-        visitor.registerHandler("native_func", new NativeFuncHandler(visitor));
-        visitor.registerHandler("column_ref", new ColumnRefHandler(visitor));
+
         return visitor;
     }
 

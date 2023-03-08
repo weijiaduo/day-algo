@@ -2,6 +2,10 @@ package com.wjd.lr.expr;
 
 import com.wjd.lr.expr.antlr.ExprParser;
 import com.wjd.lr.expr.antlr.ExprParserBaseVisitor;
+import com.wjd.lr.expr.handler.ColumnRefHandler;
+import com.wjd.lr.expr.handler.GeneralFuncHandler;
+import com.wjd.lr.expr.handler.NativeFuncHandler;
+import com.wjd.lr.expr.handler.TemplateHandler;
 import org.antlr.v4.runtime.tree.TerminalNode;
 
 import java.util.HashMap;
@@ -19,6 +23,20 @@ public class ExprVisitor extends ExprParserBaseVisitor<String> {
      * 规则节点处理器
      */
     private final Map<String, RuleHandler<?, String>> ruleHandlers = new HashMap<>();
+
+    /**
+     * 获取默认的访问者
+     *
+     * @return 访问者
+     */
+    public static ExprVisitor getDefaultVisitor() {
+        ExprVisitor visitor = new ExprVisitor();
+        visitor.registerHandler("template", new TemplateHandler(visitor));
+        visitor.registerHandler("general_func", new GeneralFuncHandler(visitor));
+        visitor.registerHandler("native_func", new NativeFuncHandler(visitor));
+        visitor.registerHandler("column_ref", new ColumnRefHandler(visitor));
+        return visitor;
+    }
 
     /**
      * 注册处理器
