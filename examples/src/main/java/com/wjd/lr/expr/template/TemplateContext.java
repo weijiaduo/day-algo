@@ -20,7 +20,7 @@ public class TemplateContext {
     /**
      * 执行上下文
      */
-    protected Map<String, Object> executeContext;
+    private Map<String, Object> executeContext;
     /**
      * 解析上下文
      */

@@ -1,9 +1,9 @@
 package com.wjd.lr.expr;
 
-import com.wjd.lr.expr.handler.ColumnRefHandler;
-import com.wjd.lr.expr.handler.GeneralFuncHandler;
-import com.wjd.lr.expr.handler.NativeFuncHandler;
-import com.wjd.lr.expr.handler.TemplateHandler;
+import com.wjd.lr.expr.function.DefaultSQLFunctionBuilder;
+import com.wjd.lr.expr.function.FunctionBuilder;
+import com.wjd.lr.expr.template.DefaultTemplateBuilder;
+import com.wjd.lr.expr.template.TemplateBuilder;
 import com.wjd.lr.expr.template.TemplateContext;
 import com.wjd.lr.expr.template.variable.VariableContext;
 import org.junit.jupiter.api.Test;
@@ -56,24 +56,25 @@ class ExprBuilderTest {
     void testParamVar() {
         String exprText = "${Param.freight}";
         String expectExpr = "2.1";
-        ExprBuilder builder = new ExprBuilder(exprText).visitor(mockExprVisitor());
+        ExprBuilder builder = new ExprBuilder(exprText)
+                .templateBuilder(mockTemplateBuilder());
         String actualExpr = builder.build();
         assertEquals(expectExpr, actualExpr);
     }
 
     @Test
     void testEnvironmentVar() {
-        ExprVisitor visitor = mockExprVisitor();
-
         String exprText = "${userId}";
         String expectExpr = "test";
-        ExprBuilder builder = new ExprBuilder(exprText).visitor(visitor);
+        ExprBuilder builder = new ExprBuilder(exprText)
+                .templateBuilder(mockTemplateBuilder());
         String actualExpr = builder.build();
         assertEquals(expectExpr, actualExpr);
 
         exprText = "${userName}";
         expectExpr = "admin";
-        builder = new ExprBuilder(exprText).visitor(visitor);
+        builder = new ExprBuilder(exprText)
+                .templateBuilder(mockTemplateBuilder());
         actualExpr = builder.build();
         assertEquals(expectExpr, actualExpr);
     }
@@ -95,14 +96,16 @@ class ExprBuilderTest {
 
     @Test
     void testGeneralFunction() {
+        // 函数存在时
         String exprText = "ceil(-10.3)";
         String expectExpr = "ceil(-10.3)";
         ExprBuilder builder = new ExprBuilder(exprText);
         String actualExpr = builder.build();
         assertEquals(expectExpr, actualExpr);
 
+        // 函数不存在时
         exprText = "len(10.7)";
-        expectExpr = "length(10.7)";
+        expectExpr = "len(10.7)";
         builder = new ExprBuilder(exprText);
         actualExpr = builder.build();
         assertEquals(expectExpr, actualExpr);
@@ -127,7 +130,7 @@ class ExprBuilderTest {
     void testBetween() {
         String exprText = "[orders].[freight] between -10 and 100";
         String expectExpr = "orders.freight between -10 and 100";
-        ExprBuilder builder = new ExprBuilder(exprText).visitor(mockExprVisitor());
+        ExprBuilder builder = new ExprBuilder(exprText);
         String actualExpr = builder.build();
         assertEquals(expectExpr, actualExpr);
     }
@@ -136,7 +139,7 @@ class ExprBuilderTest {
     void testCaseWhen() {
         String exprText = "case when [orders].[freight] > -10 then 0 else 1 end";
         String expectExpr = "case when orders.freight > -10 then 0 else 1 end";
-        ExprBuilder builder = new ExprBuilder(exprText).visitor(mockExprVisitor());
+        ExprBuilder builder = new ExprBuilder(exprText);
         String actualExpr = builder.build();
         assertEquals(expectExpr, actualExpr);
     }
@@ -145,24 +148,29 @@ class ExprBuilderTest {
     void testMixed() {
         String exprText = "abs(${ceil(Param.freight) + 2 * 4}) + @div(-[orders].[freight], 10)";
         String expectExpr = "abs(11.0) + div(-orders.freight, 10)";
-        ExprBuilder builder = new ExprBuilder(exprText).visitor(mockExprVisitor());
+        ExprBuilder builder = new ExprBuilder(exprText)
+                .templateBuilder(mockTemplateBuilder())
+                .generalFuncBuilder(mockFunctionBuilder());
         String actualExpr = builder.build();
         assertEquals(expectExpr, actualExpr);
     }
 
-    private ExprVisitor mockExprVisitor() {
-        ExprVisitor visitor = ExprVisitor.getDefaultVisitor();
+    private FunctionBuilder mockFunctionBuilder() {
+        return new DefaultSQLFunctionBuilder();
+    }
 
-        // 模拟上下文环境的变量值
+    private TemplateBuilder mockTemplateBuilder() {
+        return new DefaultTemplateBuilder(mockTemplateContext());
+    }
+
+    private TemplateContext mockTemplateContext() {
         TemplateContext templateContext = new TemplateContext();
         VariableContext variableContext = templateContext.getVariableContext();
         variableContext.register("userId", "test");
         variableContext.register("userName", "admin");
         variableContext.registerByPath("Param.freight", 2.1);
         variableContext.registerByPath("Param.unitPrice", 10.2);
-        visitor.registerHandler("template", new TemplateHandler(visitor, templateContext));
-
-        return visitor;
+        return templateContext;
     }
 
 }

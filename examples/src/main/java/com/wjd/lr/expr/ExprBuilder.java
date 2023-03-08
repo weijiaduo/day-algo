@@ -2,6 +2,14 @@ package com.wjd.lr.expr;
 
 import com.wjd.lr.expr.antlr.ExprLexer;
 import com.wjd.lr.expr.antlr.ExprParser;
+import com.wjd.lr.expr.function.DefaultSQLFunctionBuilder;
+import com.wjd.lr.expr.function.FunctionBuilder;
+import com.wjd.lr.expr.handler.ColumnRefHandler;
+import com.wjd.lr.expr.handler.GeneralFuncHandler;
+import com.wjd.lr.expr.handler.NativeFuncHandler;
+import com.wjd.lr.expr.handler.TemplateHandler;
+import com.wjd.lr.expr.template.DefaultTemplateBuilder;
+import com.wjd.lr.expr.template.TemplateBuilder;
 import org.antlr.v4.runtime.CharStream;
 import org.antlr.v4.runtime.CharStreams;
 import org.antlr.v4.runtime.CommonTokenStream;
@@ -20,9 +28,13 @@ public class ExprBuilder {
      */
     private final String exprText;
     /**
-     * 表达式语法树访问者
+     * 模板构造器
      */
-    private ExprVisitor visitor;
+    private TemplateBuilder templateBuilder;
+    /**
+     * 通用函数构造器
+     */
+    private FunctionBuilder generalFuncBuilder;
 
     public ExprBuilder(String exprText) {
         this.exprText = exprText;
@@ -40,25 +52,37 @@ public class ExprBuilder {
         ExprParser parser = new ExprParser(tokens);
         ParseTree parseTree = parser.parse();
         // System.out.println(parseTree.toStringTree(parser));
-        return getVisitor().visit(parseTree);
-    }
-
-    private ExprVisitor getVisitor() {
-        if (visitor != null) {
-            return visitor;
-        }
-        visitor = ExprVisitor.getDefaultVisitor();
-        return visitor;
+        return buildVisitor().visit(parseTree);
     }
 
     /**
-     * 自定义访问者
+     * 构建访问者
      *
-     * @param visitor 表达式访问者
-     * @return this
+     * @return 访问者
      */
-    public ExprBuilder visitor(ExprVisitor visitor) {
-        this.visitor = visitor;
+    private ExprVisitor buildVisitor() {
+        if (templateBuilder == null) {
+            templateBuilder = new DefaultTemplateBuilder();
+        }
+        if (generalFuncBuilder == null) {
+            generalFuncBuilder = new DefaultSQLFunctionBuilder();
+        }
+
+        ExprVisitor visitor = new ExprVisitor();
+        visitor.setTemplateHandler(new TemplateHandler(visitor, templateBuilder));
+        visitor.setGeneralFuncHandler(new GeneralFuncHandler(visitor, generalFuncBuilder));
+        visitor.setNativeFuncHandler(new NativeFuncHandler(visitor));
+        visitor.setColumnRefHandler(new ColumnRefHandler(visitor));
+        return visitor;
+    }
+
+    public ExprBuilder templateBuilder(TemplateBuilder templateBuilder) {
+        this.templateBuilder = templateBuilder;
+        return this;
+    }
+
+    public ExprBuilder generalFuncBuilder(FunctionBuilder generalFuncBuilder) {
+        this.generalFuncBuilder = generalFuncBuilder;
         return this;
     }
 

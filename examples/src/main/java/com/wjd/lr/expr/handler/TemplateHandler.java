@@ -2,11 +2,9 @@ package com.wjd.lr.expr.handler;
 
 import com.wjd.lr.expr.ExprVisitor;
 import com.wjd.lr.expr.antlr.ExprParser;
-import com.wjd.lr.expr.template.TemplateContext;
-import org.mvel2.MVEL;
-import org.mvel2.compiler.CompiledExpression;
-import org.mvel2.compiler.ExpressionCompiler;
-import org.mvel2.integration.impl.StaticMethodImportResolverFactory;
+import com.wjd.lr.expr.model.Template;
+import com.wjd.lr.expr.template.DefaultTemplateBuilder;
+import com.wjd.lr.expr.template.TemplateBuilder;
 
 /**
  * 模板规则处理器
@@ -17,30 +15,24 @@ import org.mvel2.integration.impl.StaticMethodImportResolverFactory;
 public class TemplateHandler extends BaseRuleHandler<ExprParser.TemplateContext> {
 
     /**
-     * 模板上下文
+     * 模板构建器
      */
-    private TemplateContext templateContext;
+    private final TemplateBuilder templateBuilder;
 
     public TemplateHandler(ExprVisitor visitor) {
-        this(visitor, new TemplateContext());
+        this(visitor, new DefaultTemplateBuilder());
     }
 
-    public TemplateHandler(ExprVisitor visitor, TemplateContext templateContext) {
+    public TemplateHandler(ExprVisitor visitor, TemplateBuilder templateBuilder) {
         super(visitor);
-        this.templateContext = templateContext;
+        this.templateBuilder = templateBuilder;
     }
 
     @Override
     public String handle(ExprParser.TemplateContext tempCtx) {
-        // 解析脚本表达式
         String scriptText = parseScriptText(tempCtx);
-        ExpressionCompiler compiler = new ExpressionCompiler(scriptText, templateContext.getParseContext());
-        CompiledExpression compiledExpr = compiler.compile();
-
-        // 执行模板脚本
-        Object result = MVEL.executeExpression(compiledExpr, templateContext.getExecuteContext(),
-                new StaticMethodImportResolverFactory(templateContext.getParseContext()));
-        return String.valueOf(result);
+        Template template = new Template(scriptText);
+        return templateBuilder.build(template);
     }
 
     /**
@@ -59,19 +51,5 @@ public class TemplateHandler extends BaseRuleHandler<ExprParser.TemplateContext>
             expr = "";
         }
         return expr;
-    }
-
-    /**
-     * @param templateContext templateContext
-     */
-    public void setTemplateContext(TemplateContext templateContext) {
-        this.templateContext = templateContext;
-    }
-
-    /**
-     * @return TemplateContext
-     */
-    public TemplateContext getTemplateContext() {
-        return templateContext;
     }
 }
