@@ -24,11 +24,14 @@ public class GeneralFuncHandler extends BaseRuleHandler<ExprParser.GeneralFuncCo
     private final FunctionBuilder functionBuilder;
 
     public GeneralFuncHandler(ExprVisitor visitor) {
-        this(visitor, new DefaultSQLFunctionBuilder());
+        this(visitor, null);
     }
 
     public GeneralFuncHandler(ExprVisitor visitor, FunctionBuilder functionBuilder) {
         super(visitor);
+        if (functionBuilder == null) {
+            functionBuilder = new DefaultSQLFunctionBuilder();
+        }
         this.functionBuilder = functionBuilder;
     }
 

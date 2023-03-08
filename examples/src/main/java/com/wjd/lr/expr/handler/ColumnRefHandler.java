@@ -20,11 +20,14 @@ public class ColumnRefHandler extends BaseRuleHandler<ExprParser.ColumnRefContex
     private final ColumnRefBuilder columnRefBuilder;
 
     public ColumnRefHandler(ExprVisitor visitor) {
-        this(visitor, new DefaultColumnRefBuilder());
+        this(visitor, null);
     }
 
     public ColumnRefHandler(ExprVisitor visitor, ColumnRefBuilder columnRefBuilder) {
         super(visitor);
+        if (columnRefBuilder == null) {
+            columnRefBuilder = new DefaultColumnRefBuilder();
+        }
         this.columnRefBuilder = columnRefBuilder;
     }
 

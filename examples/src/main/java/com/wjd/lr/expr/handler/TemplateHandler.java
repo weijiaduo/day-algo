@@ -20,11 +20,14 @@ public class TemplateHandler extends BaseRuleHandler<ExprParser.TemplateContext>
     private final TemplateBuilder templateBuilder;
 
     public TemplateHandler(ExprVisitor visitor) {
-        this(visitor, new DefaultTemplateBuilder());
+        this(visitor, null);
     }
 
     public TemplateHandler(ExprVisitor visitor, TemplateBuilder templateBuilder) {
         super(visitor);
+        if (templateBuilder == null) {
+            templateBuilder = new DefaultTemplateBuilder();
+        }
         this.templateBuilder = templateBuilder;
     }
 
