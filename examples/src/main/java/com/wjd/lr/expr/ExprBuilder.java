@@ -8,6 +8,8 @@ import com.wjd.lr.expr.handler.ColumnRefHandler;
 import com.wjd.lr.expr.handler.GeneralFuncHandler;
 import com.wjd.lr.expr.handler.NativeFuncHandler;
 import com.wjd.lr.expr.handler.TemplateHandler;
+import com.wjd.lr.expr.ref.ColumnRefBuilder;
+import com.wjd.lr.expr.ref.DefaultColumnRefBuilder;
 import com.wjd.lr.expr.template.DefaultTemplateBuilder;
 import com.wjd.lr.expr.template.TemplateBuilder;
 import org.antlr.v4.runtime.CharStream;
@@ -27,6 +29,11 @@ public class ExprBuilder {
      * 表达式原始字符串
      */
     private final String exprText;
+
+    /**
+     * 列引用构造器
+     */
+    private ColumnRefBuilder columnRefBuilder;
     /**
      * 模板构造器
      */
@@ -46,6 +53,7 @@ public class ExprBuilder {
      * @return 可执行的表达式字符串
      */
     public String build() {
+        initBuilders();
         CharStream input = CharStreams.fromString(exprText);
         ExprLexer lexer = new ExprLexer(input);
         CommonTokenStream tokens = new CommonTokenStream(lexer);
@@ -56,24 +64,37 @@ public class ExprBuilder {
     }
 
     /**
-     * 构建访问者
-     *
-     * @return 访问者
+     * 初始化所有 builder
      */
-    private ExprVisitor buildVisitor() {
+    private void initBuilders() {
+        if (columnRefBuilder == null) {
+            columnRefBuilder = new DefaultColumnRefBuilder();
+        }
         if (templateBuilder == null) {
             templateBuilder = new DefaultTemplateBuilder();
         }
         if (generalFuncBuilder == null) {
             generalFuncBuilder = new DefaultSQLFunctionBuilder();
         }
+    }
 
+    /**
+     * 构建访问者
+     *
+     * @return 访问者
+     */
+    private ExprVisitor buildVisitor() {
         ExprVisitor visitor = new ExprVisitor();
+        visitor.setColumnRefHandler(new ColumnRefHandler(visitor, columnRefBuilder));
         visitor.setTemplateHandler(new TemplateHandler(visitor, templateBuilder));
         visitor.setGeneralFuncHandler(new GeneralFuncHandler(visitor, generalFuncBuilder));
         visitor.setNativeFuncHandler(new NativeFuncHandler(visitor));
-        visitor.setColumnRefHandler(new ColumnRefHandler(visitor));
         return visitor;
+    }
+
+    public ExprBuilder columnRefBuilder(ColumnRefBuilder columnRefBuilder) {
+        this.columnRefBuilder = columnRefBuilder;
+        return this;
     }
 
     public ExprBuilder templateBuilder(TemplateBuilder templateBuilder) {

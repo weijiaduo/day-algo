@@ -2,6 +2,9 @@ package com.wjd.lr.expr.handler;
 
 import com.wjd.lr.expr.ExprVisitor;
 import com.wjd.lr.expr.antlr.ExprParser;
+import com.wjd.lr.expr.model.ColumnRef;
+import com.wjd.lr.expr.ref.ColumnRefBuilder;
+import com.wjd.lr.expr.ref.DefaultColumnRefBuilder;
 
 /**
  * 列引用处理器
@@ -11,21 +14,33 @@ import com.wjd.lr.expr.antlr.ExprParser;
  */
 public class ColumnRefHandler extends BaseRuleHandler<ExprParser.ColumnRefContext> {
 
+    /**
+     * ColumnRefBuilder
+     */
+    private final ColumnRefBuilder columnRefBuilder;
+
     public ColumnRefHandler(ExprVisitor visitor) {
+        this(visitor, new DefaultColumnRefBuilder());
+    }
+
+    public ColumnRefHandler(ExprVisitor visitor, ColumnRefBuilder columnRefBuilder) {
         super(visitor);
+        this.columnRefBuilder = columnRefBuilder;
     }
 
     @Override
     public String handle(ExprParser.ColumnRefContext ctx) {
-        // TODO: get real column expr
-        String columnName = ctx.columnName().getText();
-        if (ctx.tableName() != null) {
-            columnName = ctx.tableName().getText() + "." + columnName;
-        }
+        String schemaName = null;
         if (ctx.schemaName() != null) {
-            columnName = ctx.schemaName().getText() + "." + columnName;
+            schemaName = ctx.schemaName().getText();
         }
-        return columnName;
+        String tableName = null;
+        if (ctx.tableName() != null) {
+            tableName = ctx.tableName().getText();
+        }
+        String columnName = ctx.columnName().getText();
+        ColumnRef columnRef = new ColumnRef(schemaName, tableName, columnName);
+        return columnRefBuilder.build(columnRef);
     }
 
 }
