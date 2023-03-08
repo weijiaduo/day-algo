@@ -19,17 +19,82 @@ public interface ExprParserVisitor<T> extends ParseTreeVisitor<T> {
 	 */
 	T visitParse(ExprParser.ParseContext ctx);
 	/**
-	 * Visit a parse tree produced by {@link ExprParser#expr}.
+	 * Visit a parse tree produced by the {@code compare}
+	 * labeled alternative in {@link ExprParser#expr}.
 	 * @param ctx the parse tree
 	 * @return the visitor result
 	 */
-	T visitExpr(ExprParser.ExprContext ctx);
+	T visitCompare(ExprParser.CompareContext ctx);
 	/**
-	 * Visit a parse tree produced by {@link ExprParser#unaryOperator}.
+	 * Visit a parse tree produced by the {@code function}
+	 * labeled alternative in {@link ExprParser#expr}.
 	 * @param ctx the parse tree
 	 * @return the visitor result
 	 */
-	T visitUnaryOperator(ExprParser.UnaryOperatorContext ctx);
+	T visitFunction(ExprParser.FunctionContext ctx);
+	/**
+	 * Visit a parse tree produced by the {@code column}
+	 * labeled alternative in {@link ExprParser#expr}.
+	 * @param ctx the parse tree
+	 * @return the visitor result
+	 */
+	T visitColumn(ExprParser.ColumnContext ctx);
+	/**
+	 * Visit a parse tree produced by the {@code arithmetic}
+	 * labeled alternative in {@link ExprParser#expr}.
+	 * @param ctx the parse tree
+	 * @return the visitor result
+	 */
+	T visitArithmetic(ExprParser.ArithmeticContext ctx);
+	/**
+	 * Visit a parse tree produced by the {@code unary}
+	 * labeled alternative in {@link ExprParser#expr}.
+	 * @param ctx the parse tree
+	 * @return the visitor result
+	 */
+	T visitUnary(ExprParser.UnaryContext ctx);
+	/**
+	 * Visit a parse tree produced by the {@code logic}
+	 * labeled alternative in {@link ExprParser#expr}.
+	 * @param ctx the parse tree
+	 * @return the visitor result
+	 */
+	T visitLogic(ExprParser.LogicContext ctx);
+	/**
+	 * Visit a parse tree produced by the {@code caseWhen}
+	 * labeled alternative in {@link ExprParser#expr}.
+	 * @param ctx the parse tree
+	 * @return the visitor result
+	 */
+	T visitCaseWhen(ExprParser.CaseWhenContext ctx);
+	/**
+	 * Visit a parse tree produced by the {@code value}
+	 * labeled alternative in {@link ExprParser#expr}.
+	 * @param ctx the parse tree
+	 * @return the visitor result
+	 */
+	T visitValue(ExprParser.ValueContext ctx);
+	/**
+	 * Visit a parse tree produced by the {@code wrap}
+	 * labeled alternative in {@link ExprParser#expr}.
+	 * @param ctx the parse tree
+	 * @return the visitor result
+	 */
+	T visitWrap(ExprParser.WrapContext ctx);
+	/**
+	 * Visit a parse tree produced by the {@code script}
+	 * labeled alternative in {@link ExprParser#expr}.
+	 * @param ctx the parse tree
+	 * @return the visitor result
+	 */
+	T visitScript(ExprParser.ScriptContext ctx);
+	/**
+	 * Visit a parse tree produced by the {@code between}
+	 * labeled alternative in {@link ExprParser#expr}.
+	 * @param ctx the parse tree
+	 * @return the visitor result
+	 */
+	T visitBetween(ExprParser.BetweenContext ctx);
 	/**
 	 * Visit a parse tree produced by {@link ExprParser#literal}.
 	 * @param ctx the parse tree

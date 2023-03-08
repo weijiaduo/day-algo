@@ -18,13 +18,14 @@ public class ColumnRefHandler extends BaseRuleHandler<ExprParser.ColumnRefContex
     @Override
     public String handle(ExprParser.ColumnRefContext ctx) {
         // TODO: get real column expr
-        String expr = ctx.getText();
-        if (expr == null || expr.length() < 2) {
-            return "";
+        String columnName = ctx.columnName().getText();
+        if (ctx.tableName() != null) {
+            columnName = ctx.tableName().getText() + "." + columnName;
         }
-        expr = expr.substring(1, expr.length() - 1);
-        expr = String.join(".", expr.split("]\\.\\["));
-        return expr;
+        if (ctx.schemaName() != null) {
+            columnName = ctx.schemaName().getText() + "." + columnName;
+        }
+        return columnName;
     }
 
 }

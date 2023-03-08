@@ -1,4 +1,4 @@
-package com.wjd.lr.expr.var.fucntion.str;
+package com.wjd.lr.expr.template.fucntion;
 
 /**
  * 系统字符串函数
@@ -6,7 +6,7 @@ package com.wjd.lr.expr.var.fucntion.str;
  * @author weijiaduo
  * @since 2023/3/7
  */
-public class SysStrFunctions {
+public class StrFunctions {
 
     public static String getCurrentUserName() {
         return "admin";

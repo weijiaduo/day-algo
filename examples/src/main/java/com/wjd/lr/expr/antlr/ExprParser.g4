@@ -8,17 +8,18 @@ options {
 package com.wjd.lr.expr.antlr;
 }
 
-parse: expr EOF
+parse:
+    expr EOF
 ;
 
 expr:
-    literal                                    // 'abc', 1, true, null
-    | columnRef                                // [table].[Field]
-    | template                                 // ${userId}, ${param.city}, ${getCurrentUser()}
-    | unaryOperator expr                       // -1, +1, -[table].[Field1], ~ABS(Field)
-    | expr ( STAR | DIV | MOD) expr            // 2 * 3, Table.Field2 / 2, ABS(...) % 3
-    | expr ( PLUS | MINUS) expr                // 1 + 2, 10 - 2
-    | expr ( LT | LT_EQ | GT | GT_EQ) expr     // 1 < 2, 3 >= 0
+    literal                                    # value       // 'abc', 1, true, null
+    | columnRef                                # column      // [table].[Field]
+    | template                                 # script      // ${userId}, ${param.city}, ${getUserName()}
+    | (MINUS | PLUS | TILDE | NOT_) expr       # unary       // -1, +1, -[table].[Field1], ~ABS(Field)
+    | expr (STAR | DIV | MOD) expr             # arithmetic  // 2 * 3, Table.Field2 / 2, ABS(...) % 3
+    | expr (PLUS | MINUS) expr                 # arithmetic  // 1 + 2, 10 - 2
+    | expr (LT | LT_EQ | GT | GT_EQ) expr      # compare     // 1 < 2, 3 >= 0
     | expr (
         EQ
         | NOT_EQ1
@@ -27,25 +28,17 @@ expr:
         | IS_ NOT_
         | IN_
         | LIKE_
-      ) expr                                   // Field == '1'
-    | expr AND_ expr                           // (Field > 0) AND (Field < 10)
-    | expr OR_ expr                            // (Field > 0) OR (Field < 10)
-    | generalFunc                              // ABS(Field)
-    | nativeFunc                               // @ABS(Field)
-    | expr (ISNULL_ | NOTNULL_ | NOT_ NULL_)   // Field is null
-    | expr IS_ NOT_? expr
-    | expr NOT_? BETWEEN_ expr AND_ expr              
-    | OPEN_PAR expr CLOSE_PAR                  // (1 + 2)
+      ) expr                                   # compare     // Field == '1'
+    | expr AND_ expr                           # logic       // (Field > 0) AND (Field < 10)
+    | expr OR_ expr                            # logic       // (Field > 0) OR (Field < 10)
+    | generalFunc                              # function    // ABS(Field)
+    | nativeFunc                               # function    // @ABS(Field)
+    | expr (ISNULL_ | NOTNULL_ | NOT_ NULL_)   # compare     // Field is null
+    | expr NOT_? BETWEEN_ expr AND_ expr       # between
+    | OPEN_PAR expr CLOSE_PAR                  # wrap        // (1 + 2)
     | CASE_ expr? 
       (WHEN_ expr THEN_ expr)+ 
-      (ELSE_ expr)? END_
-;
-
-unaryOperator:
-    MINUS
-    | PLUS
-    | TILDE
-    | NOT_
+      (ELSE_ expr)? END_                       # caseWhen
 ;
 
 // 字面量

@@ -20,25 +20,137 @@ public interface ExprParserListener extends ParseTreeListener {
 	 */
 	void exitParse(ExprParser.ParseContext ctx);
 	/**
-	 * Enter a parse tree produced by {@link ExprParser#expr}.
+	 * Enter a parse tree produced by the {@code compare}
+	 * labeled alternative in {@link ExprParser#expr}.
 	 * @param ctx the parse tree
 	 */
-	void enterExpr(ExprParser.ExprContext ctx);
+	void enterCompare(ExprParser.CompareContext ctx);
 	/**
-	 * Exit a parse tree produced by {@link ExprParser#expr}.
+	 * Exit a parse tree produced by the {@code compare}
+	 * labeled alternative in {@link ExprParser#expr}.
 	 * @param ctx the parse tree
 	 */
-	void exitExpr(ExprParser.ExprContext ctx);
+	void exitCompare(ExprParser.CompareContext ctx);
 	/**
-	 * Enter a parse tree produced by {@link ExprParser#unaryOperator}.
+	 * Enter a parse tree produced by the {@code function}
+	 * labeled alternative in {@link ExprParser#expr}.
 	 * @param ctx the parse tree
 	 */
-	void enterUnaryOperator(ExprParser.UnaryOperatorContext ctx);
+	void enterFunction(ExprParser.FunctionContext ctx);
 	/**
-	 * Exit a parse tree produced by {@link ExprParser#unaryOperator}.
+	 * Exit a parse tree produced by the {@code function}
+	 * labeled alternative in {@link ExprParser#expr}.
 	 * @param ctx the parse tree
 	 */
-	void exitUnaryOperator(ExprParser.UnaryOperatorContext ctx);
+	void exitFunction(ExprParser.FunctionContext ctx);
+	/**
+	 * Enter a parse tree produced by the {@code column}
+	 * labeled alternative in {@link ExprParser#expr}.
+	 * @param ctx the parse tree
+	 */
+	void enterColumn(ExprParser.ColumnContext ctx);
+	/**
+	 * Exit a parse tree produced by the {@code column}
+	 * labeled alternative in {@link ExprParser#expr}.
+	 * @param ctx the parse tree
+	 */
+	void exitColumn(ExprParser.ColumnContext ctx);
+	/**
+	 * Enter a parse tree produced by the {@code arithmetic}
+	 * labeled alternative in {@link ExprParser#expr}.
+	 * @param ctx the parse tree
+	 */
+	void enterArithmetic(ExprParser.ArithmeticContext ctx);
+	/**
+	 * Exit a parse tree produced by the {@code arithmetic}
+	 * labeled alternative in {@link ExprParser#expr}.
+	 * @param ctx the parse tree
+	 */
+	void exitArithmetic(ExprParser.ArithmeticContext ctx);
+	/**
+	 * Enter a parse tree produced by the {@code unary}
+	 * labeled alternative in {@link ExprParser#expr}.
+	 * @param ctx the parse tree
+	 */
+	void enterUnary(ExprParser.UnaryContext ctx);
+	/**
+	 * Exit a parse tree produced by the {@code unary}
+	 * labeled alternative in {@link ExprParser#expr}.
+	 * @param ctx the parse tree
+	 */
+	void exitUnary(ExprParser.UnaryContext ctx);
+	/**
+	 * Enter a parse tree produced by the {@code logic}
+	 * labeled alternative in {@link ExprParser#expr}.
+	 * @param ctx the parse tree
+	 */
+	void enterLogic(ExprParser.LogicContext ctx);
+	/**
+	 * Exit a parse tree produced by the {@code logic}
+	 * labeled alternative in {@link ExprParser#expr}.
+	 * @param ctx the parse tree
+	 */
+	void exitLogic(ExprParser.LogicContext ctx);
+	/**
+	 * Enter a parse tree produced by the {@code caseWhen}
+	 * labeled alternative in {@link ExprParser#expr}.
+	 * @param ctx the parse tree
+	 */
+	void enterCaseWhen(ExprParser.CaseWhenContext ctx);
+	/**
+	 * Exit a parse tree produced by the {@code caseWhen}
+	 * labeled alternative in {@link ExprParser#expr}.
+	 * @param ctx the parse tree
+	 */
+	void exitCaseWhen(ExprParser.CaseWhenContext ctx);
+	/**
+	 * Enter a parse tree produced by the {@code value}
+	 * labeled alternative in {@link ExprParser#expr}.
+	 * @param ctx the parse tree
+	 */
+	void enterValue(ExprParser.ValueContext ctx);
+	/**
+	 * Exit a parse tree produced by the {@code value}
+	 * labeled alternative in {@link ExprParser#expr}.
+	 * @param ctx the parse tree
+	 */
+	void exitValue(ExprParser.ValueContext ctx);
+	/**
+	 * Enter a parse tree produced by the {@code wrap}
+	 * labeled alternative in {@link ExprParser#expr}.
+	 * @param ctx the parse tree
+	 */
+	void enterWrap(ExprParser.WrapContext ctx);
+	/**
+	 * Exit a parse tree produced by the {@code wrap}
+	 * labeled alternative in {@link ExprParser#expr}.
+	 * @param ctx the parse tree
+	 */
+	void exitWrap(ExprParser.WrapContext ctx);
+	/**
+	 * Enter a parse tree produced by the {@code script}
+	 * labeled alternative in {@link ExprParser#expr}.
+	 * @param ctx the parse tree
+	 */
+	void enterScript(ExprParser.ScriptContext ctx);
+	/**
+	 * Exit a parse tree produced by the {@code script}
+	 * labeled alternative in {@link ExprParser#expr}.
+	 * @param ctx the parse tree
+	 */
+	void exitScript(ExprParser.ScriptContext ctx);
+	/**
+	 * Enter a parse tree produced by the {@code between}
+	 * labeled alternative in {@link ExprParser#expr}.
+	 * @param ctx the parse tree
+	 */
+	void enterBetween(ExprParser.BetweenContext ctx);
+	/**
+	 * Exit a parse tree produced by the {@code between}
+	 * labeled alternative in {@link ExprParser#expr}.
+	 * @param ctx the parse tree
+	 */
+	void exitBetween(ExprParser.BetweenContext ctx);
 	/**
 	 * Enter a parse tree produced by {@link ExprParser#literal}.
 	 * @param ctx the parse tree

@@ -4,6 +4,7 @@ import com.wjd.lr.expr.antlr.ExprLexer;
 import com.wjd.lr.expr.antlr.ExprParser;
 import com.wjd.lr.expr.handler.ColumnRefHandler;
 import com.wjd.lr.expr.handler.GeneralFunctionHandler;
+import com.wjd.lr.expr.handler.NativeFunctionHandler;
 import com.wjd.lr.expr.handler.TemplateHandler;
 import org.antlr.v4.runtime.CharStream;
 import org.antlr.v4.runtime.CharStreams;
@@ -50,9 +51,18 @@ public class ExprBuilder {
         if (visitor != null) {
             return visitor;
         }
-        visitor = new ExprVisitor();
+        visitor = getDefaultVisitor();
+        return visitor;
+    }
+
+    /**
+     * 默认访问者
+     */
+    private ExprVisitor getDefaultVisitor() {
+        ExprVisitor visitor = new ExprVisitor();
         visitor.registerHandler("template", new TemplateHandler(visitor));
         visitor.registerHandler("general_func", new GeneralFunctionHandler(visitor));
+        visitor.registerHandler("native_func", new NativeFunctionHandler(visitor));
         visitor.registerHandler("column_ref", new ColumnRefHandler(visitor));
         return visitor;
     }

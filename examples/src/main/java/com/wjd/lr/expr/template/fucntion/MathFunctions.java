@@ -1,4 +1,4 @@
-package com.wjd.lr.expr.var.fucntion.math;
+package com.wjd.lr.expr.template.fucntion;
 
 /**
  * 系统计算函数
@@ -6,7 +6,7 @@ package com.wjd.lr.expr.var.fucntion.math;
  * @author weijiaduo
  * @since 2023/3/7
  */
-public class SysMathFunctions {
+public class MathFunctions {
 
     public static double floor(double a) {
         return Math.floor(a);

@@ -2,11 +2,11 @@ package com.wjd.lr.expr;
 
 import com.wjd.lr.expr.handler.ColumnRefHandler;
 import com.wjd.lr.expr.handler.GeneralFunctionHandler;
+import com.wjd.lr.expr.handler.NativeFunctionHandler;
 import com.wjd.lr.expr.handler.TemplateHandler;
+import com.wjd.lr.expr.template.TemplateContext;
+import com.wjd.lr.expr.template.variable.VariableContext;
 import org.junit.jupiter.api.Test;
-
-import java.util.HashMap;
-import java.util.Map;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
@@ -56,17 +56,14 @@ class ExprBuilderTest {
     void testParamVar() {
         String exprText = "${Param.freight}";
         String expectExpr = "2.1";
-        ExprVisitor visitor = new ExprVisitor();
-        visitor.registerHandler("template", new TemplateHandlerTest(visitor));
-        ExprBuilder builder = new ExprBuilder(exprText).visitor(visitor);
+        ExprBuilder builder = new ExprBuilder(exprText).visitor(mockExprVisitor());
         String actualExpr = builder.build();
         assertEquals(expectExpr, actualExpr);
     }
 
     @Test
     void testEnvironmentVar() {
-        ExprVisitor visitor = new ExprVisitor();
-        visitor.registerHandler("template", new TemplateHandlerTest(visitor));
+        ExprVisitor visitor = mockExprVisitor();
 
         String exprText = "${userId}";
         String expectExpr = "test";
@@ -127,49 +124,48 @@ class ExprBuilderTest {
     }
 
     @Test
-    void testMixed() {
-        ExprVisitor visitor = new ExprVisitor();
-        visitor.registerHandler("template", new TemplateHandlerTest(visitor));
-        visitor.registerHandler("general_func", new GeneralFunctionHandlerTest(visitor));
-        visitor.registerHandler("column_ref", new ColumnRefHandlerTest(visitor));
-
-        String exprText = "abs(${ceil(Param.freight) + 2 * 4}) + @div(-[orders].[freight], 10)";
-        String expectExpr = "abs(11.0)+div(-orders.freight,10)";
-        ExprBuilder builder = new ExprBuilder(exprText).visitor(visitor);
+    void testBetween() {
+        String exprText = "[orders].[freight] between -10 and 100";
+        String expectExpr = "orders.freight between -10 and 100";
+        ExprBuilder builder = new ExprBuilder(exprText).visitor(mockExprVisitor());
         String actualExpr = builder.build();
         assertEquals(expectExpr, actualExpr);
     }
 
-    static class TemplateHandlerTest extends TemplateHandler {
-
-        TemplateHandlerTest(ExprVisitor visitor) {
-            super(visitor);
-        }
-
-        @Override
-        protected void prepareVars() {
-            // environment variable
-            vars.put("userId", "test");
-            vars.put("userName", "admin");
-
-            // parameter
-            Map<String, Object> paramMap = new HashMap<>();
-            paramMap.put("freight", 2.1);
-            paramMap.put("unitPrice", 10.2);
-            vars.put("Param", paramMap);
-        }
+    @Test
+    void testCaseWhen() {
+        String exprText = "case when [orders].[freight] > -10 then 0 else 1 end";
+        String expectExpr = "case when orders.freight > -10 then 0 else 1 end";
+        ExprBuilder builder = new ExprBuilder(exprText).visitor(mockExprVisitor());
+        String actualExpr = builder.build();
+        assertEquals(expectExpr, actualExpr);
     }
 
-    static class GeneralFunctionHandlerTest extends GeneralFunctionHandler {
-        GeneralFunctionHandlerTest(ExprVisitor visitor) {
-            super(visitor);
-        }
+    @Test
+    void testMixed() {
+        String exprText = "abs(${ceil(Param.freight) + 2 * 4}) + @div(-[orders].[freight], 10)";
+        String expectExpr = "abs(11.0) + div(-orders.freight, 10)";
+        ExprBuilder builder = new ExprBuilder(exprText).visitor(mockExprVisitor());
+        String actualExpr = builder.build();
+        assertEquals(expectExpr, actualExpr);
     }
 
-    static class ColumnRefHandlerTest extends ColumnRefHandler {
-        ColumnRefHandlerTest(ExprVisitor visitor) {
-            super(visitor);
-        }
+    private ExprVisitor mockExprVisitor() {
+        ExprVisitor visitor = new ExprVisitor();
+
+        // 模拟上下文环境的变量值
+        TemplateContext templateContext = new TemplateContext();
+        VariableContext variableContext = templateContext.getVariableContext();
+        variableContext.register("userId", "test");
+        variableContext.register("userName", "admin");
+        variableContext.registerByPath("Param.freight", 2.1);
+        variableContext.registerByPath("Param.unitPrice", 10.2);
+
+        visitor.registerHandler("template", new TemplateHandler(visitor, templateContext));
+        visitor.registerHandler("general_func", new GeneralFunctionHandler(visitor));
+        visitor.registerHandler("native_func", new NativeFunctionHandler(visitor));
+        visitor.registerHandler("column_ref", new ColumnRefHandler(visitor));
+        return visitor;
     }
 
 }

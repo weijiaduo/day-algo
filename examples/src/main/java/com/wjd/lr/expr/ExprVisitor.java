@@ -30,13 +30,26 @@ public class ExprVisitor extends ExprParserBaseVisitor<String> {
         ruleHandlers.put(name, ruleHandler);
     }
 
+    /**
+     * 获取指定名称的规则处理器
+     *
+     * @param name 名称
+     * @return 规则处理器/null
+     */
+    public RuleHandler<?, String> getRuleHandler(String name) {
+        return ruleHandlers.get(name);
+    }
+
     @Override
     protected String aggregateResult(String aggregate, String nextResult) {
         StringBuilder sb = new StringBuilder();
         if (aggregate != null) {
             sb.append(aggregate);
         }
-        if (nextResult != null) {
+        if (nextResult != null && !nextResult.isEmpty()) {
+            if (!sb.isEmpty()) {
+                sb.append(" ");
+            }
             sb.append(nextResult);
         }
         return sb.toString();
@@ -56,11 +69,22 @@ public class ExprVisitor extends ExprParserBaseVisitor<String> {
         return ctx.getText();
     }
 
+    @Override
+    public String visitUnary(ExprParser.UnaryContext ctx) {
+        String expr = visit(ctx.expr());
+        return ctx.children.get(0).getText() + expr;
+    }
+
+    @Override
+    public String visitAnyName(ExprParser.AnyNameContext ctx) {
+        return ctx.getText();
+    }
+
     @SuppressWarnings("unchecked")
     @Override
     public String visitTemplate(ExprParser.TemplateContext ctx) {
         RuleHandler<ExprParser.TemplateContext, String> handler =
-                (RuleHandler<ExprParser.TemplateContext, String>) ruleHandlers.get("template");
+                (RuleHandler<ExprParser.TemplateContext, String>) getRuleHandler("template");
         return handler.handle(ctx);
     }
 
@@ -68,7 +92,7 @@ public class ExprVisitor extends ExprParserBaseVisitor<String> {
     @Override
     public String visitColumnRef(ExprParser.ColumnRefContext ctx) {
         RuleHandler<ExprParser.ColumnRefContext, String> handler =
-                (RuleHandler<ExprParser.ColumnRefContext, String>) ruleHandlers.get("column_ref");
+                (RuleHandler<ExprParser.ColumnRefContext, String>) getRuleHandler("column_ref");
         return handler.handle(ctx);
     }
 
@@ -76,25 +100,16 @@ public class ExprVisitor extends ExprParserBaseVisitor<String> {
     @Override
     public String visitGeneralFunc(ExprParser.GeneralFuncContext ctx) {
         RuleHandler<ExprParser.GeneralFuncContext, String> handler =
-                (RuleHandler<ExprParser.GeneralFuncContext, String>) ruleHandlers.get("general_func");
+                (RuleHandler<ExprParser.GeneralFuncContext, String>) getRuleHandler("general_func");
         return handler.handle(ctx);
     }
 
+    @SuppressWarnings("unchecked")
     @Override
     public String visitNativeFunc(ExprParser.NativeFuncContext ctx) {
-        String expr = super.visitNativeFunc(ctx);
-        if (expr != null && expr.length() > 1) {
-            // remove symbol @
-            expr = expr.substring(1);
-        } else {
-            expr = "";
-        }
-        return expr;
-    }
-
-    @Override
-    public String visitAnyName(ExprParser.AnyNameContext ctx) {
-        return ctx.getText();
+        RuleHandler<ExprParser.NativeFuncContext, String> handler =
+                (RuleHandler<ExprParser.NativeFuncContext, String>) getRuleHandler("native_func");
+        return handler.handle(ctx);
     }
 
 }
