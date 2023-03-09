@@ -18,13 +18,27 @@ public class DefaultColumnRefBuilder implements ColumnRefBuilder {
         // TODO: get real column expr
         List<String> names = new ArrayList<>(3);
         if (columnRef.getSchemaName() != null) {
-            names.add(columnRef.getSchemaName());
+            names.add(getPreQuote() + columnRef.getSchemaName() + getPostQuote());
         }
         if (columnRef.getTableName() != null) {
-            names.add(columnRef.getTableName());
+            names.add(getPreQuote() + columnRef.getTableName() + getPostQuote());
         }
-        names.add(columnRef.getColumnName());
+        names.add(getPreQuote() + columnRef.getColumnName() + getPostQuote());
         return String.join(".", names);
+    }
+
+    /**
+     * @return previous quote
+     */
+    protected String getPreQuote() {
+        return "";
+    }
+
+    /**
+     * @return post quote
+     */
+    protected String getPostQuote() {
+        return "";
     }
 
 }

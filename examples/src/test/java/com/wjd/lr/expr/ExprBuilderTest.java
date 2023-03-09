@@ -2,6 +2,8 @@ package com.wjd.lr.expr;
 
 import com.wjd.lr.expr.function.DefaultSQLFunctionBuilder;
 import com.wjd.lr.expr.function.FunctionBuilder;
+import com.wjd.lr.expr.ref.ColumnRefBuilder;
+import com.wjd.lr.expr.ref.DefaultColumnRefBuilder;
 import com.wjd.lr.expr.template.DefaultTemplateBuilder;
 import com.wjd.lr.expr.template.TemplateBuilder;
 import com.wjd.lr.expr.template.TemplateContext;
@@ -49,6 +51,13 @@ class ExprBuilderTest {
         String expectExpr = "orders.freight";
         ExprBuilder builder = new ExprBuilder(exprText);
         String actualExpr = builder.build();
+        assertEquals(expectExpr, actualExpr);
+
+        exprText = "[orders].[freight]";
+        expectExpr = "`orders`.`freight`";
+        builder = new ExprBuilder(exprText)
+                .columnRefBuilder(mockColumnRefBuilder());
+        actualExpr = builder.build();
         assertEquals(expectExpr, actualExpr);
     }
 
@@ -147,12 +156,27 @@ class ExprBuilderTest {
     @Test
     void testMixed() {
         String exprText = "abs(${ceil(Param.freight) + 2 * 4}) + @div(-[orders].[freight], 10)";
-        String expectExpr = "abs(11.0) + div(-orders.freight, 10)";
+        String expectExpr = "abs(11.0) + div(-`orders`.`freight`, 10)";
         ExprBuilder builder = new ExprBuilder(exprText)
+                .columnRefBuilder(mockColumnRefBuilder())
                 .templateBuilder(mockTemplateBuilder())
                 .generalFuncBuilder(mockFunctionBuilder());
         String actualExpr = builder.build();
         assertEquals(expectExpr, actualExpr);
+    }
+
+    private ColumnRefBuilder mockColumnRefBuilder() {
+        return new DefaultColumnRefBuilder() {
+            @Override
+            protected String getPreQuote() {
+                return "`";
+            }
+
+            @Override
+            protected String getPostQuote() {
+                return "`";
+            }
+        };
     }
 
     private FunctionBuilder mockFunctionBuilder() {
