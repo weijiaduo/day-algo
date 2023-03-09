@@ -2,7 +2,7 @@ package com.wjd.lr.expr;
 
 import com.wjd.lr.expr.antlr.ExprLexer;
 import com.wjd.lr.expr.antlr.ExprParser;
-import com.wjd.lr.expr.function.DefaultSQLFunctionBuilder;
+import com.wjd.lr.expr.function.GeneralFuncBuilder;
 import com.wjd.lr.expr.function.FunctionBuilder;
 import com.wjd.lr.expr.handler.ColumnRefHandler;
 import com.wjd.lr.expr.handler.GeneralFuncHandler;
@@ -75,7 +75,7 @@ public class ExprBuilder {
             templateBuilder = new DefaultTemplateBuilder();
         }
         if (generalFuncBuilder == null) {
-            generalFuncBuilder = new DefaultSQLFunctionBuilder();
+            generalFuncBuilder = new GeneralFuncBuilder();
         }
     }
 

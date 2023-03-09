@@ -8,7 +8,7 @@ import com.wjd.lr.expr.model.Function;
  * @author weijiaduo
  * @since 2023/3/8
  */
-public class DefaultSQLFunctionBuilder implements SQLFunctionBuilder {
+public class GeneralFuncBuilder implements FunctionBuilder {
 
     /**
      * 函数构建的默认实现

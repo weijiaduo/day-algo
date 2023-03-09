@@ -1,6 +1,6 @@
 package com.wjd.lr.expr;
 
-import com.wjd.lr.expr.function.DefaultSQLFunctionBuilder;
+import com.wjd.lr.expr.function.GeneralFuncBuilder;
 import com.wjd.lr.expr.function.FunctionBuilder;
 import com.wjd.lr.expr.ref.ColumnRefBuilder;
 import com.wjd.lr.expr.ref.DefaultColumnRefBuilder;
@@ -200,7 +200,7 @@ class ExprBuilderTest {
     }
 
     private FunctionBuilder mockFunctionBuilder() {
-        return new DefaultSQLFunctionBuilder();
+        return new GeneralFuncBuilder();
     }
 
     private TemplateBuilder mockTemplateBuilder() {

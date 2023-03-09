@@ -80,8 +80,7 @@ public class FunctionContext {
         try {
             Class<?>[] classes = collectClassesInDirectory(FunctionContext.class);
             Map<String, FunctionTemplate> funcMap = Arrays.stream(classes)
-                    .flatMap(c -> Arrays.stream(c.getDeclaredMethods())
-                            .filter(FunctionContext::registrable))
+                    .flatMap(c -> Arrays.stream(c.getDeclaredMethods()).filter(FunctionContext::registrable))
                     .collect(Collectors.toMap(Method::getName, m -> new FunctionTemplate(m.getName(), m)));
             sysFunctions = Collections.unmodifiableMap(funcMap);
         } catch (Exception e) {
