@@ -3,7 +3,6 @@ package com.wjd.lr.expr.handler;
 import com.wjd.lr.expr.ExprVisitor;
 import com.wjd.lr.expr.antlr.ExprParser;
 import com.wjd.lr.expr.model.Template;
-import com.wjd.lr.expr.template.DefaultTemplateBuilder;
 import com.wjd.lr.expr.template.TemplateBuilder;
 
 /**
@@ -19,15 +18,8 @@ public class TemplateHandler extends BaseRuleHandler<ExprParser.TemplateContext>
      */
     private final TemplateBuilder templateBuilder;
 
-    public TemplateHandler(ExprVisitor visitor) {
-        this(visitor, null);
-    }
-
     public TemplateHandler(ExprVisitor visitor, TemplateBuilder templateBuilder) {
         super(visitor);
-        if (templateBuilder == null) {
-            templateBuilder = new DefaultTemplateBuilder();
-        }
         this.templateBuilder = templateBuilder;
     }
 

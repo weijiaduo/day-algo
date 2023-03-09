@@ -4,7 +4,6 @@ import com.wjd.lr.expr.ExprVisitor;
 import com.wjd.lr.expr.antlr.ExprParser;
 import com.wjd.lr.expr.model.ColumnRef;
 import com.wjd.lr.expr.ref.ColumnRefBuilder;
-import com.wjd.lr.expr.ref.DefaultColumnRefBuilder;
 
 /**
  * 列引用处理器
@@ -19,15 +18,8 @@ public class ColumnRefHandler extends BaseRuleHandler<ExprParser.ColumnRefContex
      */
     private final ColumnRefBuilder columnRefBuilder;
 
-    public ColumnRefHandler(ExprVisitor visitor) {
-        this(visitor, null);
-    }
-
     public ColumnRefHandler(ExprVisitor visitor, ColumnRefBuilder columnRefBuilder) {
         super(visitor);
-        if (columnRefBuilder == null) {
-            columnRefBuilder = new DefaultColumnRefBuilder();
-        }
         this.columnRefBuilder = columnRefBuilder;
     }
 

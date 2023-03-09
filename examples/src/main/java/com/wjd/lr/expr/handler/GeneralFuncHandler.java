@@ -2,7 +2,6 @@ package com.wjd.lr.expr.handler;
 
 import com.wjd.lr.expr.ExprVisitor;
 import com.wjd.lr.expr.antlr.ExprParser;
-import com.wjd.lr.expr.function.DefaultSQLFunctionBuilder;
 import com.wjd.lr.expr.function.FunctionBuilder;
 import com.wjd.lr.expr.model.Function;
 
@@ -23,15 +22,8 @@ public class GeneralFuncHandler extends BaseRuleHandler<ExprParser.GeneralFuncCo
      */
     private final FunctionBuilder functionBuilder;
 
-    public GeneralFuncHandler(ExprVisitor visitor) {
-        this(visitor, null);
-    }
-
     public GeneralFuncHandler(ExprVisitor visitor, FunctionBuilder functionBuilder) {
         super(visitor);
-        if (functionBuilder == null) {
-            functionBuilder = new DefaultSQLFunctionBuilder();
-        }
         this.functionBuilder = functionBuilder;
     }
 
