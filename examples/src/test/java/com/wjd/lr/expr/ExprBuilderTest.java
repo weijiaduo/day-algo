@@ -161,7 +161,7 @@ class ExprBuilderTest {
 
     @Test
     void testMixed() {
-        String exprText = "abs(${ceil(Param.freight) + 2 * 4}) + @div(-[orders].[freight], 10)";
+        String exprText = "abs(${ceil(Param.freight) + userCount * 4}) + @div(-[orders].[freight], 10)";
         String expectExpr = "abs(11.0) + div(-`orders`.`freight`, 10)";
         String actualExpr = new ExprBuilder(exprText)
                 .columnRefBuilder(mockColumnRefBuilder())
@@ -204,6 +204,7 @@ class ExprBuilderTest {
         VariableContext variableContext = templateContext.getVariableContext();
         variableContext.register("userId", "test");
         variableContext.register("userName", "admin");
+        variableContext.register("userCount", 2);
         variableContext.registerByPath("Param.freight", 2.1);
         variableContext.registerByPath("Param.unitPrice", 10.2);
 
