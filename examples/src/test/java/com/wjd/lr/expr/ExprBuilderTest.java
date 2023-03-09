@@ -2,6 +2,7 @@ package com.wjd.lr.expr;
 
 import com.wjd.lr.expr.builder.function.FunctionBuilder;
 import com.wjd.lr.expr.builder.function.GeneralFuncBuilder;
+import com.wjd.lr.expr.builder.function.NativeFuncBuilder;
 import com.wjd.lr.expr.builder.ref.ColumnRefBuilder;
 import com.wjd.lr.expr.builder.template.TemplateBuilder;
 import com.wjd.lr.expr.builder.template.TemplateContext;
@@ -21,29 +22,25 @@ class ExprBuilderTest {
         // int
         String exprText = "12";
         String expectExpr = "12";
-        ExprBuilder builder = new ExprBuilder(exprText);
-        String actualExpr = builder.build();
+        String actualExpr = new ExprBuilder(exprText).build();
         assertEquals(expectExpr, actualExpr);
 
         // string
         exprText = "'广州'";
         expectExpr = "'广州'";
-        builder = new ExprBuilder(exprText);
-        actualExpr = builder.build();
+        actualExpr = new ExprBuilder(exprText).build();
         assertEquals(expectExpr, actualExpr);
 
         // boolean
         exprText = "true";
         expectExpr = "true";
-        builder = new ExprBuilder(exprText);
-        actualExpr = builder.build();
+        actualExpr = new ExprBuilder(exprText).build();
         assertEquals(expectExpr, actualExpr);
 
         // null
         exprText = "null";
         expectExpr = "null";
-        builder = new ExprBuilder(exprText);
-        actualExpr = builder.build();
+        actualExpr = new ExprBuilder(exprText).build();
         assertEquals(expectExpr, actualExpr);
     }
 
@@ -51,15 +48,14 @@ class ExprBuilderTest {
     void testColumnRef() {
         String exprText = "[orders].[freight]";
         String expectExpr = "orders.freight";
-        ExprBuilder builder = new ExprBuilder(exprText);
-        String actualExpr = builder.build();
+        String actualExpr = new ExprBuilder(exprText).build();
         assertEquals(expectExpr, actualExpr);
 
         exprText = "[orders].[freight]";
         expectExpr = "`orders`.`freight`";
-        builder = new ExprBuilder(exprText)
-                .columnRefBuilder(mockColumnRefBuilder());
-        actualExpr = builder.build();
+        actualExpr = new ExprBuilder(exprText)
+                .columnRefBuilder(mockColumnRefBuilder())
+                .build();
         assertEquals(expectExpr, actualExpr);
     }
 
@@ -67,9 +63,9 @@ class ExprBuilderTest {
     void testTemplateParamVar() {
         String exprText = "${Param.freight}";
         String expectExpr = "2.1";
-        ExprBuilder builder = new ExprBuilder(exprText)
-                .templateBuilder(mockTemplateBuilder());
-        String actualExpr = builder.build();
+        String actualExpr = new ExprBuilder(exprText)
+                .templateBuilder(mockTemplateBuilder())
+                .build();
         assertEquals(expectExpr, actualExpr);
     }
 
@@ -77,16 +73,16 @@ class ExprBuilderTest {
     void testTemplateUserPropVar() {
         String exprText = "${userId}";
         String expectExpr = "test";
-        ExprBuilder builder = new ExprBuilder(exprText)
-                .templateBuilder(mockTemplateBuilder());
-        String actualExpr = builder.build();
+        String actualExpr = new ExprBuilder(exprText)
+                .templateBuilder(mockTemplateBuilder())
+                .build();
         assertEquals(expectExpr, actualExpr);
 
         exprText = "${userName}";
         expectExpr = "admin";
-        builder = new ExprBuilder(exprText)
-                .templateBuilder(mockTemplateBuilder());
-        actualExpr = builder.build();
+        actualExpr = new ExprBuilder(exprText)
+                .templateBuilder(mockTemplateBuilder())
+                .build();
         assertEquals(expectExpr, actualExpr);
     }
 
@@ -94,30 +90,28 @@ class ExprBuilderTest {
     void testTemplateFunction() {
         String exprText = "${ceil(-10.3)}";
         String expectExpr = "-10.0";
-        ExprBuilder builder = new ExprBuilder(exprText);
-        String actualExpr = builder.build();
+        String actualExpr = new ExprBuilder(exprText).build();
         assertEquals(expectExpr, actualExpr);
 
         exprText = "${floor(10.7)}";
         expectExpr = "10.0";
-        builder = new ExprBuilder(exprText);
-        actualExpr = builder.build();
+        actualExpr = new ExprBuilder(exprText).build();
         assertEquals(expectExpr, actualExpr);
 
         // 自定义函数
         exprText = "${floor(10.7)}";
         expectExpr = "1.23456789";
-        builder = new ExprBuilder(exprText)
-                .templateBuilder(mockTemplateBuilder());
-        actualExpr = builder.build();
+        actualExpr = new ExprBuilder(exprText)
+                .templateBuilder(mockTemplateBuilder())
+                .build();
         assertEquals(expectExpr, actualExpr);
 
         // 自定义函数
         exprText = "${floor2(10.7)}";
         expectExpr = "1.23456789";
-        builder = new ExprBuilder(exprText)
-                .templateBuilder(mockTemplateBuilder());
-        actualExpr = builder.build();
+        actualExpr = new ExprBuilder(exprText)
+                .templateBuilder(mockTemplateBuilder())
+                .build();
         assertEquals(expectExpr, actualExpr);
     }
 
@@ -126,15 +120,13 @@ class ExprBuilderTest {
         // 函数存在时
         String exprText = "ceil(-10.3)";
         String expectExpr = "ceil(-10.3)";
-        ExprBuilder builder = new ExprBuilder(exprText);
-        String actualExpr = builder.build();
+        String actualExpr = new ExprBuilder(exprText).build();
         assertEquals(expectExpr, actualExpr);
 
         // 函数不存在时
         exprText = "len(10.7)";
         expectExpr = "len(10.7)";
-        builder = new ExprBuilder(exprText);
-        actualExpr = builder.build();
+        actualExpr = new ExprBuilder(exprText).build();
         assertEquals(expectExpr, actualExpr);
     }
 
@@ -142,14 +134,12 @@ class ExprBuilderTest {
     void testNativeFunction() {
         String exprText = "@ceil(-10.3)";
         String expectExpr = "ceil(-10.3)";
-        ExprBuilder builder = new ExprBuilder(exprText);
-        String actualExpr = builder.build();
+        String actualExpr = new ExprBuilder(exprText).build();
         assertEquals(expectExpr, actualExpr);
 
         exprText = "@len(10.7)";
         expectExpr = "len(10.7)";
-        builder = new ExprBuilder(exprText);
-        actualExpr = builder.build();
+        actualExpr = new ExprBuilder(exprText).build();
         assertEquals(expectExpr, actualExpr);
     }
 
@@ -157,8 +147,7 @@ class ExprBuilderTest {
     void testBetween() {
         String exprText = "[orders].[freight] between -10 and 100";
         String expectExpr = "orders.freight between -10 and 100";
-        ExprBuilder builder = new ExprBuilder(exprText);
-        String actualExpr = builder.build();
+        String actualExpr = new ExprBuilder(exprText).build();
         assertEquals(expectExpr, actualExpr);
     }
 
@@ -166,8 +155,7 @@ class ExprBuilderTest {
     void testCaseWhen() {
         String exprText = "case when [orders].[freight] > -10 then 0 else 1 end";
         String expectExpr = "case when orders.freight > -10 then 0 else 1 end";
-        ExprBuilder builder = new ExprBuilder(exprText);
-        String actualExpr = builder.build();
+        String actualExpr = new ExprBuilder(exprText).build();
         assertEquals(expectExpr, actualExpr);
     }
 
@@ -175,11 +163,12 @@ class ExprBuilderTest {
     void testMixed() {
         String exprText = "abs(${ceil(Param.freight) + 2 * 4}) + @div(-[orders].[freight], 10)";
         String expectExpr = "abs(11.0) + div(-`orders`.`freight`, 10)";
-        ExprBuilder builder = new ExprBuilder(exprText)
+        String actualExpr = new ExprBuilder(exprText)
                 .columnRefBuilder(mockColumnRefBuilder())
                 .templateBuilder(mockTemplateBuilder())
-                .generalFuncBuilder(mockFunctionBuilder());
-        String actualExpr = builder.build();
+                .generalFuncBuilder(mockGeneralFuncBuilder())
+                .nativeFuncBuilder(mockNativeFuncBuilder())
+                .build();
         assertEquals(expectExpr, actualExpr);
     }
 
@@ -197,8 +186,12 @@ class ExprBuilderTest {
         };
     }
 
-    private FunctionBuilder mockFunctionBuilder() {
+    private FunctionBuilder mockGeneralFuncBuilder() {
         return new GeneralFuncBuilder();
+    }
+
+    private FunctionBuilder mockNativeFuncBuilder() {
+        return new NativeFuncBuilder();
     }
 
     private TemplateBuilder mockTemplateBuilder() {
@@ -216,7 +209,7 @@ class ExprBuilderTest {
 
         try {
             FunctionContext functionContext = templateContext.getFunctionContext();
-            Method method = MockFunction.class.getDeclaredMethod("floor", double.class);
+            Method method = MockCustomFunction.class.getDeclaredMethod("floor", double.class);
             FunctionTemplate floorFunc = new FunctionTemplate("floor", method);
             FunctionTemplate floor2Func = new FunctionTemplate("floor2", method);
             functionContext.register("floor", floorFunc);
@@ -228,7 +221,7 @@ class ExprBuilderTest {
         return templateContext;
     }
 
-    public static class MockFunction {
+    public static class MockCustomFunction {
         public static double floor(double a) {
             return 1.23456789;
         }
