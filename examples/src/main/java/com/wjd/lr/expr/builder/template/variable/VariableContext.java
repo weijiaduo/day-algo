@@ -1,4 +1,4 @@
-package com.wjd.lr.expr.template.variable;
+package com.wjd.lr.expr.builder.template.variable;
 
 import java.util.Collections;
 import java.util.HashMap;

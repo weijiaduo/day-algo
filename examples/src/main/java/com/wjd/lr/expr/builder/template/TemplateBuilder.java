@@ -1,4 +1,4 @@
-package com.wjd.lr.expr.template;
+package com.wjd.lr.expr.builder.template;
 
 import com.wjd.lr.expr.model.Template;
 

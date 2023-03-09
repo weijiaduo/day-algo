@@ -3,7 +3,7 @@ package com.wjd.lr.expr.handler;
 import com.wjd.lr.expr.ExprVisitor;
 import com.wjd.lr.expr.antlr.ExprParser;
 import com.wjd.lr.expr.model.ColumnRef;
-import com.wjd.lr.expr.ref.ColumnRefBuilder;
+import com.wjd.lr.expr.builder.ref.ColumnRefBuilder;
 
 /**
  * 列引用处理器

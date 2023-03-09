@@ -3,7 +3,7 @@ package com.wjd.lr.expr.handler;
 import com.wjd.lr.expr.ExprVisitor;
 import com.wjd.lr.expr.antlr.ExprParser;
 import com.wjd.lr.expr.model.Template;
-import com.wjd.lr.expr.template.TemplateBuilder;
+import com.wjd.lr.expr.builder.template.TemplateBuilder;
 
 /**
  * 模板规则处理器
