@@ -8,7 +8,7 @@ import java.util.List;
  * @author weijiaduo
  * @since 2023/3/8
  */
-public class Function {
+public class Function extends ExprItem {
 
     /**
      * name

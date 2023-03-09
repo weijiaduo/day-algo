@@ -6,7 +6,7 @@ package com.wjd.lr.expr.model;
  * @author weijiaduo
  * @since 2023/3/8
  */
-public class Template {
+public class Template extends ExprItem {
 
     private final String expr;
 

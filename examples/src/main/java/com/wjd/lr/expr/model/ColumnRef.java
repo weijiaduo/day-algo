@@ -6,7 +6,7 @@ package com.wjd.lr.expr.model;
  * @author weijiaduo
  * @since 2023/3/8
  */
-public class ColumnRef {
+public class ColumnRef extends ExprItem {
 
     /**
      * Schema

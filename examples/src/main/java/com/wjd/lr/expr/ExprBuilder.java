@@ -1,17 +1,15 @@
 package com.wjd.lr.expr;
 
+import com.wjd.lr.expr.adapter.*;
 import com.wjd.lr.expr.antlr.ExprLexer;
 import com.wjd.lr.expr.antlr.ExprParser;
-import com.wjd.lr.expr.builder.function.GeneralFuncBuilder;
 import com.wjd.lr.expr.builder.function.FunctionBuilder;
-import com.wjd.lr.expr.handler.ColumnRefHandler;
-import com.wjd.lr.expr.handler.GeneralFuncHandler;
-import com.wjd.lr.expr.handler.NativeFuncHandler;
-import com.wjd.lr.expr.handler.TemplateHandler;
+import com.wjd.lr.expr.builder.function.GeneralFuncBuilder;
+import com.wjd.lr.expr.builder.function.NativeFuncBuilder;
 import com.wjd.lr.expr.builder.ref.ColumnRefBuilder;
-import com.wjd.lr.expr.builder.ref.DefaultColumnRefBuilder;
-import com.wjd.lr.expr.builder.template.DefaultTemplateBuilder;
 import com.wjd.lr.expr.builder.template.TemplateBuilder;
+import com.wjd.lr.expr.builder.text.TextItemBuilder;
+import com.wjd.lr.expr.builder.unary.UnaryItemBuilder;
 import org.antlr.v4.runtime.CharStream;
 import org.antlr.v4.runtime.CharStreams;
 import org.antlr.v4.runtime.CommonTokenStream;
@@ -42,6 +40,10 @@ public class ExprBuilder {
      * 通用函数构造器
      */
     private FunctionBuilder generalFuncBuilder;
+    /**
+     * 本地函数构造器
+     */
+    private FunctionBuilder nativeFuncBuilder;
 
     public ExprBuilder(String exprText) {
         this.exprText = exprText;
@@ -69,13 +71,16 @@ public class ExprBuilder {
      */
     private void initBuilders() {
         if (columnRefBuilder == null) {
-            columnRefBuilder = new DefaultColumnRefBuilder();
+            columnRefBuilder = new ColumnRefBuilder();
         }
         if (templateBuilder == null) {
-            templateBuilder = new DefaultTemplateBuilder();
+            templateBuilder = new TemplateBuilder();
         }
         if (generalFuncBuilder == null) {
             generalFuncBuilder = new GeneralFuncBuilder();
+        }
+        if (nativeFuncBuilder == null) {
+            nativeFuncBuilder = new NativeFuncBuilder();
         }
     }
 
@@ -86,10 +91,12 @@ public class ExprBuilder {
      */
     private ExprVisitor buildVisitor() {
         ExprVisitor visitor = new ExprVisitor();
-        visitor.setColumnRefHandler(new ColumnRefHandler(visitor, columnRefBuilder));
-        visitor.setTemplateHandler(new TemplateHandler(visitor, templateBuilder));
-        visitor.setGeneralFuncHandler(new GeneralFuncHandler(visitor, generalFuncBuilder));
-        visitor.setNativeFuncHandler(new NativeFuncHandler(visitor));
+        visitor.addAdapter(new ColumnRefAdapter(visitor, columnRefBuilder));
+        visitor.addAdapter(new GeneralFuncAdapter(visitor, generalFuncBuilder));
+        visitor.addAdapter(new NativeFuncAdapter(visitor, nativeFuncBuilder));
+        visitor.addAdapter(new TemplateAdapter(visitor, templateBuilder));
+        visitor.addAdapter(new UnaryItemAdapter(visitor, new UnaryItemBuilder()));
+        visitor.addAdapter(new TextItemAdapter(visitor, new TextItemBuilder()));
         return visitor;
     }
 
@@ -105,6 +112,11 @@ public class ExprBuilder {
 
     public ExprBuilder generalFuncBuilder(FunctionBuilder generalFuncBuilder) {
         this.generalFuncBuilder = generalFuncBuilder;
+        return this;
+    }
+
+    public ExprBuilder nativeFuncBuilder(FunctionBuilder nativeFuncBuilder) {
+        this.nativeFuncBuilder = nativeFuncBuilder;
         return this;
     }
 

@@ -1,21 +1,45 @@
 package com.wjd.lr.expr.builder.ref;
 
+import com.wjd.lr.expr.builder.ExprItemBuilder;
 import com.wjd.lr.expr.model.ColumnRef;
 
+import java.util.ArrayList;
+import java.util.List;
+
 /**
- * 列引用构建器
+ * 默认的列引用构造器
  *
  * @author weijiaduo
  * @since 2023/3/8
  */
-public interface ColumnRefBuilder {
+public class ColumnRefBuilder implements ExprItemBuilder<ColumnRef> {
+
+    @Override
+    public String build(ColumnRef columnRef) {
+        // TODO: get real column expr
+        List<String> names = new ArrayList<>(3);
+        if (columnRef.getSchemaName() != null) {
+            names.add(getPreQuote() + columnRef.getSchemaName() + getPostQuote());
+        }
+        if (columnRef.getTableName() != null) {
+            names.add(getPreQuote() + columnRef.getTableName() + getPostQuote());
+        }
+        names.add(getPreQuote() + columnRef.getColumnName() + getPostQuote());
+        return String.join(".", names);
+    }
 
     /**
-     * 构建列引用的字符串表达式
-     *
-     * @param columnRef 列引用
-     * @return 列引用表达式
+     * @return previous quote
      */
-    String build(ColumnRef columnRef);
+    protected String getPreQuote() {
+        return "";
+    }
+
+    /**
+     * @return post quote
+     */
+    protected String getPostQuote() {
+        return "";
+    }
 
 }

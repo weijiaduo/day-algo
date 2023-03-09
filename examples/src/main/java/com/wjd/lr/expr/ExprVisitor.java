@@ -1,12 +1,13 @@
 package com.wjd.lr.expr;
 
+import com.wjd.lr.expr.adapter.RuleAdapter;
 import com.wjd.lr.expr.antlr.ExprParser;
 import com.wjd.lr.expr.antlr.ExprParserBaseVisitor;
-import com.wjd.lr.expr.handler.ColumnRefHandler;
-import com.wjd.lr.expr.handler.GeneralFuncHandler;
-import com.wjd.lr.expr.handler.NativeFuncHandler;
-import com.wjd.lr.expr.handler.TemplateHandler;
+import org.antlr.v4.runtime.tree.RuleNode;
 import org.antlr.v4.runtime.tree.TerminalNode;
+
+import java.util.ArrayList;
+import java.util.List;
 
 /**
  * 表达式语法树访问者
@@ -17,21 +18,27 @@ import org.antlr.v4.runtime.tree.TerminalNode;
 public class ExprVisitor extends ExprParserBaseVisitor<String> {
 
     /**
-     * 列引用处理器
+     * 适配器
      */
-    private ColumnRefHandler columnRefHandler;
+    private final List<RuleAdapter> adapters = new ArrayList<>();
+
     /**
-     * 模板处理器
+     * 添加适配器
+     *
+     * @param adapter 适配器
      */
-    private TemplateHandler templateHandler;
-    /**
-     * 通用函数处理器
-     */
-    private GeneralFuncHandler generalFuncHandler;
-    /**
-     * 本地函数处理器
-     */
-    private NativeFuncHandler nativeFuncHandler;
+    public void addAdapter(RuleAdapter adapter) {
+        adapters.add(adapter);
+    }
+
+    private String build(RuleNode ruleNode) {
+        for (RuleAdapter adapter : adapters) {
+            if (adapter.accept(ruleNode)) {
+                return adapter.build(adapter.adapt(ruleNode));
+            }
+        }
+        return ruleNode.getText();
+    }
 
     @Override
     protected String aggregateResult(String aggregate, String nextResult) {
@@ -59,66 +66,37 @@ public class ExprVisitor extends ExprParserBaseVisitor<String> {
 
     @Override
     public String visitLiteral(ExprParser.LiteralContext ctx) {
-        return ctx.getText();
+        return build(ctx);
     }
 
     @Override
     public String visitUnary(ExprParser.UnaryContext ctx) {
-        String expr = visit(ctx.expr());
-        return ctx.children.get(0).getText() + expr;
+        return build(ctx);
     }
 
     @Override
     public String visitAnyName(ExprParser.AnyNameContext ctx) {
-        return ctx.getText();
+        return build(ctx);
     }
 
     @Override
     public String visitTemplate(ExprParser.TemplateContext ctx) {
-        return templateHandler.handle(ctx);
+        return build(ctx);
     }
 
     @Override
     public String visitColumnRef(ExprParser.ColumnRefContext ctx) {
-        return columnRefHandler.handle(ctx);
+        return build(ctx);
     }
 
     @Override
     public String visitGeneralFunc(ExprParser.GeneralFuncContext ctx) {
-        return generalFuncHandler.handle(ctx);
+        return build(ctx);
     }
 
     @Override
     public String visitNativeFunc(ExprParser.NativeFuncContext ctx) {
-        return nativeFuncHandler.handle(ctx);
-    }
-
-    /**
-     * @param columnRefHandler columnRefHandler
-     */
-    public void setColumnRefHandler(ColumnRefHandler columnRefHandler) {
-        this.columnRefHandler = columnRefHandler;
-    }
-
-    /**
-     * @param templateHandler templateHandler
-     */
-    public void setTemplateHandler(TemplateHandler templateHandler) {
-        this.templateHandler = templateHandler;
-    }
-
-    /**
-     * @param generalFuncHandler generalFuncHandler
-     */
-    public void setGeneralFuncHandler(GeneralFuncHandler generalFuncHandler) {
-        this.generalFuncHandler = generalFuncHandler;
-    }
-
-    /**
-     * @param nativeFuncHandler nativeFuncHandler
-     */
-    public void setNativeFuncHandler(NativeFuncHandler nativeFuncHandler) {
-        this.nativeFuncHandler = nativeFuncHandler;
+        return build(ctx);
     }
 
 }

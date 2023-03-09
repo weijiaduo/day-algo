@@ -1,10 +1,8 @@
 package com.wjd.lr.expr;
 
-import com.wjd.lr.expr.builder.function.GeneralFuncBuilder;
 import com.wjd.lr.expr.builder.function.FunctionBuilder;
+import com.wjd.lr.expr.builder.function.GeneralFuncBuilder;
 import com.wjd.lr.expr.builder.ref.ColumnRefBuilder;
-import com.wjd.lr.expr.builder.ref.DefaultColumnRefBuilder;
-import com.wjd.lr.expr.builder.template.DefaultTemplateBuilder;
 import com.wjd.lr.expr.builder.template.TemplateBuilder;
 import com.wjd.lr.expr.builder.template.TemplateContext;
 import com.wjd.lr.expr.builder.template.fucntion.FunctionContext;
@@ -186,7 +184,7 @@ class ExprBuilderTest {
     }
 
     private ColumnRefBuilder mockColumnRefBuilder() {
-        return new DefaultColumnRefBuilder() {
+        return new ColumnRefBuilder() {
             @Override
             protected String getPreQuote() {
                 return "`";
@@ -204,7 +202,7 @@ class ExprBuilderTest {
     }
 
     private TemplateBuilder mockTemplateBuilder() {
-        return new DefaultTemplateBuilder(mockTemplateContext());
+        return new TemplateBuilder(mockTemplateContext());
     }
 
     private TemplateContext mockTemplateContext() {

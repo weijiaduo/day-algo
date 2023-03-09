@@ -1,21 +1,44 @@
 package com.wjd.lr.expr.builder.template;
 
+import com.wjd.lr.expr.builder.ExprItemBuilder;
 import com.wjd.lr.expr.model.Template;
+import org.mvel2.MVEL;
+import org.mvel2.compiler.CompiledExpression;
+import org.mvel2.compiler.ExpressionCompiler;
+import org.mvel2.integration.impl.StaticMethodImportResolverFactory;
 
 /**
- * 模板构建器
+ * 默认模板构建器
  *
  * @author weijiaduo
  * @since 2023/3/8
  */
-public interface TemplateBuilder {
+public class TemplateBuilder implements ExprItemBuilder<Template> {
 
     /**
-     * 构建模板字符串
-     *
-     * @param template 模板
-     * @return 模板字符串
+     * 上下文环境
      */
-    String build(Template template);
+    private final TemplateContext context;
+
+    public TemplateBuilder() {
+        this(new TemplateContext());
+    }
+
+    public TemplateBuilder(TemplateContext context) {
+        this.context = context;
+    }
+
+    @Override
+    public String build(Template template) {
+        // 编译模板脚本
+        String expr = template.getExpr();
+        ExpressionCompiler compiler = new ExpressionCompiler(expr, context.getParseContext());
+        CompiledExpression compiledExpr = compiler.compile();
+
+        // 执行模板脚本
+        Object result = MVEL.executeExpression(compiledExpr, context.getExecuteContext(),
+                new StaticMethodImportResolverFactory(context.getParseContext()));
+        return String.valueOf(result);
+    }
 
 }
