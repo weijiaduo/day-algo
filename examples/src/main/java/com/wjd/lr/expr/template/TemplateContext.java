@@ -5,7 +5,6 @@ import com.wjd.lr.expr.template.variable.VariableContext;
 import org.mvel2.ParserContext;
 import org.mvel2.util.MethodStub;
 
-import java.lang.reflect.Method;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -43,13 +42,9 @@ public class TemplateContext {
         }
 
         parserContext = new ParserContext();
-        Map<String, Object> functions = getFunctionContext().getFunctions();
-        for (String name : functions.keySet()) {
-            Object m = functions.get(name);
-            if (m instanceof Method) {
-                parserContext.addImport(name, new MethodStub((Method) m));
-            }
-        }
+        getFunctionContext().getFunctions().forEach((name, m) -> {
+            parserContext.addImport(name, new MethodStub(m.getMethod()));
+        });
         return parserContext;
     }
 

@@ -1,4 +1,4 @@
-package com.wjd.lr.expr.template.fucntion;
+package com.wjd.lr.expr.template.fucntion.internal;
 
 /**
  * 系统计算函数

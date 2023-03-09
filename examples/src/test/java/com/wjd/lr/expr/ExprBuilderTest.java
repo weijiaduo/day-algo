@@ -7,8 +7,12 @@ import com.wjd.lr.expr.ref.DefaultColumnRefBuilder;
 import com.wjd.lr.expr.template.DefaultTemplateBuilder;
 import com.wjd.lr.expr.template.TemplateBuilder;
 import com.wjd.lr.expr.template.TemplateContext;
+import com.wjd.lr.expr.template.fucntion.FunctionContext;
+import com.wjd.lr.expr.template.fucntion.FunctionTemplate;
 import com.wjd.lr.expr.template.variable.VariableContext;
 import org.junit.jupiter.api.Test;
+
+import java.lang.reflect.Method;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
@@ -62,7 +66,7 @@ class ExprBuilderTest {
     }
 
     @Test
-    void testParamVar() {
+    void testTemplateParamVar() {
         String exprText = "${Param.freight}";
         String expectExpr = "2.1";
         ExprBuilder builder = new ExprBuilder(exprText)
@@ -72,7 +76,7 @@ class ExprBuilderTest {
     }
 
     @Test
-    void testEnvironmentVar() {
+    void testTemplateUserPropVar() {
         String exprText = "${userId}";
         String expectExpr = "test";
         ExprBuilder builder = new ExprBuilder(exprText)
@@ -89,7 +93,7 @@ class ExprBuilderTest {
     }
 
     @Test
-    void testSystemFunction() {
+    void testTemplateFunction() {
         String exprText = "${ceil(-10.3)}";
         String expectExpr = "-10.0";
         ExprBuilder builder = new ExprBuilder(exprText);
@@ -99,6 +103,22 @@ class ExprBuilderTest {
         exprText = "${floor(10.7)}";
         expectExpr = "10.0";
         builder = new ExprBuilder(exprText);
+        actualExpr = builder.build();
+        assertEquals(expectExpr, actualExpr);
+
+        // 自定义函数
+        exprText = "${floor(10.7)}";
+        expectExpr = "1.23456789";
+        builder = new ExprBuilder(exprText)
+                .templateBuilder(mockTemplateBuilder());
+        actualExpr = builder.build();
+        assertEquals(expectExpr, actualExpr);
+
+        // 自定义函数
+        exprText = "${floor2(10.7)}";
+        expectExpr = "1.23456789";
+        builder = new ExprBuilder(exprText)
+                .templateBuilder(mockTemplateBuilder());
         actualExpr = builder.build();
         assertEquals(expectExpr, actualExpr);
     }
@@ -189,12 +209,31 @@ class ExprBuilderTest {
 
     private TemplateContext mockTemplateContext() {
         TemplateContext templateContext = new TemplateContext();
+
         VariableContext variableContext = templateContext.getVariableContext();
         variableContext.register("userId", "test");
         variableContext.register("userName", "admin");
         variableContext.registerByPath("Param.freight", 2.1);
         variableContext.registerByPath("Param.unitPrice", 10.2);
+
+        try {
+            FunctionContext functionContext = templateContext.getFunctionContext();
+            Method method = MockFunction.class.getDeclaredMethod("floor", double.class);
+            FunctionTemplate floorFunc = new FunctionTemplate("floor", method);
+            FunctionTemplate floor2Func = new FunctionTemplate("floor2", method);
+            functionContext.register("floor", floorFunc);
+            functionContext.register("floor2", floor2Func);
+        } catch (NoSuchMethodException e) {
+            e.printStackTrace();
+        }
+
         return templateContext;
+    }
+
+    public static class MockFunction {
+        public static double floor(double a) {
+            return 1.23456789;
+        }
     }
 
 }

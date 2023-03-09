@@ -21,22 +21,22 @@ public class FunctionContext {
     /**
      * 类文件拓展名
      */
-    public static final String CLASS_FILE_EXT_NAME = ".class";
+    public static final String CLASS_FILE_EXT = ".class";
     /**
      * 系统函数列表（不可修改）
      */
-    private static volatile Map<String, Object> sysFunctions;
+    private static volatile Map<String, FunctionTemplate> sysFunctions;
     /**
      * 所有函数集合
      */
-    private Map<String, Object> functions;
+    private Map<String, FunctionTemplate> functions;
 
     /**
      * 获取所有函数
      *
      * @return 函数集合
      */
-    public Map<String, Object> getFunctions() {
+    public Map<String, FunctionTemplate> getFunctions() {
         if (functions == null) {
             if (sysFunctions == null) {
                 loadSysFunctions();
@@ -49,11 +49,11 @@ public class FunctionContext {
     /**
      * 注册函数
      *
-     * @param name   函数名
-     * @param method 函数方法
+     * @param name 函数名
+     * @param func 函数模板
      */
-    public void register(String name, Method method) {
-        getFunctions().put(name, method);
+    public void register(String name, FunctionTemplate func) {
+        getFunctions().put(name, func);
     }
 
     /**
@@ -64,7 +64,8 @@ public class FunctionContext {
     public void registerAll(Class<?> clazz) {
         for (Method m : clazz.getDeclaredMethods()) {
             if (registrable(m)) {
-                getFunctions().put(m.getName(), m);
+                FunctionTemplate func = new FunctionTemplate(m.getName(), m);
+                getFunctions().put(m.getName(), func);
             }
         }
     }
@@ -78,10 +79,10 @@ public class FunctionContext {
         }
         try {
             Class<?>[] classes = collectClassesInDirectory(FunctionContext.class);
-            Map<String, Object> funcMap = Arrays.stream(classes)
+            Map<String, FunctionTemplate> funcMap = Arrays.stream(classes)
                     .flatMap(c -> Arrays.stream(c.getDeclaredMethods())
                             .filter(FunctionContext::registrable))
-                    .collect(Collectors.toMap(Method::getName, m -> m));
+                    .collect(Collectors.toMap(Method::getName, m -> new FunctionTemplate(m.getName(), m)));
             sysFunctions = Collections.unmodifiableMap(funcMap);
         } catch (Exception e) {
             throw new RuntimeException(e);
@@ -166,7 +167,7 @@ public class FunctionContext {
      * @return 去除拓展名后的路径
      */
     private static String removeClassFileExtName(String classFilePath) {
-        int length = classFilePath.length() - CLASS_FILE_EXT_NAME.length();
+        int length = classFilePath.length() - CLASS_FILE_EXT.length();
         return classFilePath.substring(0, length);
     }
 
@@ -184,7 +185,7 @@ public class FunctionContext {
             File file = queue.poll();
             String fileName = file.getName();
             // 收集class文件,跳过内部类(文件名包含$符)
-            if (file.isFile() && fileName.endsWith(CLASS_FILE_EXT_NAME) && !fileName.contains("$")) {
+            if (file.isFile() && fileName.endsWith(CLASS_FILE_EXT) && !fileName.contains("$")) {
                 classFiles.add(file);
             } else if (file.isDirectory()) {
                 for (File item : Objects.requireNonNull(file.listFiles())) {
@@ -219,7 +220,7 @@ public class FunctionContext {
         // 将包名中的 . 转成url路径的 /
         String classFilePath = clazz.getName().replaceAll("\\.", "/");
         // 路径以 / 开头,以 .class 结尾
-        classFilePath = "/" + classFilePath + CLASS_FILE_EXT_NAME;
+        classFilePath = "/" + classFilePath + CLASS_FILE_EXT;
         return clazz.getResource(classFilePath);
     }
 
