@@ -1,4 +1,4 @@
-package com.wjd.algorithm.graph.undirected.cycle;
+package com.wjd.algorithm.graph;
 
 /**
  * 环检测接口

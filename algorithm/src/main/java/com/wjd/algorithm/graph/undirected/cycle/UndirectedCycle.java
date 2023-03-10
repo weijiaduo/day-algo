@@ -1,18 +1,18 @@
-package com.wjd.algorithm.graph.undirected.cycle.impl;
+package com.wjd.algorithm.graph.undirected.cycle;
 
-import com.wjd.algorithm.graph.undirected.cycle.Cycle;
+import com.wjd.algorithm.graph.Cycle;
 import com.wjd.structure.graph.undirected.Graph;
 
 import java.util.Arrays;
 import java.util.LinkedList;
 
 /**
- * 环检测实现
+ * 无向图的环检测实现
  *
  * @author weijiaduo
  * @since 2023/3/5
  */
-public class CycleImpl implements Cycle {
+public class UndirectedCycle implements Cycle {
 
     /**
      * 是否有环
@@ -31,7 +31,7 @@ public class CycleImpl implements Cycle {
      */
     private final boolean[] marked;
 
-    public CycleImpl(Graph g) {
+    public UndirectedCycle(Graph g) {
         edgeFrom = new int[g.vs()];
         Arrays.fill(edgeFrom, -1);
         marked = new boolean[g.vs()];

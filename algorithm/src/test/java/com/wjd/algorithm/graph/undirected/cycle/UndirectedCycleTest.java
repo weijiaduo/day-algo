@@ -1,7 +1,7 @@
-package com.wjd.algorithm.graph.undirected.cycle.impl;
+package com.wjd.algorithm.graph.undirected.cycle;
 
+import com.wjd.algorithm.graph.Cycle;
 import com.wjd.algorithm.graph.undirected.build.impl.FileGraphBuilder;
-import com.wjd.algorithm.graph.undirected.cycle.Cycle;
 import com.wjd.structure.graph.undirected.Graph;
 import org.junit.jupiter.api.Test;
 
@@ -11,19 +11,19 @@ import java.util.List;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
-class CycleImplTest {
+class UndirectedCycleTest {
 
     @Test
     void hasCycle() {
         Graph g = new FileGraphBuilder("tinyG.txt").build();
-        Cycle cycle = new CycleImpl(g);
+        Cycle cycle = new UndirectedCycle(g);
         assertTrue(cycle.hasCycle());
     }
 
     @Test
     void cycle() {
         Graph g = new FileGraphBuilder("tinyG.txt").build();
-        Cycle cycle = new CycleImpl(g);
+        Cycle cycle = new UndirectedCycle(g);
 
         List<Integer> actual = new ArrayList<>();
         for (int v : cycle.cycle()) {
