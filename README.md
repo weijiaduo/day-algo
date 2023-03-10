@@ -73,7 +73,7 @@
   - [邻接矩阵](./algorithm/src/main/java/com/wjd/structure/graph/undirected/impl/MatrixGraph.java)
   - [邻接表](./algorithm/src/main/java/com/wjd/structure/graph/undirected/impl/ListGraph.java)
   - [邻接多重表]
-  - [无向符号图]
+  - [无向符号图](./algorithm/src/main/java/com/wjd/structure/graph/undirected/impl/SymbolGraphImpl.java)
 - 有向图
   - [邻接矩阵](./algorithm/src/main/java/com/wjd/structure/graph/directed/impl/MatrixDigraph.java)
   - [邻接表](./algorithm/src/main/java/com/wjd/structure/graph/directed/impl/ListDigraph.java)
@@ -141,11 +141,11 @@
 ### 图的遍历
 
 - 无向图
-  - [广度优先搜索（BFS）](./algorithm/src/main/java/com/wjd/algorithm/graph/undirected/search/impl/BreadthFirstSearch.java)
-  - [深度优先搜索（DFS）](./algorithm/src/main/java/com/wjd/algorithm/graph/undirected/search/impl/DepthFirstSearch.java)
+  - [广度优先搜索（BFS）](./algorithm/src/main/java/com/wjd/algorithm/graph/undirected/search/BreadthFirstSearch.java)
+  - [深度优先搜索（DFS）](./algorithm/src/main/java/com/wjd/algorithm/graph/undirected/search/DepthFirstSearch.java)
 - 有向图
-  - [广度优先搜索（BFS）](./algorithm/src/main/java/com/wjd/algorithm/graph/directed/search/impl/DirectedBFS.java)
-  - [深度优先搜索（DFS）](./algorithm/src/main/java/com/wjd/algorithm/graph/directed/search/impl/DirectedDFS.java)
+  - [广度优先搜索（BFS）](./algorithm/src/main/java/com/wjd/algorithm/graph/directed/search/DirectedBFS.java)
+  - [深度优先搜索（DFS）](./algorithm/src/main/java/com/wjd/algorithm/graph/directed/search/DirectedDFS.java)
   - [拓扑排序]
 
 ### 可达性和连通性
@@ -155,12 +155,12 @@
     - [基于 DFS 的路径](./algorithm/src/main/java/com/wjd/algorithm/graph/undirected/path/impl/DepthFirstPaths.java)
     - [基于 BFS 的路径](./algorithm/src/main/java/com/wjd/algorithm/graph/undirected/path/impl/BreadthFirstPaths.java)
   - [连通分量](./algorithm/src/main/java/com/wjd/algorithm/graph/undirected/connected/impl/ConnectedComponentImpl.java)
-  - [环检测](./algorithm/src/main/java/com/wjd/algorithm/graph/undirected/cycle/impl/CycleImpl.java)
+  - [环检测](./algorithm/src/main/java/com/wjd/algorithm/graph/undirected/cycle/UndirectedCycle.java)
   - [二分图](./algorithm/src/main/java/com/wjd/algorithm/graph/undirected/bipartite/impl/BipartiteImpl.java)
 - 有向图
   - [可达性（路径）]
   - [强连通分量]
-  - [环检测]
+  - [环检测](./algorithm/src/main/java/com/wjd/algorithm/graph/directed/cycle/DirectedCycle.java)
   - [顶点对的可达性]
   - [出入度]
 - 加权有向图
