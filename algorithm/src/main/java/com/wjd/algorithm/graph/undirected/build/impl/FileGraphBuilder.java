@@ -37,7 +37,7 @@ public class FileGraphBuilder implements GraphBuilder {
             Graph g = new ListGraph(vs);
             int es = Integer.parseInt(reader.readLine());
             for (int i = 0; i < es; i++) {
-                String[] ts = reader.readLine().split(" ");
+                String[] ts = reader.readLine().trim().split("\\s+");
                 g.addEdge(Integer.parseInt(ts[0]), Integer.parseInt(ts[1]));
             }
             return g;
