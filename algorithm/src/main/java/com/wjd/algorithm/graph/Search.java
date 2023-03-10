@@ -1,4 +1,4 @@
-package com.wjd.algorithm.graph.undirected.search;
+package com.wjd.algorithm.graph;
 
 /**
  * 无向图的搜索遍历接口

@@ -1,5 +1,6 @@
 package com.wjd.algorithm.graph.undirected.build;
 
+import com.wjd.algorithm.graph.Builder;
 import com.wjd.structure.graph.undirected.Graph;
 
 /**
@@ -8,8 +9,5 @@ import com.wjd.structure.graph.undirected.Graph;
  * @author weijiaduo
  * @since 2023/3/5
  */
-public interface GraphBuilder {
-
-    Graph build();
-
+public interface GraphBuilder extends Builder<Graph> {
 }

@@ -1,5 +1,6 @@
 package com.wjd.algorithm.graph.undirected.build;
 
+import com.wjd.algorithm.graph.Builder;
 import com.wjd.structure.graph.undirected.SymbolGraph;
 
 /**
@@ -8,8 +9,5 @@ import com.wjd.structure.graph.undirected.SymbolGraph;
  * @author weijiaduo
  * @since 2023/3/10
  */
-public interface SymbolGraphBuilder {
-
-    SymbolGraph build();
-
+public interface SymbolGraphBuilder extends Builder<SymbolGraph> {
 }

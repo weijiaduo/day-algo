@@ -1,7 +1,7 @@
-package com.wjd.algorithm.graph.directed.search.impl;
+package com.wjd.algorithm.graph.directed.search;
 
+import com.wjd.algorithm.graph.Search;
 import com.wjd.algorithm.graph.directed.build.impl.FileDigraphBuilder;
-import com.wjd.algorithm.graph.directed.search.DirectedSearch;
 import com.wjd.structure.graph.directed.Digraph;
 import org.junit.jupiter.api.Test;
 
@@ -10,12 +10,12 @@ import java.util.List;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
-class DirectedDFSTest {
+class DirectedBFSTest {
 
     @Test
     void marked() {
         Digraph dg = new FileDigraphBuilder("tinyDG.txt").build();
-        DirectedSearch search = new DirectedDFS(dg, 0);
+        Search search = new DirectedBFS(dg, 0);
 
         List<Integer> actual = new ArrayList<>();
         for (int v = 0; v < dg.vs(); v++) {
@@ -29,13 +29,13 @@ class DirectedDFSTest {
     @Test
     void count() {
         Digraph dg = new FileDigraphBuilder("tinyDG.txt").build();
-        DirectedSearch search = new DirectedDFS(dg, 0);
+        Search search = new DirectedBFS(dg, 0);
         assertEquals(6, search.count());
 
-        search = new DirectedDFS(dg, 7);
+        search = new DirectedBFS(dg, 7);
         assertEquals(13, search.count());
 
-        search = new DirectedDFS(dg, 12);
+        search = new DirectedBFS(dg, 12);
         assertEquals(10, search.count());
     }
 

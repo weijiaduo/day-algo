@@ -1,5 +1,6 @@
 package com.wjd.algorithm.graph.directed.build;
 
+import com.wjd.algorithm.graph.Builder;
 import com.wjd.structure.graph.directed.Digraph;
 
 /**
@@ -8,11 +9,5 @@ import com.wjd.structure.graph.directed.Digraph;
  * @author weijiaduo
  * @since 2023/3/8
  */
-public interface DigraphBuilder {
-
-    /**
-     * @return 有向图
-     */
-    Digraph build();
-
+public interface DigraphBuilder extends Builder<Digraph> {
 }

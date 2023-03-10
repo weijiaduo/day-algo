@@ -1,7 +1,7 @@
-package com.wjd.algorithm.graph.undirected.search.impl;
+package com.wjd.algorithm.graph.directed.search;
 
-import com.wjd.algorithm.graph.undirected.search.Search;
-import com.wjd.structure.graph.undirected.Graph;
+import com.wjd.algorithm.graph.Search;
+import com.wjd.structure.graph.directed.Digraph;
 
 import java.util.Arrays;
 
@@ -11,7 +11,7 @@ import java.util.Arrays;
  * @author weijiaduo
  * @since 2023/3/5
  */
-public class DepthFirstSearch implements Search {
+public class DirectedDFS implements Search {
 
     /**
      * 标记数组
@@ -22,24 +22,24 @@ public class DepthFirstSearch implements Search {
      */
     private int count;
 
-    public DepthFirstSearch(Graph g, int s) {
-        marked = new boolean[g.vs()];
+    public DirectedDFS(Digraph dg, int s) {
+        marked = new boolean[dg.vs()];
         Arrays.fill(marked, false);
-        dfs(g, s);
+        dfs(dg, s);
     }
 
     /**
      * 深度搜索
      *
-     * @param g 无向图
-     * @param v 当前顶点
+     * @param dg 无向图
+     * @param v  当前顶点
      */
-    private void dfs(Graph g, int v) {
+    private void dfs(Digraph dg, int v) {
         marked[v] = true;
         count++;
-        for (int w : g.adj(v)) {
+        for (int w : dg.adj(v)) {
             if (!marked[w]) {
-                dfs(g, w);
+                dfs(dg, w);
             }
         }
     }

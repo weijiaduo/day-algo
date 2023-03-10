@@ -1,7 +1,7 @@
-package com.wjd.algorithm.graph.undirected.search.impl;
+package com.wjd.algorithm.graph.undirected.search;
 
+import com.wjd.algorithm.graph.Search;
 import com.wjd.algorithm.graph.undirected.build.impl.FileGraphBuilder;
-import com.wjd.algorithm.graph.undirected.search.Search;
 import com.wjd.structure.graph.undirected.Graph;
 import org.junit.jupiter.api.Test;
 
@@ -10,12 +10,12 @@ import java.util.List;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
-class BreadthFirstSearchTest {
+class DepthFirstSearchTest {
 
     @Test
     void marked() {
         Graph g = new FileGraphBuilder("tinyG.txt").build();
-        Search search = new BreadthFirstSearch(g, 1);
+        Search search = new DepthFirstSearch(g, 1);
         List<Integer> actual = new ArrayList<>();
         for (int v = 0; v < g.vs(); v++) {
             if (search.marked(v)) {
@@ -28,13 +28,13 @@ class BreadthFirstSearchTest {
     @Test
     void count() {
         Graph g = new FileGraphBuilder("tinyG.txt").build();
-        Search search = new BreadthFirstSearch(g, 0);
+        Search search = new DepthFirstSearch(g, 0);
         assertEquals(7, search.count());
 
-        search = new BreadthFirstSearch(g, 7);
+        search = new DepthFirstSearch(g, 7);
         assertEquals(2, search.count());
 
-        search = new BreadthFirstSearch(g, 10);
+        search = new DepthFirstSearch(g, 10);
         assertEquals(4, search.count());
     }
 

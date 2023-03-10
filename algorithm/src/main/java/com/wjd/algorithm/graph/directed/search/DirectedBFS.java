@@ -1,7 +1,7 @@
-package com.wjd.algorithm.graph.undirected.search.impl;
+package com.wjd.algorithm.graph.directed.search;
 
-import com.wjd.algorithm.graph.undirected.search.Search;
-import com.wjd.structure.graph.undirected.Graph;
+import com.wjd.algorithm.graph.Search;
+import com.wjd.structure.graph.directed.Digraph;
 
 import java.util.Arrays;
 import java.util.LinkedList;
@@ -13,7 +13,7 @@ import java.util.Queue;
  * @author weijiaduo
  * @since 2023/3/5
  */
-public class BreadthFirstSearch implements Search {
+public class DirectedBFS implements Search {
 
     /**
      * 标记数组
@@ -24,26 +24,26 @@ public class BreadthFirstSearch implements Search {
      */
     private int count;
 
-    public BreadthFirstSearch(Graph g, int s) {
-        marked = new boolean[g.vs()];
+    public DirectedBFS(Digraph dg, int s) {
+        marked = new boolean[dg.vs()];
         Arrays.fill(marked, false);
-        bfs(g, s);
+        bfs(dg, s);
     }
 
     /**
      * 广度搜索
      *
-     * @param g 无向图
-     * @param v 当前顶点
+     * @param dg 无向图
+     * @param v  当前顶点
      */
-    private void bfs(Graph g, int v) {
+    private void bfs(Digraph dg, int v) {
         Queue<Integer> queue = new LinkedList<>();
         queue.offer(v);
         marked[v] = true;
         count = 1;
         while (!queue.isEmpty()) {
             int w = queue.poll();
-            for (int x : g.adj(w)) {
+            for (int x : dg.adj(w)) {
                 if (marked[x]) {
                     continue;
                 }
