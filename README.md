@@ -160,7 +160,7 @@
 - 有向图
   - [可达性（路径）]
     - [基于 DFS 的路径](./algorithm/src/main/java/com/wjd/algorithm/graph/directed/path/DirectedDFP.java)
-    - [基于 BFS 的路径]
+    - [基于 BFS 的路径](./algorithm/src/main/java/com/wjd/algorithm/graph/directed/path/DirectedBFP.java)
   - [强连通分量]
   - [环检测](./algorithm/src/main/java/com/wjd/algorithm/graph/directed/cycle/DirectedCycle.java)
   - [顶点对的可达性]
