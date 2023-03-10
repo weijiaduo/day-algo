@@ -1,18 +1,19 @@
-package com.wjd.algorithm.graph.undirected.path.impl;
+package com.wjd.algorithm.graph.undirected.path;
 
-import com.wjd.algorithm.graph.undirected.path.Paths;
+import com.wjd.algorithm.graph.Paths;
 import com.wjd.structure.graph.undirected.Graph;
 
 import java.util.Arrays;
 import java.util.LinkedList;
+import java.util.Queue;
 
 /**
- * 基于深度优先搜索实现的路径
+ * 基于广度优先搜索实现的路径
  *
  * @author weijiaduo
  * @since 2023/3/5
  */
-public class DepthFirstPaths implements Paths {
+public class BreadthFirstPaths implements Paths {
 
     /**
      * 边的终点->起点
@@ -27,26 +28,33 @@ public class DepthFirstPaths implements Paths {
      * @param g 无向图
      * @param s 指定起点
      */
-    public DepthFirstPaths(Graph g, int s) {
+    public BreadthFirstPaths(Graph g, int s) {
         edgeFrom = new int[g.vs()];
         Arrays.fill(edgeFrom, -1);
         marked = new boolean[g.vs()];
         Arrays.fill(marked, false);
-        dfs(g, s);
+        bfs(g, s);
     }
 
     /**
-     * 深度搜索
+     * 广度搜索
      *
      * @param g 无向图
      * @param v 当前顶点
      */
-    private void dfs(Graph g, int v) {
+    private void bfs(Graph g, int v) {
+        Queue<Integer> queue = new LinkedList<>();
+        queue.offer(v);
         marked[v] = true;
-        for (int w : g.adj(v)) {
-            if (!marked[w]) {
-                edgeFrom[w] = v;
-                dfs(g, w);
+        while (!queue.isEmpty()) {
+            int w = queue.poll();
+            for (int x : g.adj(w)) {
+                if (marked[x]) {
+                    continue;
+                }
+                edgeFrom[x] = w;
+                queue.offer(x);
+                marked[x] = true;
             }
         }
     }

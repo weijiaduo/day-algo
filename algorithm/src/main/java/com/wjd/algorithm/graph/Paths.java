@@ -1,4 +1,4 @@
-package com.wjd.algorithm.graph.undirected.path;
+package com.wjd.algorithm.graph;
 
 /**
  * 路径接口

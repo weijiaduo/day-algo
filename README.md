@@ -152,13 +152,15 @@
 
 - 无向图
   - 可达性（路径）
-    - [基于 DFS 的路径](./algorithm/src/main/java/com/wjd/algorithm/graph/undirected/path/impl/DepthFirstPaths.java)
-    - [基于 BFS 的路径](./algorithm/src/main/java/com/wjd/algorithm/graph/undirected/path/impl/BreadthFirstPaths.java)
+    - [基于 DFS 的路径](./algorithm/src/main/java/com/wjd/algorithm/graph/undirected/path/DepthFirstPaths.java)
+    - [基于 BFS 的路径](./algorithm/src/main/java/com/wjd/algorithm/graph/undirected/path/BreadthFirstPaths.java)
   - [连通分量](./algorithm/src/main/java/com/wjd/algorithm/graph/undirected/connected/impl/ConnectedComponentImpl.java)
   - [环检测](./algorithm/src/main/java/com/wjd/algorithm/graph/undirected/cycle/UndirectedCycle.java)
   - [二分图](./algorithm/src/main/java/com/wjd/algorithm/graph/undirected/bipartite/impl/BipartiteImpl.java)
 - 有向图
   - [可达性（路径）]
+    - [基于 DFS 的路径](./algorithm/src/main/java/com/wjd/algorithm/graph/directed/path/DirectedDFP.java)
+    - [基于 BFS 的路径]
   - [强连通分量]
   - [环检测](./algorithm/src/main/java/com/wjd/algorithm/graph/directed/cycle/DirectedCycle.java)
   - [顶点对的可达性]

@@ -1,7 +1,7 @@
-package com.wjd.algorithm.graph.undirected.path.impl;
+package com.wjd.algorithm.graph.undirected.path;
 
+import com.wjd.algorithm.graph.Paths;
 import com.wjd.algorithm.graph.undirected.build.impl.FileGraphBuilder;
-import com.wjd.algorithm.graph.undirected.path.Paths;
 import com.wjd.structure.graph.undirected.Graph;
 import org.junit.jupiter.api.Test;
 
@@ -43,7 +43,6 @@ class DepthFirstPathsTest {
         }
         assertEquals("[0, 5, 4, 6]", actual.toString());
 
-        paths = new DepthFirstPaths(g, 0);
         path = paths.pathTo(3);
         actual = new ArrayList<>();
         for (int v : path) {

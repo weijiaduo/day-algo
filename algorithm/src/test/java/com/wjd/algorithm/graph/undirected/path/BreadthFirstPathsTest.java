@@ -1,7 +1,7 @@
-package com.wjd.algorithm.graph.undirected.path.impl;
+package com.wjd.algorithm.graph.undirected.path;
 
+import com.wjd.algorithm.graph.Paths;
 import com.wjd.algorithm.graph.undirected.build.impl.FileGraphBuilder;
-import com.wjd.algorithm.graph.undirected.path.Paths;
 import com.wjd.structure.graph.undirected.Graph;
 import org.junit.jupiter.api.Test;
 
@@ -51,5 +51,5 @@ class BreadthFirstPathsTest {
         }
         assertEquals("[0, 5, 3]", actual.toString());
     }
-    
+
 }
