@@ -1,6 +1,6 @@
 package com.wjd.algorithm.graph.undirected.connected.impl;
 
-import com.wjd.algorithm.graph.undirected.connected.ConnectedComponent;
+import com.wjd.algorithm.graph.undirected.connected.Connected;
 import com.wjd.structure.graph.undirected.Graph;
 
 import java.util.Arrays;
@@ -11,7 +11,7 @@ import java.util.Arrays;
  * @author weijiaduo
  * @since 2023/3/5
  */
-public class ConnectedComponentImpl implements ConnectedComponent {
+public class DepthFirstConnected implements Connected {
 
     /**
      * 标记数组
@@ -26,7 +26,7 @@ public class ConnectedComponentImpl implements ConnectedComponent {
      */
     private int count;
 
-    public ConnectedComponentImpl(Graph g) {
+    public DepthFirstConnected(Graph g) {
         marked = new boolean[g.vs()];
         Arrays.fill(marked, false);
         id = new int[g.vs()];

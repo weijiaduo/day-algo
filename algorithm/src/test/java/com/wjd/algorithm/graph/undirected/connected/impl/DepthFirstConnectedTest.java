@@ -1,18 +1,18 @@
 package com.wjd.algorithm.graph.undirected.connected.impl;
 
 import com.wjd.algorithm.graph.undirected.build.impl.FileGraphBuilder;
-import com.wjd.algorithm.graph.undirected.connected.ConnectedComponent;
+import com.wjd.algorithm.graph.undirected.connected.Connected;
 import com.wjd.structure.graph.undirected.Graph;
 import org.junit.jupiter.api.Test;
 
 import static org.junit.jupiter.api.Assertions.*;
 
-class ConnectedComponentImplTest {
+class DepthFirstConnectedTest {
 
     @Test
     void connected() {
         Graph g = new FileGraphBuilder("tinyG.txt").build();
-        ConnectedComponent cc = new ConnectedComponentImpl(g);
+        Connected cc = new DepthFirstConnected(g);
         assertTrue(cc.connected(0, 1));
         assertTrue(cc.connected(0, 2));
         assertTrue(cc.connected(0, 3));
@@ -31,14 +31,14 @@ class ConnectedComponentImplTest {
     @Test
     void count() {
         Graph g = new FileGraphBuilder("tinyG.txt").build();
-        ConnectedComponent cc = new ConnectedComponentImpl(g);
+        Connected cc = new DepthFirstConnected(g);
         assertEquals(3, cc.count());
     }
 
     @Test
     void id() {
         Graph g = new FileGraphBuilder("tinyG.txt").build();
-        ConnectedComponent cc = new ConnectedComponentImpl(g);
+        Connected cc = new DepthFirstConnected(g);
         assertEquals(0, cc.id(0));
         assertEquals(0, cc.id(1));
         assertEquals(0, cc.id(2));

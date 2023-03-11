@@ -157,19 +157,17 @@
   - 可达性（路径）
     - [基于 DFS 的路径](./algorithm/src/main/java/com/wjd/algorithm/graph/undirected/path/DepthFirstPaths.java)
     - [基于 BFS 的路径](./algorithm/src/main/java/com/wjd/algorithm/graph/undirected/path/BreadthFirstPaths.java)
-  - [连通分量](./algorithm/src/main/java/com/wjd/algorithm/graph/undirected/connected/impl/ConnectedComponentImpl.java)
+  - [连通分量](./algorithm/src/main/java/com/wjd/algorithm/graph/undirected/connected/impl/DepthFirstConnected.java)
   - [环检测](./algorithm/src/main/java/com/wjd/algorithm/graph/undirected/cycle/UndirectedCycle.java)
   - [二分图](./algorithm/src/main/java/com/wjd/algorithm/graph/undirected/bipartite/impl/BipartiteImpl.java)
 - 有向图
-  - [可达性（路径）]
+  - 可达性（路径）
     - [基于 DFS 的路径](./algorithm/src/main/java/com/wjd/algorithm/graph/directed/path/DirectedDFP.java)
     - [基于 BFS 的路径](./algorithm/src/main/java/com/wjd/algorithm/graph/directed/path/DirectedBFP.java)
-  - [强连通分量]
+  - [强连通分量（Kosaraju）](./algorithm/src/main/java/com/wjd/algorithm/graph/directed/connected/impl/KosarajuStrongConnected.java)
   - [环检测](./algorithm/src/main/java/com/wjd/algorithm/graph/directed/cycle/DirectedCycle.java)
   - [顶点对的可达性]
   - [出入度]
-- 加权有向图
-  - [关键路径]
 
 ### 最小生成树（MST）
 
@@ -188,6 +186,7 @@
 - 加权有向图
   - [Dijkstra 算法]
   - [Floyd 算法]
+  - [关键路径]
 
 ## 字符串
 

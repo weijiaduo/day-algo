@@ -6,7 +6,7 @@ package com.wjd.algorithm.graph.undirected.connected;
  * @author weijiaduo
  * @since 2023/3/5
  */
-public interface ConnectedComponent {
+public interface Connected {
 
     /**
      * 顶点 v 和顶点 w 是否连通
