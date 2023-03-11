@@ -146,7 +146,10 @@
 - 有向图
   - [广度优先搜索（BFS）](./algorithm/src/main/java/com/wjd/algorithm/graph/directed/search/DirectedBFS.java)
   - [深度优先搜索（DFS）](./algorithm/src/main/java/com/wjd/algorithm/graph/directed/search/DirectedDFS.java)
-  - [拓扑排序]
+  - [前序遍历](./algorithm/src/main/java/com/wjd/algorithm/graph/directed/order/PreDFO.java)
+  - [后序遍历](./algorithm/src/main/java/com/wjd/algorithm/graph/directed/order/PostDFO.java)
+  - [逆后序遍历](./algorithm/src/main/java/com/wjd/algorithm/graph/directed/order/ReversePostDFO.java)
+  - [拓扑排序](./algorithm/src/main/java/com/wjd/algorithm/graph/directed/order/Topological.java)
 
 ### 可达性和连通性
 
