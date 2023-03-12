@@ -1,7 +1,7 @@
 package com.wjd.structure.graph.undirected.impl;
 
 import com.wjd.structure.graph.undirected.Graph;
-import com.wjd.structure.graph.util.Bag;
+import com.wjd.structure.graph.util.IntBag;
 
 /**
  * 基于邻接表实现的无向图
@@ -23,13 +23,13 @@ public class ListGraph implements Graph {
     /**
      * 邻接表
      */
-    private final Bag[] adj;
+    private final IntBag[] adj;
 
     public ListGraph(int vs) {
         this.vs = vs;
-        adj = new Bag[vs];
+        adj = new IntBag[vs];
         for (int i = 0; i < vs; i++) {
-            adj[i] = new Bag();
+            adj[i] = new IntBag();
         }
     }
 

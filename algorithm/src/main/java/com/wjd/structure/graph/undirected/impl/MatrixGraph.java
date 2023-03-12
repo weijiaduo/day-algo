@@ -1,7 +1,7 @@
 package com.wjd.structure.graph.undirected.impl;
 
 import com.wjd.structure.graph.undirected.Graph;
-import com.wjd.structure.graph.util.Bag;
+import com.wjd.structure.graph.util.IntBag;
 
 /**
  * 基于邻接矩阵实现的无向图
@@ -57,7 +57,7 @@ public class MatrixGraph implements Graph {
 
     @Override
     public Iterable<Integer> adj(int v) {
-        Bag bag = new Bag();
+        IntBag bag = new IntBag();
         for (int i = 0; i < vs; i++) {
             if (adj[v][i]) {
                 bag.add(i);

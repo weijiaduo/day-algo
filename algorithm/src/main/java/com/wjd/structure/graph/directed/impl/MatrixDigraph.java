@@ -1,7 +1,7 @@
 package com.wjd.structure.graph.directed.impl;
 
 import com.wjd.structure.graph.directed.Digraph;
-import com.wjd.structure.graph.util.Bag;
+import com.wjd.structure.graph.util.IntBag;
 
 /**
  * 基于邻接矩阵实现的有向图
@@ -56,7 +56,7 @@ public class MatrixDigraph implements Digraph {
 
     @Override
     public Iterable<Integer> adj(int v) {
-        Bag bag = new Bag();
+        IntBag bag = new IntBag();
         for (int i = 0; i < vs; i++) {
             if (adj[v][i]) {
                 bag.add(i);

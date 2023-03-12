@@ -1,7 +1,7 @@
 package com.wjd.structure.graph.directed.impl;
 
 import com.wjd.structure.graph.directed.Digraph;
-import com.wjd.structure.graph.util.Bag;
+import com.wjd.structure.graph.util.IntBag;
 
 /**
  * 基于邻接表实现的有向图
@@ -23,13 +23,13 @@ public class ListDigraph implements Digraph {
     /**
      * 邻接表
      */
-    private final Bag[] adj;
+    private final IntBag[] adj;
 
     public ListDigraph(int vs) {
         this.vs = vs;
-        adj = new Bag[vs];
+        adj = new IntBag[vs];
         for (int i = 0; i < vs; i++) {
-            adj[i] = new Bag();
+            adj[i] = new IntBag();
         }
     }
 
