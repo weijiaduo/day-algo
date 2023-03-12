@@ -16,10 +16,12 @@
 
 ## 队列
 
-- [顺序队列](./algorithm/src/main/java/com/wjd/structure/queue/ArrayQueue.java)
-- [链式队列](./algorithm/src/main/java/com/wjd/structure/queue/ListQueue.java)
-- [循环队列](./algorithm/src/main/java/com/wjd/structure/queue/CircularQueue.java)
-- [循环双端队列](./algorithm/src/main/java/com/wjd/structure/queue/CircularDeque.java)
+- 队列
+  - [顺序队列](./algorithm/src/main/java/com/wjd/structure/queue/ArrayQueue.java)
+  - [链式队列](./algorithm/src/main/java/com/wjd/structure/queue/ListQueue.java)
+- 循环队列
+  - [循环单向队列](./algorithm/src/main/java/com/wjd/structure/queue/CircularQueue.java)
+  - [循环双向队列](./algorithm/src/main/java/com/wjd/structure/queue/CircularDeque.java)
 
 ## 栈
 
@@ -48,13 +50,16 @@
   - [B+树](./algorithm/src/main/java/com/wjd/structure/tree/bplus/BPTreeImpl.java)
 - 高级树
   - [哈夫曼树](./algorithm/src/main/java/com/wjd/structure/tree/huffman/HuffmanTreeImpl.java)
-  - [并查集-数组](./algorithm/src/main/java/com/wjd/structure/tree/ufs/ArrayUnionFind.java)
-  - [并查集-映射](./algorithm/src/main/java/com/wjd/structure/tree/ufs/MapUnionFind.java)
+  - 并查集
+    - [并查集-数组](./algorithm/src/main/java/com/wjd/structure/tree/ufs/ArrayUnionFind.java)
+    - [并查集-映射](./algorithm/src/main/java/com/wjd/structure/tree/ufs/MapUnionFind.java)
+  - 线段树
+    - [线段树-数组](./algorithm/src/main/java/com/wjd/structure/tree/segment/ArraySegmentTree.java)
+    - [线段树-链表](./algorithm/src/main/java/com/wjd/structure/tree/segment/LinkSegmentTree.java)
+  - 字典树
+    - [字典树-字母](./algorithm/src/main/java/com/wjd/structure/tree/trie/LetterTrie.java)
+    - [字典树-字符](./algorithm/src/main/java/com/wjd/structure/tree/trie/CharacterTrie.java)
   - [树状数组（二叉索引树）](./algorithm/src/main/java/com/wjd/structure/tree/binaryindex/BinaryIndexTree.java)
-  - [线段树-数组](./algorithm/src/main/java/com/wjd/structure/tree/segment/ArraySegmentTree.java)
-  - [线段树-链表](./algorithm/src/main/java/com/wjd/structure/tree/segment/LinkSegmentTree.java)
-  - [字典树-字母](./algorithm/src/main/java/com/wjd/structure/tree/trie/LetterTrie.java)
-  - [字典树-字符](./algorithm/src/main/java/com/wjd/structure/tree/trie/CharacterTrie.java)
 
 ## 散列表
 
@@ -74,6 +79,9 @@
   - [邻接表](./algorithm/src/main/java/com/wjd/structure/graph/undirected/impl/ListGraph.java)
   - [邻接多重表]
   - [无向符号图](./algorithm/src/main/java/com/wjd/structure/graph/undirected/impl/SymbolGraphImpl.java)
+- 加权无向图
+  - [邻接矩阵](./algorithm/src/main/java/com/wjd/structure/graph/undirected/impl/MatrixWeightedGraph.java)
+  - [邻接表](./algorithm/src/main/java/com/wjd/structure/graph/undirected/impl/ListWeightedGraph.java)
 - 有向图
   - [邻接矩阵](./algorithm/src/main/java/com/wjd/structure/graph/directed/impl/MatrixDigraph.java)
   - [邻接表](./algorithm/src/main/java/com/wjd/structure/graph/directed/impl/ListDigraph.java)
@@ -114,27 +122,31 @@
 
 ### 二叉树构建
 
-- [层序构建](./algorithm/src/main/java/com/wjd/algorithm/tree/binary/build/LevelTreeBuilder.java)
-- [中序+后序构建](./algorithm/src/main/java/com/wjd/algorithm/tree/binary/build/InAndPostTreeBuilder.java)
-- [中序+前序构建](./algorithm/src/main/java/com/wjd/algorithm/tree/binary/build/PreAndInTreeBuilder.java)
-- [前序线索二叉树构建](./algorithm/src/main/java/com/wjd/algorithm/tree/thread/build/PreorderThreadBuilder.java)
-- [中序线索二叉树构建](./algorithm/src/main/java/com/wjd/algorithm/tree/thread/build/InorderThreadBuilder.java)
-- [后序线索二叉树构建](./algorithm/src/main/java/com/wjd/algorithm/tree/thread/build/PostorderThreadBuilder.java)
+- 二叉树
+  - [层序构建](./algorithm/src/main/java/com/wjd/algorithm/tree/binary/build/LevelTreeBuilder.java)
+  - [中序+后序构建](./algorithm/src/main/java/com/wjd/algorithm/tree/binary/build/InAndPostTreeBuilder.java)
+  - [中序+前序构建](./algorithm/src/main/java/com/wjd/algorithm/tree/binary/build/PreAndInTreeBuilder.java)
+- 线索二叉树
+  - [前序构建](./algorithm/src/main/java/com/wjd/algorithm/tree/thread/build/PreorderThreadBuilder.java)
+  - [中序构建](./algorithm/src/main/java/com/wjd/algorithm/tree/thread/build/InorderThreadBuilder.java)
+  - [后序构建](./algorithm/src/main/java/com/wjd/algorithm/tree/thread/build/PostorderThreadBuilder.java)
 
 ### 二叉树遍历
 
-- [构建层序遍历](./algorithm/src/main/java/com/wjd/algorithm/tree/binary/traverse/BuildLevelTraverse.java)
-- [简单层序遍历](./algorithm/src/main/java/com/wjd/algorithm/tree/binary/traverse/SimpleLevelTraverse.java)
-- [前序遍历](./algorithm/src/main/java/com/wjd/algorithm/tree/binary/traverse/PreorderTraverse.java)
-- [中序遍历](./algorithm/src/main/java/com/wjd/algorithm/tree/binary/traverse/InorderTraverse.java)
-- [后序遍历](./algorithm/src/main/java/com/wjd/algorithm/tree/binary/traverse/PostorderTraverse.java)
-- [Z 形遍历](./algorithm/src/main/java/com/wjd/algorithm/tree/binary/traverse/PostorderTraverse.java)
-- [Morris-前序遍历]
-- [Morris-中序遍历]
-- [Morris-后序遍历]
-- [线索二叉树-前序遍历](./algorithm/src/main/java/com/wjd/algorithm/tree/thread/traverse/PreorderThreadTraverse.java)
-- [线索二叉树-中序遍历](./algorithm/src/main/java/com/wjd/algorithm/tree/thread/traverse/InorderThreadTraverse.java)
-- [线索二叉树-后序遍历](./algorithm/src/main/java/com/wjd/algorithm/tree/thread/traverse/PostorderThreadTraverse.java)
+- 二叉树
+  - [构建层序遍历](./algorithm/src/main/java/com/wjd/algorithm/tree/binary/traverse/BuildLevelTraverse.java)
+  - [简单层序遍历](./algorithm/src/main/java/com/wjd/algorithm/tree/binary/traverse/SimpleLevelTraverse.java)
+  - [前序遍历](./algorithm/src/main/java/com/wjd/algorithm/tree/binary/traverse/PreorderTraverse.java)
+  - [中序遍历](./algorithm/src/main/java/com/wjd/algorithm/tree/binary/traverse/InorderTraverse.java)
+  - [后序遍历](./algorithm/src/main/java/com/wjd/algorithm/tree/binary/traverse/PostorderTraverse.java)
+  - [Z 形遍历](./algorithm/src/main/java/com/wjd/algorithm/tree/binary/traverse/PostorderTraverse.java)
+  - [Morris-前序遍历]
+  - [Morris-中序遍历]
+  - [Morris-后序遍历]
+- 线索二叉树
+  - [前序遍历](./algorithm/src/main/java/com/wjd/algorithm/tree/thread/traverse/PreorderThreadTraverse.java)
+  - [中序遍历](./algorithm/src/main/java/com/wjd/algorithm/tree/thread/traverse/InorderThreadTraverse.java)
+  - [后序遍历](./algorithm/src/main/java/com/wjd/algorithm/tree/thread/traverse/PostorderThreadTraverse.java)
 
 ## 图
 
@@ -166,14 +178,13 @@
     - [基于 BFS 的路径](./algorithm/src/main/java/com/wjd/algorithm/graph/directed/path/DirectedBFP.java)
   - [强连通分量（Kosaraju）](./algorithm/src/main/java/com/wjd/algorithm/graph/directed/connected/impl/KosarajuStrongConnected.java)
   - [环检测](./algorithm/src/main/java/com/wjd/algorithm/graph/directed/cycle/DirectedCycle.java)
-  - [顶点对的可达性]
   - [出入度]
 
 ### 最小生成树（MST）
 
 - 加权无向图
-  - [Prim 算法]
-  - [Kruskal 算法]
+  - [Prim 算法](./algorithm/src/main/java/com/wjd/algorithm/graph/undirected/mst/impl/PrimMST.java)
+  - [Kruskal 算法](./algorithm/src/main/java/com/wjd/algorithm/graph/undirected/mst/impl/KruskalMST.java)
 
 ### 最短路径
 
