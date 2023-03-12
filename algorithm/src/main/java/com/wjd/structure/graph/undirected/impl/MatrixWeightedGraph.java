@@ -83,5 +83,4 @@ public class MatrixWeightedGraph implements WeightedGraph {
         return bag;
     }
 
-
 }

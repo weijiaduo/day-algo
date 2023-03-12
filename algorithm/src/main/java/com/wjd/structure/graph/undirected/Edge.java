@@ -43,8 +43,23 @@ public class Edge implements Comparable<Edge> {
         return x == v ? w : v;
     }
 
+    /**
+     * 是否包含指定顶点
+     *
+     * @param x 指定顶点
+     * @return true/false
+     */
     public boolean contains(int x) {
         return x == v || x == w;
+    }
+
+    /**
+     * 获取边的权值
+     *
+     * @return 边的权值
+     */
+    public double weight() {
+        return weight;
     }
 
     @Override
