@@ -3,7 +3,7 @@ package com.wjd.lr.expr.adapter;
 import com.wjd.lr.expr.ExprVisitor;
 import com.wjd.lr.expr.antlr.ExprParser;
 import com.wjd.lr.expr.builder.function.FunctionBuilder;
-import com.wjd.lr.expr.model.ExprItem;
+import com.wjd.lr.expr.builder.function.GeneralFuncBuilder;
 import com.wjd.lr.expr.model.Function;
 import org.antlr.v4.runtime.tree.RuleNode;
 
@@ -29,6 +29,9 @@ public class GeneralFuncAdapter implements RuleAdapter {
 
     public GeneralFuncAdapter(ExprVisitor visitor, FunctionBuilder builder) {
         this.visitor = visitor;
+        if (builder == null) {
+            builder = new GeneralFuncBuilder();
+        }
         this.builder = builder;
     }
 
@@ -38,18 +41,13 @@ public class GeneralFuncAdapter implements RuleAdapter {
     }
 
     @Override
-    public Function adapt(RuleNode ruleNode) {
+    public String adapt(RuleNode ruleNode) {
         ExprParser.GeneralFuncContext ctx = (ExprParser.GeneralFuncContext) ruleNode;
         String funcName = ctx.funcName().getText().toLowerCase();
         List<String> params = getParamList(ctx);
         Function function = new Function(funcName, params);
         function.setText(ruleNode.getText());
-        return function;
-    }
-
-    @Override
-    public String build(ExprItem exprItem) {
-        return builder.build((Function) exprItem);
+        return builder.build(function);
     }
 
     /**

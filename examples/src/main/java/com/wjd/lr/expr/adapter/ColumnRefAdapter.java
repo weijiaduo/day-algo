@@ -4,7 +4,6 @@ import com.wjd.lr.expr.ExprVisitor;
 import com.wjd.lr.expr.antlr.ExprParser;
 import com.wjd.lr.expr.builder.ref.ColumnRefBuilder;
 import com.wjd.lr.expr.model.ColumnRef;
-import com.wjd.lr.expr.model.ExprItem;
 import org.antlr.v4.runtime.tree.RuleNode;
 
 /**
@@ -26,6 +25,9 @@ public class ColumnRefAdapter implements RuleAdapter {
 
     public ColumnRefAdapter(ExprVisitor visitor, ColumnRefBuilder builder) {
         this.visitor = visitor;
+        if (builder == null) {
+            builder = new ColumnRefBuilder();
+        }
         this.builder = builder;
     }
 
@@ -35,7 +37,7 @@ public class ColumnRefAdapter implements RuleAdapter {
     }
 
     @Override
-    public ColumnRef adapt(RuleNode ruleNode) {
+    public String adapt(RuleNode ruleNode) {
         ExprParser.ColumnRefContext ctx = (ExprParser.ColumnRefContext) ruleNode;
         String schemaName = null;
         if (ctx.schemaName() != null) {
@@ -48,12 +50,8 @@ public class ColumnRefAdapter implements RuleAdapter {
         String columnName = ctx.columnName().getText();
         ColumnRef columnRef = new ColumnRef(schemaName, tableName, columnName);
         columnRef.setText(ruleNode.getText());
-        return columnRef;
+        return builder.build(columnRef);
     }
 
-    @Override
-    public String build(ExprItem exprItem) {
-        return builder.build((ColumnRef) exprItem);
-    }
 
 }

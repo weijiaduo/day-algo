@@ -3,7 +3,6 @@ package com.wjd.lr.expr.adapter;
 import com.wjd.lr.expr.ExprVisitor;
 import com.wjd.lr.expr.antlr.ExprParser;
 import com.wjd.lr.expr.builder.unary.UnaryItemBuilder;
-import com.wjd.lr.expr.model.ExprItem;
 import com.wjd.lr.expr.model.UnaryItem;
 import org.antlr.v4.runtime.tree.RuleNode;
 
@@ -26,6 +25,9 @@ public class UnaryItemAdapter implements RuleAdapter {
 
     public UnaryItemAdapter(ExprVisitor visitor, UnaryItemBuilder builder) {
         this.visitor = visitor;
+        if (builder == null) {
+            builder = new UnaryItemBuilder();
+        }
         this.builder = builder;
     }
 
@@ -35,18 +37,13 @@ public class UnaryItemAdapter implements RuleAdapter {
     }
 
     @Override
-    public UnaryItem adapt(RuleNode ruleNode) {
+    public String adapt(RuleNode ruleNode) {
         ExprParser.UnaryContext ctx = (ExprParser.UnaryContext) ruleNode;
         String op = ctx.children.get(0).getText();
         String expr = visitor.visit(ctx.expr());
         UnaryItem unaryItem = new UnaryItem(op, expr);
         unaryItem.setText(ruleNode.getText());
-        return unaryItem;
-    }
-
-    @Override
-    public String build(ExprItem exprItem) {
-        return builder.build((UnaryItem) exprItem);
+        return builder.build(unaryItem);
     }
 
 }

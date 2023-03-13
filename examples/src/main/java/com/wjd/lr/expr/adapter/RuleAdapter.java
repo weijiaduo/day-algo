@@ -1,6 +1,5 @@
 package com.wjd.lr.expr.adapter;
 
-import com.wjd.lr.expr.model.ExprItem;
 import org.antlr.v4.runtime.tree.RuleNode;
 
 /**
@@ -20,19 +19,11 @@ public interface RuleAdapter {
     boolean accept(RuleNode ruleNode);
 
     /**
-     * 语法树节点转成内部对象
+     * 语法树节点转成字符串
      *
      * @param ruleNode 规则节点
      * @return 内部项目
      */
-    ExprItem adapt(RuleNode ruleNode);
-
-    /**
-     * 构建表达式字符串
-     *
-     * @param exprItem 表达式项目
-     * @return 表达式字符串
-     */
-    String build(ExprItem exprItem);
+    String adapt(RuleNode ruleNode);
 
 }

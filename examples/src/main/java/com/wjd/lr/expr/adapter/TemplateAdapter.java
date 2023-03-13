@@ -3,7 +3,6 @@ package com.wjd.lr.expr.adapter;
 import com.wjd.lr.expr.ExprVisitor;
 import com.wjd.lr.expr.antlr.ExprParser;
 import com.wjd.lr.expr.builder.template.TemplateBuilder;
-import com.wjd.lr.expr.model.ExprItem;
 import com.wjd.lr.expr.model.Template;
 import org.antlr.v4.runtime.tree.RuleNode;
 
@@ -26,6 +25,9 @@ public class TemplateAdapter implements RuleAdapter {
 
     public TemplateAdapter(ExprVisitor visitor, TemplateBuilder builder) {
         this.visitor = visitor;
+        if (builder == null) {
+            builder = new TemplateBuilder();
+        }
         this.builder = builder;
     }
 
@@ -35,17 +37,12 @@ public class TemplateAdapter implements RuleAdapter {
     }
 
     @Override
-    public Template adapt(RuleNode ruleNode) {
+    public String adapt(RuleNode ruleNode) {
         ExprParser.TemplateContext ctx = (ExprParser.TemplateContext) ruleNode;
         String scriptText = parseScriptText(ctx);
         Template template = new Template(scriptText);
         template.setText(ruleNode.getText());
-        return template;
-    }
-
-    @Override
-    public String build(ExprItem exprItem) {
-        return builder.build((Template) exprItem);
+        return builder.build(template);
     }
 
     /**

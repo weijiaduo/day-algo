@@ -3,7 +3,6 @@ package com.wjd.lr.expr.adapter;
 import com.wjd.lr.expr.ExprVisitor;
 import com.wjd.lr.expr.antlr.ExprParser;
 import com.wjd.lr.expr.builder.text.TextItemBuilder;
-import com.wjd.lr.expr.model.ExprItem;
 import com.wjd.lr.expr.model.TextItem;
 import org.antlr.v4.runtime.tree.RuleNode;
 
@@ -26,6 +25,9 @@ public class TextItemAdapter implements RuleAdapter {
 
     public TextItemAdapter(ExprVisitor visitor, TextItemBuilder builder) {
         this.visitor = visitor;
+        if (builder == null) {
+            builder = new TextItemBuilder();
+        }
         this.builder = builder;
     }
 
@@ -36,13 +38,9 @@ public class TextItemAdapter implements RuleAdapter {
     }
 
     @Override
-    public TextItem adapt(RuleNode ruleNode) {
-        return new TextItem(ruleNode.getText());
-    }
-
-    @Override
-    public String build(ExprItem exprItem) {
-        return builder.build((TextItem) exprItem);
+    public String adapt(RuleNode ruleNode) {
+        TextItem textItem = new TextItem(ruleNode.getText());
+        return builder.build(textItem);
     }
 
 }

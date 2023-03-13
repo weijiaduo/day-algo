@@ -3,8 +3,7 @@ package com.wjd.lr.expr.adapter;
 import com.wjd.lr.expr.ExprVisitor;
 import com.wjd.lr.expr.antlr.ExprParser;
 import com.wjd.lr.expr.builder.function.FunctionBuilder;
-import com.wjd.lr.expr.model.ExprItem;
-import com.wjd.lr.expr.model.Function;
+import com.wjd.lr.expr.builder.function.NativeFuncBuilder;
 import com.wjd.lr.expr.model.NativeFunction;
 import org.antlr.v4.runtime.tree.RuleNode;
 
@@ -30,6 +29,9 @@ public class NativeFuncAdapter implements RuleAdapter {
 
     public NativeFuncAdapter(ExprVisitor visitor, FunctionBuilder builder) {
         this.visitor = visitor;
+        if (builder == null) {
+            builder = new NativeFuncBuilder();
+        }
         this.builder = builder;
     }
 
@@ -39,18 +41,13 @@ public class NativeFuncAdapter implements RuleAdapter {
     }
 
     @Override
-    public NativeFunction adapt(RuleNode ruleNode) {
+    public String adapt(RuleNode ruleNode) {
         ExprParser.NativeFuncContext ctx = (ExprParser.NativeFuncContext) ruleNode;
         String funcName = ctx.funcName().getText();
         List<String> params = getParamList(ctx);
         NativeFunction function = new NativeFunction(funcName, params);
         function.setText(ruleNode.getText());
-        return function;
-    }
-
-    @Override
-    public String build(ExprItem exprItem) {
-        return builder.build((Function) exprItem);
+        return builder.build(function);
     }
 
     /**

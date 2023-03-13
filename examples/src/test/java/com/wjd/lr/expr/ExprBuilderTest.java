@@ -13,7 +13,7 @@ import org.junit.jupiter.api.Test;
 
 import java.lang.reflect.Method;
 
-import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.*;
 
 class ExprBuilderTest {
 
@@ -118,8 +118,8 @@ class ExprBuilderTest {
     @Test
     void testGeneralFunction() {
         // 函数存在时
-        String exprText = "ceil(-10.3)";
-        String expectExpr = "ceil(-10.3)";
+        String exprText = "ceiling(-10.3)";
+        String expectExpr = "ceiling(-10.3)";
         String actualExpr = new ExprBuilder(exprText).build();
         assertEquals(expectExpr, actualExpr);
 
@@ -170,6 +170,17 @@ class ExprBuilderTest {
                 .nativeFuncBuilder(mockNativeFuncBuilder())
                 .build();
         assertEquals(expectExpr, actualExpr);
+    }
+
+    @Test
+    public void testCheckWrongExpr() {
+        try {
+            String exprText = "abs(${ceil(Param.freight) + userCount * 4}";
+            new ExprBuilder(exprText).test();
+            fail("Should be throw error!");
+        } catch (Exception e) {
+            assertNotNull(e);
+        }
     }
 
     private ColumnRefBuilder mockColumnRefBuilder() {

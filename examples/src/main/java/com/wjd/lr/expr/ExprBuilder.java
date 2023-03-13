@@ -4,8 +4,6 @@ import com.wjd.lr.expr.adapter.*;
 import com.wjd.lr.expr.antlr.ExprLexer;
 import com.wjd.lr.expr.antlr.ExprParser;
 import com.wjd.lr.expr.builder.function.FunctionBuilder;
-import com.wjd.lr.expr.builder.function.GeneralFuncBuilder;
-import com.wjd.lr.expr.builder.function.NativeFuncBuilder;
 import com.wjd.lr.expr.builder.ref.ColumnRefBuilder;
 import com.wjd.lr.expr.builder.template.TemplateBuilder;
 import com.wjd.lr.expr.builder.text.TextItemBuilder;
@@ -55,37 +53,38 @@ public class ExprBuilder {
      * @return 可执行的表达式字符串
      */
     public String build() {
-        initBuilders();
+        return buildVisitor().visit(parse());
+    }
 
+    /**
+     * 测试表达式是否可以正常解析
+     *
+     * @throws Exception 有异常时表示表达式语法有问题
+     */
+    public void test() throws Exception {
+        parse();
+    }
+
+    /**
+     * 解析表达式
+     * <p>
+     * 说明：尽量不要对外开放第三方的类
+     *
+     * @return 语法树
+     */
+    private ParseTree parse() {
         CharStream input = CharStreams.fromString(exprText);
         ExprLexer lexer = new ExprLexer(input);
         CommonTokenStream tokens = new CommonTokenStream(lexer);
         ExprParser parser = new ExprParser(tokens);
-        ParseTree parseTree = parser.parse();
-        // System.out.println(parseTree.toStringTree(parser));
-        return buildVisitor().visit(parseTree);
-    }
-
-    /**
-     * 初始化所有 builder
-     */
-    private void initBuilders() {
-        if (columnRefBuilder == null) {
-            columnRefBuilder = new ColumnRefBuilder();
-        }
-        if (templateBuilder == null) {
-            templateBuilder = new TemplateBuilder();
-        }
-        if (generalFuncBuilder == null) {
-            generalFuncBuilder = new GeneralFuncBuilder();
-        }
-        if (nativeFuncBuilder == null) {
-            nativeFuncBuilder = new NativeFuncBuilder();
-        }
+        parser.addErrorListener(new ExprParseErrorListener());
+        return parser.parse();
     }
 
     /**
      * 构建访问者
+     * <p>
+     * 说明：尽量不要对外开放第三方的类
      *
      * @return 访问者
      */

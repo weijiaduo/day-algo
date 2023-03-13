@@ -34,7 +34,7 @@ public class ExprVisitor extends ExprParserBaseVisitor<String> {
     private String build(RuleNode ruleNode) {
         for (RuleAdapter adapter : adapters) {
             if (adapter.accept(ruleNode)) {
-                return adapter.build(adapter.adapt(ruleNode));
+                return adapter.adapt(ruleNode);
             }
         }
         return ruleNode.getText();
