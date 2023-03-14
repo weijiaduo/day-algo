@@ -25,18 +25,18 @@ public class FunctionContext {
     /**
      * 系统函数列表（不可修改）
      */
-    private static volatile Map<String, FunctionTemplate> sysFunctions;
+    private static volatile Map<String, FunctionStub> sysFunctions;
     /**
      * 所有函数集合
      */
-    private Map<String, FunctionTemplate> functions;
+    private Map<String, FunctionStub> functions;
 
     /**
      * 获取所有函数
      *
      * @return 函数集合
      */
-    public Map<String, FunctionTemplate> getFunctions() {
+    public Map<String, FunctionStub> getFunctions() {
         if (functions == null) {
             if (sysFunctions == null) {
                 loadSysFunctions();
@@ -52,7 +52,7 @@ public class FunctionContext {
      * @param name 函数名
      * @param func 函数模板
      */
-    public void register(String name, FunctionTemplate func) {
+    public void register(String name, FunctionStub func) {
         getFunctions().put(name, func);
     }
 
@@ -64,7 +64,7 @@ public class FunctionContext {
     public void registerAll(Class<?> clazz) {
         for (Method m : clazz.getDeclaredMethods()) {
             if (registrable(m)) {
-                FunctionTemplate func = new FunctionTemplate(m.getName(), m);
+                FunctionStub func = new FunctionStub(m.getName(), m);
                 getFunctions().put(m.getName(), func);
             }
         }
@@ -79,9 +79,9 @@ public class FunctionContext {
         }
         try {
             Class<?>[] classes = collectClassesInDirectory(FunctionContext.class);
-            Map<String, FunctionTemplate> funcMap = Arrays.stream(classes)
+            Map<String, FunctionStub> funcMap = Arrays.stream(classes)
                     .flatMap(c -> Arrays.stream(c.getDeclaredMethods()).filter(FunctionContext::registrable))
-                    .collect(Collectors.toMap(Method::getName, m -> new FunctionTemplate(m.getName(), m)));
+                    .collect(Collectors.toMap(Method::getName, m -> new FunctionStub(m.getName(), m)));
             sysFunctions = Collections.unmodifiableMap(funcMap);
         } catch (Exception e) {
             throw new RuntimeException(e);

@@ -15,9 +15,12 @@ public class GeneralFuncBuilder implements FunctionBuilder {
     @Override
     public String build(Function function) {
         try {
-            String name = function.getName().toLowerCase();
-            Method m = getClass().getDeclaredMethod(name, Function.class);
-            return (String) m.invoke(this, function);
+            String name = function.getName();
+            for (Method m : getClass().getDeclaredMethods()) {
+                if (m.getName().equalsIgnoreCase(name)) {
+                    return (String) m.invoke(this, function);
+                }
+            }
         } catch (Exception e) {
             e.printStackTrace();
         }
@@ -78,7 +81,7 @@ public class GeneralFuncBuilder implements FunctionBuilder {
         return buildDefault(function);
     }
 
-    public String ceil(Function function) {
+    public String ceiling(Function function) {
         return buildDefault(function);
     }
 

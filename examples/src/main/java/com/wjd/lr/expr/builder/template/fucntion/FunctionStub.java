@@ -8,7 +8,7 @@ import java.lang.reflect.Method;
  * @author weijiaduo
  * @since 2023/3/9
  */
-public class FunctionTemplate {
+public class FunctionStub {
 
     /**
      * function name
@@ -19,7 +19,7 @@ public class FunctionTemplate {
      */
     private final Method method;
 
-    public FunctionTemplate(String name, Method method) {
+    public FunctionStub(String name, Method method) {
         this.name = name;
         this.method = method;
     }
