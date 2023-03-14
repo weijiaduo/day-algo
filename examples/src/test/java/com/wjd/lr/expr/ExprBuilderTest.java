@@ -7,7 +7,7 @@ import com.wjd.lr.expr.builder.ref.ColumnRefBuilder;
 import com.wjd.lr.expr.builder.template.TemplateBuilder;
 import com.wjd.lr.expr.builder.template.TemplateContext;
 import com.wjd.lr.expr.builder.template.fucntion.FunctionContext;
-import com.wjd.lr.expr.builder.template.fucntion.FunctionTemplate;
+import com.wjd.lr.expr.builder.template.fucntion.FunctionStub;
 import com.wjd.lr.expr.builder.template.variable.VariableContext;
 import org.junit.jupiter.api.Test;
 
@@ -49,6 +49,31 @@ class ExprBuilderTest {
         String exprText = "[orders].[freight2]";
         String expectExpr = "orders.freight2";
         String actualExpr = new ExprBuilder(exprText).build();
+        assertEquals(expectExpr, actualExpr);
+
+        exprText = "[orders].[运费]";
+        expectExpr = "orders.运费";
+        actualExpr = new ExprBuilder(exprText).build();
+        assertEquals(expectExpr, actualExpr);
+
+        exprText = "[orders].[field-运费]";
+        expectExpr = "orders.field-运费";
+        actualExpr = new ExprBuilder(exprText).build();
+        assertEquals(expectExpr, actualExpr);
+
+        exprText = "[orders].[field_运费]";
+        expectExpr = "orders.field_运费";
+        actualExpr = new ExprBuilder(exprText).build();
+        assertEquals(expectExpr, actualExpr);
+
+        exprText = "[field2t]";
+        expectExpr = "field2t";
+        actualExpr = new ExprBuilder(exprText).build();
+        assertEquals(expectExpr, actualExpr);
+
+        exprText = "[field_运费]";
+        expectExpr = "field_运费";
+        actualExpr = new ExprBuilder(exprText).build();
         assertEquals(expectExpr, actualExpr);
 
         exprText = "[orders].[freight]";
@@ -212,20 +237,20 @@ class ExprBuilderTest {
     private TemplateContext mockTemplateContext() {
         TemplateContext templateContext = new TemplateContext();
 
-        VariableContext variableContext = templateContext.getVariableContext();
-        variableContext.register("userId", "test");
-        variableContext.register("userName", "admin");
-        variableContext.register("userCount", 2);
-        variableContext.registerByPath("Param.freight", 2.1);
-        variableContext.registerByPath("Param.unitPrice", 10.2);
+        VariableContext varCxt = templateContext.getVariableContext();
+        varCxt.register("userId", "test");
+        varCxt.register("userName", "admin");
+        varCxt.register("userCount", 2);
+        varCxt.registerByPath("Param.freight", 2.1);
+        varCxt.registerByPath("Param.unitPrice", 10.2);
 
         try {
-            FunctionContext functionContext = templateContext.getFunctionContext();
+            FunctionContext funcCxt = templateContext.getFunctionContext();
             Method method = MockCustomFunction.class.getDeclaredMethod("floor", double.class);
-            FunctionTemplate floorFunc = new FunctionTemplate("floor", method);
-            FunctionTemplate floor2Func = new FunctionTemplate("floor2", method);
-            functionContext.register("floor", floorFunc);
-            functionContext.register("floor2", floor2Func);
+            FunctionStub floor = new FunctionStub("floor", method);
+            FunctionStub floor2 = new FunctionStub("floor2", method);
+            funcCxt.register("floor", floor);
+            funcCxt.register("floor2", floor2);
         } catch (NoSuchMethodException e) {
             e.printStackTrace();
         }
