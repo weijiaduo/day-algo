@@ -67,17 +67,12 @@ STRING_LITERAL:
 IDENTIFIER:
     '"' (~'"' | '""')* '"'
     | '`' (~'`' | '``')* '`'
-    | (ID | UNICODE_ID) (ID | UNICODE_ID | DIGIT)*
+    | ID (ID | DIGIT | [-])*
 ;
 
 // 标识符
 ID:
-    [A-Za-z_\u0080-\uFFFF\-]
-;
-
-// Unicode 编码标识符
-UNICODE_ID:
-    [\p{Alpha}\p{General_Category=Other_Letter}]
+    [A-Za-z_\u0080-\uFFFF]
 ;
 
 // 单行注释
