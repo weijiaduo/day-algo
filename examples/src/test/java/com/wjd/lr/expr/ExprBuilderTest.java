@@ -46,8 +46,8 @@ class ExprBuilderTest {
 
     @Test
     void testColumnRef() {
-        String exprText = "[orders].[freight]";
-        String expectExpr = "orders.freight";
+        String exprText = "[orders].[freight2]";
+        String expectExpr = "orders.freight2";
         String actualExpr = new ExprBuilder(exprText).build();
         assertEquals(expectExpr, actualExpr);
 

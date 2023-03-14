@@ -67,7 +67,7 @@ STRING_LITERAL:
 IDENTIFIER:
     '"' (~'"' | '""')* '"'
     | '`' (~'`' | '``')* '`'
-    | (ID | UNICODE_ID) (ID | UNICODE_ID)*
+    | (ID | UNICODE_ID) (ID | UNICODE_ID | DIGIT)*
 ;
 
 // 标识符
