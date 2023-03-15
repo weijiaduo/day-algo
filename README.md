@@ -87,6 +87,9 @@
   - [邻接表](./algorithm/src/main/java/com/wjd/structure/graph/directed/impl/ListDigraph.java)
   - [十字链表]
   - [有向符号图]
+- 加权有向图
+  - [邻接矩阵](./algorithm/src/main/java/com/wjd/structure/graph/directed/impl/MatrixWeightedDigraph.java)
+  - [邻接表](./algorithm/src/main/java/com/wjd/structure/graph/directed/impl/ListWeightedDigraph.java)
 
 ## 1.2 算法
 
@@ -195,9 +198,11 @@
 - 有向图
   - [BFS 算法]
 - 加权有向图
-  - [Dijkstra 算法]
+  - [Dijkstra 算法（有环无负权边）]
+  - [Acyclic 算法（无环有负权边）]
+  - [Bellman-Ford 算法（无负权重环）]
   - [Floyd 算法]
-  - [关键路径]
+  - [关键路径（最长路径）]
 
 ## 字符串
 
