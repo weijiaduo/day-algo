@@ -75,6 +75,11 @@ public class ExprVisitor extends ExprParserBaseVisitor<String> {
     }
 
     @Override
+    public String visitRefName(ExprParser.RefNameContext ctx) {
+        return build(ctx);
+    }
+
+    @Override
     public String visitAnyName(ExprParser.AnyNameContext ctx) {
         return build(ctx);
     }

@@ -9,10 +9,6 @@ package com.wjd.lr.expr.model;
 public class ColumnRef extends ExprItem {
 
     /**
-     * Schema
-     */
-    private final String schemaName;
-    /**
      * Table
      */
     private final String tableName;
@@ -21,14 +17,9 @@ public class ColumnRef extends ExprItem {
      */
     private final String columnName;
 
-    public ColumnRef(String schemaName, String tableName, String columnName) {
-        this.schemaName = schemaName;
+    public ColumnRef(String tableName, String columnName) {
         this.tableName = tableName;
         this.columnName = columnName;
-    }
-
-    public String getSchemaName() {
-        return schemaName;
     }
 
     public String getTableName() {

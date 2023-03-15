@@ -57,9 +57,7 @@ template:
 
 // 列引用
 columnRef:
-    ((OPENBRACKET schemaName CLOSEBRACKET DOT)? 
-    OPENBRACKET tableName CLOSEBRACKET DOT)? 
-    OPENBRACKET columnName CLOSEBRACKET
+    (tableName DOT)? columnName
 ;
 
 // 统一函数
@@ -76,19 +74,19 @@ funcName:
     anyName
 ;
 
-schemaName:
-    anyName
-;
-
 tableName:
-    anyName
+    refName
 ;
 
 columnName:
-    anyName
+    refName
+;
+
+refName:
+    OPENBRACKET .*? CLOSEBRACKET
 ;
 
 anyName:
     IDENTIFIER
-    | STRING_LITERAL
+    | OPEN_PAR anyName CLOSE_PAR
 ;

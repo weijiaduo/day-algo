@@ -39,19 +39,27 @@ public class ColumnRefAdapter implements RuleAdapter {
     @Override
     public String adapt(RuleNode ruleNode) {
         ExprParser.ColumnRefContext ctx = (ExprParser.ColumnRefContext) ruleNode;
-        String schemaName = null;
-        if (ctx.schemaName() != null) {
-            schemaName = ctx.schemaName().getText();
-        }
         String tableName = null;
         if (ctx.tableName() != null) {
-            tableName = ctx.tableName().getText();
+            tableName = removeBracket(ctx.tableName().getText());
         }
-        String columnName = ctx.columnName().getText();
-        ColumnRef columnRef = new ColumnRef(schemaName, tableName, columnName);
+        String columnName = removeBracket(ctx.columnName().getText());
+        ColumnRef columnRef = new ColumnRef(tableName, columnName);
         columnRef.setText(ruleNode.getText());
         return builder.build(columnRef);
     }
 
+    /**
+     * 去掉引用的中括号 []
+     *
+     * @param ref 引用字符串
+     * @return 去掉引用括号后的字符串
+     */
+    private String removeBracket(String ref) {
+        if (ref != null && ref.length() > 1) {
+            return ref.substring(1, ref.length() - 1);
+        }
+        return ref;
+    }
 
 }

@@ -7,23 +7,30 @@ package com.wjd.lr.expr.antlr;
 // 模板
 TEMPLATEBRACE: '${';
 
-// 操作符
+// 符号
+SEMI:          ';';
+COMMA:         ',';
 DOT:           '.';
+QUESTION:      '?';
+COLON:         ':';
+SHARP:         '#';
+AT:            '@';
+BANG :         '!';
+
+// 操作符
 OPENBRACKET:   '[';
 CLOSEBRACKET:  ']';
 OPEN_PAR:      '(';
 CLOSE_PAR:     ')';
 OPENBRACE:     '{';
 CLOSEBRACE:    '}';
-SHARP:         '#';
-AT:            '@';
-COMMA:         ',';
 ASSIGN:        '=';
 STAR:          '*';
 PLUS:          '+';
 MINUS:         '-';
 TILDE:         '~';
 PIPE2:         '||';
+AND:           '&&';
 DIV:           '/';
 MOD:           '%';
 LT:            '<';
@@ -33,6 +40,9 @@ GT_EQ:         '>=';
 EQ:            '==';
 NOT_EQ1:       '!=';
 NOT_EQ2:       '<>';
+BITOR:         '|';
+CARET:         '^';
+BITAND:        '&';
 
 // 关键字
 AND_:     A N D;
@@ -67,12 +77,7 @@ STRING_LITERAL:
 IDENTIFIER:
     '"' (~'"' | '""')* '"'
     | '`' (~'`' | '``')* '`'
-    | ID (ID | DIGIT | [-])*
-;
-
-// 标识符
-ID:
-    [A-Za-z_\u0080-\uFFFF]
+    | LETTER (LETTER | SPECIAL_LETTER | DIGIT)*
 ;
 
 // 单行注释
@@ -89,6 +94,12 @@ MULTILINE_COMMENT:
 SPACES: 
     [ \u000B\t\r\n] -> channel(HIDDEN)
 ;
+
+// 字符
+fragment LETTER : [a-zA-Z\u0080-\uFFFF_$];
+
+// 字符
+fragment SPECIAL_LETTER : [\-];
 
 // 数字
 fragment DIGIT: [0-9];

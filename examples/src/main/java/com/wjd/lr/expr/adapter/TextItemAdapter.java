@@ -34,6 +34,7 @@ public class TextItemAdapter implements RuleAdapter {
     @Override
     public boolean accept(RuleNode ruleNode) {
         return ruleNode instanceof ExprParser.LiteralContext
+                || ruleNode instanceof ExprParser.RefNameContext
                 || ruleNode instanceof ExprParser.AnyNameContext;
     }
 

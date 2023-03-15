@@ -76,6 +76,16 @@ class ExprBuilderTest {
         actualExpr = new ExprBuilder(exprText).build();
         assertEquals(expectExpr, actualExpr);
 
+        exprText = "[(field_运费]";
+        expectExpr = "(field_运费";
+        actualExpr = new ExprBuilder(exprText).build();
+        assertEquals(expectExpr, actualExpr);
+
+        exprText = "[(field-运费，。/‘！@#￥%……&*（）——+~}{：》？《|)-/+*~!@^@#$%^&*()_+~{}|:<>?]";
+        expectExpr = "(field-运费，。/‘！@#￥%……&*（）——+~}{：》？《|)-/+*~!@^@#$%^&*()_+~{}|:<>?";
+        actualExpr = new ExprBuilder(exprText).build();
+        assertEquals(expectExpr, actualExpr);
+
         exprText = "[orders].[freight]";
         expectExpr = "`orders`.`freight`";
         actualExpr = new ExprBuilder(exprText)

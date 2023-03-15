@@ -212,16 +212,6 @@ public interface ExprParserListener extends ParseTreeListener {
 	 */
 	void exitFuncName(ExprParser.FuncNameContext ctx);
 	/**
-	 * Enter a parse tree produced by {@link ExprParser#schemaName}.
-	 * @param ctx the parse tree
-	 */
-	void enterSchemaName(ExprParser.SchemaNameContext ctx);
-	/**
-	 * Exit a parse tree produced by {@link ExprParser#schemaName}.
-	 * @param ctx the parse tree
-	 */
-	void exitSchemaName(ExprParser.SchemaNameContext ctx);
-	/**
 	 * Enter a parse tree produced by {@link ExprParser#tableName}.
 	 * @param ctx the parse tree
 	 */
@@ -241,6 +231,16 @@ public interface ExprParserListener extends ParseTreeListener {
 	 * @param ctx the parse tree
 	 */
 	void exitColumnName(ExprParser.ColumnNameContext ctx);
+	/**
+	 * Enter a parse tree produced by {@link ExprParser#refName}.
+	 * @param ctx the parse tree
+	 */
+	void enterRefName(ExprParser.RefNameContext ctx);
+	/**
+	 * Exit a parse tree produced by {@link ExprParser#refName}.
+	 * @param ctx the parse tree
+	 */
+	void exitRefName(ExprParser.RefNameContext ctx);
 	/**
 	 * Enter a parse tree produced by {@link ExprParser#anyName}.
 	 * @param ctx the parse tree

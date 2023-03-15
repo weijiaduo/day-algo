@@ -16,11 +16,7 @@ public class ColumnRefBuilder implements ExprItemBuilder<ColumnRef> {
 
     @Override
     public String build(ColumnRef columnRef) {
-        // TODO: get real column expr
         List<String> names = new ArrayList<>(3);
-        if (columnRef.getSchemaName() != null) {
-            names.add(getPreQuote() + columnRef.getSchemaName() + getPostQuote());
-        }
         if (columnRef.getTableName() != null) {
             names.add(getPreQuote() + columnRef.getTableName() + getPostQuote());
         }

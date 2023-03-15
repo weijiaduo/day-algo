@@ -132,12 +132,6 @@ public interface ExprParserVisitor<T> extends ParseTreeVisitor<T> {
 	 */
 	T visitFuncName(ExprParser.FuncNameContext ctx);
 	/**
-	 * Visit a parse tree produced by {@link ExprParser#schemaName}.
-	 * @param ctx the parse tree
-	 * @return the visitor result
-	 */
-	T visitSchemaName(ExprParser.SchemaNameContext ctx);
-	/**
 	 * Visit a parse tree produced by {@link ExprParser#tableName}.
 	 * @param ctx the parse tree
 	 * @return the visitor result
@@ -149,6 +143,12 @@ public interface ExprParserVisitor<T> extends ParseTreeVisitor<T> {
 	 * @return the visitor result
 	 */
 	T visitColumnName(ExprParser.ColumnNameContext ctx);
+	/**
+	 * Visit a parse tree produced by {@link ExprParser#refName}.
+	 * @param ctx the parse tree
+	 * @return the visitor result
+	 */
+	T visitRefName(ExprParser.RefNameContext ctx);
 	/**
 	 * Visit a parse tree produced by {@link ExprParser#anyName}.
 	 * @param ctx the parse tree
