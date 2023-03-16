@@ -56,10 +56,7 @@ public class ColumnRefAdapter implements RuleAdapter {
      * @return 去掉引用括号后的字符串
      */
     private String removeBracket(String ref) {
-        if (ref != null && ref.length() > 1) {
-            return ref.substring(1, ref.length() - 1);
-        }
-        return ref;
+        return ref.trim().substring(1, ref.length() - 1).trim();
     }
 
 }
