@@ -16,14 +16,14 @@ COLON:         ':';
 SHARP:         '#';
 AT:            '@';
 BANG :         '!';
-
-// 操作符
 OPENBRACKET:   '[';
 CLOSEBRACKET:  ']';
 OPEN_PAR:      '(';
 CLOSE_PAR:     ')';
 OPENBRACE:     '{';
 CLOSEBRACE:    '}';
+
+// 操作符
 ASSIGN:        '=';
 STAR:          '*';
 PLUS:          '+';
@@ -73,8 +73,13 @@ STRING_LITERAL:
     '\'' ( ~'\'' | '\'\'')* '\''
 ;
 
-// 标识符
-IDENTIFIER:
+// 引用标识符
+REF_ID:
+    '[' ~']'* ']'
+;
+
+// 关键字标识符
+KEY_ID:
     '"' (~'"' | '""')* '"'
     | '`' (~'`' | '``')* '`'
     | LETTER (LETTER | SPECIAL_LETTER | DIGIT)*
@@ -98,7 +103,7 @@ SPACES:
 // 字符
 fragment LETTER : [a-zA-Z\u0080-\uFFFF_$];
 
-// 字符
+// 特殊字符
 fragment SPECIAL_LETTER : [\-];
 
 // 数字

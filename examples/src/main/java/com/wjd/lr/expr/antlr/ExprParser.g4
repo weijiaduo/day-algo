@@ -83,10 +83,10 @@ columnName:
 ;
 
 refName:
-    OPENBRACKET .*? CLOSEBRACKET
+    REF_ID
 ;
 
 anyName:
-    IDENTIFIER
+    KEY_ID
     | OPEN_PAR anyName CLOSE_PAR
 ;
