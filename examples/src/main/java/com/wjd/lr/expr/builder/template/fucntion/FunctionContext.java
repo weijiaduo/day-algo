@@ -4,10 +4,13 @@ import java.io.File;
 import java.io.IOException;
 import java.lang.reflect.Method;
 import java.lang.reflect.Modifier;
+import java.net.JarURLConnection;
 import java.net.URL;
 import java.net.URLDecoder;
 import java.nio.charset.StandardCharsets;
 import java.util.*;
+import java.util.jar.JarEntry;
+import java.util.jar.JarFile;
 import java.util.stream.Collectors;
 
 /**
@@ -78,7 +81,7 @@ public class FunctionContext {
             return;
         }
         try {
-            Class<?>[] classes = collectClassesInDirectory(FunctionContext.class);
+            Class<?>[] classes = collectClasses(FunctionContext.class);
             Map<String, FunctionStub> funcMap = Arrays.stream(classes)
                     .flatMap(c -> Arrays.stream(c.getDeclaredMethods()).filter(FunctionContext::registrable))
                     .collect(Collectors.toMap(Method::getName, m -> new FunctionStub(m.getName(), m)));
@@ -99,6 +102,69 @@ public class FunctionContext {
     private static boolean registrable(Method m) {
         return Modifier.isPublic(m.getModifiers())
                 && Modifier.isStatic(m.getModifiers());
+    }
+
+    /**
+     * 在入口类所在目录下查找所有接口测试的类
+     *
+     * @param entryClass 接口测试入口类
+     * @return 接口测试类
+     */
+    private static Class<?>[] collectClasses(Class<?> entryClass) {
+        try {
+            // 定位到类文件
+            URL classFileUrl = getClassFileURL(entryClass);
+            // 类文件在jar包中
+            if (classFileUrl.getProtocol().equals("jar")) {
+                return collectClassesInJar(entryClass);
+            } else {
+                // 类文件在编译目录下
+                return collectClassesInDirectory(entryClass);
+            }
+        } catch (Exception e) {
+            throw new RuntimeException(e);
+        }
+    }
+
+    /**
+     * 以jar包的形式运行接口测试时,遍历jar包内的所有接口测试类.
+     *
+     * @param entryClass 入口类
+     * @return 接口测试类
+     * @throws IOException jar文件解析异常
+     */
+    private static Class<?>[] collectClassesInJar(Class<?> entryClass) throws Exception {
+        List<Class<?>> classes = new ArrayList<>();
+        String file = entryClass.getProtectionDomain().getCodeSource().getLocation().getFile();
+        URL jarURL = new URL("jar:file:" + file + "!/");
+        JarURLConnection jarConnection = (JarURLConnection) jarURL.openConnection();
+        JarFile jarFile = jarConnection.getJarFile();
+        Enumeration<JarEntry> jarEntry = jarFile.entries();
+        // 遍历jar包内的每一个类文件
+        String packageName = entryClass.getPackage().getName();
+        while (jarEntry.hasMoreElements()) {
+            JarEntry entry = jarEntry.nextElement();
+            if (entry.isDirectory()) {
+                continue;
+            }
+            String fileName = entry.getName();
+            if (!fileName.endsWith(CLASS_FILE_EXT)) {
+                continue;
+            }
+            fileName = fileName.replaceAll("/", ".");
+            fileName = removeClassFileExtName(fileName);
+            // 跳过非入口类所在包下的类
+            if (!fileName.startsWith(packageName)) {
+                continue;
+            }
+            Class<?> clazz = Class.forName(fileName);
+            // 跳过入口类
+            if (clazz.equals(entryClass)) {
+                continue;
+            }
+            classes.add(clazz);
+        }
+        return classes.toArray(new Class[]{});
     }
 
     /**

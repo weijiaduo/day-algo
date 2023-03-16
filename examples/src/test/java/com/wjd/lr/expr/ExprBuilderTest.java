@@ -158,6 +158,21 @@ class ExprBuilderTest {
         String actualExpr = new ExprBuilder(exprText).build();
         assertEquals(expectExpr, actualExpr);
 
+        exprText = "substring('12345678', 0, 5)";
+        expectExpr = "substring('12345678', 0, 5)";
+        actualExpr = new ExprBuilder(exprText).build();
+        assertEquals(expectExpr, actualExpr);
+
+        exprText = "abs([orders].[freight])";
+        expectExpr = "abs(orders.freight)";
+        actualExpr = new ExprBuilder(exprText).build();
+        assertEquals(expectExpr, actualExpr);
+
+        exprText = "substring([orders].[orderId], 0, abs([orders].[freight]))";
+        expectExpr = "substring(orders.orderId, 0, abs(orders.freight))";
+        actualExpr = new ExprBuilder(exprText).build();
+        assertEquals(expectExpr, actualExpr);
+
         // 函数不存在时
         exprText = "len(10.7)";
         expectExpr = "len(10.7)";
@@ -196,9 +211,60 @@ class ExprBuilderTest {
 
     @Test
     void testMixed() {
-        String exprText = "abs(${ceil(Param.freight) + userCount * 4}) + @div(-[orders].[freight], 10)";
-        String expectExpr = "abs(11.0) + div(-`orders`.`freight`, 10)";
-        String actualExpr = new ExprBuilder(exprText)
+        String exprText = "1 + 2";
+        String expectExpr = "1 + 2";
+        String actualExpr = new ExprBuilder(exprText).build();
+        assertEquals(expectExpr, actualExpr);
+
+        exprText = "1 > 2 * 3";
+        expectExpr = "1 > 2 * 3";
+        actualExpr = new ExprBuilder(exprText).build();
+        assertEquals(expectExpr, actualExpr);
+
+        exprText = "[orders].[ShipCity] is null";
+        expectExpr = "orders.ShipCity is null";
+        actualExpr = new ExprBuilder(exprText).build();
+        assertEquals(expectExpr, actualExpr);
+
+        exprText = "[orders].[freight] - 100 / 2";
+        expectExpr = "orders.freight - 100 / 2";
+        actualExpr = new ExprBuilder(exprText).build();
+        assertEquals(expectExpr, actualExpr);
+
+        exprText = "(${Param.freight} + 1) * 12";
+        expectExpr = "( 2.1 + 1 ) * 12";
+        actualExpr = new ExprBuilder(exprText)
+                .templateBuilder(mockTemplateBuilder())
+                .build();
+        assertEquals(expectExpr, actualExpr);
+
+        exprText = "abs([orders].[freight]) * 2";
+        expectExpr = "abs(orders.freight) * 2";
+        actualExpr = new ExprBuilder(exprText).build();
+        assertEquals(expectExpr, actualExpr);
+
+        exprText = "@abs([orders].[freight]) / 3 * ([orderdatials].[quantity] + 1)";
+        expectExpr = "abs(orders.freight) / 3 * ( orderdatials.quantity + 1 )";
+        actualExpr = new ExprBuilder(exprText).build();
+        assertEquals(expectExpr, actualExpr);
+
+        exprText = "substring(${userName}, 0, abs([orders].[freight]) + 2)";
+        expectExpr = "substring(admin, 0, abs(orders.freight) + 2)";
+        actualExpr = new ExprBuilder(exprText)
+                .templateBuilder(mockTemplateBuilder())
+                .build();
+        assertEquals(expectExpr, actualExpr);
+
+        exprText = "@substring(${userName}, 0, @abs([orders].[freight]) + 2)";
+        expectExpr = "substring(admin, 0, abs(orders.freight) + 2)";
+        actualExpr = new ExprBuilder(exprText)
+                .templateBuilder(mockTemplateBuilder())
+                .build();
+        assertEquals(expectExpr, actualExpr);
+
+        exprText = "abs(${ceil(Param.freight) + userCount * 4}) + @div(-[orders].[freight], 10)";
+        expectExpr = "abs(11.0) + div(-`orders`.`freight`, 10)";
+        actualExpr = new ExprBuilder(exprText)
                 .columnRefBuilder(mockColumnRefBuilder())
                 .templateBuilder(mockTemplateBuilder())
                 .generalFuncBuilder(mockGeneralFuncBuilder())
