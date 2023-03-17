@@ -77,6 +77,7 @@ public class ExprBuilder {
         ExprLexer lexer = new ExprLexer(input);
         CommonTokenStream tokens = new CommonTokenStream(lexer);
         ExprParser parser = new ExprParser(tokens);
+        parser.setErrorHandler(new ExprParseErrorHandler());
         parser.addErrorListener(new ExprParseErrorListener());
         return parser.parse();
     }
