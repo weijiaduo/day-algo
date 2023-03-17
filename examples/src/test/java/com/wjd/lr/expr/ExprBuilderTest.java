@@ -19,262 +19,198 @@ class ExprBuilderTest {
 
     @Test
     void testLiteral() {
-        // int
-        String exprText = "12";
-        String expectExpr = "12";
-        String actualExpr = new ExprBuilder(exprText).build();
-        assertEquals(expectExpr, actualExpr);
-
-        // string
-        exprText = "'广州'";
-        expectExpr = "'广州'";
-        actualExpr = new ExprBuilder(exprText).build();
-        assertEquals(expectExpr, actualExpr);
-
-        // boolean
-        exprText = "true";
-        expectExpr = "true";
-        actualExpr = new ExprBuilder(exprText).build();
-        assertEquals(expectExpr, actualExpr);
-
-        // null
-        exprText = "null";
-        expectExpr = "null";
-        actualExpr = new ExprBuilder(exprText).build();
-        assertEquals(expectExpr, actualExpr);
+        String[] inputs = {
+                "12",
+                "'广州'",
+                "true",
+                "null"
+        };
+        String[] expects = {
+                "12",
+                "'广州'",
+                "true",
+                "null"
+        };
+        runCustomTest(inputs, expects);
     }
 
     @Test
     void testColumnRef() {
-        String exprText = "[orders].[freight2]";
-        String expectExpr = "orders.freight2";
-        String actualExpr = new ExprBuilder(exprText).build();
-        assertEquals(expectExpr, actualExpr);
+        String[] inputs = {
+                "[orders].[freight2]",
+                "[orders].[运费]",
+                "[orders].[field-运费]",
+                "[orders].[field_运费]",
+                "[field2t]",
+                "[field_运费]",
+                "[(field-运费，。/‘！@#￥%……&*（）——+~}{：》？《|)-/+*~!@^@#$%^&*()_+~{}|:<>?]"
+        };
+        String[] expects = {
+                "orders.freight2",
+                "orders.运费",
+                "orders.field-运费",
+                "orders.field_运费",
+                "field2t",
+                "field_运费",
+                "(field-运费，。/‘！@#￥%……&*（）——+~}{：》？《|)-/+*~!@^@#$%^&*()_+~{}|:<>?"
+        };
+        runDefaultTest(inputs, expects);
+    }
 
-        exprText = "[orders].[运费]";
-        expectExpr = "orders.运费";
-        actualExpr = new ExprBuilder(exprText).build();
-        assertEquals(expectExpr, actualExpr);
-
-        exprText = "[orders].[field-运费]";
-        expectExpr = "orders.field-运费";
-        actualExpr = new ExprBuilder(exprText).build();
-        assertEquals(expectExpr, actualExpr);
-
-        exprText = "[orders].[field_运费]";
-        expectExpr = "orders.field_运费";
-        actualExpr = new ExprBuilder(exprText).build();
-        assertEquals(expectExpr, actualExpr);
-
-        exprText = "[field2t]";
-        expectExpr = "field2t";
-        actualExpr = new ExprBuilder(exprText).build();
-        assertEquals(expectExpr, actualExpr);
-
-        exprText = "[field_运费]";
-        expectExpr = "field_运费";
-        actualExpr = new ExprBuilder(exprText).build();
-        assertEquals(expectExpr, actualExpr);
-
-        exprText = "[(field_运费]";
-        expectExpr = "(field_运费";
-        actualExpr = new ExprBuilder(exprText).build();
-        assertEquals(expectExpr, actualExpr);
-
-        exprText = "[(field-运费，。/‘！@#￥%……&*（）——+~}{：》？《|)-/+*~!@^@#$%^&*()_+~{}|:<>?]";
-        expectExpr = "(field-运费，。/‘！@#￥%……&*（）——+~}{：》？《|)-/+*~!@^@#$%^&*()_+~{}|:<>?";
-        actualExpr = new ExprBuilder(exprText).build();
-        assertEquals(expectExpr, actualExpr);
-
-        exprText = "[orders].[freight]";
-        expectExpr = "`orders`.`freight`";
-        actualExpr = new ExprBuilder(exprText)
-                .columnRefBuilder(mockColumnRefBuilder())
-                .build();
-        assertEquals(expectExpr, actualExpr);
+    @Test
+    void testCustomColumnRef() {
+        String[] inputs = {
+                "[orders].[运费]",
+                "[orders].[field-运费]",
+                "[field_运费]",
+        };
+        String[] expects = {
+                "`orders`.`运费`",
+                "`orders`.`field-运费`",
+                "`field_运费`"
+        };
+        runCustomTest(inputs, expects);
     }
 
     @Test
     void testTemplateParamVar() {
-        String exprText = "${Param.freight}";
-        String expectExpr = "2.1";
-        String actualExpr = new ExprBuilder(exprText)
-                .templateBuilder(mockTemplateBuilder())
-                .build();
-        assertEquals(expectExpr, actualExpr);
+        String[] inputs = {
+                "${Param.freight}",
+                "${Param.unitPrice}"
+        };
+        String[] expects = {
+                "2.1",
+                "10.2"
+        };
+        runCustomTest(inputs, expects);
     }
 
     @Test
     void testTemplateUserPropVar() {
-        String exprText = "${userId}";
-        String expectExpr = "test";
-        String actualExpr = new ExprBuilder(exprText)
-                .templateBuilder(mockTemplateBuilder())
-                .build();
-        assertEquals(expectExpr, actualExpr);
-
-        exprText = "${userName}";
-        expectExpr = "admin";
-        actualExpr = new ExprBuilder(exprText)
-                .templateBuilder(mockTemplateBuilder())
-                .build();
-        assertEquals(expectExpr, actualExpr);
+        String[] inputs = {
+                "${userId}",
+                "${userName}"
+        };
+        String[] expects = {
+                "test",
+                "admin"
+        };
+        runCustomTest(inputs, expects);
     }
 
     @Test
     void testTemplateFunction() {
-        String exprText = "${ceil(-10.3)}";
-        String expectExpr = "-10.0";
-        String actualExpr = new ExprBuilder(exprText).build();
-        assertEquals(expectExpr, actualExpr);
+        // 默认系统函数
+        String[] inputs = {
+                "${ceil(-10.3)}",
+                "${floor(10.7)}"
+        };
+        String[] expects = {
+                "-10.0",
+                "10.0"
+        };
+        runDefaultTest(inputs, expects);
+    }
 
-        exprText = "${floor(10.7)}";
-        expectExpr = "10.0";
-        actualExpr = new ExprBuilder(exprText).build();
-        assertEquals(expectExpr, actualExpr);
-
+    @Test
+    void testCustomTemplateFunction() {
         // 自定义函数
-        exprText = "${floor(10.7)}";
-        expectExpr = "1.23456789";
-        actualExpr = new ExprBuilder(exprText)
-                .templateBuilder(mockTemplateBuilder())
-                .build();
-        assertEquals(expectExpr, actualExpr);
-
-        // 自定义函数
-        exprText = "${floor2(10.7)}";
-        expectExpr = "1.23456789";
-        actualExpr = new ExprBuilder(exprText)
-                .templateBuilder(mockTemplateBuilder())
-                .build();
-        assertEquals(expectExpr, actualExpr);
+        String[] inputs = {
+                "${floor(10.7)}",
+                "${floor2(10.7)}"
+        };
+        String[] expects2 = {
+                "1.23456789",
+                "1.23456789"
+        };
+        runCustomTest(inputs, expects2);
     }
 
     @Test
     void testGeneralFunction() {
-        // 函数存在时
-        String exprText = "ceiling(-10.3)";
-        String expectExpr = "ceiling(-10.3)";
-        String actualExpr = new ExprBuilder(exprText).build();
-        assertEquals(expectExpr, actualExpr);
-
-        exprText = "substring('12345678', 0, 5)";
-        expectExpr = "substring('12345678', 0, 5)";
-        actualExpr = new ExprBuilder(exprText).build();
-        assertEquals(expectExpr, actualExpr);
-
-        exprText = "abs([orders].[freight])";
-        expectExpr = "abs(orders.freight)";
-        actualExpr = new ExprBuilder(exprText).build();
-        assertEquals(expectExpr, actualExpr);
-
-        exprText = "substring([orders].[orderId], 0, abs([orders].[freight]))";
-        expectExpr = "substring(orders.orderId, 0, abs(orders.freight))";
-        actualExpr = new ExprBuilder(exprText).build();
-        assertEquals(expectExpr, actualExpr);
-
-        // 函数不存在时
-        exprText = "len(10.7)";
-        expectExpr = "len(10.7)";
-        actualExpr = new ExprBuilder(exprText).build();
-        assertEquals(expectExpr, actualExpr);
+        String[] inputs = {
+                "ceiling(-10.3)",
+                "substring('12345678', 0, 5)",
+                "abs([orders].[freight])",
+                "substring([orders].[orderId], 0, abs([orders].[freight]))",
+                "len(10.7)"
+        };
+        String[] expects = {
+                "ceiling(-10.3)",
+                "substring('12345678', 0, 5)",
+                "abs(`orders`.`freight`)",
+                "substring(`orders`.`orderId`, 0, abs(`orders`.`freight`))",
+                "len(10.7)"
+        };
+        runCustomTest(inputs, expects);
     }
 
     @Test
     void testNativeFunction() {
-        String exprText = "@ceil(-10.3)";
-        String expectExpr = "ceil(-10.3)";
-        String actualExpr = new ExprBuilder(exprText).build();
-        assertEquals(expectExpr, actualExpr);
-
-        exprText = "@len(10.7)";
-        expectExpr = "len(10.7)";
-        actualExpr = new ExprBuilder(exprText).build();
-        assertEquals(expectExpr, actualExpr);
+        String[] inputs = {
+                "@ceil(-10.3)",
+                "@len(10.7)"
+        };
+        String[] expects = {
+                "ceil(-10.3)",
+                "len(10.7)"
+        };
+        runCustomTest(inputs, expects);
     }
 
     @Test
     void testBetween() {
-        String exprText = "[orders].[freight] between -10 and 100";
-        String expectExpr = "orders.freight between -10 and 100";
-        String actualExpr = new ExprBuilder(exprText).build();
-        assertEquals(expectExpr, actualExpr);
+        String[] inputs = {
+                "[orders].[freight] between -10 and 100"
+        };
+        String[] expects = {
+                "`orders`.`freight` between -10 and 100"
+        };
+        runCustomTest(inputs, expects);
     }
 
     @Test
     void testCaseWhen() {
-        String exprText = "case when [orders].[freight] > -10 then 0 else 1 end";
-        String expectExpr = "case when orders.freight > -10 then 0 else 1 end";
-        String actualExpr = new ExprBuilder(exprText).build();
-        assertEquals(expectExpr, actualExpr);
+        String[] inputs = {
+                "case when [orders].[freight] > -10 then 0 else 1 end"
+        };
+        String[] expects = {
+                "case when `orders`.`freight` > -10 then 0 else 1 end"
+        };
+        runCustomTest(inputs, expects);
     }
 
     @Test
     void testMixed() {
-        String exprText = "1 + 2";
-        String expectExpr = "1 + 2";
-        String actualExpr = new ExprBuilder(exprText).build();
-        assertEquals(expectExpr, actualExpr);
-
-        exprText = "1 > 2 * 3";
-        expectExpr = "1 > 2 * 3";
-        actualExpr = new ExprBuilder(exprText).build();
-        assertEquals(expectExpr, actualExpr);
-
-        exprText = "[orders].[ShipCity] is null";
-        expectExpr = "orders.ShipCity is null";
-        actualExpr = new ExprBuilder(exprText).build();
-        assertEquals(expectExpr, actualExpr);
-
-        exprText = "[orders].[freight] - 100 / 2";
-        expectExpr = "orders.freight - 100 / 2";
-        actualExpr = new ExprBuilder(exprText).build();
-        assertEquals(expectExpr, actualExpr);
-
-        exprText = "(${Param.freight} + 1) * 12";
-        expectExpr = "( 2.1 + 1 ) * 12";
-        actualExpr = new ExprBuilder(exprText)
-                .templateBuilder(mockTemplateBuilder())
-                .build();
-        assertEquals(expectExpr, actualExpr);
-
-        exprText = "abs([orders].[freight]) * 2";
-        expectExpr = "abs(orders.freight) * 2";
-        actualExpr = new ExprBuilder(exprText).build();
-        assertEquals(expectExpr, actualExpr);
-
-        exprText = "@abs([orders].[freight]) / 3 * ([orderdatials].[quantity] + 1)";
-        expectExpr = "abs(orders.freight) / 3 * ( orderdatials.quantity + 1 )";
-        actualExpr = new ExprBuilder(exprText).build();
-        assertEquals(expectExpr, actualExpr);
-
-        exprText = "substring(${userName}, 0, abs([orders].[freight]) + 2)";
-        expectExpr = "substring(admin, 0, abs(orders.freight) + 2)";
-        actualExpr = new ExprBuilder(exprText)
-                .templateBuilder(mockTemplateBuilder())
-                .build();
-        assertEquals(expectExpr, actualExpr);
-
-        exprText = "@substring(${userName}, 0, @abs([orders].[freight]) + 2)";
-        expectExpr = "substring(admin, 0, abs(orders.freight) + 2)";
-        actualExpr = new ExprBuilder(exprText)
-                .templateBuilder(mockTemplateBuilder())
-                .build();
-        assertEquals(expectExpr, actualExpr);
-
-        exprText = "abs(${ceil(Param.freight) + userCount * 4}) + @div(-[orders].[freight], 10)";
-        expectExpr = "abs(11.0) + div(-`orders`.`freight`, 10)";
-        actualExpr = new ExprBuilder(exprText)
-                .columnRefBuilder(mockColumnRefBuilder())
-                .templateBuilder(mockTemplateBuilder())
-                .generalFuncBuilder(mockGeneralFuncBuilder())
-                .nativeFuncBuilder(mockNativeFuncBuilder())
-                .build();
-        assertEquals(expectExpr, actualExpr);
+        String[] inputs = {
+                "1 + 2",
+                "1 > 2 * 3",
+                "[orders].[ShipCity] is null",
+                "[orders].[freight] - 100 / 2",
+                "(${Param.freight} + 1) * 12",
+                "abs([orders].[freight]) * 2",
+                "@abs([orders].[freight]) / 3 * ([orderdatials].[quantity] + 1)",
+                "substring(${userName}, 0, abs([orders].[freight]) + 2)",
+                "@substring(${userName}, 0, @abs([orders].[freight]) + 2)",
+                "abs(${ceil(Param.freight) + userCount * 4}) + @div(-[orders].[freight], 10)"
+        };
+        String[] expects = {
+                "1 + 2",
+                "1 > 2 * 3",
+                "`orders`.`ShipCity` is null",
+                "`orders`.`freight` - 100 / 2",
+                "( 2.1 + 1 ) * 12",
+                "abs(`orders`.`freight`) * 2",
+                "abs(`orders`.`freight`) / 3 * ( `orderdatials`.`quantity` + 1 )",
+                "substring(admin, 0, abs(`orders`.`freight`) + 2)",
+                "substring(admin, 0, abs(`orders`.`freight`) + 2)",
+                "abs(11.0) + div(-`orders`.`freight`, 10)"
+        };
+        runCustomTest(inputs, expects);
     }
 
     @Test
-    public void testCheckWrongExpr() {
+    void testCheckWrongExpr() {
         try {
             String exprText = "abs(${ceil(Param.freight) + userCount * 4}";
             new ExprBuilder(exprText).test();
@@ -284,7 +220,41 @@ class ExprBuilderTest {
         }
     }
 
-    private ColumnRefBuilder mockColumnRefBuilder() {
+    /**
+     * 运行默认的构建测试
+     *
+     * @param inputs  实际输入
+     * @param expects 期望输出
+     */
+    void runDefaultTest(String[] inputs, String[] expects) {
+        for (int i = 0; i < inputs.length; i++) {
+            String actual = new ExprBuilder(inputs[i]).build();
+            assertEquals(expects[i], actual);
+        }
+    }
+
+    /**
+     * 运行自定义的构建测试
+     *
+     * @param inputs  实际输入
+     * @param expects 期望输出
+     */
+    void runCustomTest(String[] inputs, String[] expects) {
+        for (int i = 0; i < inputs.length; i++) {
+            String actual = mockExprBuilder(inputs[i]).build();
+            assertEquals(expects[i], actual);
+        }
+    }
+
+    ExprBuilder mockExprBuilder(String exprText) {
+        return new ExprBuilder(exprText)
+                .columnRefBuilder(mockColumnRefBuilder())
+                .templateBuilder(mockTemplateBuilder())
+                .generalFuncBuilder(mockGeneralFuncBuilder())
+                .nativeFuncBuilder(mockNativeFuncBuilder());
+    }
+
+    ColumnRefBuilder mockColumnRefBuilder() {
         return new ColumnRefBuilder() {
             @Override
             protected String getPreQuote() {
@@ -298,43 +268,43 @@ class ExprBuilderTest {
         };
     }
 
-    private FunctionBuilder mockGeneralFuncBuilder() {
+    FunctionBuilder mockGeneralFuncBuilder() {
         return new GeneralFuncBuilder();
     }
 
-    private FunctionBuilder mockNativeFuncBuilder() {
+    FunctionBuilder mockNativeFuncBuilder() {
         return new NativeFuncBuilder();
     }
 
-    private TemplateBuilder mockTemplateBuilder() {
+    TemplateBuilder mockTemplateBuilder() {
         return new TemplateBuilder(mockTemplateContext());
     }
 
-    private TemplateContext mockTemplateContext() {
+    TemplateContext mockTemplateContext() {
         TemplateContext templateContext = new TemplateContext();
-
-        VariableContext varCxt = templateContext.getVariableContext();
-        varCxt.register("userId", "test");
-        varCxt.register("userName", "admin");
-        varCxt.register("userCount", 2);
-        varCxt.registerByPath("Param.freight", 2.1);
-        varCxt.registerByPath("Param.unitPrice", 10.2);
-
         try {
+            // 环境变量
+            VariableContext varCxt = templateContext.getVariableContext();
+            varCxt.register("userId", "test");
+            varCxt.register("userName", "admin");
+            varCxt.register("userCount", 2);
+            varCxt.registerByPath("Param.freight", 2.1);
+            varCxt.registerByPath("Param.unitPrice", 10.2);
+
+            // 函数
             FunctionContext funcCxt = templateContext.getFunctionContext();
-            Method method = MockCustomFunction.class.getDeclaredMethod("floor", double.class);
+            Method method = CustomFunctions.class.getDeclaredMethod("floor", double.class);
             FunctionStub floor = new FunctionStub("floor", method);
             FunctionStub floor2 = new FunctionStub("floor2", method);
             funcCxt.register("floor", floor);
             funcCxt.register("floor2", floor2);
-        } catch (NoSuchMethodException e) {
+        } catch (Exception e) {
             e.printStackTrace();
         }
-
         return templateContext;
     }
 
-    public static class MockCustomFunction {
+    public static class CustomFunctions {
         public static double floor(double a) {
             return 1.23456789;
         }
