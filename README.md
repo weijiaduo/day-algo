@@ -78,7 +78,7 @@
   - [邻接矩阵](./algorithm/src/main/java/com/wjd/structure/graph/undirected/impl/MatrixGraph.java)
   - [邻接表](./algorithm/src/main/java/com/wjd/structure/graph/undirected/impl/ListGraph.java)
   - [邻接多重表]
-  - [无向符号图](./algorithm/src/main/java/com/wjd/structure/graph/undirected/impl/SymbolGraphImpl.java)
+  - [符号无向图](./algorithm/src/main/java/com/wjd/structure/graph/undirected/impl/SymbolGraphImpl.java)
 - 加权无向图
   - [邻接矩阵](./algorithm/src/main/java/com/wjd/structure/graph/undirected/impl/MatrixWeightedGraph.java)
   - [邻接表](./algorithm/src/main/java/com/wjd/structure/graph/undirected/impl/ListWeightedGraph.java)
@@ -86,7 +86,7 @@
   - [邻接矩阵](./algorithm/src/main/java/com/wjd/structure/graph/directed/impl/MatrixDigraph.java)
   - [邻接表](./algorithm/src/main/java/com/wjd/structure/graph/directed/impl/ListDigraph.java)
   - [十字链表]
-  - [有向符号图]
+  - [符号有向图](./algorithm/src/main/java/com/wjd/structure/graph/directed/impl/SymbolDigraphImpl.java)
 - 加权有向图
   - [邻接矩阵](./algorithm/src/main/java/com/wjd/structure/graph/directed/impl/MatrixWeightedDigraph.java)
   - [邻接表](./algorithm/src/main/java/com/wjd/structure/graph/directed/impl/ListWeightedDigraph.java)
@@ -192,17 +192,17 @@
 ### 最短路径
 
 - 无向图
-  - [BFS 算法]
+  - [BFS 算法](./algorithm/src/main/java/com/wjd/algorithm/graph/undirected/path/BreadthFirstPaths.java)
 - 加权无向图
   - [Dijkstra 算法]
 - 有向图
-  - [BFS 算法]
+  - [BFS 算法](./algorithm/src/main/java/com/wjd/algorithm/graph/directed/path/DirectedBFP.java)
 - 加权有向图
-  - [Dijkstra 算法（有环无负权边）]
-  - [Acyclic 算法（无环有负权边）]
-  - [Bellman-Ford 算法（无负权重环）]
+  - [Dijkstra 算法（有环无负权边）](./algorithm/src/main/java/com/wjd/algorithm/graph/directed/path/shortest/DijkstraSP.java)
+  - [Acyclic 算法（无环有负权边）](./algorithm/src/main/java/com/wjd/algorithm/graph/directed/path/shortest/AcyclicSP.java)
+  - [Bellman-Ford 算法（无负权重环）](./algorithm/src/main/java/com/wjd/algorithm/graph/directed/path/shortest/BellmanFordSP.java)
   - [Floyd 算法]
-  - [关键路径（最长路径）]
+  - [关键路径（最长路径）](./algorithm/src/main/java/com/wjd/algorithm/graph/directed/path/longest/AcyclicLP.java)
 
 ## 字符串
 
