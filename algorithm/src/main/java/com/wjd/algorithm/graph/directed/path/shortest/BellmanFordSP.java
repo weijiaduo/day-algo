@@ -11,6 +11,10 @@ import java.util.Queue;
 
 /**
  * 基于 Bellman Ford 算法的最短路径实现
+ * <p>
+ * 要求：
+ * <p>
+ * 1. 不能有负权重环
  *
  * @author weijiaduo
  * @since 2023/3/20
