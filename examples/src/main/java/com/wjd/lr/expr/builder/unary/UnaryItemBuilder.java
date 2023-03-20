@@ -13,6 +13,9 @@ public class UnaryItemBuilder implements ExprItemBuilder<UnaryItem> {
 
     @Override
     public String build(UnaryItem item) {
+        if ("not".equalsIgnoreCase(item.getOp())) {
+            return item.getOp() + " " + item.getExpr();
+        }
         return item.getOp() + item.getExpr();
     }
 
