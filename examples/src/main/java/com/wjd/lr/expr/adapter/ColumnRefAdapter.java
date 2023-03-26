@@ -1,10 +1,11 @@
 package com.wjd.lr.expr.adapter;
 
+import com.wjd.lr.expr.Expr;
+import com.wjd.lr.expr.ExprBuilder;
 import com.wjd.lr.expr.ExprVisitor;
 import com.wjd.lr.expr.antlr.ExprParser;
-import com.wjd.lr.expr.builder.ref.ColumnRefBuilder;
-import com.wjd.lr.expr.model.ColumnRef;
-import org.antlr.v4.runtime.tree.RuleNode;
+import com.wjd.lr.expr.ast.ColumnRef;
+import org.antlr.v4.runtime.tree.ParseTree;
 
 /**
  * 列引用适配器
@@ -12,41 +13,32 @@ import org.antlr.v4.runtime.tree.RuleNode;
  * @author weijiaduo
  * @since 2023/3/9
  */
-public class ColumnRefAdapter implements RuleAdapter {
+public class ColumnRefAdapter extends AbstractExprAdapter {
 
     /**
-     * 访问者
+     * Instantiates a new Column ref adapter.
+     *
+     * @param builder the builder
+     * @param visitor the visitor
      */
-    private final ExprVisitor visitor;
-    /**
-     * 列引用构建器
-     */
-    private final ColumnRefBuilder builder;
-
-    public ColumnRefAdapter(ExprVisitor visitor, ColumnRefBuilder builder) {
-        this.visitor = visitor;
-        if (builder == null) {
-            builder = new ColumnRefBuilder();
-        }
-        this.builder = builder;
+    public ColumnRefAdapter(ExprBuilder builder, ExprVisitor visitor) {
+        super(builder, visitor);
     }
 
     @Override
-    public boolean accept(RuleNode ruleNode) {
-        return ruleNode instanceof ExprParser.ColumnRefContext;
+    public boolean accept(ParseTree parseTree) {
+        return parseTree instanceof ExprParser.ColumnRefContext;
     }
 
     @Override
-    public String adapt(RuleNode ruleNode) {
-        ExprParser.ColumnRefContext ctx = (ExprParser.ColumnRefContext) ruleNode;
+    public Expr adapt(ParseTree parseTree) {
+        ExprParser.ColumnRefContext ctx = (ExprParser.ColumnRefContext) parseTree;
         String tableName = null;
         if (ctx.tableName() != null) {
             tableName = removeBracket(ctx.tableName().getText());
         }
         String columnName = removeBracket(ctx.columnName().getText());
-        ColumnRef columnRef = new ColumnRef(tableName, columnName);
-        columnRef.setText(ruleNode.getText());
-        return builder.build(columnRef);
+        return handle(new ColumnRef(tableName, columnName));
     }
 
     /**

@@ -1,10 +1,11 @@
 package com.wjd.lr.expr.adapter;
 
+import com.wjd.lr.expr.Expr;
+import com.wjd.lr.expr.ExprBuilder;
 import com.wjd.lr.expr.ExprVisitor;
 import com.wjd.lr.expr.antlr.ExprParser;
-import com.wjd.lr.expr.builder.template.TemplateBuilder;
-import com.wjd.lr.expr.model.Template;
-import org.antlr.v4.runtime.tree.RuleNode;
+import com.wjd.lr.expr.ast.Template;
+import org.antlr.v4.runtime.tree.ParseTree;
 
 /**
  * 模板适配器
@@ -12,37 +13,28 @@ import org.antlr.v4.runtime.tree.RuleNode;
  * @author weijiaduo
  * @since 2023/3/9
  */
-public class TemplateAdapter implements RuleAdapter {
+public class TemplateAdapter extends AbstractExprAdapter {
 
     /**
-     * 访问者
+     * Instantiates a new Template adapter.
+     *
+     * @param builder the builder
+     * @param visitor the visitor
      */
-    private final ExprVisitor visitor;
-    /**
-     * 访问者
-     */
-    private final TemplateBuilder builder;
-
-    public TemplateAdapter(ExprVisitor visitor, TemplateBuilder builder) {
-        this.visitor = visitor;
-        if (builder == null) {
-            builder = new TemplateBuilder();
-        }
-        this.builder = builder;
+    public TemplateAdapter(ExprBuilder builder, ExprVisitor visitor) {
+        super(builder, visitor);
     }
 
     @Override
-    public boolean accept(RuleNode ruleNode) {
-        return ruleNode instanceof ExprParser.TemplateContext;
+    public boolean accept(ParseTree parseTree) {
+        return parseTree instanceof ExprParser.TemplateContext;
     }
 
     @Override
-    public String adapt(RuleNode ruleNode) {
-        ExprParser.TemplateContext ctx = (ExprParser.TemplateContext) ruleNode;
+    public Expr adapt(ParseTree parseTree) {
+        ExprParser.TemplateContext ctx = (ExprParser.TemplateContext) parseTree;
         String scriptText = parseScriptText(ctx);
-        Template template = new Template(scriptText);
-        template.setText(ruleNode.getText());
-        return builder.build(template);
+        return handle(new Template(scriptText));
     }
 
     /**

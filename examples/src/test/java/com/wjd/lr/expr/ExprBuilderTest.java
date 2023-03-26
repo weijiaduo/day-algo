@@ -1,14 +1,17 @@
 package com.wjd.lr.expr;
 
-import com.wjd.lr.expr.builder.function.FunctionBuilder;
-import com.wjd.lr.expr.builder.function.GeneralFuncBuilder;
-import com.wjd.lr.expr.builder.function.NativeFuncBuilder;
-import com.wjd.lr.expr.builder.ref.ColumnRefBuilder;
-import com.wjd.lr.expr.builder.template.TemplateBuilder;
-import com.wjd.lr.expr.builder.template.TemplateContext;
-import com.wjd.lr.expr.builder.template.fucntion.FunctionContext;
-import com.wjd.lr.expr.builder.template.fucntion.FunctionStub;
-import com.wjd.lr.expr.builder.template.variable.VariableContext;
+import com.wjd.lr.impl.DialectExprContext;
+import com.wjd.lr.expr.ast.ColumnRef;
+import com.wjd.lr.expr.handler.ColumnRefHandler;
+import com.wjd.lr.expr.handler.FunctionHandler;
+import com.wjd.lr.expr.handler.TemplateHandler;
+import com.wjd.lr.expr.type.ValueType;
+import com.wjd.lr.impl.function.DefaultFunctionHandler;
+import com.wjd.lr.impl.template.Mvel2TemplateHandler;
+import com.wjd.lr.impl.template.Mvel2TemplateContext;
+import com.wjd.lr.impl.template.fucntion.FunctionContext;
+import com.wjd.lr.impl.template.fucntion.FunctionStub;
+import com.wjd.lr.impl.template.variable.VariableContext;
 import org.junit.jupiter.api.Test;
 
 import java.lang.reflect.Method;
@@ -222,6 +225,55 @@ class ExprBuilderTest {
         }
     }
 
+    @Test
+    void testExprType() {
+        String[] inputs = {
+                "12",
+                "'广州'",
+                "true",
+                "null",
+                "[orders].[field-运费]",
+                "${Param.freight}",
+                "${userName}",
+                "${ceil(-10.3)}",
+                "substring([orders].[orderId], 0, abs([orders].[freight]))",
+                "@ceil(-10.3)",
+                "[orders].[freight] between -10 and 100",
+                "case when [orders].[freight] > -10 then 0 else 1 end",
+                "case [freight] when [orders].[freight] > -10 then 0 else 1 end",
+                "1 + 2",
+                "1 > 2 * 3",
+                "[orders].[ShipCity] is not null",
+                "@abs([orders].[freight]) / 3 * ([orderdatials].[quantity] + 1)",
+                "abs(${ceil(Param.freight) + userCount * 4}) + @div(-[orders].[freight], 10)"
+        };
+        String[] expects = {
+                "ExprType: NUMERIC, ValueType: NUMERIC",
+                "ExprType: STRING, ValueType: STRING",
+                "ExprType: BOOL, ValueType: BOOL",
+                "ExprType: NULL, ValueType: NULL",
+                "ExprType: COLUMN, ValueType: NUMERIC",
+                "ExprType: NUMERIC, ValueType: NUMERIC",
+                "ExprType: STRING, ValueType: STRING",
+                "ExprType: NUMERIC, ValueType: NUMERIC",
+                "ExprType: FUNCTION, ValueType: STRING",
+                "ExprType: FUNCTION, ValueType: null",
+                "ExprType: FUNCTION, ValueType: BOOL",
+                "ExprType: FUNCTION, ValueType: NUMERIC",
+                "ExprType: FUNCTION, ValueType: NUMERIC",
+                "ExprType: ARITHMETIC, ValueType: NUMERIC",
+                "ExprType: COMPARE, ValueType: BOOL",
+                "ExprType: COMPARE, ValueType: BOOL",
+                "ExprType: ARITHMETIC, ValueType: NUMERIC",
+                "ExprType: ARITHMETIC, ValueType: NUMERIC"
+        };
+
+        for (int i = 0; i < inputs.length; i++) {
+            Expr actual = mockExprBuilder(inputs[i]).build();
+            assertEquals(expects[i], actual.toString());
+        }
+    }
+
     /**
      * 运行默认的构建测试
      *
@@ -229,8 +281,12 @@ class ExprBuilderTest {
      * @param expects 期望输出
      */
     void runDefaultTest(String[] inputs, String[] expects) {
+        ExprContext context = new DialectExprContext();
+        TemplateHandler templateHandler = new Mvel2TemplateHandler();
         for (int i = 0; i < inputs.length; i++) {
-            String actual = new ExprBuilder(inputs[i]).build();
+            ExprBuilder builder = new ExprBuilder(inputs[i]);
+            builder.addHandler(templateHandler);
+            String actual = builder.build().toSql(context);
             assertEquals(expects[i], actual);
         }
     }
@@ -242,51 +298,65 @@ class ExprBuilderTest {
      * @param expects 期望输出
      */
     void runCustomTest(String[] inputs, String[] expects) {
+        ExprContext context = mockExprContext();
         for (int i = 0; i < inputs.length; i++) {
-            String actual = mockExprBuilder(inputs[i]).build();
+            String actual = mockExprBuilder(inputs[i]).build().toSql(context);
             assertEquals(expects[i], actual);
         }
     }
 
-    ExprBuilder mockExprBuilder(String exprText) {
-        return new ExprBuilder(exprText)
-                .columnRefBuilder(mockColumnRefBuilder())
-                .templateBuilder(mockTemplateBuilder())
-                .generalFuncBuilder(mockGeneralFuncBuilder())
-                .nativeFuncBuilder(mockNativeFuncBuilder());
-    }
-
-    ColumnRefBuilder mockColumnRefBuilder() {
-        return new ColumnRefBuilder() {
+    ExprContext mockExprContext() {
+        return new DialectExprContext() {
             @Override
-            protected String getPreQuote() {
-                return "`";
-            }
-
-            @Override
-            protected String getPostQuote() {
-                return "`";
+            public String quoteName(String name) {
+                return "`" + name + "`";
             }
         };
     }
 
-    FunctionBuilder mockGeneralFuncBuilder() {
-        return new GeneralFuncBuilder();
+    ExprBuilder mockExprBuilder(String exprText) {
+        ExprBuilder builder = new ExprBuilder(exprText);
+        builder.addHandler(mockColumnRefHandler());
+        builder.addHandler(mockFunctionHandler());
+        builder.addHandler(mockTemplateHandler());
+        return builder;
     }
 
-    FunctionBuilder mockNativeFuncBuilder() {
-        return new NativeFuncBuilder();
+    ColumnRefHandler mockColumnRefHandler() {
+        return new ColumnRefHandler() {
+            @Override
+            public Expr handle(ColumnRef columnRef) {
+                ValueType valueType;
+                switch (columnRef.getColumnName()) {
+                    case "ShipCity":
+                        valueType = ValueType.STRING;
+                        break;
+                    case "null":
+                        valueType = ValueType.NULL;
+                        break;
+                    default:
+                        valueType = ValueType.NUMERIC;
+                        break;
+                }
+                columnRef.setValueType(valueType);
+                return columnRef;
+            }
+        };
     }
 
-    TemplateBuilder mockTemplateBuilder() {
-        return new TemplateBuilder(mockTemplateContext());
+    FunctionHandler mockFunctionHandler() {
+        return new DefaultFunctionHandler();
     }
 
-    TemplateContext mockTemplateContext() {
-        TemplateContext templateContext = new TemplateContext();
+    TemplateHandler mockTemplateHandler() {
+        return new Mvel2TemplateHandler(mockTemplateContext());
+    }
+
+    Mvel2TemplateContext mockTemplateContext() {
+        Mvel2TemplateContext templateCtx = new Mvel2TemplateContext();
         try {
             // 环境变量
-            VariableContext varCxt = templateContext.getVariableContext();
+            VariableContext varCxt = templateCtx.getVariableContext();
             varCxt.register("userId", "test");
             varCxt.register("userName", "admin");
             varCxt.register("userCount", 2);
@@ -294,8 +364,8 @@ class ExprBuilderTest {
             varCxt.registerByPath("Param.unitPrice", 10.2);
 
             // 函数
-            FunctionContext funcCxt = templateContext.getFunctionContext();
-            Method method = CustomFunctions.class.getDeclaredMethod("floor", double.class);
+            FunctionContext funcCxt = templateCtx.getFunctionContext();
+            Method method = MockFunctions.class.getDeclaredMethod("floor", double.class);
             FunctionStub floor = new FunctionStub("floor", method);
             FunctionStub floor2 = new FunctionStub("floor2", method);
             funcCxt.register("floor", floor);
@@ -303,10 +373,10 @@ class ExprBuilderTest {
         } catch (Exception e) {
             e.printStackTrace();
         }
-        return templateContext;
+        return templateCtx;
     }
 
-    public static class CustomFunctions {
+    public static class MockFunctions {
         public static double floor(double a) {
             return 1.23456789;
         }

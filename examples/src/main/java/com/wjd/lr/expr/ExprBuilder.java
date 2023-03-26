@@ -3,15 +3,16 @@ package com.wjd.lr.expr;
 import com.wjd.lr.expr.adapter.*;
 import com.wjd.lr.expr.antlr.ExprLexer;
 import com.wjd.lr.expr.antlr.ExprParser;
-import com.wjd.lr.expr.builder.function.FunctionBuilder;
-import com.wjd.lr.expr.builder.ref.ColumnRefBuilder;
-import com.wjd.lr.expr.builder.template.TemplateBuilder;
-import com.wjd.lr.expr.builder.text.TextItemBuilder;
-import com.wjd.lr.expr.builder.unary.UnaryItemBuilder;
+import com.wjd.lr.expr.error.ExprParseErrorHandler;
+import com.wjd.lr.expr.error.ExprParseErrorListener;
+import com.wjd.lr.expr.handler.ExprHandler;
 import org.antlr.v4.runtime.CharStream;
 import org.antlr.v4.runtime.CharStreams;
 import org.antlr.v4.runtime.CommonTokenStream;
 import org.antlr.v4.runtime.tree.ParseTree;
+
+import java.util.ArrayList;
+import java.util.List;
 
 /**
  * 表达式解析构建器
@@ -24,36 +25,34 @@ public class ExprBuilder {
     /**
      * 表达式原始字符串
      */
-    private final String exprText;
-
+    private String exprText;
     /**
-     * 列引用构造器
+     * 表达式处理器
      */
-    private ColumnRefBuilder columnRefBuilder;
-    /**
-     * 模板构造器
-     */
-    private TemplateBuilder templateBuilder;
-    /**
-     * 通用函数构造器
-     */
-    private FunctionBuilder generalFuncBuilder;
-    /**
-     * 本地函数构造器
-     */
-    private FunctionBuilder nativeFuncBuilder;
+    protected final List<ExprHandler<?>> handlers = new ArrayList<>();
 
     public ExprBuilder(String exprText) {
         this.exprText = exprText;
     }
 
     /**
-     * 构建最终的表达式字符串
+     * 构建表达式树
      *
-     * @return 可执行的表达式字符串
+     * @return 表达式树
      */
-    public String build() {
+    public Expr build() {
         return buildVisitor().visit(parse());
+    }
+
+    /**
+     * 构建指定表达式字符串为表达式树
+     *
+     * @param exprText 指定表达式字符串
+     * @return 表达式树
+     */
+    public Expr build(String exprText) {
+        this.exprText = exprText;
+        return build();
     }
 
     /**
@@ -91,33 +90,37 @@ public class ExprBuilder {
      */
     private ExprVisitor buildVisitor() {
         ExprVisitor visitor = new ExprVisitor();
-        visitor.addAdapter(new ColumnRefAdapter(visitor, columnRefBuilder));
-        visitor.addAdapter(new GeneralFuncAdapter(visitor, generalFuncBuilder));
-        visitor.addAdapter(new NativeFuncAdapter(visitor, nativeFuncBuilder));
-        visitor.addAdapter(new TemplateAdapter(visitor, templateBuilder));
-        visitor.addAdapter(new UnaryItemAdapter(visitor, new UnaryItemBuilder()));
-        visitor.addAdapter(new TextItemAdapter(visitor, new TextItemBuilder()));
+        visitor.addAdapter(new ColumnRefAdapter(this, visitor));
+        visitor.addAdapter(new TemplateAdapter(this, visitor));
+        visitor.addAdapter(new GeneralFuncAdapter(this, visitor));
+        visitor.addAdapter(new CaseWhenAdapter(this, visitor));
+        visitor.addAdapter(new BetweenAdapter(this, visitor));
+        visitor.addAdapter(new NativeFuncAdapter(this, visitor));
+        visitor.addAdapter(new UnaryAdapter(this, visitor));
+        visitor.addAdapter(new ArithmeticAdapter(this, visitor));
+        visitor.addAdapter(new CompareAdapter(this, visitor));
+        visitor.addAdapter(new LogicalAdapter(this, visitor));
+        visitor.addAdapter(new LiteralAdapter(this, visitor));
+        visitor.addAdapter(new TextAdapter(this, visitor));
         return visitor;
     }
 
-    public ExprBuilder columnRefBuilder(ColumnRefBuilder columnRefBuilder) {
-        this.columnRefBuilder = columnRefBuilder;
-        return this;
+    /**
+     * 获取表达式处理器
+     *
+     * @return 表达式处理器
+     */
+    public List<ExprHandler<?>> getHandlers() {
+        return handlers;
     }
 
-    public ExprBuilder templateBuilder(TemplateBuilder templateBuilder) {
-        this.templateBuilder = templateBuilder;
-        return this;
-    }
-
-    public ExprBuilder generalFuncBuilder(FunctionBuilder generalFuncBuilder) {
-        this.generalFuncBuilder = generalFuncBuilder;
-        return this;
-    }
-
-    public ExprBuilder nativeFuncBuilder(FunctionBuilder nativeFuncBuilder) {
-        this.nativeFuncBuilder = nativeFuncBuilder;
-        return this;
+    /**
+     * 添加表达式处理器
+     *
+     * @param handler 表达式处理器
+     */
+    public void addHandler(ExprHandler<?> handler) {
+        handlers.add(handler);
     }
 
 }

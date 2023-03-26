@@ -1,11 +1,11 @@
 package com.wjd.lr.expr.adapter;
 
+import com.wjd.lr.expr.Expr;
+import com.wjd.lr.expr.ExprBuilder;
 import com.wjd.lr.expr.ExprVisitor;
 import com.wjd.lr.expr.antlr.ExprParser;
-import com.wjd.lr.expr.builder.function.FunctionBuilder;
-import com.wjd.lr.expr.builder.function.NativeFuncBuilder;
-import com.wjd.lr.expr.model.NativeFunction;
-import org.antlr.v4.runtime.tree.RuleNode;
+import com.wjd.lr.expr.ast.NativeFunction;
+import org.antlr.v4.runtime.tree.ParseTree;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -16,38 +16,29 @@ import java.util.List;
  * @author weijiaduo
  * @since 2023/3/9
  */
-public class NativeFuncAdapter implements RuleAdapter {
+public class NativeFuncAdapter extends AbstractExprAdapter {
 
     /**
-     * 访问者
+     * Instantiates a new Native func adapter.
+     *
+     * @param builder the builder
+     * @param visitor the visitor
      */
-    private final ExprVisitor visitor;
-    /**
-     * 构建者
-     */
-    private final FunctionBuilder builder;
-
-    public NativeFuncAdapter(ExprVisitor visitor, FunctionBuilder builder) {
-        this.visitor = visitor;
-        if (builder == null) {
-            builder = new NativeFuncBuilder();
-        }
-        this.builder = builder;
+    public NativeFuncAdapter(ExprBuilder builder, ExprVisitor visitor) {
+        super(builder, visitor);
     }
 
     @Override
-    public boolean accept(RuleNode ruleNode) {
-        return ruleNode instanceof ExprParser.NativeFuncContext;
+    public boolean accept(ParseTree parseTree) {
+        return parseTree instanceof ExprParser.NativeFuncContext;
     }
 
     @Override
-    public String adapt(RuleNode ruleNode) {
-        ExprParser.NativeFuncContext ctx = (ExprParser.NativeFuncContext) ruleNode;
+    public Expr adapt(ParseTree parseTree) {
+        ExprParser.NativeFuncContext ctx = (ExprParser.NativeFuncContext) parseTree;
         String funcName = ctx.funcName().getText();
-        List<String> params = getParamList(ctx);
-        NativeFunction function = new NativeFunction(funcName, params);
-        function.setText(ruleNode.getText());
-        return builder.build(function);
+        List<Expr> params = getParamList(ctx);
+        return handle(new NativeFunction(funcName, params));
     }
 
     /**
@@ -56,8 +47,8 @@ public class NativeFuncAdapter implements RuleAdapter {
      * @param ctx 方法上下文
      * @return 参数字符串列表
      */
-    private List<String> getParamList(ExprParser.NativeFuncContext ctx) {
-        List<String> params = new ArrayList<>();
+    private List<Expr> getParamList(ExprParser.NativeFuncContext ctx) {
+        List<Expr> params = new ArrayList<>();
         for (ExprParser.ExprContext expr : ctx.expr()) {
             params.add(visitor.visit(expr));
         }

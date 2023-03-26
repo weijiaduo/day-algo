@@ -1,11 +1,11 @@
 package com.wjd.lr.expr.adapter;
 
+import com.wjd.lr.expr.Expr;
+import com.wjd.lr.expr.ExprBuilder;
 import com.wjd.lr.expr.ExprVisitor;
 import com.wjd.lr.expr.antlr.ExprParser;
-import com.wjd.lr.expr.builder.function.FunctionBuilder;
-import com.wjd.lr.expr.builder.function.GeneralFuncBuilder;
-import com.wjd.lr.expr.model.Function;
-import org.antlr.v4.runtime.tree.RuleNode;
+import com.wjd.lr.expr.ast.GeneralFunction;
+import org.antlr.v4.runtime.tree.ParseTree;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -16,38 +16,30 @@ import java.util.List;
  * @author weijiaduo
  * @since 2023/3/9
  */
-public class GeneralFuncAdapter implements RuleAdapter {
+public class GeneralFuncAdapter extends AbstractExprAdapter {
 
     /**
-     * 访问者
+     * Instantiates a new General func adapter.
+     *
+     * @param builder the builder
+     * @param visitor the visitor
      */
-    private final ExprVisitor visitor;
-    /**
-     * 构建器
-     */
-    private final FunctionBuilder builder;
-
-    public GeneralFuncAdapter(ExprVisitor visitor, FunctionBuilder builder) {
-        this.visitor = visitor;
-        if (builder == null) {
-            builder = new GeneralFuncBuilder();
-        }
-        this.builder = builder;
+    public GeneralFuncAdapter(ExprBuilder builder, ExprVisitor visitor) {
+        super(builder, visitor);
     }
 
     @Override
-    public boolean accept(RuleNode ruleNode) {
-        return ruleNode instanceof ExprParser.GeneralFuncContext;
+    public boolean accept(ParseTree parseTree) {
+        return parseTree instanceof ExprParser.GeneralFuncContext;
     }
 
     @Override
-    public String adapt(RuleNode ruleNode) {
-        ExprParser.GeneralFuncContext ctx = (ExprParser.GeneralFuncContext) ruleNode;
+    public Expr adapt(ParseTree parseTree) {
+        ExprParser.GeneralFuncContext ctx = (ExprParser.GeneralFuncContext) parseTree;
         String funcName = ctx.funcName().getText().toLowerCase();
-        List<String> params = getParamList(ctx);
-        Function function = new Function(funcName, params);
-        function.setText(ruleNode.getText());
-        return builder.build(function);
+        List<Expr> params = getParamList(ctx);
+        GeneralFunction function = new GeneralFunction(funcName, params);
+        return handle(function);
     }
 
     /**
@@ -56,8 +48,8 @@ public class GeneralFuncAdapter implements RuleAdapter {
      * @param ctx 方法上下文
      * @return 参数字符串列表
      */
-    private List<String> getParamList(ExprParser.GeneralFuncContext ctx) {
-        List<String> params = new ArrayList<>();
+    private List<Expr> getParamList(ExprParser.GeneralFuncContext ctx) {
+        List<Expr> params = new ArrayList<>();
         for (ExprParser.ExprContext expr : ctx.expr()) {
             params.add(visitor.visit(expr));
         }
