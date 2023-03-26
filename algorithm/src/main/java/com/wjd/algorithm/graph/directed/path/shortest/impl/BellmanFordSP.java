@@ -1,6 +1,7 @@
-package com.wjd.algorithm.graph.directed.path.shortest;
+package com.wjd.algorithm.graph.directed.path.shortest.impl;
 
 import com.wjd.algorithm.graph.directed.cycle.WeightedDirectedCycle;
+import com.wjd.algorithm.graph.directed.path.shortest.ShortestPaths;
 import com.wjd.structure.graph.directed.DirectedEdge;
 import com.wjd.structure.graph.directed.WeightedDigraph;
 import com.wjd.structure.graph.directed.impl.ListWeightedDigraph;

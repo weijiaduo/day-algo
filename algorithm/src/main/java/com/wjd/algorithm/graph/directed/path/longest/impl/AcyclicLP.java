@@ -1,6 +1,7 @@
-package com.wjd.algorithm.graph.directed.path.longest;
+package com.wjd.algorithm.graph.directed.path.longest.impl;
 
 import com.wjd.algorithm.graph.directed.order.Topological;
+import com.wjd.algorithm.graph.directed.path.longest.LongestPaths;
 import com.wjd.structure.graph.directed.DirectedEdge;
 import com.wjd.structure.graph.directed.WeightedDigraph;
 

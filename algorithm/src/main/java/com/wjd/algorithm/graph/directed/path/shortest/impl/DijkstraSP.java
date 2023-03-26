@@ -1,25 +1,26 @@
-package com.wjd.algorithm.graph.directed.path.shortest;
+package com.wjd.algorithm.graph.directed.path.shortest.impl;
 
-import com.wjd.algorithm.graph.directed.order.Topological;
+import com.wjd.algorithm.graph.directed.path.shortest.ShortestPaths;
 import com.wjd.structure.graph.directed.DirectedEdge;
 import com.wjd.structure.graph.directed.WeightedDigraph;
 
 import java.util.Arrays;
 import java.util.LinkedList;
+import java.util.PriorityQueue;
 
 /**
- * 无环加权有向图的最短路径算法
+ * 基于 Dijkstra 算法的最短路径实现
  * <p>
  * 要求：
  * <p>
- * - 不能有环
+ * - 不能有负权重的边
  * <p>
- * - 可以有负权重的边
+ * - 可以有环
  *
  * @author weijiaduo
  * @since 2023/3/15
  */
-public class AcyclicSP implements ShortestPaths {
+public class DijkstraSP implements ShortestPaths {
 
     /**
      * 距离
@@ -29,11 +30,23 @@ public class AcyclicSP implements ShortestPaths {
      * 边的终点 -> 边
      */
     private final DirectedEdge[] edgeFrom;
+    /**
+     * 标记数组
+     */
+    private final boolean[] marked;
+    /**
+     * 最小值堆
+     */
+    private final PriorityQueue<Node> minHeap;
 
-    public AcyclicSP(WeightedDigraph wdg, int s) {
+    public DijkstraSP(WeightedDigraph wdg, int s) {
         distTo = new double[wdg.vs()];
         Arrays.fill(distTo, Double.POSITIVE_INFINITY);
         edgeFrom = new DirectedEdge[wdg.vs()];
+        marked = new boolean[wdg.vs()];
+        Arrays.fill(marked, false);
+        minHeap = new PriorityQueue<>();
+
         find(wdg, s);
     }
 
@@ -44,11 +57,12 @@ public class AcyclicSP implements ShortestPaths {
      * @param s   起点
      */
     private void find(WeightedDigraph wdg, int s) {
-        Topological tpl = new Topological(wdg);
-        if (tpl.isDAG()) {
-            distTo[s] = 0;
-            for (int v : tpl.order()) {
-                relax(wdg, v);
+        distTo[s] = 0;
+        minHeap.offer(new Node(s, 0));
+        while (!minHeap.isEmpty()) {
+            Node node = minHeap.poll();
+            if (!marked[node.v]) {
+                relax(wdg, node.v);
             }
         }
     }
@@ -60,11 +74,13 @@ public class AcyclicSP implements ShortestPaths {
      * @param v   放松的顶点
      */
     private void relax(WeightedDigraph wdg, int v) {
+        marked[v] = true;
         for (DirectedEdge e : wdg.adj(v)) {
             int w = e.to();
-            if (distTo[v] + e.weight() < distTo[w]) {
+            if (!marked[w] && distTo[v] + e.weight() < distTo[w]) {
                 distTo[w] = distTo[v] + e.weight();
                 edgeFrom[w] = e;
+                minHeap.offer(new Node(w, distTo[w]));
             }
         }
     }
@@ -88,6 +104,27 @@ public class AcyclicSP implements ShortestPaths {
             edge = edgeFrom[edge.from()];
         }
         return stack;
+    }
+
+    private static class Node implements Comparable<Node> {
+        /**
+         * 顶点
+         */
+        int v;
+        /**
+         * 顶点距离
+         */
+        double dist;
+
+        Node(int v, double dist) {
+            this.v = v;
+            this.dist = dist;
+        }
+
+        @Override
+        public int compareTo(Node o) {
+            return Double.compare(dist, o.dist);
+        }
     }
 
 }
