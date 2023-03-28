@@ -207,10 +207,13 @@
 
 ### 9.3 匹配（Pattern Match）
 
-- [BF 算法]
-- [RK 算法]
-- [BM 算法]
-- [KMP 算法]
+- [Brute-Force, BF](./algorithm/src/main/java/com/wjd/algorithm/strings/search/impl/BruteForceSearch.java)
+- [Rabin-Karp, RK]
+- [Boyer-Moore, BM]
+- [Knuth-Morris-Pratt, KMP]
+  - [KMP-Pmt](./algorithm/src/main/java/com/wjd/algorithm/strings/search/impl/PmtKMPSearch.java)
+  - [KMP-Next](./algorithm/src/main/java/com/wjd/algorithm/strings/search/impl/NextKMPSearch.java)
+  - [KMP-DFA](./algorithm/src/main/java/com/wjd/algorithm/strings/search/impl/DFAKMPSearch.java)
 - [AC 自动机]
 
 ### 9.4 正则表达式

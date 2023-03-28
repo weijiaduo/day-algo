@@ -5,7 +5,7 @@ import org.junit.jupiter.api.Test;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
-class KMPNextSearchTest {
+class PmtKMPSearchTest {
 
     @Test
     void search() {
@@ -29,7 +29,7 @@ class KMPNextSearchTest {
                 8,
                 -1
         };
-        Search kmp = new KMPNextSearch();
+        Search kmp = new PmtKMPSearch();
         for (int i = 0; i < inputs.length; i++) {
             assertEquals(expects[i], kmp.search(inputs[i][0], inputs[i][1]));
         }

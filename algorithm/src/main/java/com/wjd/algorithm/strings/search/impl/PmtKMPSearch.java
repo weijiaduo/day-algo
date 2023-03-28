@@ -3,26 +3,29 @@ package com.wjd.algorithm.strings.search.impl;
 import com.wjd.algorithm.strings.search.Search;
 
 /**
- * KMP(Next Match Table) 算法
+ * KMP(Partial Match Table) 算法
  *
  * @author weijiaduo
  * @since 2023/3/28
  */
-public class KMPNextSearch implements Search {
+public class PmtKMPSearch implements Search {
 
     @Override
     public int search(String pat, String txt) {
-        int[] next = getNext(pat);
+        int[] pmt = getPmt(pat);
         int i = 0, j = 0;
         int m = pat.length(), n = txt.length();
         while (i < n && j < m) {
-            if (j == -1 || txt.charAt(i) == pat.charAt(j)) {
+            if (txt.charAt(i) == pat.charAt(j)) {
                 // 匹配主串和模式串的下一个字符
                 i++;
                 j++;
-            } else {
+            } else if (j != 0) {
                 // 一次性滑到最长相等前后缀的位置开始匹配
-                j = next[j];
+                j = pmt[j - 1];
+            } else {
+                // 模式串完全不匹配，滑到主串的下一个字符开始
+                i++;
             }
         }
         // 匹配成功
@@ -33,34 +36,34 @@ public class KMPNextSearch implements Search {
     }
 
     /**
-     * 获取 Next Match Table
+     * 获取 Partial Match Table
      * <p>
-     * next[i] 表示模式串下一次进行比较的索引位置
-     * <p>
-     * next[i] 也表示 pat[0...j-1] 的最长相等前后缀的长度
-     * <p>
-     * next 数组实际就是 pmt 数组往右移动一位得到的
+     * pmt[i] 表示 pat[0...i] 的最长相等前后缀的长度
      *
      * @param pat 模式串
-     * @return next 数组
+     * @return pmt 数组
      */
-    private int[] getNext(String pat) {
+    private int[] getPmt(String pat) {
         int m = pat.length();
-        int[] next = new int[m];
-        next[0] = -1;
-        int i = 0, j = -1;
-        while (i < m - 1) {
-            if (j == -1 || pat.charAt(i) == pat.charAt(j)) {
+        int[] pmt = new int[m];
+        pmt[0] = 0;
+        int i = 1, j = 0;
+        while (i < m) {
+            if (pat.charAt(i) == pat.charAt(j)) {
                 // 最长相等前后缀长度 + 1
                 i++;
                 j++;
-                next[i] = j;
-            } else {
+                pmt[i - 1] = j;
+            } else if (j != 0) {
                 // 找次长相等前后缀递归匹配
-                j = next[j];
+                j = pmt[j - 1];
+            } else {
+                // 没有相等的前后缀
+                i++;
+                pmt[i - 1] = j;
             }
         }
-        return next;
+        return pmt;
     }
 
 }
