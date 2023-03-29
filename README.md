@@ -208,8 +208,8 @@
 ### 9.3 匹配（Pattern Match）
 
 - [Brute-Force, BF](./algorithm/src/main/java/com/wjd/algorithm/strings/search/impl/BruteForceSearch.java)
-- [Rabin-Karp, RK]
-- [Boyer-Moore, BM]
+- [Rabin-Karp, RK](./algorithm/src/main/java/com/wjd/algorithm/strings/search/impl/RabinKarpSearch.java)
+- [Boyer-Moore, BM](./algorithm/src/main/java/com/wjd/algorithm/strings/search/impl/BoyerMooreSearch.java)
 - [Knuth-Morris-Pratt, KMP]
   - [KMP-Pmt](./algorithm/src/main/java/com/wjd/algorithm/strings/search/impl/PmtKMPSearch.java)
   - [KMP-Next](./algorithm/src/main/java/com/wjd/algorithm/strings/search/impl/NextKMPSearch.java)
