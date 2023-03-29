@@ -18,6 +18,7 @@ class PmtKMPSearchTest {
                 {"ABABAC", "BCBAABACAABABACAA"},
                 {"aabaaaba", "ccaabaabaabaaabaab"},
                 {"aabaaabb", "ccaabaabaabaaabaab"},
+                {"cttacttac", "cgtgcctacttacttacttacttacgcgaa"}
         };
         Integer[] expects = {
                 14,
@@ -27,7 +28,8 @@ class PmtKMPSearchTest {
                 0,
                 9,
                 8,
-                -1
+                -1,
+                8
         };
         Search kmp = new PmtKMPSearch();
         for (int i = 0; i < inputs.length; i++) {

@@ -5,7 +5,7 @@ import org.junit.jupiter.api.Test;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
-class NextKMPSearchTest {
+class BoyerMooreSearchTest {
 
     @Test
     void search() {
@@ -31,9 +31,9 @@ class NextKMPSearchTest {
                 -1,
                 8
         };
-        Search kmp = new NextKMPSearch();
+        Search bfs = new BoyerMooreSearch();
         for (int i = 0; i < inputs.length; i++) {
-            assertEquals(expects[i], kmp.search(inputs[i][0], inputs[i][1]));
+            assertEquals(expects[i], bfs.search(inputs[i][0], inputs[i][1]));
         }
     }
 }

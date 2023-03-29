@@ -18,6 +18,7 @@ class BruteForceSearchTest {
                 {"ABABAC", "BCBAABACAABABACAA"},
                 {"aabaaaba", "ccaabaabaabaaabaab"},
                 {"aabaaabb", "ccaabaabaabaaabaab"},
+                {"cttacttac", "cgtgcctacttacttacttacttacgcgaa"}
         };
         Integer[] expects = {
                 14,
@@ -27,7 +28,8 @@ class BruteForceSearchTest {
                 0,
                 9,
                 8,
-                -1
+                -1,
+                8
         };
         Search bfs = new BruteForceSearch();
         for (int i = 0; i < inputs.length; i++) {
