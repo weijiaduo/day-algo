@@ -1,5 +1,6 @@
 package com.wjd.lr.expr;
 
+import com.wjd.lr.expr.ast.ColumnRef;
 import com.wjd.lr.expr.ast.Function;
 
 /**
@@ -8,7 +9,7 @@ import com.wjd.lr.expr.ast.Function;
  * 用于适配不同的数据库，转成不同的 SQL 语句
  *
  * @author weijiaduo
- * @since 2023/3/24
+ * @since 2023 /3/24
  */
 public interface ExprContext {
 
@@ -19,6 +20,15 @@ public interface ExprContext {
      * @return 加上引用标记后的名称
      */
     String quoteName(String name);
+
+
+    /**
+     * 列引用转成 SQL 语句
+     *
+     * @param columnRef 列引用
+     * @return SQL 语句
+     */
+    String sqlColumnRef(ColumnRef columnRef);
 
     /**
      * 函数转成 SQL 语句

@@ -1,8 +1,8 @@
 package com.wjd.lr.expr.ast;
 
-import com.wjd.lr.expr.ExprType;
 import com.wjd.lr.expr.AbstractExpr;
 import com.wjd.lr.expr.ExprContext;
+import com.wjd.lr.expr.ExprType;
 
 /**
  * 列引用表达式
@@ -15,11 +15,11 @@ public class ColumnRef extends AbstractExpr {
     /**
      * table name
      */
-    private final String tableName;
+    protected final String tableName;
     /**
      * column name
      */
-    private final String columnName;
+    protected final String columnName;
 
     /**
      * Instantiates a new Column ref.
@@ -39,12 +39,7 @@ public class ColumnRef extends AbstractExpr {
 
     @Override
     public String toSql(ExprContext context) {
-        StringBuilder sb = new StringBuilder();
-        if (tableName != null) {
-            sb.append(context.quoteName(tableName)).append(".");
-        }
-        sb.append(context.quoteName(columnName));
-        return sb.toString();
+        return context.sqlColumnRef(this);
     }
 
     /**
