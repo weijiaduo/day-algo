@@ -26,12 +26,12 @@ public interface ExprParserVisitor<T> extends ParseTreeVisitor<T> {
 	 */
 	T visitCompare(ExprParser.CompareContext ctx);
 	/**
-	 * Visit a parse tree produced by the {@code function}
+	 * Visit a parse tree produced by the {@code in}
 	 * labeled alternative in {@link ExprParser#expr}.
 	 * @param ctx the parse tree
 	 * @return the visitor result
 	 */
-	T visitFunction(ExprParser.FunctionContext ctx);
+	T visitIn(ExprParser.InContext ctx);
 	/**
 	 * Visit a parse tree produced by the {@code column}
 	 * labeled alternative in {@link ExprParser#expr}.
@@ -54,6 +54,27 @@ public interface ExprParserVisitor<T> extends ParseTreeVisitor<T> {
 	 */
 	T visitUnary(ExprParser.UnaryContext ctx);
 	/**
+	 * Visit a parse tree produced by the {@code caseWhen}
+	 * labeled alternative in {@link ExprParser#expr}.
+	 * @param ctx the parse tree
+	 * @return the visitor result
+	 */
+	T visitCaseWhen(ExprParser.CaseWhenContext ctx);
+	/**
+	 * Visit a parse tree produced by the {@code script}
+	 * labeled alternative in {@link ExprParser#expr}.
+	 * @param ctx the parse tree
+	 * @return the visitor result
+	 */
+	T visitScript(ExprParser.ScriptContext ctx);
+	/**
+	 * Visit a parse tree produced by the {@code function}
+	 * labeled alternative in {@link ExprParser#expr}.
+	 * @param ctx the parse tree
+	 * @return the visitor result
+	 */
+	T visitFunction(ExprParser.FunctionContext ctx);
+	/**
 	 * Visit a parse tree produced by the {@code logic}
 	 * labeled alternative in {@link ExprParser#expr}.
 	 * @param ctx the parse tree
@@ -61,12 +82,12 @@ public interface ExprParserVisitor<T> extends ParseTreeVisitor<T> {
 	 */
 	T visitLogic(ExprParser.LogicContext ctx);
 	/**
-	 * Visit a parse tree produced by the {@code caseWhen}
+	 * Visit a parse tree produced by the {@code nullif}
 	 * labeled alternative in {@link ExprParser#expr}.
 	 * @param ctx the parse tree
 	 * @return the visitor result
 	 */
-	T visitCaseWhen(ExprParser.CaseWhenContext ctx);
+	T visitNullif(ExprParser.NullifContext ctx);
 	/**
 	 * Visit a parse tree produced by the {@code value}
 	 * labeled alternative in {@link ExprParser#expr}.
@@ -81,13 +102,6 @@ public interface ExprParserVisitor<T> extends ParseTreeVisitor<T> {
 	 * @return the visitor result
 	 */
 	T visitWrap(ExprParser.WrapContext ctx);
-	/**
-	 * Visit a parse tree produced by the {@code script}
-	 * labeled alternative in {@link ExprParser#expr}.
-	 * @param ctx the parse tree
-	 * @return the visitor result
-	 */
-	T visitScript(ExprParser.ScriptContext ctx);
 	/**
 	 * Visit a parse tree produced by the {@code between}
 	 * labeled alternative in {@link ExprParser#expr}.

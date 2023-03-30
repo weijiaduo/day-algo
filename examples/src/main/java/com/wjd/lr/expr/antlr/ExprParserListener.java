@@ -32,17 +32,17 @@ public interface ExprParserListener extends ParseTreeListener {
 	 */
 	void exitCompare(ExprParser.CompareContext ctx);
 	/**
-	 * Enter a parse tree produced by the {@code function}
+	 * Enter a parse tree produced by the {@code in}
 	 * labeled alternative in {@link ExprParser#expr}.
 	 * @param ctx the parse tree
 	 */
-	void enterFunction(ExprParser.FunctionContext ctx);
+	void enterIn(ExprParser.InContext ctx);
 	/**
-	 * Exit a parse tree produced by the {@code function}
+	 * Exit a parse tree produced by the {@code in}
 	 * labeled alternative in {@link ExprParser#expr}.
 	 * @param ctx the parse tree
 	 */
-	void exitFunction(ExprParser.FunctionContext ctx);
+	void exitIn(ExprParser.InContext ctx);
 	/**
 	 * Enter a parse tree produced by the {@code column}
 	 * labeled alternative in {@link ExprParser#expr}.
@@ -80,6 +80,42 @@ public interface ExprParserListener extends ParseTreeListener {
 	 */
 	void exitUnary(ExprParser.UnaryContext ctx);
 	/**
+	 * Enter a parse tree produced by the {@code caseWhen}
+	 * labeled alternative in {@link ExprParser#expr}.
+	 * @param ctx the parse tree
+	 */
+	void enterCaseWhen(ExprParser.CaseWhenContext ctx);
+	/**
+	 * Exit a parse tree produced by the {@code caseWhen}
+	 * labeled alternative in {@link ExprParser#expr}.
+	 * @param ctx the parse tree
+	 */
+	void exitCaseWhen(ExprParser.CaseWhenContext ctx);
+	/**
+	 * Enter a parse tree produced by the {@code script}
+	 * labeled alternative in {@link ExprParser#expr}.
+	 * @param ctx the parse tree
+	 */
+	void enterScript(ExprParser.ScriptContext ctx);
+	/**
+	 * Exit a parse tree produced by the {@code script}
+	 * labeled alternative in {@link ExprParser#expr}.
+	 * @param ctx the parse tree
+	 */
+	void exitScript(ExprParser.ScriptContext ctx);
+	/**
+	 * Enter a parse tree produced by the {@code function}
+	 * labeled alternative in {@link ExprParser#expr}.
+	 * @param ctx the parse tree
+	 */
+	void enterFunction(ExprParser.FunctionContext ctx);
+	/**
+	 * Exit a parse tree produced by the {@code function}
+	 * labeled alternative in {@link ExprParser#expr}.
+	 * @param ctx the parse tree
+	 */
+	void exitFunction(ExprParser.FunctionContext ctx);
+	/**
 	 * Enter a parse tree produced by the {@code logic}
 	 * labeled alternative in {@link ExprParser#expr}.
 	 * @param ctx the parse tree
@@ -92,17 +128,17 @@ public interface ExprParserListener extends ParseTreeListener {
 	 */
 	void exitLogic(ExprParser.LogicContext ctx);
 	/**
-	 * Enter a parse tree produced by the {@code caseWhen}
+	 * Enter a parse tree produced by the {@code nullif}
 	 * labeled alternative in {@link ExprParser#expr}.
 	 * @param ctx the parse tree
 	 */
-	void enterCaseWhen(ExprParser.CaseWhenContext ctx);
+	void enterNullif(ExprParser.NullifContext ctx);
 	/**
-	 * Exit a parse tree produced by the {@code caseWhen}
+	 * Exit a parse tree produced by the {@code nullif}
 	 * labeled alternative in {@link ExprParser#expr}.
 	 * @param ctx the parse tree
 	 */
-	void exitCaseWhen(ExprParser.CaseWhenContext ctx);
+	void exitNullif(ExprParser.NullifContext ctx);
 	/**
 	 * Enter a parse tree produced by the {@code value}
 	 * labeled alternative in {@link ExprParser#expr}.
@@ -127,18 +163,6 @@ public interface ExprParserListener extends ParseTreeListener {
 	 * @param ctx the parse tree
 	 */
 	void exitWrap(ExprParser.WrapContext ctx);
-	/**
-	 * Enter a parse tree produced by the {@code script}
-	 * labeled alternative in {@link ExprParser#expr}.
-	 * @param ctx the parse tree
-	 */
-	void enterScript(ExprParser.ScriptContext ctx);
-	/**
-	 * Exit a parse tree produced by the {@code script}
-	 * labeled alternative in {@link ExprParser#expr}.
-	 * @param ctx the parse tree
-	 */
-	void exitScript(ExprParser.ScriptContext ctx);
 	/**
 	 * Enter a parse tree produced by the {@code between}
 	 * labeled alternative in {@link ExprParser#expr}.

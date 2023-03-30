@@ -209,6 +209,15 @@ public class AbstractExprVisitor<T> extends ExprParserBaseVisitor<T> {
     }
 
     @Override
+    public T visitIn(ExprParser.InContext ctx) {
+        ParseTreeAdapter<T> adapter = getAdapter(ctx);
+        if (adapter != null) {
+            return adapter.adapt(ctx);
+        }
+        return super.visitIn(ctx);
+    }
+
+    @Override
     public T visitFuncName(ExprParser.FuncNameContext ctx) {
         ParseTreeAdapter<T> adapter = getAdapter(ctx);
         if (adapter != null) {

@@ -34,6 +34,8 @@ public enum ExprType {
     FUNCTION,
     /** Template */
     TEMPLATE,
+    /** Wrap */
+    WRAP,
     /** Unknown */
     UNKNOWN;
 

@@ -33,9 +33,11 @@ expr:
     | expr OR_ expr                            # logic       // (Field > 0) OR (Field < 10)
     | generalFunc                              # function    // ABS(Field)
     | nativeFunc                               # function    // @ABS(Field)
-    | expr (ISNULL_ | NOTNULL_ | NOT_ NULL_)   # compare     // Field is null
+    | OPEN_PAR expr (COMMA expr)* CLOSE_PAR    # wrap        // (1 + 3), (1, 2, 3)
+    | expr (ISNULL_ | NOTNULL_ | NOT_ NULL_)   # nullif      // Field is null
     | expr NOT_? BETWEEN_ expr AND_ expr       # between
-    | OPEN_PAR expr CLOSE_PAR                  # wrap        // (1 + 2)
+    | expr NOT_? IN_ OPEN_PAR
+        (expr ( COMMA expr)*)? CLOSE_PAR       # in
     | CASE_ expr? 
       (WHEN_ expr THEN_ expr)+ 
       (ELSE_ expr)? END_                       # caseWhen

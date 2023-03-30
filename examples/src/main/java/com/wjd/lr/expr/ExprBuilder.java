@@ -95,7 +95,9 @@ public class ExprBuilder {
         visitor.addAdapter(new GeneralFuncAdapter(this, visitor));
         visitor.addAdapter(new CaseWhenAdapter(this, visitor));
         visitor.addAdapter(new BetweenAdapter(this, visitor));
+        visitor.addAdapter(new InAdapter(this, visitor));
         visitor.addAdapter(new NativeFuncAdapter(this, visitor));
+        visitor.addAdapter(new WrapExprAdapter(this, visitor));
         visitor.addAdapter(new UnaryAdapter(this, visitor));
         visitor.addAdapter(new ArithmeticAdapter(this, visitor));
         visitor.addAdapter(new CompareAdapter(this, visitor));

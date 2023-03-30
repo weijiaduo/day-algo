@@ -173,6 +173,19 @@ class ExprBuilderTest {
     }
 
     @Test
+    void testIn() {
+        String[] inputs = {
+                "[orders].[freight] in ('1', '2', 3, 4)",
+                "[orders].[freight] not in ('1', '2', 3, 4)"
+        };
+        String[] expects = {
+                "`orders`.`freight` in ('1', '2', 3, 4)",
+                "`orders`.`freight` not in ('1', '2', 3, 4)"
+        };
+        runCustomTest(inputs, expects);
+    }
+
+    @Test
     void testCaseWhen() {
         String[] inputs = {
                 "case when [orders].[freight] > -10 then 0 else 1 end"
@@ -204,9 +217,9 @@ class ExprBuilderTest {
                 "`orders`.`ShipCity` is null",
                 "`orders`.`ShipCity` is not null",
                 "`orders`.`freight` - 100 / 2",
-                "( 2.1 + 1 ) * 12",
+                "(2.1 + 1) * 12",
                 "abs(`orders`.`freight`) * 2",
-                "abs(`orders`.`freight`) / 3 * ( `orderdatials`.`quantity` + 1 )",
+                "abs(`orders`.`freight`) / 3 * (`orderdatials`.`quantity` + 1)",
                 "substring(admin, 0, abs(`orders`.`freight`) + 2)",
                 "substring(admin, 0, abs(`orders`.`freight`) + 2)",
                 "abs(11.0) + div(-`orders`.`freight`, 10)"

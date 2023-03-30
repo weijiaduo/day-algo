@@ -11,35 +11,36 @@ import org.antlr.v4.runtime.tree.ParseTree;
 import java.util.List;
 
 /**
- * Between 适配器
+ * In 适配器
  *
  * @author weijiaduo
  * @since 2023/3/25
  */
-public class BetweenAdapter extends AbstractExprAdapter {
+public class InAdapter extends AbstractExprAdapter {
 
     /**
-     * Instantiates a new Between adapter.
+     * Instantiates a new In adapter.
      *
      * @param builder the builder
      * @param visitor the visitor
      */
-    public BetweenAdapter(ExprBuilder builder, ExprVisitor visitor) {
+    public InAdapter(ExprBuilder builder, ExprVisitor visitor) {
         super(builder, visitor);
     }
 
     @Override
     public boolean accept(ParseTree parseTree) {
-        return parseTree instanceof ExprParser.BetweenContext;
+        return parseTree instanceof ExprParser.InContext;
     }
 
     @Override
     public Expr adapt(ParseTree parseTree) {
-        ExprParser.BetweenContext ctx = (ExprParser.BetweenContext) parseTree;
+        ExprParser.InContext ctx = (ExprParser.InContext) parseTree;
         boolean isNot = ctx.NOT_() != null;
-        List<Expr> params = new java.util.ArrayList<>(ctx.expr().stream().map(visitor::visit).toList());
+        List<Expr> params = new java.util.ArrayList<>(ctx.expr().stream()
+                .map(visitor::visit).toList());
         params.add(1, new BoolValue(isNot));
-        return handle(new GeneralFunction("between", params));
+        return handle(new GeneralFunction("in", params));
     }
 
 }

@@ -7,6 +7,7 @@ import com.wjd.lr.expr.ast.Function;
 
 import java.lang.reflect.Method;
 import java.util.List;
+import java.util.stream.Collectors;
 
 /**
  * 通用函数构建器
@@ -296,6 +297,33 @@ public class GeneralFuncBuilder implements FunctionBuilder {
                 .append(isNot ? " not" : "")
                 .append(" between ").append(left.toSql(ctx))
                 .append(" and ").append(right.toSql(ctx));
+        return sql.toString();
+    }
+
+    /**
+     * In Function
+     *
+     * @param function the function
+     * @return the string
+     */
+    public String in(Function function) {
+        List<Expr> params = function.getParams();
+        Expr expr = params.get(0);
+        Expr notExpr = params.get(1);
+        boolean isNot = false;
+        if (notExpr instanceof BoolValue) {
+            isNot = ((BoolValue) notExpr).getValue();
+        }
+        List<String> values = params.subList(2, params.size()).stream()
+                .map(e -> e.toSql(ctx))
+                .collect(Collectors.toList());
+
+        StringBuilder sql = new StringBuilder();
+        sql.append(expr.toSql(ctx))
+                .append(isNot ? " not" : "")
+                .append(" in (")
+                .append(String.join(", ", values))
+                .append(")");
         return sql.toString();
     }
 
