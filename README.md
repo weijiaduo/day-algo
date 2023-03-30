@@ -203,7 +203,7 @@
 - 字典树（Trie）
   - [字典树-字母](./algorithm/src/main/java/com/wjd/structure/tree/trie/LetterTrie.java)
   - [字典树-字符](./algorithm/src/main/java/com/wjd/structure/tree/trie/CharacterTrie.java)
-- 三向字典树（TST）
+- [三向字典树（TernaryTrie）](./algorithm/src/main/java/com/wjd/structure/tree/trie/TernaryTrie.java)
 
 ### 9.3 匹配（Pattern Match）
 
