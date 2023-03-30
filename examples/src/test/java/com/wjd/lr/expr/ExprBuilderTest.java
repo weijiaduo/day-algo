@@ -176,11 +176,13 @@ class ExprBuilderTest {
     void testIn() {
         String[] inputs = {
                 "[orders].[freight] in ('1', '2', 3, 4)",
-                "[orders].[freight] not in ('1', '2', 3, 4)"
+                "[orders].[freight] not in ('1', '2', 3, 4)",
+                "(case when [省份] in ('山东省','江苏省') then '分组1' when [省份] in ('广东省','湖北省') then '分组2' else '其它' end)"
         };
         String[] expects = {
                 "`orders`.`freight` in ('1', '2', 3, 4)",
-                "`orders`.`freight` not in ('1', '2', 3, 4)"
+                "`orders`.`freight` not in ('1', '2', 3, 4)",
+                "(case when `省份` in ('山东省', '江苏省') then '分组1' when `省份` in ('广东省', '湖北省') then '分组2' else '其它' end)"
         };
         runCustomTest(inputs, expects);
     }
