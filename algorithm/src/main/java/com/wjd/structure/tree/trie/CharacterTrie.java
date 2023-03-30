@@ -10,7 +10,7 @@ import java.util.Map;
  * @author weijiaduo
  * @since 2022/7/8
  */
-public class CharacterTrie {
+public class CharacterTrie implements Trie {
 
     /**
      * 下一层节点
@@ -40,6 +40,7 @@ public class CharacterTrie {
      *
      * @param word 单词
      */
+    @Override
     public void insert(String word) {
         CharacterTrie cur = this;
         for (int i = 0; i < word.length(); i++) {
@@ -60,6 +61,7 @@ public class CharacterTrie {
      * @param word 单词
      * @return 单词是否存在
      */
+    @Override
     public boolean search(String word) {
         CharacterTrie trie = searchPrefix(word);
         return trie != null && trie.isEnd;
@@ -71,6 +73,7 @@ public class CharacterTrie {
      * @param prefix 前缀
      * @return 是否有前缀
      */
+    @Override
     public boolean startsWith(String prefix) {
         return searchPrefix(prefix) != null;
     }
@@ -99,6 +102,7 @@ public class CharacterTrie {
      * @param word 单词
      * @return 最短路径/单词本身
      */
+    @Override
     public String minPrefix(String word) {
         CharacterTrie cur = this;
         for (int i = 0; i < word.length(); i++) {
@@ -120,6 +124,7 @@ public class CharacterTrie {
      * @param word 字符串表达式
      * @return true/false
      */
+    @Override
     public boolean match(String word) {
         CharacterTrie trie = dfsMatch(this, word, 0);
         return trie != null && trie.isEnd;
@@ -129,6 +134,9 @@ public class CharacterTrie {
      * 匹配字符串
      */
     private CharacterTrie dfsMatch(CharacterTrie root, String word, int index) {
+        if (root == null) {
+            return null;
+        }
         if (index == word.length()) {
             return root.isEnd ? root : null;
         }

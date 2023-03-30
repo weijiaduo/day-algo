@@ -8,7 +8,7 @@ import java.util.List;
  * @author weijiaduo
  * @since 2022/7/8
  */
-public class LetterTrie {
+public class LetterTrie implements Trie {
 
     /**
      * 基础字母，相对索引
@@ -50,6 +50,7 @@ public class LetterTrie {
      *
      * @param word 单词
      */
+    @Override
     public void insert(String word) {
         LetterTrie cur = this;
         for (int i = 0; i < word.length(); i++) {
@@ -70,6 +71,7 @@ public class LetterTrie {
      * @param word 单词
      * @return 单词是否存在
      */
+    @Override
     public boolean search(String word) {
         LetterTrie trie = searchPrefix(word);
         return trie != null && trie.isEnd;
@@ -81,6 +83,7 @@ public class LetterTrie {
      * @param prefix 前缀
      * @return 是否有前缀
      */
+    @Override
     public boolean startsWith(String prefix) {
         return searchPrefix(prefix) != null;
     }
@@ -109,6 +112,7 @@ public class LetterTrie {
      * @param word 单词
      * @return 最短路径/单词本身
      */
+    @Override
     public String minPrefix(String word) {
         LetterTrie cur = this;
         for (int i = 0; i < word.length(); i++) {
@@ -130,6 +134,7 @@ public class LetterTrie {
      * @param word 字符串表达式
      * @return true/false
      */
+    @Override
     public boolean match(String word) {
         LetterTrie trie = dfsMatch(this, word, 0);
         return trie != null && trie.isEnd;
@@ -139,6 +144,9 @@ public class LetterTrie {
      * 匹配字符串
      */
     private LetterTrie dfsMatch(LetterTrie root, String word, int index) {
+        if (root == null) {
+            return null;
+        }
         if (index == word.length()) {
             return root.isEnd ? root : null;
         }
