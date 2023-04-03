@@ -136,14 +136,16 @@ class ExprBuilderTest {
                 "substring('12345678', 0, 5)",
                 "abs([orders].[freight])",
                 "substring([orders].[orderId], 0, abs([orders].[freight]))",
-                "len(10.7)"
+                "len(10.7)",
+                "count(*)"
         };
         String[] expects = {
                 "ceiling(-10.3)",
                 "substring('12345678', 0, 5)",
                 "abs(`orders`.`freight`)",
                 "substring(`orders`.`orderId`, 0, abs(`orders`.`freight`))",
-                "len(10.7)"
+                "len(10.7)",
+                "count(*)"
         };
         runCustomTest(inputs, expects);
     }
@@ -152,11 +154,13 @@ class ExprBuilderTest {
     void testNativeFunction() {
         String[] inputs = {
                 "@ceil(-10.3)",
-                "@len(10.7)"
+                "@len(10.7)",
+                "@count(*)"
         };
         String[] expects = {
                 "ceil(-10.3)",
-                "len(10.7)"
+                "len(10.7)",
+                "count(*)"
         };
         runCustomTest(inputs, expects);
     }
@@ -190,10 +194,12 @@ class ExprBuilderTest {
     @Test
     void testCaseWhen() {
         String[] inputs = {
-                "case when [orders].[freight] > -10 then 0 else 1 end"
+                "case when [orders].[freight] > -10 then 0 else 1 end",
+                "CASE WHEN [本行员工标志] = '是' || [本行员工标志] = '1' THEN concat( substr( [个人客户中文名称] , 1, 3), '**' ) ELSE [个人客户中文名称] END"
         };
         String[] expects = {
-                "case when `orders`.`freight` > -10 then 0 else 1 end"
+                "case when `orders`.`freight` > -10 then 0 else 1 end",
+                "case when `本行员工标志` = '是' || `本行员工标志` = '1' then concat(substr(`个人客户中文名称`, 1, 3), '**') else `个人客户中文名称` end"
         };
         runCustomTest(inputs, expects);
     }
@@ -211,7 +217,8 @@ class ExprBuilderTest {
                 "@abs([orders].[freight]) / 3 * ([orderdatials].[quantity] + 1)",
                 "substring(${userName}, 0, abs([orders].[freight]) + 2)",
                 "@substring(${userName}, 0, @abs([orders].[freight]) + 2)",
-                "abs(${ceil(Param.freight) + userCount * 4}) + @div(-[orders].[freight], 10)"
+                "abs(${ceil(Param.freight) + userCount * 4}) + @div(-[orders].[freight], 10)",
+                "convert( date_format( [订单日期], '%Y') , char)"
         };
         String[] expects = {
                 "1 + 2",
@@ -224,7 +231,8 @@ class ExprBuilderTest {
                 "abs(`orders`.`freight`) / 3 * (`orderdatials`.`quantity` + 1)",
                 "substring(admin, 0, abs(`orders`.`freight`) + 2)",
                 "substring(admin, 0, abs(`orders`.`freight`) + 2)",
-                "abs(11.0) + div(-`orders`.`freight`, 10)"
+                "abs(11.0) + div(-`orders`.`freight`, 10)",
+                "convert(date_format(`订单日期`, '%Y'), char)"
         };
         runCustomTest(inputs, expects);
     }

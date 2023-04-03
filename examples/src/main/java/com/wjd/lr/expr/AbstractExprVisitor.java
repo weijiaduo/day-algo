@@ -110,6 +110,15 @@ public class AbstractExprVisitor<T> extends ExprParserBaseVisitor<T> {
     }
 
     @Override
+    public T visitPipe(ExprParser.PipeContext ctx) {
+        ParseTreeAdapter<T> adapter = getAdapter(ctx);
+        if (adapter != null) {
+            return adapter.adapt(ctx);
+        }
+        return super.visitPipe(ctx);
+    }
+
+    @Override
     public T visitLogic(ExprParser.LogicContext ctx) {
         ParseTreeAdapter<T> adapter = getAdapter(ctx);
         if (adapter != null) {
@@ -251,6 +260,15 @@ public class AbstractExprVisitor<T> extends ExprParserBaseVisitor<T> {
             return adapter.adapt(ctx);
         }
         return super.visitRefName(ctx);
+    }
+
+    @Override
+    public T visitTypeName(ExprParser.TypeNameContext ctx) {
+        ParseTreeAdapter<T> adapter = getAdapter(ctx);
+        if (adapter != null) {
+            return adapter.adapt(ctx);
+        }
+        return super.visitTypeName(ctx);
     }
 
     @Override

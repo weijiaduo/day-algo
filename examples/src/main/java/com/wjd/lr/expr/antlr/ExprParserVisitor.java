@@ -75,6 +75,13 @@ public interface ExprParserVisitor<T> extends ParseTreeVisitor<T> {
 	 */
 	T visitFunction(ExprParser.FunctionContext ctx);
 	/**
+	 * Visit a parse tree produced by the {@code pipe}
+	 * labeled alternative in {@link ExprParser#expr}.
+	 * @param ctx the parse tree
+	 * @return the visitor result
+	 */
+	T visitPipe(ExprParser.PipeContext ctx);
+	/**
 	 * Visit a parse tree produced by the {@code logic}
 	 * labeled alternative in {@link ExprParser#expr}.
 	 * @param ctx the parse tree
@@ -163,6 +170,12 @@ public interface ExprParserVisitor<T> extends ParseTreeVisitor<T> {
 	 * @return the visitor result
 	 */
 	T visitRefName(ExprParser.RefNameContext ctx);
+	/**
+	 * Visit a parse tree produced by {@link ExprParser#typeName}.
+	 * @param ctx the parse tree
+	 * @return the visitor result
+	 */
+	T visitTypeName(ExprParser.TypeNameContext ctx);
 	/**
 	 * Visit a parse tree produced by {@link ExprParser#anyName}.
 	 * @param ctx the parse tree

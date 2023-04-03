@@ -5,6 +5,7 @@ import com.wjd.lr.expr.ExprBuilder;
 import com.wjd.lr.expr.ExprVisitor;
 import com.wjd.lr.expr.antlr.ExprParser;
 import com.wjd.lr.expr.ast.NativeFunction;
+import com.wjd.lr.expr.ast.TextExpr;
 import org.antlr.v4.runtime.tree.ParseTree;
 
 import java.util.ArrayList;
@@ -49,8 +50,15 @@ public class NativeFuncAdapter extends AbstractExprAdapter {
      */
     private List<Expr> getParamList(ExprParser.NativeFuncContext ctx) {
         List<Expr> params = new ArrayList<>();
-        for (ExprParser.ExprContext expr : ctx.expr()) {
-            params.add(visitor.visit(expr));
+        if (ctx.STAR() != null) {
+            params.add(new TextExpr("*"));
+        } else {
+            for (ParseTree child : ctx.children) {
+                if (child instanceof ExprParser.ExprContext
+                        || child instanceof ExprParser.TypeNameContext) {
+                    params.add(visitor.visit(child));
+                }
+            }
         }
         return params;
     }

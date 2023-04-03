@@ -116,6 +116,18 @@ public interface ExprParserListener extends ParseTreeListener {
 	 */
 	void exitFunction(ExprParser.FunctionContext ctx);
 	/**
+	 * Enter a parse tree produced by the {@code pipe}
+	 * labeled alternative in {@link ExprParser#expr}.
+	 * @param ctx the parse tree
+	 */
+	void enterPipe(ExprParser.PipeContext ctx);
+	/**
+	 * Exit a parse tree produced by the {@code pipe}
+	 * labeled alternative in {@link ExprParser#expr}.
+	 * @param ctx the parse tree
+	 */
+	void exitPipe(ExprParser.PipeContext ctx);
+	/**
 	 * Enter a parse tree produced by the {@code logic}
 	 * labeled alternative in {@link ExprParser#expr}.
 	 * @param ctx the parse tree
@@ -265,6 +277,16 @@ public interface ExprParserListener extends ParseTreeListener {
 	 * @param ctx the parse tree
 	 */
 	void exitRefName(ExprParser.RefNameContext ctx);
+	/**
+	 * Enter a parse tree produced by {@link ExprParser#typeName}.
+	 * @param ctx the parse tree
+	 */
+	void enterTypeName(ExprParser.TypeNameContext ctx);
+	/**
+	 * Exit a parse tree produced by {@link ExprParser#typeName}.
+	 * @param ctx the parse tree
+	 */
+	void exitTypeName(ExprParser.TypeNameContext ctx);
 	/**
 	 * Enter a parse tree produced by {@link ExprParser#anyName}.
 	 * @param ctx the parse tree

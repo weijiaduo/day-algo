@@ -17,11 +17,13 @@ expr:
     | columnRef                                # column      // [table].[Field]
     | template                                 # script      // ${userId}, ${param.city}, ${getUserName()}
     | (MINUS | PLUS | TILDE | NOT_) expr       # unary       // -1, +1, -[table].[Field1], ~ABS(Field)
+    | expr PIPE2 expr                          # pipe        // '1' || '2'
     | expr (STAR | DIV | MOD) expr             # arithmetic  // 2 * 3, Table.Field2 / 2, ABS(...) % 3
     | expr (PLUS | MINUS) expr                 # arithmetic  // 1 + 2, 10 - 2
     | expr (LT | LT_EQ | GT | GT_EQ) expr      # compare     // 1 < 2, 3 >= 0
     | expr (
-        EQ
+        ASSIGN
+        | EQ
         | NOT_EQ1
         | NOT_EQ2
         | IS_
@@ -64,12 +66,12 @@ columnRef:
 
 // 统一函数
 generalFunc:
-    funcName OPEN_PAR ((expr (COMMA expr)*) | STAR)? CLOSE_PAR
+    funcName OPEN_PAR (((expr | typeName) (COMMA (expr | typeName))*) | STAR)? CLOSE_PAR
 ;
 
 // 原生函数
 nativeFunc:
-    AT funcName OPEN_PAR ((expr (COMMA expr)*) | STAR)? CLOSE_PAR
+    AT funcName OPEN_PAR (((expr | typeName) (COMMA (expr | typeName))*) | STAR)? CLOSE_PAR
 ;
 
 funcName:
@@ -86,6 +88,10 @@ columnName:
 
 refName:
     REF_ID
+;
+
+typeName:
+    KEY_ID
 ;
 
 anyName:
