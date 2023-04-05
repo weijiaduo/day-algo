@@ -41,9 +41,9 @@ public class Function extends AbstractExpr {
     }
 
     @Override
-    public String toSql(ExprContext context) {
+    public String toStr(ExprContext context) {
         String[] exprStrings = params.stream()
-                .map(e -> e.toSql(context))
+                .map(e -> e.toStr(context))
                 .toList()
                 .toArray(new String[0]);
         return String.format("%s(%s)", name, String.join(", ", exprStrings));

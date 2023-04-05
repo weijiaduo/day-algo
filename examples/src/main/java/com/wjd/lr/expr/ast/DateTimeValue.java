@@ -38,7 +38,7 @@ public class DateTimeValue extends AbstractExpr {
     }
 
     @Override
-    public String toSql(ExprContext context) {
+    public String toStr(ExprContext context) {
         return String.valueOf(value);
     }
 

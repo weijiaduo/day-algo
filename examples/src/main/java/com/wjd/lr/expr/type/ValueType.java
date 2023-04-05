@@ -18,7 +18,7 @@ public enum ValueType {
     DATETIME,
     /** null */
     NULL,
-    /** Unknown */
-    UNKNOWN;
+    /** any */
+    ANY;
 
 }

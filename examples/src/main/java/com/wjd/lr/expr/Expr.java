@@ -25,20 +25,20 @@ public interface Expr {
     ValueType getValueType();
 
     /**
-     * 表达式转成 SQL 语句
+     * 表达式转成字符串
      *
      * @param context 上下文
-     * @return SQL 语句
+     * @return 字符串
      */
-    String toSql(ExprContext context);
+    String toStr(ExprContext context);
 
     /**
-     * 默认的 SQL 语句转换实现
+     * 默认的字符串转换实现
      *
-     * @return SQL 语句
+     * @return 字符串
      */
-    default String toSql() {
-        return this.toSql(new DefaultExprContext());
+    default String toStr() {
+        return this.toStr(new DefaultExprContext());
     }
 
 }

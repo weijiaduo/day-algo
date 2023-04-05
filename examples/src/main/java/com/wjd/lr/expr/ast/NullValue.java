@@ -24,7 +24,7 @@ public class NullValue extends AbstractExpr {
     }
 
     @Override
-    public String toSql(ExprContext context) {
+    public String toStr(ExprContext context) {
         return "null";
     }
 

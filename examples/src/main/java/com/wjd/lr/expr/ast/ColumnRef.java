@@ -38,8 +38,8 @@ public class ColumnRef extends AbstractExpr {
     }
 
     @Override
-    public String toSql(ExprContext context) {
-        return context.sqlColumnRef(this);
+    public String toStr(ExprContext context) {
+        return context.strColumnRef(this);
     }
 
     /**

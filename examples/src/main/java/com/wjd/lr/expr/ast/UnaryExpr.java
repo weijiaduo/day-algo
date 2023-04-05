@@ -58,12 +58,12 @@ public class UnaryExpr extends AbstractExpr {
     }
 
     @Override
-    public String toSql(ExprContext context) {
+    public String toStr(ExprContext context) {
         String opStr = op;
         if ("not".equalsIgnoreCase(opStr)) {
             opStr = "not ";
         }
-        return String.format("%s%s", opStr, operand.toSql(context));
+        return String.format("%s%s", opStr, operand.toStr(context));
     }
 
 }

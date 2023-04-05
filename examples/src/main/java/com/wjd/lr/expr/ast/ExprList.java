@@ -49,9 +49,9 @@ public class ExprList extends AbstractExpr {
     }
 
     @Override
-    public String toSql(ExprContext context) {
+    public String toStr(ExprContext context) {
         String[] exprSqls = exprList.stream()
-                .map(e -> e.toSql(context))
+                .map(e -> e.toStr(context))
                 .toList()
                 .toArray(new String[0]);
         return String.join(" ", exprSqls);

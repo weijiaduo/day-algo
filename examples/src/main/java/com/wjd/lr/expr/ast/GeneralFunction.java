@@ -24,8 +24,8 @@ public class GeneralFunction extends Function {
     }
 
     @Override
-    public String toSql(ExprContext context) {
-        return context.sqlFunction(this);
+    public String toStr(ExprContext context) {
+        return context.strFunction(this);
     }
 
 }

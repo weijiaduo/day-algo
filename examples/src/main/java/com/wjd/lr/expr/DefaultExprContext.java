@@ -14,23 +14,23 @@ import java.util.List;
 public class DefaultExprContext implements ExprContext {
 
     @Override
-    public String quoteName(String name) {
+    public String strName(String name) {
         return name;
     }
 
     @Override
-    public String sqlColumnRef(ColumnRef columnRef) {
+    public String strColumnRef(ColumnRef columnRef) {
         StringBuilder sb = new StringBuilder();
         if (columnRef.getTableName() != null) {
-            sb.append(quoteName(columnRef.getTableName())).append(".");
+            sb.append(strName(columnRef.getTableName())).append(".");
         }
-        sb.append(quoteName(columnRef.getColumnName()));
+        sb.append(strName(columnRef.getColumnName()));
         return sb.toString();
     }
 
     @Override
-    public String sqlFunction(Function function) {
-        List<String> paramStrings = function.getParams().stream().map(p -> p.toSql(this)).toList();
+    public String strFunction(Function function) {
+        List<String> paramStrings = function.getParams().stream().map(p -> p.toStr(this)).toList();
         return String.format("%s(%s)", function.getName(), String.join(", ", paramStrings));
     }
 

@@ -1,17 +1,17 @@
 package com.wjd.lr.expr;
 
-import com.wjd.lr.impl.DialectExprContext;
 import com.wjd.lr.expr.ast.ColumnRef;
 import com.wjd.lr.expr.handler.ColumnRefHandler;
 import com.wjd.lr.expr.handler.FunctionHandler;
 import com.wjd.lr.expr.handler.TemplateHandler;
 import com.wjd.lr.expr.type.ValueType;
-import com.wjd.lr.impl.function.DefaultFunctionHandler;
-import com.wjd.lr.impl.template.Mvel2TemplateHandler;
-import com.wjd.lr.impl.template.Mvel2TemplateContext;
-import com.wjd.lr.impl.template.fucntion.FunctionContext;
-import com.wjd.lr.impl.template.fucntion.FunctionStub;
-import com.wjd.lr.impl.template.variable.VariableContext;
+import com.wjd.lr.service.sql.SqlExprContext;
+import com.wjd.lr.service.sql.SqlFunctionHandler;
+import com.wjd.lr.template.fucntion.FunctionContext;
+import com.wjd.lr.template.fucntion.FunctionStub;
+import com.wjd.lr.template.mvel2.Mvel2TemplateContext;
+import com.wjd.lr.service.sql.SqlTemplateHandler;
+import com.wjd.lr.template.variable.VariableContext;
 import org.junit.jupiter.api.Test;
 
 import java.lang.reflect.Method;
@@ -304,12 +304,12 @@ class ExprBuilderTest {
      * @param expects 期望输出
      */
     void runDefaultTest(String[] inputs, String[] expects) {
-        ExprContext context = new DialectExprContext();
-        TemplateHandler templateHandler = new Mvel2TemplateHandler();
+        ExprContext context = new SqlExprContext();
+        TemplateHandler templateHandler = new SqlTemplateHandler();
         for (int i = 0; i < inputs.length; i++) {
             ExprBuilder builder = new ExprBuilder(inputs[i]);
             builder.addHandler(templateHandler);
-            String actual = builder.build().toSql(context);
+            String actual = builder.build().toStr(context);
             assertEquals(expects[i], actual);
         }
     }
@@ -323,15 +323,15 @@ class ExprBuilderTest {
     void runCustomTest(String[] inputs, String[] expects) {
         ExprContext context = mockExprContext();
         for (int i = 0; i < inputs.length; i++) {
-            String actual = mockExprBuilder(inputs[i]).build().toSql(context);
+            String actual = mockExprBuilder(inputs[i]).build().toStr(context);
             assertEquals(expects[i], actual);
         }
     }
 
     ExprContext mockExprContext() {
-        return new DialectExprContext() {
+        return new SqlExprContext() {
             @Override
-            public String quoteName(String name) {
+            public String strName(String name) {
                 return "`" + name + "`";
             }
         };
@@ -368,11 +368,11 @@ class ExprBuilderTest {
     }
 
     FunctionHandler mockFunctionHandler() {
-        return new DefaultFunctionHandler();
+        return new SqlFunctionHandler();
     }
 
     TemplateHandler mockTemplateHandler() {
-        return new Mvel2TemplateHandler(mockTemplateContext());
+        return new SqlTemplateHandler(mockTemplateContext());
     }
 
     Mvel2TemplateContext mockTemplateContext() {
