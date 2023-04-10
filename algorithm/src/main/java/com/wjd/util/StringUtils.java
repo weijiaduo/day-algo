@@ -1,5 +1,6 @@
 package com.wjd.util;
 
+import com.wjd.practice.leetcode.structure.ListNode;
 import com.wjd.structure.tree.binary.TreeNode;
 import com.wjd.structure.tree.generic.Node;
 
@@ -16,6 +17,11 @@ public final class StringUtils {
     public static String toStr(Object object) {
         if (object == null) {
             return "null";
+        }
+
+        // 链表节点
+        if (object instanceof ListNode) {
+            return ListNode.listString((ListNode) object);
         }
 
         // 树

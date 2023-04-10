@@ -33,13 +33,15 @@ public class ListNode {
         StringBuilder sb = new StringBuilder();
         sb.append('[');
         while (p != null) {
-            sb.append(p.val).append(',');
+            sb.append(p.val).append(", ");
             p = p.next;
             if (p == list) {
                 break;
             }
         }
-        sb.deleteCharAt(sb.length() - 1);
+        if (sb.length() > 2) {
+            sb.setLength(sb.length() - 2);
+        }
         sb.append(']');
         return sb.toString();
     }

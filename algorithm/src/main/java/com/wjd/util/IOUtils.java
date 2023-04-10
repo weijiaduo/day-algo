@@ -1,5 +1,6 @@
 package com.wjd.util;
 
+import com.wjd.practice.leetcode.structure.ListNode;
 import com.wjd.structure.tree.binary.TreeNode;
 import com.wjd.structure.tree.generic.Node;
 
@@ -60,6 +61,9 @@ public final class IOUtils {
         } else if (Node.class.equals(type)) {
             Integer[] values = toBoxIntArray(line);
             ret = Node.build(values);
+        } else if (ListNode.class.equals(type)) {
+            int[] arr = toIntArray(line);
+            ret = ListNode.build(arr);
         }
         return ret;
     }
