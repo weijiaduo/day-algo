@@ -218,6 +218,8 @@
 
 ### 9.4 正则表达式
 
+- [NFA](./algorithm/src/main/java/com/wjd/algorithm/strings/regex/impl/NFAPattern.java)
+
 ## 十、其他
 
 ### 10.1 跳表（SkipList）
