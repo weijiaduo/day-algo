@@ -32,7 +32,7 @@ public class MSD implements Sort {
      * @param aux     临时数组空间
      */
     private void countSort(String[] strings, int l, int r, int index, String[] aux) {
-        // 1 个字符不需要排序
+        // 1 个字符串不需要排序
         if (l + 1 >= r) {
             return;
         }
