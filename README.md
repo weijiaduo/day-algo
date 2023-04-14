@@ -194,8 +194,7 @@
 
 ### 9.1 排序（Sort）
 
-- [计数排序]
-- [低位优先排序（LSD）]
+- [低位优先排序（LSD）](./algorithm/src/main/java/com/wjd/algorithm/strings/sorts/impl/LSD.java)
 - [高位优先排序（MSD）]
 - [三向快速排序]
 
