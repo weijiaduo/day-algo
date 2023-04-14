@@ -168,7 +168,7 @@
     - [基于 BFS 的路径](./algorithm/src/main/java/com/wjd/algorithm/graph/directed/path/DirectedBFP.java)
   - [强连通分量（Kosaraju）](./algorithm/src/main/java/com/wjd/algorithm/graph/directed/connected/impl/KosarajuStrongConnected.java)
   - [环检测](./algorithm/src/main/java/com/wjd/algorithm/graph/directed/cycle/DirectedCycle.java)
-  - [出入度]
+  - [出入度](./algorithm/src/main/java/com/wjd/algorithm/graph/directed/degree/Degree.java)
 
 ### 8.4 最小生成树（MST）
 
@@ -194,6 +194,7 @@
 
 ### 9.1 排序（Sort）
 
+- [计数排序]
 - [低位优先排序（LSD）]
 - [高位优先排序（MSD）]
 - [三向快速排序]
