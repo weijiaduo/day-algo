@@ -195,7 +195,7 @@
 ### 9.1 排序（Sort）
 
 - [低位优先排序（LSD）](./algorithm/src/main/java/com/wjd/algorithm/strings/sorts/impl/LSD.java)
-- [高位优先排序（MSD）]
+- [高位优先排序（MSD）](./algorithm/src/main/java/com/wjd/algorithm/strings/sorts/impl/MSD.java)
 - [三向快速排序]
 
 ### 9.2 单词查找树（Trie）
