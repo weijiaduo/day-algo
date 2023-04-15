@@ -39,6 +39,11 @@ public class SortTest {
     }
 
     @Test
+    void testQuick3Way() {
+        testSort(new Quick3WaySort());
+    }
+
+    @Test
     void testMerge() {
         testSort(new MergeSort());
     }

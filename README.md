@@ -17,6 +17,7 @@
 - 交换排序
   - [冒泡排序](./algorithm/src/main/java/com/wjd/algorithm/sort/BubbleSort.java)
   - [快速排序](./algorithm/src/main/java/com/wjd/algorithm/sort/QuickSort.java)
+  - [3-向快排](./algorithm/src/main/java/com/wjd/algorithm/sort/Quick3WaySort.java)
 - 归并排序
   - [归并排序](./algorithm/src/main/java/com/wjd/algorithm/sort/MergeSort.java)
 - 桶排序
