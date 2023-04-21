@@ -5,6 +5,8 @@ import com.wjd.algorithm.tree.redblack.traverse.BuildLevelRedBlackTraverse;
 /**
  * 左偏向（Left-Leaning）红黑树（2-3树）
  * <p>
+ * 基于自顶向下
+ * <p>
  * 1. 红链接只能出现在左边
  * <p>
  * 2. 不能出现 2 条相邻的红链接
@@ -69,7 +71,7 @@ public class LLRBTree implements RBTree {
      * <p>
      * 自顶向下 -> 自底向上调整树结构
      *
-     * @param h   当前节点
+     * @param h       当前节点
      * @param newNode 新节点
      * @return 新当前节点
      */
@@ -79,7 +81,7 @@ public class LLRBTree implements RBTree {
             return newNode;
         }
 
-        // 分解 4-节点为 3 个节点
+        // 预分解 4-节点为 3 个节点
         if (isRed(h.left) && isRed(h.right)) {
             flipColor(h, RED);
         }
@@ -102,7 +104,7 @@ public class LLRBTree implements RBTree {
             return;
         }
 
-        // 确保传给 remove(root) 的是 3-节点
+        // 预合并，确保传给 remove(root) 的是 3-节点
         if (root != null && !hasRed(root)) {
             root.color = RED;
         }
@@ -129,7 +131,7 @@ public class LLRBTree implements RBTree {
             return removeNode(h);
         }
         if (h.val > val) {
-            // 保证左子节点是 3/4-节点
+            // 预合并，保证左子节点是 3/4-节点
             if (!hasRed(h.left)) {
                 h = moveRedLeft(h);
             }
@@ -139,7 +141,7 @@ public class LLRBTree implements RBTree {
             if (isRed(h.left)) {
                 h = rotateRight(h);
             }
-            // 保证右子节点是 3/4-节点
+            // 预合并，保证右子节点是 3/4-节点
             if (!hasRed(h.right)) {
                 h = moveRedRight(h);
             }

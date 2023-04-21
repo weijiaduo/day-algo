@@ -5,6 +5,8 @@ import com.wjd.algorithm.tree.redblack.traverse.BuildLevelRedBlackTraverse;
 /**
  * 双偏向（Both-Leaning）红黑树（2-3-4树）
  * <p>
+ * 基于自底向上
+ * <p>
  * 1. 红色节点可以出现在左右两边
  *
  * @author weijiaduo
