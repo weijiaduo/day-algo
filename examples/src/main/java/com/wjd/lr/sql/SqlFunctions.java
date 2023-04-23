@@ -51,6 +51,11 @@ public final class SqlFunctions {
         // 选择
         add("nullif", new FunctionDescriptor("nullif",
                 List.of(ANY, ANY), ANY));
+
+        // 特殊方法
+        add("casewhen", new FunctionDescriptor("casewhen",  List.of(), ANY));
+        add("between", new FunctionDescriptor("between",  List.of(), ANY));
+        add("in", new FunctionDescriptor("in",  List.of(), ANY));
     }
 
     /**

@@ -4,6 +4,7 @@ import com.wjd.lr.expr.Expr;
 import com.wjd.lr.expr.ExprContext;
 import com.wjd.lr.expr.ast.BoolValue;
 import com.wjd.lr.expr.ast.Function;
+import com.wjd.lr.sql.SqlFunctions;
 
 import java.lang.reflect.Method;
 import java.util.HashMap;
@@ -31,9 +32,11 @@ public class GeneralFuncBuilder implements FunctionBuilder {
     public GeneralFuncBuilder() {
         try {
             // 注册所有声明的函数方法
-            for (Method m : getClass().getDeclaredMethods()) {
+            for (Method m : getClass().getMethods()) {
                 String funcName = m.getName().toLowerCase();
-                functionMap.put(funcName, m);
+                if (SqlFunctions.get(funcName) != null) {
+                    functionMap.put(funcName, m);
+                }
             }
         } catch (Exception e) {
             e.printStackTrace();
