@@ -40,9 +40,12 @@ public class NFAPattern implements Pattern {
      */
     private Digraph et;
 
-    @Override
-    public boolean match(String pattern, String txt) {
+    public NFAPattern(String pattern) {
         initNFA(pattern);
+    }
+
+    @Override
+    public boolean match(String txt) {
         return recognize(txt);
     }
 

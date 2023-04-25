@@ -11,10 +11,9 @@ public interface Pattern {
     /**
      * Match boolean.
      *
-     * @param pattern the pattern
      * @param txt     the txt
      * @return the boolean
      */
-    boolean match(String pattern, String txt);
+    boolean match(String txt);
 
 }

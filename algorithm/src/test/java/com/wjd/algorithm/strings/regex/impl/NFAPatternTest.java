@@ -22,8 +22,8 @@ class NFAPatternTest {
                 true
         };
         for (int i = 0; i < input.length; i++) {
-            Pattern pattern = new NFAPattern();
-            boolean ret = pattern.match(input[i][0], input[i][1]);
+            Pattern pattern = new NFAPattern(input[i][0]);
+            boolean ret = pattern.match(input[i][1]);
             assertEquals(expect[i], ret);
         }
     }
