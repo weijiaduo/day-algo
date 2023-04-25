@@ -215,7 +215,7 @@
   - [KMP-Pmt](./algorithm/src/main/java/com/wjd/algorithm/strings/search/impl/PmtKMPSearch.java)
   - [KMP-Next](./algorithm/src/main/java/com/wjd/algorithm/strings/search/impl/NextKMPSearch.java)
   - [KMP-DFA](./algorithm/src/main/java/com/wjd/algorithm/strings/search/impl/DFAKMPSearch.java)
-- [AC 自动机]
+- [AC 自动机](./algorithm/src/main/java/com/wjd/algorithm/strings/regex/impl/AhoCorasickPattern.java)
 
 ### 9.4 正则表达式
 
