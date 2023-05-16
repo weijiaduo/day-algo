@@ -1,28 +1,23 @@
-package com.wjd.practice.leetcode.array;
-
-import com.wjd.practice.Solution;
+package com.wjd.practice.leetcode.array.traversal;
 
 import java.util.Arrays;
 
 /**
- * @since 2021-05-29
- * <p>
  * 414. 第三大的数
  * <p>
  * 给你一个非空数组，返回此数组中 第三大的数 。如果不存在，则返回数组中最大的数。
+ *
+ * @since 2021-05-29
  */
-public class ThirdMax implements Solution<Integer> {
-
-    @Override
-    public Integer solve(Object ...args) {
-        int[] nums = {2, 2, 3, 4};
-        int result = getThirdMax(nums);
-        System.out.println(result);
-        return result;
-    }
+public class ThirdMax {
 
     /**
-     * 获取第3大的数
+     * 思路：直接用3个变量记住遍历过程中最大的3个值
+     * <p>
+     * 复杂度：时间 O(n) 空间 O(1)
+     * <p>
+     * 执行耗时:1 ms,击败了87.96% 的Java用户
+     * 内存消耗:42.5 MB,击败了5.54% 的Java用户
      *
      * @param nums 数组
      * @return 第3大的数
