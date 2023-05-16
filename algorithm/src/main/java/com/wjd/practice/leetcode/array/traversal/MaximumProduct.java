@@ -1,36 +1,35 @@
-package com.wjd.practice.leetcode.array;
-
-import com.wjd.practice.Solution;
+package com.wjd.practice.leetcode.array.traversal;
 
 import java.util.Arrays;
 
 /**
- * @since 2021-06-03
- * <p>
  * 628. 三个数的最大乘积
  * <p>
  * 给你一个整型数组 nums ，在数组中找出由三个数组成的最大乘积，并输出这个乘积。
  * <p>
  * 3 <= nums.length <= 104
  * -1000 <= nums[i] <= 1000
+ *
+ * @since 2021-06-03
  */
-public class MaximumProduct implements Solution<Integer> {
-
-    @Override
-    public Integer solve(Object ...args) {
-        int[] nums = {-1, -2, -3, 4};
-        int result = maximumProduct(nums);
-        System.out.println(result);
-        return result;
-    }
+public class MaximumProduct {
 
     /**
-     * 三个数的最大乘积
+     * 思路：排序后，数组可分为2种情况：
+     * <p>
+     * 1. 全是非负数/全是非正数：乘积是最大的3个数
+     * <p>
+     * 2. 部分负数，部分正数：乘积是1正2负/最大的3个数
+     * <p>
+     * 复杂度：时间 O(nlogn) 空间 O(1)
+     * <p>
+     * 执行耗时:11 ms,击败了76.27% 的Java用户
+     * 内存消耗:43.5 MB,击败了5.09% 的Java用户
      *
      * @param nums 数组
      * @return 最大乘积
      */
-    private int maximumProduct2(int[] nums) {
+    public int maximumProduct2(int[] nums) {
         int result;
         Arrays.sort(nums);
         if (nums[0] >= 0 || nums[nums.length - 1] <= 0) {
