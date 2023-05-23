@@ -1,4 +1,4 @@
-package com.wjd.lr.service.sql;
+package com.wjd.lr.sql.expr;
 
 import com.wjd.lr.expr.Expr;
 import com.wjd.lr.expr.ast.*;
