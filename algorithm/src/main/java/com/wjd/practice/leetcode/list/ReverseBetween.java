@@ -1,6 +1,5 @@
 package com.wjd.practice.leetcode.list;
 
-import com.wjd.practice.Solution;
 import com.wjd.practice.leetcode.structure.ListNode;
 
 /**
@@ -13,24 +12,14 @@ import com.wjd.practice.leetcode.structure.ListNode;
  * 输入：head = [1,2,3,4,5], left = 2, right = 4
  * 输出：[1,4,3,2,5]
  * <p>
+ *
  * @since 2022/6/11
  */
-public class ReverseBetween implements Solution<ListNode> {
-
-    @Override
-    public ListNode solve(Object... args) {
-        int[] values = {5};
-        int left = 1, right = 1;
-        ListNode head = ListNode.build(values);
-        System.out.println(ListNode.listString(head));
-        ListNode result = reverseBetween(head, left, right);
-        System.out.println(ListNode.listString(result));
-        return null;
-    }
+public class ReverseBetween {
 
     /**
      * 思路：遍历到 [left, right] 时，反向插入链表节点
-     *
+     * <p>
      * 执行耗时:0 ms,击败了100.00% 的Java用户
      * 内存消耗:39 MB,击败了58.80% 的Java用户
      */

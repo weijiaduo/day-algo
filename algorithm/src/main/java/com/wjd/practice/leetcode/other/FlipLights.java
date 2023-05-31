@@ -1,7 +1,5 @@
 package com.wjd.practice.leetcode.other;
 
-import com.wjd.practice.Solution;
-
 import java.util.Arrays;
 import java.util.HashSet;
 import java.util.Set;
@@ -31,18 +29,9 @@ import java.util.Set;
  * @author weijiaduo
  * @since 2022/9/15
  */
-public class FlipLights implements Solution<Integer> {
+public class FlipLights {
 
-    @Override
-    public Integer solve(Object... args) {
-        int n = 3;
-        int press = 1;
-        int result = flipLights2(n, press);
-        System.out.println(result);
-        return result;
-    }
-
-    private int flipLights(int n, int presses) {
+    public int flipLights(int n, int presses) {
         char[] lights = new char[n + 1];
         Arrays.fill(lights, '1');
         Set<String> visited = new HashSet<>();

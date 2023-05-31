@@ -1,12 +1,13 @@
 package com.wjd.practice.leetcode.list;
 
-import com.wjd.practice.Solution;
 import com.wjd.practice.leetcode.structure.ListNode;
 
 /**
  * 160. 相交链表
  * <p>
- * 给你两个单链表的头节点 headA 和 headB ，请你找出并返回两个单链表相交的起始节点。如果两个链表不存在相交节点，返回 null 。
+ * 给你两个单链表的头节点 headA 和 headB ，请你找出并返回两个单链表相交的起始节点。
+ * <p>
+ * 如果两个链表不存在相交节点，返回 null 。
  * <p>
  * 题目数据 保证 整个链式结构中不存在环。
  * <p>
@@ -15,18 +16,7 @@ import com.wjd.practice.leetcode.structure.ListNode;
  * @author weijiaduo
  * @since 2022/7/2
  */
-public class GetIntersectionNode implements Solution<ListNode> {
-
-    @Override
-    public ListNode solve(Object... args) {
-        int[] values1 = {};
-        int[] values2 = {};
-        ListNode headA = ListNode.build(values1);
-        ListNode headB = ListNode.build(values2);
-        ListNode result = getIntersectionNode(headA, headB);
-        System.out.println(ListNode.listString(result));
-        return result;
-    }
+public class GetIntersectionNode {
 
     /**
      * 思路：前后双指针，先算2条链表的长度，再提前移动长链表的指针，然后同时移动长短链表的指针，双指针相等的地方就是相交点
@@ -36,7 +26,7 @@ public class GetIntersectionNode implements Solution<ListNode> {
      * 执行耗时:1 ms,击败了97.85% 的Java用户
      * 内存消耗:44.2 MB,击败了56.31% 的Java用户
      */
-    private ListNode getIntersectionNode(ListNode headA, ListNode headB) {
+    public ListNode getIntersectionNode(ListNode headA, ListNode headB) {
         // 分别计算出长短链表的长度
         int m = 0, n = 0;
         ListNode p = headA, q = headB;

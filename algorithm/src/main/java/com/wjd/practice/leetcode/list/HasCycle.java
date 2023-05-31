@@ -1,6 +1,5 @@
 package com.wjd.practice.leetcode.list;
 
-import com.wjd.practice.Solution;
 import com.wjd.practice.leetcode.structure.ListNode;
 
 /**
@@ -14,22 +13,18 @@ import com.wjd.practice.leetcode.structure.ListNode;
  * 输出：true
  * 解释：链表中有一个环，其尾部连接到第二个节点。
  * <p>
+ *
  * @since 2022/6/19
  */
-public class HasCycle implements Solution<Boolean> {
-
-    @Override
-    public Boolean solve(Object... args) {
-        return null;
-    }
+public class HasCycle {
 
     /**
      * 思路：快慢指针，快指针追上慢指针的话，就说明回头了，存在环
-     *
+     * <p>
      * 执行耗时:0 ms,击败了100.00% 的Java用户
      * 内存消耗:43.1 MB,击败了5.07% 的Java用户
      */
-    private boolean hasCycle(ListNode head) {
+    public boolean hasCycle(ListNode head) {
         if (head == null || head.next == null) {
             return false;
         }

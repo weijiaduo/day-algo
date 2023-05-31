@@ -1,7 +1,5 @@
 package com.wjd.practice.leetcode.math;
 
-import com.wjd.practice.Solution;
-
 /**
  * 172. 阶乘后的零
  * <p>
@@ -14,17 +12,9 @@ import com.wjd.practice.Solution;
  * @author weijiaduo
  * @since 2022/7/9
  */
-public class TrailingZeroes implements Solution<Integer> {
+public class TrailingZeroes {
 
-    @Override
-    public Integer solve(Object... args) {
-        int n = 35;
-        int result = trailingZeroes(n);
-        System.out.println(result);
-        return result;
-    }
-
-    private int trailingZeroes(int n) {
+    public int trailingZeroes(int n) {
         // return lineTrailingZeroes(n);
         return lineTrailingZeroes2(n);
     }

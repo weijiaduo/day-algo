@@ -1,24 +1,14 @@
 package com.wjd.practice.leetcode.math;
 
-import com.wjd.practice.Solution;
-
 /**
  * 50. Pow(x,y)
  * <p>
  * 实现 pow(x, n) ，即计算 x 的 n 次幂函数（即，xⁿ ）。
  * <p>
+ *
  * @since 2022/5/29
  */
-public class MyPow implements Solution<Double> {
-
-    @Override
-    public Double solve(Object ...args) {
-        double x = 1;
-        int n = -2147483648;
-        double result = myPow(x, n);
-        System.out.println(result);
-        return result;
-    }
+public class MyPow {
 
     public double myPow(double x, int n) {
         return bitPow(x, n);
@@ -26,9 +16,9 @@ public class MyPow implements Solution<Double> {
 
     /**
      * 二分法
-     *
+     * <p>
      * 思路：求 n 次，就拆分成 n/2 + n%2 次取幂
-     *
+     * <p>
      * 执行耗时:0 ms,击败了100.00% 的Java用户
      * 内存消耗:40.8 MB,击败了22.95% 的Java用户
      */
@@ -50,9 +40,9 @@ public class MyPow implements Solution<Double> {
 
     /**
      * 思路：5的二进制是101，即 2^2 * 2^0，所以幂次数可以转换为对应的bit位
-     *
+     * <p>
      * 这个想法很有意思~~
-     *
+     * <p>
      * 执行耗时:0 ms,击败了100.00% 的Java用户
      * 内存消耗:40.8 MB,击败了22.95% 的Java用户
      */

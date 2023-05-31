@@ -1,6 +1,5 @@
 package com.wjd.practice.leetcode.list;
 
-import com.wjd.practice.Solution;
 import com.wjd.practice.leetcode.structure.ListNode;
 
 /**
@@ -14,16 +13,7 @@ import com.wjd.practice.leetcode.structure.ListNode;
  * @author weijiaduo
  * @since 2022-06-27
  */
-public class InsertionSortList implements Solution<ListNode> {
-
-    @Override
-    public ListNode solve(Object... args) {
-        int[] values = {-1, 5, 3, 4, 0};
-        ListNode head = ListNode.build(values);
-        ListNode result = insertionSortList2(head);
-        System.out.println(ListNode.listString(result));
-        return result;
-    }
+public class InsertionSortList {
 
     /**
      * 思路：逐个把旧链表的每个节点插入新链表的正确位置
@@ -33,7 +23,7 @@ public class InsertionSortList implements Solution<ListNode> {
      * 执行耗时:25 ms,击败了8.66% 的Java用户
      * 内存消耗:40.9 MB,击败了59.68% 的Java用户
      */
-    private ListNode insertionSortList(ListNode head) {
+    public ListNode insertionSortList(ListNode head) {
         if (head == null || head.next == null) {
             return head;
         }

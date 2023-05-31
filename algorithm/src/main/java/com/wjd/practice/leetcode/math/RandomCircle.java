@@ -1,23 +1,15 @@
 package com.wjd.practice.leetcode.math;
 
-import com.wjd.practice.Solution;
-
 import java.util.Random;
 
 /**
  * 478. 在圆内随机生成点
- *
+ * <p>
  * 给定圆的半径和圆心的位置，实现函数 randPoint ，在圆中产生均匀随机点。
  *
  * @since 2022/6/5
  */
-public class RandomCircle implements Solution<Void> {
-
-    @Override
-    public Void solve(Object... args) {
-        return null;
-    }
-
+public class RandomCircle {
 
     Random random;
     double xc, yc, r;

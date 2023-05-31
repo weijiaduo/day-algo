@@ -1,7 +1,5 @@
 package com.wjd.practice.leetcode.graph;
 
-import com.wjd.practice.Solution;
-
 import java.util.*;
 
 /**
@@ -18,17 +16,10 @@ import java.util.*;
  * 输入：words = ["wrt","wrf","er","ett","rftt"]
  * 输出："wertf"
  * <p>
+ *
  * @since 2022/5/31
  */
-public class AlienOrder implements Solution<String> {
-
-    @Override
-    public String solve(Object... args) {
-        String[] words = {"wrt","wrf","er","ett","rftt"};
-        String result = alienOrder(words);
-        System.out.println(result);
-        return result;
-    }
+public class AlienOrder {
 
     static final int VISITING = 1, VISITED = 2;
     Map<Character, List<Character>> edges = new HashMap<>();
@@ -39,9 +30,9 @@ public class AlienOrder implements Solution<String> {
 
     /**
      * 拓扑排序 + 深度遍历
-     *
+     * <p>
      * 抄答案的，懒得写了
-     *
+     * <p>
      * 执行耗时:3 ms,击败了86.64% 的Java用户
      * 内存消耗:39.8 MB,击败了61.09% 的Java用户
      */

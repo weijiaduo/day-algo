@@ -1,8 +1,5 @@
 package com.wjd.practice.leetcode.bit;
 
-import com.wjd.practice.Solution;
-import com.wjd.util.BitUtil;
-
 /**
  * 191. 位1的个数
  * <p>
@@ -17,17 +14,7 @@ import com.wjd.util.BitUtil;
  * @author weijiaduo
  * @since 2022/7/9
  */
-public class HammingWeight implements Solution<Integer> {
-
-    @Override
-    public Integer solve(Object... args) {
-        String bits = "11111111111111111111111111111101";
-        int n = BitUtil.bitsToInt(bits);
-        System.out.println(BitUtil.intToBits(n));
-        int result = hammingWeight2(n);
-        System.out.println(result);
-        return result;
-    }
+public class HammingWeight {
 
     /**
      * 思路：每次取最低位判断是1或0，统计数量，然后无符号右移n
@@ -40,7 +27,7 @@ public class HammingWeight implements Solution<Integer> {
      * @param n 整数
      * @return 1的个数
      */
-    private int hammingWeight(int n) {
+    public int hammingWeight(int n) {
         int count = 0;
         while (n != 0) {
             count += n & 1;

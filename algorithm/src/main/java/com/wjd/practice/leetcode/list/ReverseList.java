@@ -1,6 +1,5 @@
 package com.wjd.practice.leetcode.list;
 
-import com.wjd.practice.Solution;
 import com.wjd.practice.leetcode.structure.ListNode;
 
 /**
@@ -14,16 +13,7 @@ import com.wjd.practice.leetcode.structure.ListNode;
  * @author weijiaduo
  * @since 2022/7/14
  */
-public class ReverseList implements Solution<ListNode> {
-
-    @Override
-    public ListNode solve(Object... args) {
-        int[] values = {1, 2, 3, 4, 5};
-        ListNode head = ListNode.build(values);
-        ListNode result = dfsReverseList(head);
-        System.out.println(ListNode.listString(result));
-        return result;
-    }
+public class ReverseList {
 
     /**
      * 思路：拆分原链表到新链表，每次插入节点到头部，最后返回新链表的头节点
@@ -33,7 +23,7 @@ public class ReverseList implements Solution<ListNode> {
      * 执行耗时:0 ms,击败了100.00% 的Java用户
      * 内存消耗:41.5 MB,击败了14.90% 的Java用户
      */
-    private ListNode reverseList(ListNode head) {
+    public ListNode reverseList(ListNode head) {
         ListNode dummy = new ListNode(0);
         ListNode p = head, q;
         while (p != null) {

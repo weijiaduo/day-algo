@@ -1,12 +1,13 @@
 package com.wjd.practice.leetcode.list;
 
-import com.wjd.practice.Solution;
 import com.wjd.practice.leetcode.structure.ListNode;
 
 /**
  * 142. 环形链表2
  * <p>
- * 给定一个链表的头节点 head ，返回链表开始入环的第一个节点。 如果链表无环，则返回 null。
+ * 给定一个链表的头节点 head ，返回链表开始入环的第一个节点。
+ * <p>
+ * 如果链表无环，则返回 null。
  * <p>
  * 不允许修改 链表。
  * <p>
@@ -17,18 +18,7 @@ import com.wjd.practice.leetcode.structure.ListNode;
  * @author weijiaduo
  * @since 2022-06-27
  */
-public class DetectCycle implements Solution<ListNode> {
-
-    @Override
-    public ListNode solve(Object... args) {
-        ListNode head = new ListNode(1);
-        head.next = new ListNode(2);
-        head.next.next = new ListNode(3);
-
-        ListNode result = detectCycle(head);
-        System.out.println(ListNode.listString(result));
-        return result;
-    }
+public class DetectCycle {
 
     /**
      * 思路：快慢指针，先找到环，然后算出环的长度，最后再用一次快慢指针，快指针领先慢指针环长度个节点
@@ -38,7 +28,7 @@ public class DetectCycle implements Solution<ListNode> {
      * 执行耗时:0 ms,击败了100.00% 的Java用户
      * 内存消耗:41.9 MB,击败了31.50% 的Java用户
      */
-    public static ListNode detectCycle(ListNode head) {
+    public ListNode detectCycle(ListNode head) {
         if (head == null) {
             return null;
         }

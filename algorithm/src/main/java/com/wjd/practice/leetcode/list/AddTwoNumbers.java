@@ -4,22 +4,12 @@ import com.wjd.practice.leetcode.structure.ListNode;
 
 /**
  * 链表代表数字
+ * <p>
  * 求两个链表相加的结果
  */
 public class AddTwoNumbers {
-    public static void main(String[] args) {
-        ListNode l1 = new ListNode(2);
-        ListNode l2 = new ListNode(8);
-        ListNode l = addTwoNumbers(l1, l2);
-        ListNode p= l;
-        while (p!=null){
-            System.out.print(p.val);
-            p = p.next;
-        }
-        System.out.println();
-    }
 
-    public static ListNode addTwoNumbers(ListNode l1, ListNode l2) {
+    public ListNode addTwoNumbers(ListNode l1, ListNode l2) {
         if (l1 == null) {
             return l2;
         }
@@ -48,4 +38,5 @@ public class AddTwoNumbers {
 
         return l.next;
     }
+
 }

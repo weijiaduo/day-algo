@@ -1,6 +1,5 @@
 package com.wjd.practice.leetcode.list;
 
-import com.wjd.practice.Solution;
 import com.wjd.practice.leetcode.structure.ListNode;
 
 /**
@@ -13,26 +12,16 @@ import com.wjd.practice.leetcode.structure.ListNode;
  * 输入：head = [1,4,3,2,5,2], x = 3
  * 输出：[1,2,2,4,3,5]
  * <p>
+ *
  * @since 2022/6/6
  */
-public class Partition implements Solution<ListNode> {
-
-    @Override
-    public ListNode solve(Object... args) {
-        int x = 2;
-        int[] values = {2,1};
-        ListNode head = ListNode.build(values);
-        System.out.println(ListNode.listString(head));
-        ListNode result = partition(head, x);
-        System.out.println(ListNode.listString(result));
-        return result;
-    }
+public class Partition {
 
     /**
      * 双指针法
-     *
+     * <p>
      * 思路：使用两条链表分别表示小于和大于等于的情况，最后再合并起来
-     *
+     * <p>
      * 执行耗时:0 ms,击败了100.00% 的Java用户
      * 内存消耗:41.3 MB,击败了5.24% 的Java用户
      */

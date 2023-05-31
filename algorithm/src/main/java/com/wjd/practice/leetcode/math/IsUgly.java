@@ -1,7 +1,5 @@
 package com.wjd.practice.leetcode.math;
 
-import com.wjd.practice.Solution;
-
 /**
  * 263. 丑数
  * <p>
@@ -16,15 +14,7 @@ import com.wjd.practice.Solution;
  * @author weijiaduo
  * @since 2022/9/22
  */
-public class IsUgly implements Solution<Boolean> {
-
-    @Override
-    public Boolean solve(Object... args) {
-        int n = 14;
-        boolean result = isUgly(n);
-        System.out.println(result);
-        return result;
-    }
+public class IsUgly {
 
     /**
      * 思路：除法，一直用2/3/5除n，如果最后n等于1，则是丑数，反正不是

@@ -1,6 +1,5 @@
 package com.wjd.practice.leetcode.list;
 
-import com.wjd.practice.Solution;
 import com.wjd.practice.leetcode.structure.ListNode;
 
 /**
@@ -22,17 +21,7 @@ import com.wjd.practice.leetcode.structure.ListNode;
  * @author weijiaduo
  * @since 2022-06-27
  */
-public class ReorderList implements Solution<Void> {
-
-    @Override
-    public Void solve(Object... args) {
-        int[] values = {1, 2, 3, 4, 5};
-        ListNode head = ListNode.build(values);
-
-        reorderList(head);
-        System.out.println(ListNode.listString(head));
-        return null;
-    }
+public class ReorderList {
 
     /**
      * 思路：将链表对半分，翻转后半部分链表，最后重新拼装2条链表
@@ -42,7 +31,7 @@ public class ReorderList implements Solution<Void> {
      * 执行耗时:1 ms,击败了99.95% 的Java用户
      * 内存消耗:44.7 MB,击败了5.02% 的Java
      */
-    public static void reorderList(ListNode head) {
+    public void reorderList(ListNode head) {
         if (head == null || head.next == null) {
             return;
         }

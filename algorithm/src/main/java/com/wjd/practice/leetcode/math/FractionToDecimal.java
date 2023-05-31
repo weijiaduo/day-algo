@@ -1,7 +1,5 @@
 package com.wjd.practice.leetcode.math;
 
-import com.wjd.practice.Solution;
-
 import java.util.HashMap;
 import java.util.Map;
 
@@ -20,16 +18,7 @@ import java.util.Map;
  * @author weijiaduo
  * @since 2022/7/2
  */
-public class FractionToDecimal implements Solution<String> {
-
-    @Override
-    public String solve(Object... args) {
-        int numerator = -50;
-        int denominator = 8;
-        String result = fractionToDecimal(numerator, denominator);
-        System.out.println(result);
-        return result;
-    }
+public class FractionToDecimal {
 
     /**
      * 思路倒是没错，就是细节太多了，想不完整
@@ -39,7 +28,7 @@ public class FractionToDecimal implements Solution<String> {
      * 执行耗时:1 ms,击败了100.00% 的Java用户
      * 内存消耗:39.3 MB,击败了17.68% 的Java用户
      */
-    private String fractionToDecimal(int numerator, int denominator) {
+    public String fractionToDecimal(int numerator, int denominator) {
         StringBuilder sb = new StringBuilder();
 
         // 符号部分

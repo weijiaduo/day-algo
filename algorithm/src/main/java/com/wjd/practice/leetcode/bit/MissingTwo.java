@@ -1,9 +1,5 @@
 package com.wjd.practice.leetcode.bit;
 
-import com.wjd.practice.Solution;
-
-import java.util.Arrays;
-
 /**
  * 面试题 17.19 消失的两个数字
  * <p>
@@ -19,15 +15,7 @@ import java.util.Arrays;
  * @author weijiaduo
  * @since 2022/9/26
  */
-public class MissingTwo implements Solution<int[]> {
-
-    @Override
-    public int[] solve(Object... args) {
-        int[] nums = {1};
-        int[] result = missingTwo(nums);
-        System.out.println(Arrays.toString(result));
-        return result;
-    }
+public class MissingTwo {
 
     /**
      * 思路：

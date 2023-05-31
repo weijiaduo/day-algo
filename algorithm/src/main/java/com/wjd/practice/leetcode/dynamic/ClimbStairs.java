@@ -1,7 +1,5 @@
 package com.wjd.practice.leetcode.dynamic;
 
-import com.wjd.practice.Solution;
-
 import java.util.Map;
 
 /**
@@ -17,17 +15,10 @@ import java.util.Map;
  * 1. 1 阶 + 1 阶
  * 2. 2 阶
  * <p>
+ *
  * @since 2022/6/3
  */
-public class ClimbStairs implements Solution<Integer> {
-
-    @Override
-    public Integer solve(Object... args) {
-        int n = 2;
-        int result = climbStairs(n);
-        System.out.println(result);
-        return result;
-    }
+public class ClimbStairs {
 
     public int climbStairs(int n) {
         // return memoryDfs(n, 0, new HashMap<>());
@@ -38,7 +29,7 @@ public class ClimbStairs implements Solution<Integer> {
      * 递归法
      */
     private int dfs(int n, int k) {
-        if(k > n) {
+        if (k > n) {
             return 0;
         }
         if (n == k) {
@@ -56,7 +47,7 @@ public class ClimbStairs implements Solution<Integer> {
             return val;
         }
 
-        if(k > n) {
+        if (k > n) {
             return 0;
         }
         if (n == k) {
@@ -84,7 +75,7 @@ public class ClimbStairs implements Solution<Integer> {
 
     /**
      * 临时变量，动态规划
-     *
+     * <p>
      * 执行耗时:0 ms,击败了100.00% 的Java用户
      * 内存消耗:37.9 MB,击败了94.59% 的Java用户
      */

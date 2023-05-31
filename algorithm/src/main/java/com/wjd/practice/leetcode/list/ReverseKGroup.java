@@ -1,6 +1,5 @@
 package com.wjd.practice.leetcode.list;
 
-import com.wjd.practice.Solution;
 import com.wjd.practice.leetcode.structure.ListNode;
 
 /**
@@ -19,17 +18,7 @@ import com.wjd.practice.leetcode.structure.ListNode;
  *
  * @since 2022/5/17
  */
-public class ReverseKGroup implements Solution<ListNode> {
-
-    @Override
-    public ListNode solve(Object ...args) {
-        int k = 2;
-        int[] values = {1,2,3,4,5};
-        ListNode head = ListNode.build(values);
-        ListNode result = reverseKGroup(head, k);
-        System.out.println(ListNode.listString(result));
-        return result;
-    }
+public class ReverseKGroup {
 
     public ListNode reverseKGroup(ListNode head, int k) {
         ListNode dummy = new ListNode(0);

@@ -1,7 +1,5 @@
 package com.wjd.practice.leetcode.math;
 
-import com.wjd.practice.Solution;
-
 /**
  * 1037. 有效的回旋镖
  * <p>
@@ -12,17 +10,10 @@ import com.wjd.practice.Solution;
  * 输入：points = [[1,1],[2,3],[3,2]]
  * 输出：true
  * <p>
+ *
  * @since 2022/6/8
  */
-public class IsBoomerang implements Solution<Boolean> {
-
-    @Override
-    public Boolean solve(Object... args) {
-        int[][] points = {{0,1},{1,1},{2,2}};
-        boolean result = isBoomerang(points);
-        System.out.println(result);
-        return result;
-    }
+public class IsBoomerang {
 
     /**
      * 执行耗时:0 ms,击败了100.00% 的Java用户

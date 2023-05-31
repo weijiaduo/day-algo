@@ -1,7 +1,5 @@
 package com.wjd.practice.leetcode.stack;
 
-import com.wjd.practice.Solution;
-
 import java.util.ArrayDeque;
 import java.util.Deque;
 
@@ -21,16 +19,7 @@ import java.util.Deque;
  * @author weijiaduo
  * @since 2022/8/31
  */
-public class ValidateStackSequences implements Solution<Boolean> {
-
-    @Override
-    public Boolean solve(Object... args) {
-        int[] pushed = {1, 2, 3, 4, 5};
-        int[] poped = {4, 3, 5, 1, 2};
-        boolean result = validateStackSequences(pushed, poped);
-        System.out.println(result);
-        return result;
-    }
+public class ValidateStackSequences {
 
     /**
      * 思路：将pushed序列推入栈，碰到poped的值时出栈，直到最后，如果栈中数据为空，表示是有效序列
@@ -44,7 +33,7 @@ public class ValidateStackSequences implements Solution<Boolean> {
      * @param popped 出栈
      * @return true/false
      */
-    private boolean validateStackSequences(int[] pushed, int[] popped) {
+    public boolean validateStackSequences(int[] pushed, int[] popped) {
         int n = pushed.length;
         int i = 0, j = 0;
         Deque<Integer> stack = new ArrayDeque<>();

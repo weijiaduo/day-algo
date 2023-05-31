@@ -1,7 +1,5 @@
 package com.wjd.practice.leetcode.math;
 
-import com.wjd.practice.Solution;
-
 /**
  * 670. 最大交换
  * <p>
@@ -14,15 +12,7 @@ import com.wjd.practice.Solution;
  * @author weijiaduo
  * @since 2022/9/13
  */
-public class MaximumSwap implements Solution<Integer> {
-
-    @Override
-    public Integer solve(Object... args) {
-        int num = 98368;
-        int result = maximumSwap(num);
-        System.out.println(result);
-        return result;
-    }
+public class MaximumSwap {
 
     /**
      * 思路：
@@ -42,7 +32,7 @@ public class MaximumSwap implements Solution<Integer> {
      * @return 交换后的整数
      */
     public int maximumSwap(int num) {
-        char[] digits = ("" + num).toCharArray();
+        char[] digits = (String.valueOf(num)).toCharArray();
         int n = digits.length;
 
         // 记录右边的最大值

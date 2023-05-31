@@ -1,6 +1,5 @@
 package com.wjd.practice.leetcode.list;
 
-import com.wjd.practice.Solution;
 import com.wjd.practice.leetcode.structure.ListNode;
 
 /**
@@ -16,16 +15,7 @@ import com.wjd.practice.leetcode.structure.ListNode;
  * @author weijiaduo
  * @since 2022-06-27
  */
-public class SortListInOnLogn implements Solution<ListNode> {
-
-    @Override
-    public ListNode solve(Object... args) {
-        int[] values = {-1, 5, 3, 4, 0};
-        ListNode head = ListNode.build(values);
-        ListNode result = sortList(head);
-        System.out.println(ListNode.listString(result));
-        return result;
-    }
+public class SortListInOnLogn {
 
     public ListNode sortList(ListNode head) {
         return dfs(head);

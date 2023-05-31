@@ -1,7 +1,5 @@
 package com.wjd.practice.leetcode.bit;
 
-import com.wjd.practice.Solution;
-
 /**
  * 周赛 313
  * <p>
@@ -20,23 +18,14 @@ import com.wjd.practice.Solution;
  * @author weijiaduo
  * @since 2022/10/2
  */
-public class MinimizeXor implements Solution<Integer> {
-
-    @Override
-    public Integer solve(Object... args) {
-        int num1 = 99;
-        int num2 = 63;
-        int result = minimizeXor(num1, num2);
-        System.out.println(result);
-        return result;
-    }
+public class MinimizeXor {
 
     /**
      * 思路：尽可能地通过异或消去高位的1，多余的位1从低位开始摆放
      * <p>
      * 复杂度：时间 O(1) 空间 O(1)
      */
-    private int minimizeXor(int num1, int num2) {
+    public int minimizeXor(int num1, int num2) {
         int mask = 1;
 
         // 统计 num2 的位 1 数量

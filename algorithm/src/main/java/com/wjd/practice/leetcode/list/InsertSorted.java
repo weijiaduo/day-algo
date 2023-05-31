@@ -1,6 +1,5 @@
 package com.wjd.practice.leetcode.list;
 
-import com.wjd.practice.Solution;
 import com.wjd.practice.leetcode.structure.Node;
 
 /**
@@ -17,13 +16,13 @@ import com.wjd.practice.leetcode.structure.Node;
  * 输入：head = [3,4,1], insertVal = 2
  * 输出：[3,4,1,2]
  * <p>
+ *
  * @since 2022/6/18
  */
-public class InsertSorted implements Solution<Node> {
+public class InsertSorted {
 
-    @Override
     public Node solve(Object... args) {
-        int[] values = {3,3,5};
+        int[] values = {3, 3, 5};
         int insertVal = 4;
         Node head = Node.buildList(values);
         makeCircle(head);
@@ -46,7 +45,7 @@ public class InsertSorted implements Solution<Node> {
 
     /**
      * 啧啧啧，竟然提交了那么多次才成功
-     *
+     * <p>
      * 执行耗时:0 ms,击败了100.00% 的Java用户
      * 内存消耗:41.2 MB,击败了5.37% 的Java用户
      */

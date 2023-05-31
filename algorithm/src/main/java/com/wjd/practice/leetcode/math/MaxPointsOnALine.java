@@ -21,15 +21,10 @@ public class MaxPointsOnALine {
         }
     }
 
-    public static void main(String[] args) {
-        String a = "fdsadsadas";
-        // System.out.println(a);
-    }
-
     /**
      * 在同一条直线上的点的最大数量
      */
-    public static int maxPoints(Point[] points) {
+    public int maxPoints(Point[] points) {
         if (points == null) {
             return -1;
         }
@@ -67,11 +62,11 @@ public class MaxPointsOnALine {
     /**
      * 是否是同一个点
      */
-    public static boolean isSamePoint(Point p1, Point p2) {
+    public boolean isSamePoint(Point p1, Point p2) {
         if (p1 == p2) {
             return true;
         }
-        if (p1 != null && p2 == null || p1 == null && p2 != null) {
+        if (p1 == null || p2 == null) {
             return false;
         }
 
@@ -81,7 +76,7 @@ public class MaxPointsOnALine {
     /**
      * 是否在同一条直线上
      */
-    public static boolean isOnALine(Point p1, Point p2, Point p3) {
+    public boolean isOnALine(Point p1, Point p2, Point p3) {
         if (p1 == null || p2 == null || p3 == null) {
             return false;
         }

@@ -1,9 +1,6 @@
 package com.wjd.practice.leetcode.math;
 
-import com.wjd.practice.Solution;
-
 /**
- * @since 2022/5/15
  * 812. 最大三角形面积
  * <p>
  * 给定包含多个点的集合，从其中取三个点组成三角形，返回能组成的最大三角形的面积。
@@ -11,22 +8,10 @@ import com.wjd.practice.Solution;
  * 输入: points = [[0,0],[0,1],[1,0],[0,2],[2,0]]
  * <p>
  * 输出: 2
+ *
+ * @since 2022/5/15
  */
-public class LargestTriangleArea implements Solution<Double> {
-
-    @Override
-    public Double solve(Object ...args) {
-        int[][] points = {
-                {0, 0},
-                {0, 1},
-                {1, 0},
-                {0, 2},
-                {2, 0}
-        };
-        double result = largestTriangleArea(points);
-        System.out.println(result);
-        return result;
-    }
+public class LargestTriangleArea {
 
     public double largestTriangleArea(int[][] points) {
         double maxArea = 0;

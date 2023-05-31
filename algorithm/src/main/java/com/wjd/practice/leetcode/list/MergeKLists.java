@@ -1,10 +1,8 @@
 package com.wjd.practice.leetcode.list;
 
-import com.wjd.practice.Solution;
 import com.wjd.practice.leetcode.structure.ListNode;
 
 /**
- * @since 2022/5/15
  * 23. 合并K个升序链表
  * <p>
  * 给你一个链表数组，每个链表都已经按升序排列。
@@ -14,24 +12,10 @@ import com.wjd.practice.leetcode.structure.ListNode;
  * 输入：lists = [[1,4,5],[1,3,4],[2,6]]
  * <p>
  * 输出：[1,1,2,3,4,4,5,6]
+ *
+ * @since 2022/5/15
  */
-public class MergeKLists implements Solution<ListNode> {
-
-    @Override
-    public ListNode solve(Object ...args) {
-        int[][] arr = {
-                {1, 4, 5},
-                {1, 3, 4},
-                {2, 6}
-        };
-        ListNode[] lists = new ListNode[arr.length];
-        for (int i = 0; i < arr.length; i++) {
-            lists[i] = ListNode.build(arr[i]);
-        }
-        ListNode result = mergeKLists(lists);
-        System.out.println(ListNode.listString(result));
-        return null;
-    }
+public class MergeKLists {
 
     public ListNode mergeKLists(ListNode[] lists) {
         if (lists.length == 0) {

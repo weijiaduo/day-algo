@@ -1,7 +1,5 @@
 package com.wjd.practice.leetcode.math;
 
-import com.wjd.practice.Solution;
-
 /**
  * 168. Excel表列名称
  * <p>
@@ -21,15 +19,7 @@ import com.wjd.practice.Solution;
  * @author weijiaduo
  * @since 2022/7/3
  */
-public class ConvertToTitle implements Solution<String> {
-
-    @Override
-    public String solve(Object... args) {
-        int columnNumber = 2147483647;
-        String result = convertToTitle(columnNumber);
-        System.out.println(result);
-        return result;
-    }
+public class ConvertToTitle {
 
     /**
      * 思路：和转成2进制的除法一样，取余反转，这个就是转成26进制而已
@@ -37,7 +27,7 @@ public class ConvertToTitle implements Solution<String> {
      * 执行耗时:0 ms,击败了100.00% 的Java用户
      * 内存消耗:38.8 MB,击败了17.63% 的Java用户
      */
-    private String convertToTitle(int columnNumber) {
+    public String convertToTitle(int columnNumber) {
         String s = "ABCDEFGHIJKLMNOPQRSTUVWXYZ";
         int n = s.length();
         StringBuilder sb = new StringBuilder();

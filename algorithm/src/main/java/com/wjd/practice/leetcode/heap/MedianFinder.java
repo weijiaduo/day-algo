@@ -1,7 +1,5 @@
 package com.wjd.practice.leetcode.heap;
 
-import com.wjd.practice.Solution;
-
 import java.util.PriorityQueue;
 
 /**
@@ -31,9 +29,8 @@ import java.util.PriorityQueue;
  * @author weijiaduo
  * @since 2022/9/7
  */
-public class MedianFinder implements Solution<Void> {
+public class MedianFinder {
 
-    @Override
     public Void solve(Object... args) {
         MedianFinder medianFinder = new MedianFinder();
         medianFinder.addNum(1);

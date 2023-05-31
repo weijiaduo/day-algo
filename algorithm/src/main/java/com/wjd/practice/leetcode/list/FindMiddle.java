@@ -1,6 +1,5 @@
 package com.wjd.practice.leetcode.list;
 
-import com.wjd.practice.Solution;
 import com.wjd.practice.leetcode.structure.Node;
 
 /**
@@ -13,18 +12,7 @@ import com.wjd.practice.leetcode.structure.Node;
  * @author weijiaduo
  * @since 2022/8/21
  */
-public class FindMiddle implements Solution<Node> {
-
-    @Override
-    public Node solve(Object... args) {
-        int[] values = {1, 2, 3, 4, 5, 6, 7};
-        Node head = Node.buildList(values);
-        Node result = findMiddle(head);
-        if (result != null) {
-            System.out.println(result.val);
-        }
-        return result;
-    }
+public class FindMiddle {
 
     /**
      * 思路：快慢指针，慢指针最终指向的就是中点
@@ -34,7 +22,7 @@ public class FindMiddle implements Solution<Node> {
      * @param head 表头
      * @return 中点
      */
-    private Node findMiddle(Node head) {
+    public Node findMiddle(Node head) {
         if (head == null) {
             return null;
         }

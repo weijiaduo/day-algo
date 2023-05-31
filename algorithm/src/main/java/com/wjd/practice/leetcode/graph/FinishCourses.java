@@ -1,7 +1,5 @@
 package com.wjd.practice.leetcode.graph;
 
-import com.wjd.practice.Solution;
-
 import java.util.*;
 
 /**
@@ -23,16 +21,7 @@ import java.util.*;
  * @author weijiaduo
  * @since 2022/7/14
  */
-public class FinishCourses implements Solution<Boolean> {
-
-    @Override
-    public Boolean solve(Object... args) {
-        int numCourses = 2;
-        int[][] prerequisites = {{1, 0}, {0, 1}};
-        boolean result = canFinish(numCourses, prerequisites);
-        System.out.println(result);
-        return result;
-    }
+public class FinishCourses {
 
     /**
      * 思路：构建有向图，判断是否存在环
@@ -42,7 +31,7 @@ public class FinishCourses implements Solution<Boolean> {
      * 执行耗时:6 ms,击败了28.25% 的Java用户
      * 内存消耗:41.8 MB,击败了28.96% 的Java用户
      */
-    private boolean canFinish(int numCourses, int[][] prerequisites) {
+    public boolean canFinish(int numCourses, int[][] prerequisites) {
         Map<Integer, Node> nodes = new HashMap<>();
         for (int[] p : prerequisites) {
             // 依赖自己

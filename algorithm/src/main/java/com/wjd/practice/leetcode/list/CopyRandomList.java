@@ -1,6 +1,5 @@
 package com.wjd.practice.leetcode.list;
 
-import com.wjd.practice.Solution;
 import com.wjd.practice.leetcode.structure.Node;
 
 import java.util.HashMap;
@@ -16,14 +15,9 @@ import java.util.Map;
  * @author weijiaduo
  * @since 2022/6/26
  */
-public class CopyRandomList implements Solution<Node> {
+public class CopyRandomList {
 
-    @Override
-    public Node solve(Object... args) {
-        return null;
-    }
-
-    private Node copyRandomList(Node head) {
+    public Node copyRandomList(Node head) {
         return hashCopyRandomList(head);
     }
 

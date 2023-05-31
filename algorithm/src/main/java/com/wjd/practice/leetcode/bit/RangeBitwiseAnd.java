@@ -1,7 +1,5 @@
 package com.wjd.practice.leetcode.bit;
 
-import com.wjd.practice.Solution;
-
 /**
  * 201. 数字范围按位与
  * <p>
@@ -12,16 +10,7 @@ import com.wjd.practice.Solution;
  * @author weijiaduo
  * @since 2022/7/16
  */
-public class RangeBitwiseAnd implements Solution<Integer> {
-
-    @Override
-    public Integer solve(Object... args) {
-        int left = 1;
-        int right = 3;
-        int result = rangeBitwiseAnd(left, right);
-        System.out.println(result);
-        return result;
-    }
+public class RangeBitwiseAnd {
 
     /**
      * 这官解，这么简单
@@ -37,7 +26,7 @@ public class RangeBitwiseAnd implements Solution<Integer> {
      * @param right 最大值
      * @return 按位与结果
      */
-    private int rangeBitwiseAnd(int left, int right) {
+    public int rangeBitwiseAnd(int left, int right) {
         int m = left, n = right;
         int shift = 0;
         // 找到公共前缀

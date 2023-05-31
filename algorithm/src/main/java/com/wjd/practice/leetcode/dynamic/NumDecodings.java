@@ -1,7 +1,5 @@
 package com.wjd.practice.leetcode.dynamic;
 
-import com.wjd.practice.Solution;
-
 /**
  * 91. 解码方法
  * <p>
@@ -22,23 +20,16 @@ import com.wjd.practice.Solution;
  * 输出：2
  * 解释：它可以解码为 "AB"（1 2）或者 "L"（12）。
  * <p>
+ *
  * @since 2022/6/11
  */
-public class NumDecodings implements Solution<Integer> {
-
-    @Override
-    public Integer solve(Object... args) {
-        String s = "2611055971756562";
-        int result = numDecoding2(s);
-        System.out.println(result);
-        return result;
-    }
+public class NumDecodings {
 
     /**
      * 动态规划
-     *
+     * <p>
      * 思路：当前数字，分为单个数字解码和双数解码2种情况
-     *
+     * <p>
      * 执行耗时:0 ms,击败了100.00% 的Java用户
      * 内存消耗:39.5 MB,击败了62.95% 的Java用户
      */
@@ -73,7 +64,7 @@ public class NumDecodings implements Solution<Integer> {
 
     /**
      * 这内存消耗果然很假，哈哈哈
-     *
+     * <p>
      * 执行耗时:0 ms,击败了100.00% 的Java用户
      * 内存消耗:39.7 MB,击败了50.02% 的Java用户
      */

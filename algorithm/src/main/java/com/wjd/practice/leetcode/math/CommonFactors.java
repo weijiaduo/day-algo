@@ -1,7 +1,5 @@
 package com.wjd.practice.leetcode.math;
 
-import com.wjd.practice.Solution;
-
 /**
  * 周赛 313
  * <p>
@@ -14,23 +12,14 @@ import com.wjd.practice.Solution;
  * @author weijiaduo
  * @since 2022/10/2
  */
-public class CommonFactors implements Solution<Integer> {
-
-    @Override
-    public Integer solve(Object... args) {
-        int a = 452;
-        int b = 392;
-        int result = commonFactors(a, b);
-        System.out.println(result);
-        return result;
-    }
+public class CommonFactors {
 
     /**
      * 思路：求出公因数，再找出公因数中每个因子
      * <p>
      * 复杂度：O(n) 空间 O(1)
      */
-    private int commonFactors(int a, int b) {
+    public int commonFactors(int a, int b) {
         int g = gcd(a, b);
         int count = 0;
         for (int i = 1; i <= g; i++) {

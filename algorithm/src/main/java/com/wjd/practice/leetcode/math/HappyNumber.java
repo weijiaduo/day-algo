@@ -1,7 +1,5 @@
 package com.wjd.practice.leetcode.math;
 
-import com.wjd.practice.Solution;
-
 import java.util.Arrays;
 import java.util.HashSet;
 import java.util.Set;
@@ -30,15 +28,7 @@ import java.util.Set;
  * @author weijiaduo
  * @since 2022/7/13
  */
-public class HappyNumber implements Solution<Boolean> {
-
-    @Override
-    public Boolean solve(Object... args) {
-        int n = 2;
-        boolean result = isHappy(n);
-        System.out.println(result);
-        return result;
-    }
+public class HappyNumber {
 
     /**
      * 思路：暴力法，按照规则处理，使用哈希表判断循环
@@ -46,7 +36,7 @@ public class HappyNumber implements Solution<Boolean> {
      * 执行耗时:1 ms,击败了79.06% 的Java用户
      * 内存消耗:39.1 MB,击败了9.48% 的Java用户
      */
-    private boolean isHappy(int n) {
+    public boolean isHappy(int n) {
         Set<Integer> numbers = new HashSet<>();
         int num = n;
         while (!numbers.contains(num)) {

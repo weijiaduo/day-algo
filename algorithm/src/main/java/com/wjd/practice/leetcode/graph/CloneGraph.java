@@ -1,6 +1,5 @@
 package com.wjd.practice.leetcode.graph;
 
-import com.wjd.practice.Solution;
 import com.wjd.practice.leetcode.structure.Node;
 
 import java.util.HashMap;
@@ -16,14 +15,9 @@ import java.util.Map;
  * @author weijiaduo
  * @since 2022/6/24
  */
-public class CloneGraph implements Solution<Node> {
+public class CloneGraph {
 
-    @Override
-    public Node solve(Object... args) {
-        return null;
-    }
-
-    private Node cloneGraph(Node node) {
+    public Node cloneGraph(Node node) {
         return dfsCloneGraph(node, new HashMap<>());
     }
 

@@ -1,7 +1,5 @@
 package com.wjd.practice.leetcode.dynamic;
 
-import com.wjd.practice.Solution;
-
 /**
  * 213. 打家劫舍2
  * <p>
@@ -20,17 +18,9 @@ import com.wjd.practice.Solution;
  * @author weijiaduo
  * @since 2022/7/16
  */
-public class Rob2 implements Solution<Integer> {
+public class Rob2 {
 
-    @Override
-    public Integer solve(Object... args) {
-        int[] nums = {1, 2, 3, 1};
-        int result = rob(nums);
-        System.out.println(result);
-        return result;
-    }
-
-    private int rob(int[] nums) {
+    public int rob(int[] nums) {
         return dynamic(nums);
     }
 

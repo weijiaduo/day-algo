@@ -1,27 +1,20 @@
 package com.wjd.practice.leetcode.math;
 
-import com.wjd.practice.Solution;
-
 import java.util.*;
 
 /**
  * 710. 黑名单中的随机数
- *
+ * <p>
  * 给定一个整数 n 和一个 无重复 黑名单整数数组 blacklist 。
- *
+ * <p>
  * 设计一种算法，从 [0, n - 1] 范围内的任意整数中选取一个 未加入 黑名单blacklist 的整数。
- *
+ * <p>
  * 任何在上述范围内且不在黑名单 blacklist 中的整数都应该有 同等的可能性 被返回。
  *
  * @author weijiaduo
  * @since 2022/6/26
  */
-public class RandomBlackList implements Solution<Void> {
-
-    @Override
-    public Void solve(Object... args) {
-        return null;
-    }
+public class RandomBlackList {
 
     Map<Integer, Integer> b2w;
     Random random;
@@ -29,7 +22,7 @@ public class RandomBlackList implements Solution<Void> {
 
     /**
      * 思路：把黑名单限制在[0,m]内，并把黑名单映射到[n-m,n]范围内
-     *
+     * <p>
      * 执行耗时:39 ms,击败了99.57% 的Java用户
      * 内存消耗:52.8 MB,击败了12.28% 的Java用户
      */

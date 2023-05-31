@@ -1,7 +1,5 @@
 package com.wjd.practice.leetcode.math;
 
-import com.wjd.practice.Solution;
-
 /**
  * 264. 丑数2
  * <p>
@@ -16,15 +14,7 @@ import com.wjd.practice.Solution;
  * @author weijiaduo
  * @since 2022/9/22
  */
-public class NthUglyNumber implements Solution<Integer> {
-
-    @Override
-    public Integer solve(Object... args) {
-        int n = 1;
-        int result = nthUglyNumber(n);
-        System.out.println(result);
-        return result;
-    }
+public class NthUglyNumber {
 
     /**
      * 思路：3指针，分别指向2、3、5的倍数，下一个丑数肯定是从这3个数里面出来的

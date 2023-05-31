@@ -1,6 +1,5 @@
 package com.wjd.practice.leetcode.list;
 
-import com.wjd.practice.Solution;
 import com.wjd.practice.leetcode.structure.ListNode;
 
 /**
@@ -13,17 +12,7 @@ import com.wjd.practice.leetcode.structure.ListNode;
  * <p>
  * 输出：[1,2,3,5]
  */
-public class RemoveNthFromEnd implements Solution<ListNode> {
-
-    @Override
-    public ListNode solve(Object ...args) {
-        int[] arr = {1};
-        int n = 1;
-        ListNode head = ListNode.build(arr);
-        ListNode result = removeNthFromEnd(head, n);
-        System.out.println(ListNode.listString(result));
-        return result;
-    }
+public class RemoveNthFromEnd {
 
     public ListNode removeNthFromEnd(ListNode head, int n) {
         if (head == null || n <= 0) {

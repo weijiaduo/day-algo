@@ -1,28 +1,21 @@
 package com.wjd.practice.leetcode.math;
 
-import com.wjd.practice.Solution;
-
 import java.util.HashMap;
 import java.util.Map;
 
 /**
  * 464. 我能赢吗
  * <p>
- * 给定两个整数 maxChoosableInteger （整数池中可选择的最大数）和 desiredTotal（累计和），若先出手的玩家是否能稳赢则返回
- * true ，否则返回 false 。假设两位玩家游戏时都表现 最佳 。
+ * 给定两个整数 maxChoosableInteger （整数池中可选择的最大数）和 desiredTotal（累计和），
  * <p>
+ * 若先出手的玩家是否能稳赢则返回true ，否则返回 false 。
+ * <p>
+ * 假设两位玩家游戏时都表现 最佳 。
+ * <p>
+ *
  * @since 2022/5/22
  */
-public class CanWin implements Solution<Boolean> {
-
-    @Override
-    public Boolean solve(Object ...args) {
-        int maxChoosableInteger = 10;
-        int desireTotal = 40;
-        boolean result = canIWin(maxChoosableInteger, desireTotal);
-        System.out.println(result);
-        return result;
-    }
+public class CanWin {
 
     public boolean canIWin(int maxChoosableInteger, int desiredTotal) {
         if (desiredTotal == 0) {
@@ -37,7 +30,7 @@ public class CanWin implements Solution<Boolean> {
 
     /**
      * 赢不了，不会了不会了，直接抄答案
-     *
+     * <p>
      * 执行耗时:244 ms,击败了19.93% 的Java用户
      * 内存消耗:87.2 MB,击败了9.14% 的Java用户
      */

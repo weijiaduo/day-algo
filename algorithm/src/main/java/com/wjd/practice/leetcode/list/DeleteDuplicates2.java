@@ -1,33 +1,25 @@
 package com.wjd.practice.leetcode.list;
 
-import com.wjd.practice.Solution;
 import com.wjd.practice.leetcode.structure.ListNode;
 
 /**
  * 83. 删除排序链表中的重复元素2
  * <p>
- * 给定一个已排序的链表的头 head ， 删除原始链表中所有重复数字的节点，只留下不同的数字 。返回 已排序的链表 。
+ * 给定一个已排序的链表的头 head ， 删除原始链表中所有重复数字的节点，只留下不同的数字 。
+ * <p>
+ * 返回 已排序的链表 。
  * <p>
  * 输入：head = [1,2,3,3,4,4,5]
  * 输出：[1,2,5]
  * <p>
+ *
  * @since 2022/6/6
  */
-public class DeleteDuplicates2 implements Solution<ListNode> {
-
-    @Override
-    public ListNode solve(Object... args) {
-        int[] values = {1,2,2};
-        ListNode head = ListNode.build(values);
-        System.out.println(ListNode.listString(head));
-        ListNode result = deleteDuplicates(head);
-        System.out.println(ListNode.listString(result));
-        return result;
-    }
+public class DeleteDuplicates2 {
 
     /**
      * 思路：因为不保留重复元素，所以有可能表头会发生变化，所以用一个哨兵节点来实现
-     *
+     * <p>
      * 执行耗时:0 ms,击败了100.00% 的Java用户
      * 内存消耗:40.8 MB,击败了77.42% 的Java用户
      */

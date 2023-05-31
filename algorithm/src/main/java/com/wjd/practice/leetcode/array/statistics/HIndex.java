@@ -1,7 +1,5 @@
 package com.wjd.practice.leetcode.array.statistics;
 
-import com.wjd.practice.Solution;
-
 import java.util.Arrays;
 
 /**
@@ -23,16 +21,7 @@ import java.util.Arrays;
  * @author weijiaduo
  * @since 2022/9/6
  */
-public class HIndex implements Solution<Integer> {
-
-    @Override
-    public Integer solve(Object... args) {
-        int[] citation = {1, 3, 1};
-        int result = hIndex(citation);
-        System.out.println(result);
-        return result;
-    }
-
+public class HIndex {
     /**
      * 思路：排序，从小到大遍历，逐个判断引用次数大于等于后面的论文篇数
      * <p>
@@ -41,7 +30,7 @@ public class HIndex implements Solution<Integer> {
      * 执行耗时:1 ms,击败了78.08% 的Java用户
      * 内存消耗:39.5 MB,击败了50.11% 的Java用户
      */
-    private int hIndex(int[] citations) {
+    public int hIndex(int[] citations) {
         Arrays.sort(citations);
         int n = citations.length;
         for (int i = 0; i < n; i++) {

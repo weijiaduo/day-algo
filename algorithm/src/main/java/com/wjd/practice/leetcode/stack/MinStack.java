@@ -1,8 +1,8 @@
 package com.wjd.practice.leetcode.stack;
 
-import com.wjd.practice.Solution;
-
-import java.util.*;
+import java.util.ArrayList;
+import java.util.Deque;
+import java.util.LinkedList;
 
 /**
  * 155. 最小栈
@@ -12,9 +12,8 @@ import java.util.*;
  * @author weijiaduo
  * @since 2022/7/2
  */
-public class MinStack implements Solution<Void> {
+public class MinStack {
 
-    @Override
     public Void solve(Object... args) {
         MinStack minStack = new MinStack();
         minStack.push(-2);

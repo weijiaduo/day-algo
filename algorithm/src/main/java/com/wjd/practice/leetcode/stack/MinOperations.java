@@ -1,7 +1,5 @@
 package com.wjd.practice.leetcode.stack;
 
-import com.wjd.practice.Solution;
-
 import java.util.ArrayDeque;
 import java.util.Deque;
 
@@ -29,15 +27,7 @@ import java.util.Deque;
  * @author weijiaduo
  * @since 2022/9/9
  */
-public class MinOperations implements Solution<Integer> {
-
-    @Override
-    public Integer solve(Object... args) {
-        String[] logs = {"d1/", "d2/", "./", "d3/", "../", "d31/"};
-        int result = minOperations2(logs);
-        System.out.println(result);
-        return result;
-    }
+public class MinOperations {
 
     /**
      * 思路：栈，如果是../则出栈，./则丢弃，x/则入栈，最后判断栈大小

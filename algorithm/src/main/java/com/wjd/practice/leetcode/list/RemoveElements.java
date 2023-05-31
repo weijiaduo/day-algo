@@ -1,6 +1,5 @@
 package com.wjd.practice.leetcode.list;
 
-import com.wjd.practice.Solution;
 import com.wjd.practice.leetcode.structure.ListNode;
 
 /**
@@ -14,17 +13,7 @@ import com.wjd.practice.leetcode.structure.ListNode;
  * @author weijiaduo
  * @since 2022/7/13
  */
-public class RemoveElements implements Solution<ListNode> {
-
-    @Override
-    public ListNode solve(Object... args) {
-        int val = 1;
-        int[] values = {1, 2, 6, 3, 4, 5, 6};
-        ListNode head = ListNode.build(values);
-        ListNode result = removeElements2(head, val);
-        System.out.println(ListNode.listString(result));
-        return result;
-    }
+public class RemoveElements {
 
     /**
      * 思路：把链表的节点一个一个拼到一条新链表，并返回新链表的表头
@@ -34,7 +23,7 @@ public class RemoveElements implements Solution<ListNode> {
      * 执行耗时:1 ms,击败了48.86% 的Java用户
      * 内存消耗:42.5 MB,击败了13.59% 的Java用户
      */
-    private ListNode removeElements(ListNode head, int val) {
+    public ListNode removeElements(ListNode head, int val) {
         ListNode dummy = new ListNode(0);
         ListNode p = head, q, tail = dummy;
         while (p != null) {

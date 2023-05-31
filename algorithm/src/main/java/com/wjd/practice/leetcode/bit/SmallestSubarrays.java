@@ -1,7 +1,5 @@
 package com.wjd.practice.leetcode.bit;
 
-import com.wjd.practice.Solution;
-
 import java.util.ArrayList;
 import java.util.Arrays;
 
@@ -11,15 +9,7 @@ import java.util.Arrays;
  * @author weijiaduo
  * @since 2022/9/17
  */
-public class SmallestSubarrays implements Solution<int[]> {
-
-    @Override
-    public int[] solve(Object... args) {
-        int[] nums = {1, 2, 3};
-        int[] result = smallestSubarrays2(nums);
-        System.out.println(Arrays.toString(result));
-        return result;
-    }
+public class SmallestSubarrays {
 
     /**
      * 思路：或运算，整数就32位，或运算后也不会超过32位1，找出32位中每位出现1的位置，最大索引的位置就是或值最大的
@@ -29,7 +19,7 @@ public class SmallestSubarrays implements Solution<int[]> {
      * @param nums 数组
      * @return 最小子数组长度数组
      */
-    private int[] smallestSubarrays(int[] nums) {
+    public int[] smallestSubarrays(int[] nums) {
         // 整数低 30 位出现 1 的最小索引
         int[] indexes = new int[30];
         Arrays.fill(indexes, -1);

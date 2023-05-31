@@ -1,8 +1,5 @@
 package com.wjd.practice.leetcode.bit;
 
-import com.wjd.practice.Solution;
-import com.wjd.util.BitUtil;
-
 /**
  * 190. 颠倒二进制位
  * <p>
@@ -16,19 +13,9 @@ import com.wjd.util.BitUtil;
  * @author weijiaduo
  * @since 2022/7/9
  */
-public class ReverseBits implements Solution<Integer> {
+public class ReverseBits {
 
-    @Override
-    public Integer solve(Object... args) {
-        String bits = "11111111111111111111111111111101";
-        int n = BitUtil.bitsToInt(bits);
-        System.out.println(BitUtil.intToBits(n));
-        int result = reverseBits(n);
-        System.out.println(BitUtil.intToBits(result));
-        return result;
-    }
-
-    private int reverseBits(int n) {
+    public int reverseBits(int n) {
         // return exchangeReverseBits(n);
         // return newReverseBits(n);
         return divideReverseBits(n);

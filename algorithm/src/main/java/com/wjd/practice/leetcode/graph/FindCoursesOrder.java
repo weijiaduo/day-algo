@@ -1,8 +1,9 @@
 package com.wjd.practice.leetcode.graph;
 
-import com.wjd.practice.Solution;
-
-import java.util.*;
+import java.util.ArrayDeque;
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Queue;
 
 /**
  * 210. 课程表2
@@ -22,16 +23,7 @@ import java.util.*;
  * @author weijiaduo
  * @since 2022/7/15
  */
-public class FindCoursesOrder implements Solution<int[]> {
-
-    @Override
-    public int[] solve(Object... args) {
-        int numCourses = 4;
-        int[][] prerequisites = {{1, 0}, {2, 0}, {3, 1}, {3, 2}};
-        int[] result = findOrder(numCourses, prerequisites);
-        System.out.println(Arrays.toString(result));
-        return result;
-    }
+public class FindCoursesOrder {
 
     static class Node {
         int val;
@@ -47,7 +39,7 @@ public class FindCoursesOrder implements Solution<int[]> {
      * 执行耗时:3 ms,击败了93.88% 的Java用户
      * 内存消耗:43 MB,击败了5.82% 的Java用户
      */
-    private int[] findOrder(int numCourses, int[][] prerequisites) {
+    public int[] findOrder(int numCourses, int[][] prerequisites) {
         // 构建有向图
         Node[] nodes = buildGraph(numCourses, prerequisites);
         // 拓扑排序

@@ -1,7 +1,5 @@
 package com.wjd.practice.leetcode.dynamic;
 
-import com.wjd.practice.Solution;
-
 /**
  * 926. 将字符串翻转到单调递增
  * <p>
@@ -11,23 +9,16 @@ import com.wjd.practice.Solution;
  * <p>
  * 返回使 s 单调递增的最小翻转次数。
  * <p>
+ *
  * @since 2022/6/11
  */
-public class MinFlipsMonoIncr implements Solution<Integer> {
-
-    @Override
-    public Integer solve(Object... args) {
-        String s = "00011000";
-        int result = minFlipsMonoIncr(s);
-        System.out.println(result);
-        return result;
-    }
+public class MinFlipsMonoIncr {
 
     /**
      * 动态规划
-     *
+     * <p>
      * 思路：先得到长度为n的字符串翻转成以0结尾和以1结尾的最小代价，然后根据第 n+1 个字符的情况，也分别计算这2种转换代价
-     *
+     * <p>
      * 执行耗时:10 ms,击败了81.27% 的Java用户
      * 内存消耗:41.7 MB,击败了84.22% 的Java用户
      */

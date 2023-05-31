@@ -1,27 +1,16 @@
 package com.wjd.practice.leetcode.math;
 
-import com.wjd.practice.Solution;
-
 import java.util.ArrayList;
 import java.util.List;
 
 /**
  * 77. 组合
- *
+ * <p>
  * 给定两个整数 n 和 k，返回范围 [1, n] 中所有可能的 k 个数的组合。
  *
  * @since 2022/6/5
  */
-public class Combine implements Solution<List<List<Integer>>> {
-
-    @Override
-    public List<List<Integer>> solve(Object... args) {
-        int n = 4;
-        int k = 2;
-        List<List<Integer>> result = combine(n, k);
-        System.out.println(result);
-        return result;
-    }
+public class Combine {
 
     public List<List<Integer>> combine(int n, int k) {
         List<List<Integer>> ans = new ArrayList<>();
@@ -31,9 +20,9 @@ public class Combine implements Solution<List<List<Integer>>> {
 
     /**
      * 递归法
-     *
+     * <p>
      * 思路：每个元素都有选择和不选择2种情况，分别列举这2种情况即可
-     *
+     * <p>
      * 执行耗时:1 ms,击败了100.00% 的Java用户
      * 内存消耗:42.9 MB,击败了22.44% 的Java用户
      */

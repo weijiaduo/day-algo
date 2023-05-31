@@ -1,8 +1,9 @@
 package com.wjd.practice.leetcode.stack;
 
-import com.wjd.practice.Solution;
-
-import java.util.*;
+import java.util.ArrayDeque;
+import java.util.ArrayList;
+import java.util.Deque;
+import java.util.List;
 
 /**
  * 6190. 找到所有好下标
@@ -10,18 +11,9 @@ import java.util.*;
  * @author weijiaduo
  * @since 2022/9/25
  */
-public class GoodIndices implements Solution<List<Integer>> {
+public class GoodIndices {
 
-    @Override
-    public List<Integer> solve(Object... args) {
-        int[] nums = {2, 1, 1, 2};
-        int k = 2;
-        List<Integer> result = goodIndices(nums, k);
-        System.out.println(result);
-        return result;
-    }
-
-    private List<Integer> goodIndices(int[] nums, int k) {
+    public List<Integer> goodIndices(int[] nums, int k) {
         int n = nums.length;
         int[] upStack = new int[n];
         int[] downStack = new int[n];

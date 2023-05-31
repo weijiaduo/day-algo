@@ -1,7 +1,5 @@
 package com.wjd.practice.leetcode.math;
 
-import com.wjd.practice.Solution;
-
 /**
  * 62. 不同路径
  * <p>
@@ -11,24 +9,16 @@ import com.wjd.practice.Solution;
  * <p>
  * 问总共有多少条不同的路径？
  * <p>
+ *
  * @since 2022/6/1
  */
-public class UniquePaths implements Solution<Integer> {
-
-    @Override
-    public Integer solve(Object... args) {
-        int m = 3;
-        int n = 3;
-        int result = uniquePaths(m, n);
-        System.out.println(result);
-        return result;
-    }
+public class UniquePaths {
 
     /**
      * 思路：肯定要走的步数是下m-1和右n-1，因此只需要把下和右的步数组合一下，就是总数了
-     *
+     * <p>
      * 注意：溢出的问题，leetcode 的机器貌似溢出的截断好像有点不同
-     *
+     * <p>
      * 执行耗时:0 ms,击败了100.00% 的Java用户
      * 内存消耗:38.1 MB,击败了74.95% 的Java用户
      */

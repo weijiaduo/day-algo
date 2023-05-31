@@ -1,7 +1,5 @@
 package com.wjd.practice.leetcode.stack;
 
-import com.wjd.practice.Solution;
-
 import java.util.ArrayDeque;
 import java.util.Deque;
 
@@ -13,20 +11,7 @@ import java.util.Deque;
  * @author weijiaduo
  * @since 2022/7/2
  */
-public class DiffMinStack implements Solution<Void> {
-
-    @Override
-    public Void solve(Object... args) {
-        DiffMinStack minStack = new DiffMinStack();
-        minStack.push(-2);
-        minStack.push(0);
-        minStack.push(-3);
-        System.out.println(minStack.getMin());
-        minStack.pop();
-        System.out.println(minStack.top());
-        System.out.println(minStack.getMin());
-        return null;
-    }
+public class DiffMinStack {
 
     Deque<Long> stack;
     long min;

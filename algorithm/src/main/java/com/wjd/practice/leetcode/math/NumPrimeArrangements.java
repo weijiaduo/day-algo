@@ -1,7 +1,5 @@
 package com.wjd.practice.leetcode.math;
 
-import com.wjd.practice.Solution;
-
 /**
  * 1175. 质数排列
  * <p>
@@ -16,15 +14,7 @@ import com.wjd.practice.Solution;
  * @author weijiaduo
  * @since 2022/6/30
  */
-public class NumPrimeArrangements implements Solution<Integer> {
-
-    @Override
-    public Integer solve(Object... args) {
-        int n = 100;
-        int result = numPrimeArrangements(n);
-        System.out.println(result);
-        return result;
-    }
+public class NumPrimeArrangements {
 
     /**
      * 思路：算出n内的质数个数，然后对质数和非质数分别进行全排列即可

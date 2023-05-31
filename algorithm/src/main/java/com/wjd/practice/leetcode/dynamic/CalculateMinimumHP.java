@@ -1,7 +1,5 @@
 package com.wjd.practice.leetcode.dynamic;
 
-import com.wjd.practice.Solution;
-
 import java.util.Arrays;
 
 /**
@@ -26,15 +24,7 @@ import java.util.Arrays;
  * @author weijiaduo
  * @since 2022/7/12
  */
-public class CalculateMinimumHP implements Solution<Integer> {
-
-    @Override
-    public Integer solve(Object... args) {
-        int[][] dungeon = {{-2, -3, 3}, {-5, -10, 1}, {10, 30, -5}};
-        int result = calculateMinimumHP3(dungeon);
-        System.out.println(result);
-        return result;
-    }
+public class CalculateMinimumHP {
 
     /**
      * 思路：动态规划，从后往前动态计算，算出从 [i][j] 出发所需的最小生命值
@@ -44,7 +34,7 @@ public class CalculateMinimumHP implements Solution<Integer> {
      * 执行耗时:4 ms,击败了6.65% 的Java用户
      * 内存消耗:41.3 MB,击败了7.77% 的Java用户
      */
-    private int calculateMinimumHP(int[][] dungeon) {
+    public int calculateMinimumHP(int[][] dungeon) {
         if (dungeon.length == 0) {
             return 0;
         }
