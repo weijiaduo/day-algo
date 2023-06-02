@@ -22,7 +22,7 @@ public interface SymbolGraph {
      * @param key 符号
      * @return 顶点编号（0~n-1）
      */
-    int index(String key);
+    int idx(String key);
 
     /**
      * 指定顶点编号对应的符号

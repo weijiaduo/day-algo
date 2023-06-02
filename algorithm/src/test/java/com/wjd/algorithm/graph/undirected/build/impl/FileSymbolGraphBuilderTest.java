@@ -21,7 +21,7 @@ class FileSymbolGraphBuilderTest {
         assertEquals(10, sg.graph().vs());
         assertEquals(18, sg.graph().es());
 
-        int index = sg.index("ORD");
+        int index = sg.idx("ORD");
         Graph g = sg.graph();
         Iterable<Integer> it = g.adj(index);
         List<Integer> actual = new ArrayList<>();

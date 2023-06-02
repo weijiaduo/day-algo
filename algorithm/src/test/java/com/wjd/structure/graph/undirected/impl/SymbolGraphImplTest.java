@@ -28,9 +28,9 @@ class SymbolGraphImplTest {
         Set<String> keySet = new LinkedHashSet<>(keys);
         SymbolGraph sg = new SymbolGraphImpl(keySet);
 
-        assertEquals(0, sg.index("A"));
-        assertEquals(1, sg.index("B"));
-        assertEquals(2, sg.index("C"));
+        assertEquals(0, sg.idx("A"));
+        assertEquals(1, sg.idx("B"));
+        assertEquals(2, sg.idx("C"));
     }
 
     @Test

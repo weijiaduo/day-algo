@@ -16,7 +16,7 @@ public class SymbolGraphImpl implements SymbolGraph {
     /**
      * 名称->索引
      */
-    private final Map<String, Integer> keyMap;
+    private final Map<String, Integer> idxMap;
     /**
      * 索引->名称
      */
@@ -28,32 +28,32 @@ public class SymbolGraphImpl implements SymbolGraph {
 
     public SymbolGraphImpl(Set<String> keySet) {
         int n = keySet.size();
-        keyMap = new HashMap<>();
-        this.keys = new String[n];
+        idxMap = new HashMap<>();
+        keys = new String[n];
         int k = 0;
         for (String name : keySet) {
-            keyMap.put(name, k);
-            this.keys[k++] = name;
+            idxMap.put(name, k);
+            keys[k++] = name;
         }
         graph = new ListGraph(n);
     }
 
     @Override
     public boolean contains(String key) {
-        return keyMap.containsKey(key);
+        return idxMap.containsKey(key);
     }
 
     @Override
-    public int index(String key) {
-        return keyMap.getOrDefault(key, -1);
+    public int idx(String key) {
+        return idxMap.getOrDefault(key, -1);
     }
 
     @Override
-    public String key(int index) {
-        if (index < 0 || index > keys.length) {
+    public String key(int idx) {
+        if (idx < 0 || idx > keys.length) {
             return null;
         }
-        return keys[index];
+        return keys[idx];
     }
 
     @Override
@@ -63,17 +63,17 @@ public class SymbolGraphImpl implements SymbolGraph {
 
     @Override
     public void addEdge(String v, String w) {
-        graph.addEdge(keyMap.get(v), keyMap.get(w));
+        graph.addEdge(idxMap.get(v), idxMap.get(w));
     }
 
     @Override
     public boolean hasEdge(String v, String w) {
-        return graph.hasEdge(keyMap.get(v), keyMap.get(w));
+        return graph.hasEdge(idxMap.get(v), idxMap.get(w));
     }
 
     @Override
     public Iterable<String> adj(String v) {
-        Iterable<Integer> it = graph().adj(keyMap.get(v));
+        Iterable<Integer> it = graph().adj(idxMap.get(v));
         List<String> list = new ArrayList<>();
         for (Integer index : it) {
             list.add(keys[index]);
