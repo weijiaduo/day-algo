@@ -12,23 +12,40 @@ import java.util.Set;
  * <p>
  * 请你设计并实现时间复杂度为 O(n) 的算法解决此问题。
  * <p>
+ * 示例 1：
+ * <p>
  * 输入：nums = [100,4,200,1,3,2]
  * 输出：4
  * 解释：最长数字连续序列是 [1, 2, 3, 4]。它的长度为 4。
  * <p>
+ * 示例 2：
+ * <p>
+ * 输入：nums = [0,3,7,2,5,8,4,6,0,1]
+ * 输出：9
+ * <p>
+ * 提示：
+ * <p>
+ * 0 <= nums.length <= 10⁵
+ * -10⁹ <= nums[i] <= 10⁹
  *
  * @author weijiaduo
  * @since 2022/6/23
  */
 public class LongestConsecutive {
 
+    public int longestConsecutive(int[] nums) {
+        return hashLongestConsecutive(nums);
+    }
+
     /**
      * 思路：哈希表，使用哈希保存每个值的连续长度
+     * <p>
+     * 时间：O(n) 空间 O(n)
      * <p>
      * 执行耗时:29 ms,击败了43.70% 的Java用户
      * 内存消耗:58 MB,击败了24.75% 的Java用户
      */
-    public int longestConsecutive(int[] nums) {
+    private int hashLongestConsecutive(int[] nums) {
         int maxLength = 0;
         int n = nums.length;
         Map<Integer, Integer> lengths = new HashMap<>(n);
@@ -60,12 +77,14 @@ public class LongestConsecutive {
     /**
      * 官解：遍历到x，就寻找后面的 x+1, x+2...， 同时为了避免重复遍历，需要判断 x-1 是否已经遍历过了
      * <p>
-     * 好像也不是很快啊，话说最快的方法是啥？
+     * 好像也不是很快啊，话说最快的方法是啥？原来是有人用了排序。。。
+     * <p>
+     * 复杂度：时间 O(n) 空间 O(n)
      * <p>
      * 执行耗时:19 ms,击败了56.17% 的Java用户
      * 内存消耗:59.8 MB,击败了8.21% 的Java用户
      */
-    private int longestConsecutive2(int[] nums) {
+    private int setLongestConsecutive(int[] nums) {
         Set<Integer> numSet = new HashSet<>();
         for (int num : nums) {
             numSet.add(num);
@@ -73,19 +92,19 @@ public class LongestConsecutive {
 
         int longestStreak = 0;
         for (int num : numSet) {
-            // 前一个值已经遍历过了，就不再重复遍历
-            if (!numSet.contains(num - 1)) {
-                int currentNum = num;
-                int currentStreak = 1;
-
-                // 寻找一直连续的序列
-                while (numSet.contains(currentNum + 1)) {
-                    currentNum += 1;
-                    currentStreak += 1;
-                }
-
-                longestStreak = Math.max(longestStreak, currentStreak);
+            // 交给前一个值遍历，不要重复遍历
+            if (numSet.contains(num - 1)) {
+                continue;
             }
+
+            // 寻找一直连续的序列
+            int currentNum = num;
+            int currentStreak = 1;
+            while (numSet.contains(currentNum + 1)) {
+                currentNum += 1;
+                currentStreak += 1;
+            }
+            longestStreak = Math.max(longestStreak, currentStreak);
         }
 
         return longestStreak;
@@ -99,7 +118,7 @@ public class LongestConsecutive {
      * 执行耗时:77 ms,击败了32.10% 的Java用户
      * 内存消耗:62.2 MB,击败了5.19% 的Java用户
      */
-    private int longestConsecutive3(int[] nums) {
+    private int unionLongestConsecutive(int[] nums) {
         if (nums == null || nums.length == 0) {
             return 0;
         }
@@ -126,11 +145,11 @@ public class LongestConsecutive {
         /**
          * 父节点存储
          */
-        private Map<Integer, Integer> parent;
+        private final Map<Integer, Integer> parent;
         /**
          * 节点数量
          */
-        private Map<Integer, Integer> count;
+        private final Map<Integer, Integer> count;
 
         public MapUnionFind(int[] nums) {
             parent = new HashMap<>();
