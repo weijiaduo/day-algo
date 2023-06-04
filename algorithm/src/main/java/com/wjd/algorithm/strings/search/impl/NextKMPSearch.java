@@ -51,9 +51,9 @@ public class NextKMPSearch implements Search {
         int i = 0, j = -1;
         while (i < m - 1) {
             if (j == -1 || pat.charAt(i) == pat.charAt(j)) {
-                // 最长相等前后缀长度 + 1
                 i++;
                 j++;
+                // 最长相等前后缀长度，索引右移了1位
                 next[i] = j;
             } else {
                 // 找次长相等前后缀递归匹配
