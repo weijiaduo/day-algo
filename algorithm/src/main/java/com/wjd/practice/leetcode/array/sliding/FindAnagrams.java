@@ -40,6 +40,10 @@ import java.util.List;
  */
 public class FindAnagrams {
 
+    public List<Integer> findAnagrams(String s, String p) {
+        return dynamicSlide(s, p);
+    }
+
     /**
      * 思路：滑动窗口
      * <p>
@@ -56,7 +60,7 @@ public class FindAnagrams {
      * @param p the p
      * @return the list
      */
-    private List<Integer> findAnagrams(String s, String p) {
+    private List<Integer> fixedSlide(String s, String p) {
         List<Integer> ret = new ArrayList<>();
         final char base = 'a';
         int n = s.length(), m = p.length();
@@ -100,7 +104,7 @@ public class FindAnagrams {
      * @param p the p
      * @return the list
      */
-    public List<Integer> findAnagrams2(String s, String p) {
+    private List<Integer> dynamicSlide(String s, String p) {
         List<Integer> ret = new ArrayList<>();
         int n = s.length(), m = p.length();
         int[] pc = new int[128];
