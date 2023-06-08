@@ -77,7 +77,7 @@ public class MinWindow {
         int minLp = -1, minRp = -1;
         int lp = 0, rp = 0, cnt = 0;
         while (rp < n) {
-            // 统计每个字符的频率
+            // 扩展右边界，增加新的字符
             if (++tc[s.charAt(rp++)] <= 0) {
                 cnt++;
             }
