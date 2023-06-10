@@ -33,46 +33,42 @@ public class DetectCycle {
             return null;
         }
 
-        ListNode beginCircle = null;
-        ListNode fast = head, slow = head;
-        boolean flag = false;
-
         // 快慢指针，验证是否有环
+        boolean hasCycle = false;
+        ListNode fast = head, slow = head;
         while (fast.next != null && fast.next.next != null) {
             fast = fast.next.next;
             slow = slow.next;
             if (fast == slow || fast.next == slow) {
-                flag = true;
+                hasCycle = true;
                 break;
             }
         }
-
-        if (flag) {
-            // 环节点数量
-            int circleSize = 1;
-            fast = slow.next;
-            while (fast != slow) {
-                circleSize++;
-                fast = fast.next;
-            }
-
-            fast = head;
-            slow = head;
-
-            // 快指针先走环节点数量
-            while (circleSize > 0) {
-                fast = fast.next;
-                circleSize--;
-            }
-            // 快慢指针同时移动
-            while (fast != slow) {
-                fast = fast.next;
-                slow = slow.next;
-            }
-
-            beginCircle = fast;
+        // 没有环直接返回
+        if (!hasCycle) {
+            return null;
         }
 
-        return beginCircle;
+        // 环节点数量
+        int circleSize = 1;
+        fast = slow.next;
+        while (fast != slow) {
+            circleSize++;
+            fast = fast.next;
+        }
+
+        fast = slow = head;
+        // 快指针先走环节点数量
+        while (circleSize > 0) {
+            fast = fast.next;
+            circleSize--;
+        }
+        // 快慢指针同时移动
+        while (fast != slow) {
+            fast = fast.next;
+            slow = slow.next;
+        }
+        return fast;
     }
+
 }
