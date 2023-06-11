@@ -21,6 +21,18 @@ import com.wjd.practice.leetcode.structure.ListNode;
 public class ReverseKGroup {
 
     public ListNode reverseKGroup(ListNode head, int k) {
+        return recursive(head, k);
+    }
+
+    /**
+     * 思路：新开一条链表，按每 k 个节点倒序添加到新链表尾
+     * <p>
+     * 复杂度：时间 O(n) 空间 O(1)
+     * <p>
+     * 执行耗时:0 ms,击败了100.00% 的Java用户
+     * 内存消耗:41.4 MB,击败了44.02% 的Java用户
+     */
+    private ListNode iterate(ListNode head, int k) {
         ListNode dummy = new ListNode(0);
         ListNode tail = dummy, h = dummy;
         ListNode p = head, q, t;
@@ -51,4 +63,43 @@ public class ReverseKGroup {
         }
         return dummy.next;
     }
+
+    /**
+     * 思路：递归，拿出前 k 个节点反转，然后递归后面的 n-k 个节点
+     * <p>
+     * 复杂度：时间 O(n) 空间 O(n/k)
+     * <p>
+     * 执行耗时:0 ms,击败了100.00% 的Java用户
+     * 内存消耗:42 MB,击败了21.00% 的Java用户
+     */
+    private ListNode recursive(ListNode head, int k) {
+        if (head == null) {
+            return null;
+        }
+
+        // 前 k 个节点
+        ListNode h = head;
+        int i = 0;
+        while (i++ < k && h != null) {
+            h = h.next;
+        }
+        // 不够 k 个节点
+        if (i <= k) {
+            return head;
+        }
+
+        // 头插法插入前 k 个节点
+        ListNode dummy = new ListNode(-1);
+        ListNode p = head;
+        while (p != h) {
+            ListNode tmp = p;
+            p = p.next;
+            tmp.next = dummy.next;
+            dummy.next = tmp;
+        }
+        // 递归后 n-k 个节点
+        head.next = recursive(h, k);
+        return dummy.next;
+    }
+
 }
