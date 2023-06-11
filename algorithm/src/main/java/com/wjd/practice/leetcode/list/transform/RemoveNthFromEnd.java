@@ -1,4 +1,4 @@
-package com.wjd.practice.leetcode.list;
+package com.wjd.practice.leetcode.list.transform;
 
 import com.wjd.practice.leetcode.structure.ListNode;
 
