@@ -10,7 +10,7 @@ import com.wjd.practice.leetcode.structure.ListNode;
  * 进阶：你可以在 O(n log n) 时间复杂度和常数级空间复杂度下，对链表进行排序吗？
  * <p>
  * 输入：head = [-1,5,3,4,0]
- * /输出：[-1,0,3,4,5]
+ * 输出：[-1,0,3,4,5]
  *
  * @author weijiaduo
  * @since 2022-06-27
@@ -18,7 +18,7 @@ import com.wjd.practice.leetcode.structure.ListNode;
 public class SortListInOnLogn {
 
     public ListNode sortList(ListNode head) {
-        return dfs(head);
+        return mergeSort(head);
     }
 
     /**
@@ -26,10 +26,10 @@ public class SortListInOnLogn {
      * <p>
      * 复杂度：时间 O(nlogn)，空间 O(1)
      * <p>
-     * 执行耗时:10 ms,击败了54.12% 的Java用户
-     * 内存消耗:49 MB,击败了67.31% 的Java用户
+     * 执行耗时:10 ms,击败了91.68% 的Java用户
+     * 内存消耗:54.8 MB,击败了20.31% 的Java用户
      */
-    private ListNode dfs(ListNode head) {
+    private ListNode mergeSort(ListNode head) {
         if (head == null || head.next == null) {
             return head;
         }
@@ -53,26 +53,19 @@ public class SortListInOnLogn {
     /**
      * 合并有序链表
      */
-    public static ListNode merge(ListNode left, ListNode right) {
-        ListNode dummy = new ListNode(-1), p = dummy;
+    private ListNode merge(ListNode left, ListNode right) {
+        ListNode dummy = new ListNode(-1), tail = dummy;
         while (left != null && right != null) {
             if (left.val > right.val) {
-                p.next = right;
+                tail.next = right;
                 right = right.next;
             } else {
-                p.next = left;
+                tail.next = left;
                 left = left.next;
             }
-            p = p.next;
+            tail = tail.next;
         }
-
-        if (left != null) {
-            p.next = left;
-        }
-        if (right != null) {
-            p.next = right;
-        }
-
+        tail.next = left != null ? left : right;
         return dummy.next;
     }
 
