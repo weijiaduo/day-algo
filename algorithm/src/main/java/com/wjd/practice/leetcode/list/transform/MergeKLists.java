@@ -24,6 +24,14 @@ public class MergeKLists {
         return merge(lists, 0, lists.length - 1);
     }
 
+    /**
+     * 思路：分治法，链表两两合并起来，最后合成 1 条
+     * <p>
+     * 复杂度：时间 O(nlogn * l) 空间 O(logn)
+     * <p>
+     * 执行耗时:1 ms,击败了100.00% 的Java用户
+     * 内存消耗:42.1 MB,击败了94.83% 的Java用户
+     */
     private ListNode merge(ListNode[] lists, int start, int end) {
         if (end <= start) {
             return lists[start];
@@ -47,12 +55,8 @@ public class MergeKLists {
             }
             tail = tail.next;
         }
-        if (p != null) {
-            tail.next = p;
-        }
-        if (q != null) {
-            tail.next = q;
-        }
+        tail.next = p != null ? p : q;
         return dummy.next;
     }
+
 }
