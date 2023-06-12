@@ -20,10 +20,6 @@ import java.util.Queue;
  */
 public class MinimumTreeDepth {
 
-    /**
-     * 执行耗时:8 ms,击败了32.70% 的Java用户
-     * 内存消耗:61.8 MB,击败了5.04% 的Java用户
-     */
     public int minDepth(TreeNode root) {
         return bfs(root);
     }
@@ -32,6 +28,8 @@ public class MinimumTreeDepth {
      * 思路：深度优先，计算左右子树的高度，再判断最小值
      * <p>
      * 看来性能有点差，应该是遍历了很多没有用的子树
+     * <p>
+     * 复杂度：时间 O(n) 空间 O(logn)
      * <p>
      * 执行耗时:8 ms,击败了32.70% 的Java用户
      * 内存消耗:61.8 MB,击败了5.04% 的Java用户
@@ -52,6 +50,8 @@ public class MinimumTreeDepth {
 
     /**
      * 思路：广度优先，确实会快一些，毕竟只要遇到叶子节点即可返回
+     * <p>
+     * 复杂度：时间 O(n) 最坏空间 O(n)
      * <p>
      * 执行耗时:1 ms,击败了89.43% 的Java用户
      * 内存消耗:60.6 MB,击败了69.05% 的Java用户
