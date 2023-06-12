@@ -25,6 +25,8 @@ public class SortedArrayToBST {
     /**
      * 思路：用递归二分法创建树即可，两边可保持平衡
      * <p>
+     * 复杂度：时间 O(n) 空间 O(logn)
+     * <p>
      * 执行耗时:0 ms,击败了100.00% 的Java用户
      * 内存消耗:41.2 MB,击败了67.89% 的Java用户
      */
