@@ -1,5 +1,7 @@
 package com.wjd.practice.leetcode.array.statistics;
 
+import java.util.Arrays;
+
 /**
  * 第 349 场周赛
  * <p>
@@ -26,7 +28,6 @@ package com.wjd.practice.leetcode.array.statistics;
  * 输入：nums = [2,1,3]
  * 输出：2
  * 解释：2 既不是最小值，也不是最大值，这个示例只有这一个有效答案。
- *  
  * <p>
  * 提示：
  * <p>
@@ -40,29 +41,20 @@ package com.wjd.practice.leetcode.array.statistics;
 public class FindNonMinOrMax {
 
     /**
-     * 思路：先找出最大最小值的位置，然后找一个不是这两个位置的值即可
+     * 灵茶山艾府题解
      * <p>
-     * 复杂度：时间 O(n) 空间 O(1)
+     * 思路是真的清晰啊~比我想得简单多了
+     * <p>
+     * 思路：随便找 3 个数，排序，中间的那个数肯定不是最大最小值
+     * <p>
+     * 复杂度：时间 O(1) 空间 O(1)
      */
     public int findNonMinOrMax(int[] nums) {
-        // 找出最大最小值
-        int min = 0, max = 0;
-        int n = nums.length;
-        for (int i = 0; i < n; i++) {
-            if (nums[i] < nums[min]) {
-                min = i;
-            }
-            if (nums[i] > nums[max]) {
-                max = i;
-            }
+        if (nums.length < 3) {
+            return -1;
         }
-        // 选择一个非最大最小值
-        for (int i = 0; i < n; i++) {
-            if (i != min && i != max) {
-                return nums[i];
-            }
-        }
-        return -1;
+        Arrays.sort(nums, 0, 3);
+        return nums[1];
     }
 
 }
