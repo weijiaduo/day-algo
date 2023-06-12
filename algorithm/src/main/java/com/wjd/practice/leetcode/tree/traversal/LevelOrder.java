@@ -16,13 +16,14 @@ import java.util.Queue;
  * <p>
  * 输入：root = [3,9,20,null,null,15,7]
  * 输出：[[3],[9,20],[15,7]]
- * <p>
  *
  * @since 2020-06-13
  */
 public class LevelOrder {
 
     /**
+     * 复杂度：时间 O(n) 最坏空间 O(n)
+     * <p>
      * 执行耗时:1 ms,击败了59.03% 的Java用户
      * 内存消耗:41.7 MB,击败了9.30% 的Java用户
      */
@@ -39,6 +40,9 @@ public class LevelOrder {
             List<Integer> level = new ArrayList<>(count);
             for (int i = 0; i < count; i++) {
                 TreeNode node = queue.poll();
+                if (node == null) {
+                    continue;
+                }
                 level.add(node.val);
                 if (node.left != null) {
                     queue.offer(node.left);
