@@ -1,4 +1,4 @@
-package com.wjd.practice.leetcode.array.matrix;
+package com.wjd.practice.leetcode.matrix;
 
 /**
  * 1582. 二进制矩阵中的特殊位置

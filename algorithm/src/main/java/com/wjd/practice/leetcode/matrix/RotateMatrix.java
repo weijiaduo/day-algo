@@ -1,4 +1,4 @@
-package com.wjd.practice.leetcode.array.matrix;
+package com.wjd.practice.leetcode.matrix;
 
 /**
  * 48. 旋转图像

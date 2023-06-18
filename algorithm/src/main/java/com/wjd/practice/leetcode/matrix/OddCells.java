@@ -1,4 +1,4 @@
-package com.wjd.practice.leetcode.array.matrix;
+package com.wjd.practice.leetcode.matrix;
 
 /**
  * 1252. 奇数值单元格的数目

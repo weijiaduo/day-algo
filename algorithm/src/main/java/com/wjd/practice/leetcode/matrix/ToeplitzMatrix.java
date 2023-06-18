@@ -1,4 +1,4 @@
-package com.wjd.practice.leetcode.array.matrix;
+package com.wjd.practice.leetcode.matrix;
 
 /**
  * 766. 托普利茨矩阵
