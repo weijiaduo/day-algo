@@ -8,9 +8,26 @@ import java.util.List;
  * <p>
  * 给定一个不含重复数字的数组 nums ，返回其 所有可能的全排列 。你可以 按任意顺序 返回答案。
  * <p>
+ * 示例 1：
+ * <p>
  * 输入：nums = [1,2,3]
  * 输出：[[1,2,3],[1,3,2],[2,1,3],[2,3,1],[3,1,2],[3,2,1]]
  * <p>
+ * 示例 2：
+ * <p>
+ * 输入：nums = [0,1]
+ * 输出：[[0,1],[1,0]]
+ * <p>
+ * 示例 3：
+ * <p>
+ * 输入：nums = [1]
+ * 输出：[[1]]
+ * <p>
+ * 提示：
+ * <p>
+ * 1 <= nums.length <= 6
+ * -10 <= nums[i] <= 10
+ * nums 中的所有整数 互不相同
  *
  * @since 2022/5/28
  */
@@ -18,7 +35,7 @@ public class Permute {
 
     public List<List<Integer>> permute(int[] nums) {
         List<List<Integer>> ans = new ArrayList<>();
-        backtrackPermute(nums, 0, ans);
+        backtrack(nums, 0, ans);
         return ans;
     }
 
@@ -34,7 +51,7 @@ public class Permute {
      * 执行耗时:0 ms,击败了100.00% 的Java用户
      * 内存消耗:41.5 MB,击败了52.44% 的Java用户
      */
-    private void backtrackPermute(int[] nums, int index, List<List<Integer>> ans) {
+    private void backtrack(int[] nums, int index, List<List<Integer>> ans) {
         if (index == nums.length - 1) {
             List<Integer> path = new ArrayList<>(nums.length);
             for (int num : nums) {
@@ -47,7 +64,7 @@ public class Permute {
             int temp = nums[index];
             nums[index] = nums[i];
             nums[i] = temp;
-            backtrackPermute(nums, index + 1, ans);
+            backtrack(nums, index + 1, ans);
             nums[i] = nums[index];
             nums[index] = temp;
         }
