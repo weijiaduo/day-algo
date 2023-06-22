@@ -1,4 +1,4 @@
-package com.wjd.practice.leetcode.array.permutation;
+package com.wjd.practice.leetcode.backtrack;
 
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -21,7 +21,7 @@ public class PermuteUnique {
         List<List<Integer>> ans = new ArrayList<>();
         Arrays.sort(nums);
         boolean[] visited = new boolean[nums.length];
-        backtrackPermute(nums, 0, visited, new ArrayList<>(), ans);
+        backtrack(nums, 0, visited, new ArrayList<>(), ans);
         return ans;
     }
 
@@ -33,7 +33,7 @@ public class PermuteUnique {
      * 执行耗时:1 ms,击败了99.81% 的Java用户
      * 内存消耗:42.3 MB,击败了16.44% 的Java用户
      */
-    private void backtrackPermute(int[] nums, int index, boolean[] visited, List<Integer> list, List<List<Integer>> ans) {
+    private void backtrack(int[] nums, int index, boolean[] visited, List<Integer> list, List<List<Integer>> ans) {
         if (index == nums.length) {
             ans.add(new ArrayList<>(list));
             return;
@@ -45,7 +45,7 @@ public class PermuteUnique {
             }
             list.add(nums[i]);
             visited[i] = true;
-            backtrackPermute(nums, index + 1, visited, list, ans);
+            backtrack(nums, index + 1, visited, list, ans);
             visited[i] = false;
             list.remove(index);
         }

@@ -1,4 +1,4 @@
-package com.wjd.practice.leetcode.array.combination;
+package com.wjd.practice.leetcode.backtrack;
 
 import java.util.ArrayList;
 import java.util.Arrays;
