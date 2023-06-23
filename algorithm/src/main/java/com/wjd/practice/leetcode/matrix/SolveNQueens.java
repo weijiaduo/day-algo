@@ -1,10 +1,6 @@
 package com.wjd.practice.leetcode.matrix;
 
-import com.wjd.util.ArrayUtil;
-
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.List;
+import java.util.*;
 
 /**
  * 51. N皇后
@@ -17,20 +13,40 @@ import java.util.List;
  * <p>
  * 每一种解法包含一个不同的 n 皇后问题 的棋子放置方案，该方案中 'Q' 和 '.' 分别代表了皇后和空位。
  * <p>
+ * 示例 1：
+ * <p>
  * 输入：n = 4
  * 输出：[[".Q..","...Q","Q...","..Q."],["..Q.","Q...","...Q",".Q.."]]
+ * 解释：如上图所示，4 皇后问题存在两个不同的解法。
  * <p>
+ * 示例 2：
+ * <p>
+ * 输入：n = 1
+ * 输出：[["Q"]]
+ * <p>
+ * 提示：
+ * <p>
+ * 1 <= n <= 9
  *
  * @since 2022/5/31
  */
 public class SolveNQueens {
 
     public List<List<String>> solveNQueens(int n) {
-        // return solveDFS(n);
+        // return dfs(n);
+        // return iterate(n);
         return backtrack(n);
     }
 
-    private List<List<String>> solveDFS(int n) {
+    /**
+     * 思路：回溯法，递归实现
+     * <p>
+     * 复杂度：时间 O(n!) 空间 O(mn)
+     * <p>
+     * 执行耗时:3 ms,击败了55.83% 的Java用户
+     * 内存消耗:42.8 MB,击败了28.68% 的Java用户
+     */
+    private List<List<String>> dfs(int n) {
         char[][] queues = new char[n][n];
         for (int i = 0; i < n; i++) {
             for (int j = 0; j < n; j++) {
@@ -42,56 +58,60 @@ public class SolveNQueens {
         return ans;
     }
 
-    /**
-     * 递归法
-     */
     private void dfs(char[][] queens, int index, List<List<String>> ans) {
         if (index >= queens.length) {
             List<String> str = new ArrayList<>();
             for (char[] queue : queens) {
-                String s = new String(queue);
-                str.add(s);
+                str.add(new String(queue));
             }
             ans.add(str);
             return;
         }
-        for (int i = 0; i < queens[index].length; i++) {
-            boolean isValid = true;
-            // 同一列
-            for (int j = 0; j < index; j++) {
-                if (queens[j][i] == 'Q') {
-                    isValid = false;
-                    break;
-                }
-            }
-            // 斜线
-            for (int j = 0; isValid && j < index; j++) {
-                for (int k = 0; k < queens[j].length; k++) {
-                    if (queens[j][k] == 'Q' && Math.abs(j - index) == Math.abs(k - i)) {
-                        isValid = false;
-                        break;
-                    }
-                }
-            }
-            if (!isValid) {
+        int n = queens[index].length;
+        for (int j = 0; j < n; j++) {
+            if (!isValid(queens, index, j)) {
                 continue;
             }
 
-            queens[index][i] = 'Q';
+            queens[index][j] = 'Q';
             dfs(queens, index + 1, ans);
-            queens[index][i] = '.';
+            queens[index][j] = '.';
         }
     }
 
     /**
-     * 回溯法
-     * <p>
+     * 位置 [i,j] 是否是有效的
+     */
+    private boolean isValid(char[][] queens, int i, int j) {
+        // 同一列冲突
+        for (int x = 0; x < i; x++) {
+            if (queens[x][j] == 'Q') {
+                return false;
+            }
+        }
+        // 对角线冲突
+        int n = queens[i].length;
+        for (int x = 0; x < i; x++) {
+            for (int y = 0; y < n; y++) {
+                if (queens[x][y] == 'Q' && Math.abs(x - i) == Math.abs(y - j)) {
+                    return false;
+                }
+            }
+        }
+        return true;
+    }
+
+    /**
      * 这比我想象中的要慢很多呀~
+     * <p>
+     * 思路：回溯法，迭代实现
+     * <p>
+     * 复杂度：时间 O() 空间 O()
      * <p>
      * 执行耗时:5 ms,击败了25.47% 的Java用户
      * 内存消耗:41.6 MB,击败了57.05% 的Java用户
      */
-    private List<List<String>> backtrack(int n) {
+    private List<List<String>> iterate(int n) {
         List<List<String>> ans = new ArrayList<>();
         int[] indexes = new int[n];
         int k = 0;
@@ -100,7 +120,7 @@ public class SolveNQueens {
             if (k >= n || indexes[k] >= n) {
                 if (k >= n) {
                     // 遍历完了所有行，说明是有效的方案
-                    ans.add(indexToString(indexes));
+                    ans.add(arrayToMatrix(indexes));
                 }
 
                 // 回溯上一行
@@ -138,10 +158,62 @@ public class SolveNQueens {
         return ans;
     }
 
-    private List<String> indexToString(int[] indexes) {
+    /**
+     * 官方题解
+     * <p>
+     * 思路：回溯，递归实现
+     * <p>
+     * 用 Set 记录列、左斜线、右斜线的皇后位置, 可实现 O(1) 复杂度判断位置是否合法
+     * <p>
+     * 复杂度：时间 O(n!) 空间 O(n)
+     * <p>
+     * 执行耗时:4 ms,击败了42.88% 的Java用户
+     * 内存消耗:42.8 MB,击败了32.98% 的Java用户
+     */
+    private List<List<String>> backtrack(int n) {
+        int[] queens = new int[n];
+        Arrays.fill(queens, -1);
+        List<List<String>> ans = new ArrayList<>();
+        Set<Integer> col = new HashSet<>();
+        Set<Integer> dlr = new HashSet<>();
+        Set<Integer> drl = new HashSet<>();
+        backtrack(queens, 0, n, col, dlr, drl, ans);
+        return ans;
+    }
+
+    private void backtrack(int[] queens, int r, int n,
+                           Set<Integer> col, Set<Integer> dlr, Set<Integer> drl,
+                           List<List<String>> ans) {
+        if (r >= queens.length) {
+            ans.add(arrayToMatrix(queens));
+            return;
+        }
+        for (int c = 0; c < n; c++) {
+            // 同一列
+            if (col.contains(c)) {
+                continue;
+            }
+            // 对角线
+            int d1 = r - c, d2 = r + c;
+            if (dlr.contains(d1) || drl.contains(d2)) {
+                continue;
+            }
+
+            queens[r] = c;
+            col.add(c);
+            dlr.add(d1);
+            drl.add(d2);
+            backtrack(queens, r + 1, n, col, dlr, drl, ans);
+            drl.remove(d2);
+            dlr.remove(d1);
+            col.remove(c);
+            queens[r] = -1;
+        }
+    }
+
+    private List<String> arrayToMatrix(int[] indexes) {
         List<String> str = new ArrayList<>();
         int n = indexes.length;
-        ArrayUtil.print(indexes);
         for (int index : indexes) {
             char[] s = new char[n];
             Arrays.fill(s, '.');
@@ -150,4 +222,5 @@ public class SolveNQueens {
         }
         return str;
     }
+
 }
