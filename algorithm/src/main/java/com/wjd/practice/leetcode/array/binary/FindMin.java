@@ -8,17 +8,44 @@ package com.wjd.practice.leetcode.array.binary;
  * 例如，原数组 nums = [0,1,2,4,5,6,7] 在变化后可能得到：
  * <p>
  * 若旋转 4 次，则可以得到 [4,5,6,7,0,1,2]
+ * <p>
  * 若旋转 7 次，则可以得到 [0,1,2,4,5,6,7]
  * <p>
- * 注意，数组 [a[0], a[1], a[2], ..., a[n-1]] 旋转一次 的结果为数组 [a[n-1], a[0], a[1], a[2], ..., a[n-2]] 。
+ * 注意，数组 [a[0], a[1], a[2], ..., a[n-1]] 旋转一次 的结果为数组
  * <p>
- * 给你一个元素值 互不相同 的数组 nums ，它原来是一个升序排列的数组，并按上述情形进行了多次旋转。请你找出并返回数组中的 最小元素 。
+ * [a[n-1], a[0], a[1], a[2],..., a[n-2]] 。
+ * <p>
+ * 给你一个元素值 互不相同 的数组 nums ，它原来是一个升序排列的数组，并按上述情形进行了多次旋转。
+ * <p>
+ * 请你找出并返回数组中的 最小元素 。
  * <p>
  * 你必须设计一个时间复杂度为 O(log n) 的算法解决此问题。
+ * <p>
+ * 示例 1：
  * <p>
  * 输入：nums = [3,4,5,1,2]
  * 输出：1
  * 解释：原数组为 [1,2,3,4,5] ，旋转 3 次得到输入数组。
+ * <p>
+ * 示例 2：
+ * <p>
+ * 输入：nums = [4,5,6,7,0,1,2]
+ * 输出：0
+ * 解释：原数组为 [0,1,2,4,5,6,7] ，旋转 4 次得到输入数组。
+ * <p>
+ * 示例 3：
+ * <p>
+ * 输入：nums = [11,13,15,17]
+ * 输出：11
+ * 解释：原数组为 [11,13,15,17] ，旋转 4 次得到输入数组。
+ * <p>
+ * 提示：
+ * <p>
+ * n == nums.length
+ * 1 <= n <= 5000
+ * -5000 <= nums[i] <= 5000
+ * nums 中的所有整数 互不相同
+ * nums 原来是一个升序排序的数组，并进行了 1 至 n 次旋转
  *
  * @author weijiaduo
  * @since 2022/7/1
@@ -37,18 +64,18 @@ public class FindMin {
         if (nums.length == 0) {
             return 0;
         }
-        int left = 0, right = nums.length - 1;
-        while (left < right) {
-            int mid = left + (right - left) / 2;
-            if (nums[mid] > nums[right]) {
+        int low = 0, high = nums.length - 1;
+        while (low < high) {
+            int mid = low + (high - low) / 2;
+            if (nums[mid] > nums[high]) {
                 // 中值处于旋转到前面的大值部分
-                left = mid + 1;
+                low = mid + 1;
             } else {
                 // 中值处于后面的小值部分，中值有可能就是最小值，所以不能+1
-                right = mid;
+                high = mid;
             }
         }
-        return nums[left];
+        return nums[low];
     }
 
 }
