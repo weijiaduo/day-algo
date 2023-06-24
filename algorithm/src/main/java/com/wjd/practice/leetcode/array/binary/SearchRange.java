@@ -3,56 +3,92 @@ package com.wjd.practice.leetcode.array.binary;
 /**
  * 34. 在排序数组中查找元素的第一个和最后一个位置
  * <p>
- * 给定一个按照升序排列的整数数组 nums，和一个目标值 target。
+ * 给你一个按照非递减顺序排列的整数数组 nums，和一个目标值 target。
  * <p>
- * 找出给定目标值在数组中的开始位置和结束位置。
+ * 请你找出给定目标值在数组中的开始位置和结束位置。
  * <p>
- * 如果数组中不存在目标值 target，返回[-1, -1]。
+ * 如果数组中不存在目标值 target，返回 [-1, -1]。
+ * <p>
+ * 你必须设计并实现时间复杂度为 O(log n) 的算法解决此问题。
+ * <p>
+ * 示例 1：
+ * <p>
+ * 输入：nums = [5,7,7,8,8,10], target = 8
+ * 输出：[3,4]
+ * <p>
+ * 示例 2：
+ * <p>
+ * 输入：nums = [5,7,7,8,8,10], target = 6
+ * 输出：[-1,-1]
+ * <p>
+ * 示例 3：
+ * <p>
+ * 输入：nums = [], target = 0
+ * 输出：[-1,-1]
+ * <p>
+ * 提示：
+ * <p>
+ * 0 <= nums.length <= 10⁵
+ * -10⁹ <= nums[i] <= 10⁹
+ * nums 是一个非递减数组
+ * -10⁹ <= target <= 10⁹
  *
  * @since 2021-07-13
  */
 public class SearchRange {
 
     /**
-     * 搜索指定目标值的范围
-     *
-     * @param nums   数组
-     * @param target 目标值
-     * @return 索引范围
+     * 思路：二分查找，找到第一个大于等于，最后一个小于等于 target 的位置
+     * <p>
+     * 复杂度：时间 O(logn) 空间 O(1)
+     * <p>
+     * 执行耗时:0 ms,击败了100.00% 的Java用户
+     * 内存消耗:43.6 MB,击败了65.62% 的Java用户
      */
     public int[] searchRange(int[] nums, int target) {
-        int[] result = new int[2];
-        result[0] = result[1] = -1;
-        int lp = findIndex(nums, target, 0, nums.length);
-        if (0 <= lp && lp < nums.length && nums[lp] == target) {
-            result[0] = lp;
-            result[1] = findIndex(nums, target + 1, lp, nums.length) - 1;
+        int n = nums.length;
+        int l = firstNotLessThan(nums, 0, n - 1, target);
+        if (l == -1 || nums[l] != target) {
+            return new int[]{-1, -1};
         }
-        return result;
+        int r = lastNotGreatThan(nums, l, n - 1, target);
+        return new int[]{l, r};
     }
 
     /**
-     * 查找大于等于 target 的第一个位置
-     *
-     * @param nums   数组
-     * @param target 目标值
-     * @param start  起始位置
-     * @param end    结束位置，不包括
-     * @return 大于等于target的第一个位置，或-1，或end
+     * 第一个大于等于 target 的位置
      */
-    private int findIndex(int[] nums, int target, int start, int end) {
-        if (end <= start) {
-            return -1;
-        }
-        int lp = start, rp = end;
-        while (lp < rp) {
-            int m = lp + ((rp - lp) >> 1);
-            if (target <= nums[m]) {
-                rp = m;
+    private int firstNotLessThan(int[] nums, int l, int r, int target) {
+        while (l <= r) {
+            int m = l + (r - l) / 2;
+            if (nums[m] >= target) {
+                if (m == l || nums[m - 1] < target) {
+                    return m;
+                }
+                r = m - 1;
             } else {
-                lp = m + 1;
+                l = m + 1;
             }
         }
-        return rp;
+        return -1;
     }
+
+    /**
+     * 最后一个小于等于 target 的位置
+     */
+    private int lastNotGreatThan(int[] nums, int l, int r, int target) {
+        while (l <= r) {
+            int m = l + (r - l) / 2;
+            if (nums[m] <= target) {
+                if (m == r || nums[m + 1] > target) {
+                    return m;
+                }
+                l = m + 1;
+            } else {
+                r = m - 1;
+            }
+        }
+        return -1;
+    }
+
 }
