@@ -2,6 +2,7 @@ package com.wjd.practice.leetcode;
 
 import com.wjd.util.StringUtils;
 
+import java.io.ByteArrayInputStream;
 import java.io.File;
 import java.io.FileInputStream;
 import java.io.InputStream;
@@ -37,19 +38,96 @@ public class LCRunner {
      * @param cls 类的Class对象
      */
     public static void run(Class<?> cls) throws Exception {
-        // 获取执行的方法
-        Method solveMethod = getExecuteMethod(cls);
-        if (solveMethod == null) {
+        // 优先找注解用例方法
+        boolean found = false;
+        for (Method m : cls.getDeclaredMethods()) {
+            TestCase[] testCases = m.getAnnotationsByType(TestCase.class);
+            if (testCases.length > 0) {
+                found = true;
+                runAnnotationTestCase(cls, m);
+            }
+        }
+        if (found) {
             return;
         }
 
+        // 然后找特定的 solve 方法
+        for (Method m : cls.getDeclaredMethods()) {
+            if ("solve".equals(m.getName())) {
+                runFileTestCase(cls, m);
+                return;
+            }
+        }
+
+        // 最后找 public 方法
+        for (Method m : cls.getDeclaredMethods()) {
+            if (Modifier.isPublic(m.getModifiers())) {
+                runFileTestCase(cls, m);
+                return;
+            }
+        }
+    }
+
+    /**
+     * 基于文件输入的测试用例运行
+     *
+     * @param cls    测试类
+     * @param method 测试方法
+     */
+    private static void runFileTestCase(Class<?> cls, Method method) throws Exception {
         // 构造输入输出
         InputStream ins = new FileInputStream(new File(DIR, IN_FILE));
-        Input input = new Input(ins, solveMethod.getParameterTypes());
+        Input input = new Input(ins, method.getParameterTypes());
         InputStream outs = new FileInputStream(new File(DIR, OUT_FILE));
-        Output output = new Output(outs, solveMethod.getReturnType());
+        Output output = new Output(outs, method.getReturnType());
 
         // 执行所有用例
+        runTestCase(cls, method, input, output);
+    }
+
+    /**
+     * 基于注解输入的测试用例运行
+     *
+     * @param cls    测试类
+     * @param method 测试方法
+     */
+    private static void runAnnotationTestCase(Class<?> cls, Method method) throws Exception {
+        TestCase[] testCases = method.getAnnotationsByType(TestCase.class);
+        for (TestCase testCase : testCases) {
+            String[] inputs = testCase.input();
+            String[] outputs = testCase.output();
+            if (inputs.length == 0 || outputs.length == 0
+                    || inputs.length % outputs.length != 0) {
+                continue;
+            }
+
+            // 构造输入输出
+            byte[] inBytes = String.join("\n", inputs).getBytes();
+            InputStream ins = new ByteArrayInputStream(inBytes);
+            Input input = new Input(ins, method.getParameterTypes());
+            byte[] outBytes = String.join("\n", outputs).getBytes();
+            InputStream outs = new ByteArrayInputStream(outBytes);
+            Output output = new Output(outs, method.getReturnType());
+
+            // 执行所有用例
+            runTestCase(cls, method, input, output);
+        }
+    }
+
+    /**
+     * 运行指定的测试方法
+     *
+     * @param cls    测试类
+     * @param method 测试方法
+     * @param input  输入
+     * @param output 输出
+     */
+    private static void runTestCase(Class<?> cls, Method method, Input input, Output output) throws Exception {
+        System.out.println("===========================================");
+        System.out.println("[Start] Running Method: " + method.getName());
+        System.out.println("===========================================");
+        System.out.println();
+
         while (true) {
             Object[] args = input.nextCase();
             Object expect = output.nextCase();
@@ -63,9 +141,13 @@ public class LCRunner {
                 System.out.println(StringUtils.toStr(in));
             }
 
+            // 运行测试
             Constructor<?> constructor = cls.getConstructor();
             Object instance = constructor.newInstance();
-            Object actual = solveMethod.invoke(instance, args);
+            boolean acc = method.canAccess(instance);
+            method.setAccessible(true);
+            Object actual = method.invoke(instance, args);
+            method.setAccessible(acc);
 
             // 打印输出
             System.out.println("expect:");
@@ -74,28 +156,11 @@ public class LCRunner {
             System.out.println(StringUtils.toStr(actual));
             System.out.println();
         }
-    }
 
-    /**
-     * 获取执行的方法
-     *
-     * @param cls 指定类
-     * @return 执行方法
-     */
-    private static Method getExecuteMethod(Class<?> cls) {
-        // 优先找指定的 solve 方法
-        for (Method method : cls.getDeclaredMethods()) {
-            if ("solve".equals(method.getName())) {
-                return method;
-            }
-        }
-        // 然后找 public 方法
-        for (Method method : cls.getDeclaredMethods()) {
-            if (Modifier.isPublic(method.getModifiers())) {
-                return method;
-            }
-        }
-        return null;
+        System.out.println("===========================================");
+        System.out.println("[End  ] Running Method: " + method.getName());
+        System.out.println("===========================================");
+        System.out.println();
     }
 
 }
