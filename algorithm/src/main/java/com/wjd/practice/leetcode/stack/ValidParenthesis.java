@@ -1,4 +1,4 @@
-package com.wjd.practice.leetcode.string.match;
+package com.wjd.practice.leetcode.stack;
 
 import java.util.ArrayDeque;
 import java.util.Deque;
@@ -11,6 +11,7 @@ import java.util.Deque;
  * 有效字符串需满足：
  * <p>
  * 左括号必须用相同类型的右括号闭合。
+ * <p>
  * 左括号必须以正确的顺序闭合。
  * <p>
  * 输入：s = "()[]{}"
@@ -20,6 +21,7 @@ import java.util.Deque;
  * @since 2022/8/24
  */
 public class ValidParenthesis {
+
     /**
      * 思路：栈匹配，遇到左括号入栈，遇到右括号出栈，最终栈为空则是有效的括号
      * <p>
@@ -27,9 +29,6 @@ public class ValidParenthesis {
      * <p>
      * 执行耗时:1 ms,击败了98.88% 的Java用户
      * 内存消耗:39.5 MB,击败了57.00% 的Java用户
-     *
-     * @param s 括号字符串
-     * @return 是否是有效括号
      */
     public boolean isValid(String s) {
         Deque<Character> stack = new ArrayDeque<>();
@@ -37,31 +36,27 @@ public class ValidParenthesis {
         for (int i = 0; i < n; i++) {
             char ch = s.charAt(i);
             switch (ch) {
-                case '(':
-                case '[':
-                case '{':
-                    stack.push(ch);
-                    break;
-                case ')':
+                case '(', '[', '{' -> stack.push(ch);
+                case ')' -> {
                     if (stack.isEmpty() || stack.peek() != '(') {
                         return false;
                     }
                     stack.pop();
-                    break;
-                case ']':
+                }
+                case ']' -> {
                     if (stack.isEmpty() || stack.peek() != '[') {
                         return false;
                     }
                     stack.pop();
-                    break;
-                case '}':
+                }
+                case '}' -> {
                     if (stack.isEmpty() || stack.peek() != '{') {
                         return false;
                     }
                     stack.pop();
-                    break;
-                default:
-                    break;
+                }
+                default -> {
+                }
             }
         }
         return stack.isEmpty();
