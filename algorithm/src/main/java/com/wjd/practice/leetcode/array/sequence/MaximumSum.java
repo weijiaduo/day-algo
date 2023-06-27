@@ -1,5 +1,7 @@
 package com.wjd.practice.leetcode.array.sequence;
 
+import com.wjd.practice.leetcode.TestCase;
+
 /**
  * 1186. 删除一次得到子数组最大和
  * <p>
@@ -70,6 +72,8 @@ public class MaximumSum {
      * 执行耗时:10 ms,击败了31.42% 的Java用户
      * 内存消耗:50.2 MB,击败了73.65% 的Java用户
      */
+    @TestCase(input = {"[11,-10,-11,8,7,-6,9,4,11,6,5,0]", "[-50]"},
+            output = {"50", "-50"})
     private int dynamic2(int[] arr) {
         int ans;
 
@@ -103,6 +107,8 @@ public class MaximumSum {
      * 执行耗时:5 ms,击败了88.89% 的Java用户
      * 内存消耗:50.5 MB,击败了55.55% 的Java用户
      */
+    @TestCase(input = {"[11,-10,-11,8,7,-6,9,4,11,6,5,0]", "[-50]"},
+            output = {"50", "-50"})
     private int dynamic1(int[] arr) {
         // dp0 表示 arr[i..j] 删除了0个数字后的子数组最大和
         // dp1 表示 arr[i..j] 删除了1个数字后的子数组最大和
