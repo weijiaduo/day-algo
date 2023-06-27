@@ -1,5 +1,7 @@
 package com.wjd.practice.leetcode.array.statistics;
 
+import com.wjd.practice.leetcode.TestCase;
+
 /**
  * 剑指 Offer 03. 数组中重复的数字
  * <p>
@@ -38,6 +40,8 @@ public class FindRepeatNumber {
      * 执行耗时:0 ms,击败了100.00% 的Java用户
      * 内存消耗:52.7 MB,击败了26.83% 的Java用户
      */
+    @TestCase(input = {"[2, 3, 1, 0, 2, 5, 3]"},
+            output = {"2"})
     public int findRepeatNumber(int[] nums) {
         int n = nums.length, i = 0;
         while (i < n) {
