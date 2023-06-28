@@ -2,7 +2,6 @@ package com.wjd.algorithm.tree.binary.traverse;
 
 import com.wjd.algorithm.tree.ListVisitor;
 import com.wjd.algorithm.tree.Traverse;
-import com.wjd.algorithm.tree.Visitor;
 import com.wjd.structure.tree.binary.TreeNode;
 
 import java.util.Deque;

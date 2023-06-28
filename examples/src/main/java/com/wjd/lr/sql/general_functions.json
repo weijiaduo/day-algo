@@ -1,9 +1,0 @@
-[{
-  "name": "count",
-  "categories": ["NUMERIC"],
-  "grammar": "NUMERIC(*)",
-  "summary": "count(expression)",
-  "hint": "count(expression)" ,
-  "introduction": "${COUNT_INTRODUCTION}",
-  "example": "${COUNT_EXAMPLE}"
-}]

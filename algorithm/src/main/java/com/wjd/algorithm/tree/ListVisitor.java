@@ -1,8 +1,5 @@
 package com.wjd.algorithm.tree;
 
-import com.wjd.algorithm.tree.Visitor;
-import com.wjd.structure.tree.binary.TreeNode;
-
 import java.util.ArrayList;
 import java.util.List;
 

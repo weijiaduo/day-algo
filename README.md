@@ -30,49 +30,49 @@
 
 - [第一个等于](./algorithm/src/main/java/com/wjd/algorithm/binary/FirstEqualSearch.java)
 - [最后一个等于](./algorithm/src/main/java/com/wjd/algorithm/binary/LastEqualSearch.java)
-- [第一个大于等于](./algorithm/src/main/java/com/wjd/algorithm/binary/FirstNotLessThanSearch.java)
-- [最后一个小于等于](./algorithm/src/main/java/com/wjd/algorithm/binary/LastNotGreatThanSearch.java)
+- [第一个大于等于](./algorithm/src/main/java/com/wjd/algorithm/binary/FirstGreatEqualSearch.java)
+- [最后一个小于等于](./algorithm/src/main/java/com/wjd/algorithm/binary/LastLessEqualSearch.java)
 
 ## 二、链表（List）
 
-- [单向链表](./algorithm/src/main/java/com/wjd/structure/list/SingleList.java)
-- [双向链表](./algorithm/src/main/java/com/wjd/structure/list/DoubleList.java)
-- [LRU 缓存](./algorithm/src/main/java/com/wjd/structure/list/LRUCache.java)
+- [单向链表](./structure/src/main/java/com/wjd/structure/list/SingleList.java)
+- [双向链表](./structure/src/main/java/com/wjd/structure/list/DoubleList.java)
+- [LRU 缓存](./structure/src/main/java/com/wjd/structure/list/LRUCache.java)
 
 ## 三、队列（Queue）
 
 - 队列
-  - [顺序队列](./algorithm/src/main/java/com/wjd/structure/queue/ArrayQueue.java)
-  - [链式队列](./algorithm/src/main/java/com/wjd/structure/queue/ListQueue.java)
+  - [顺序队列](./structure/src/main/java/com/wjd/structure/queue/ArrayQueue.java)
+  - [链式队列](./structure/src/main/java/com/wjd/structure/queue/ListQueue.java)
 - 循环队列
-  - [循环单向队列](./algorithm/src/main/java/com/wjd/structure/queue/CircularQueue.java)
-  - [循环双向队列](./algorithm/src/main/java/com/wjd/structure/queue/CircularDeque.java)
+  - [循环单向队列](./structure/src/main/java/com/wjd/structure/queue/CircularQueue.java)
+  - [循环双向队列](./structure/src/main/java/com/wjd/structure/queue/CircularDeque.java)
 
 ## 四、栈（Stack）
 
-- [顺序栈](./algorithm/src/main/java/com/wjd/structure/stack/ArrayStack.java)
-- [链式栈](./algorithm/src/main/java/com/wjd/structure/stack/ListStack.java)
+- [顺序栈](./structure/src/main/java/com/wjd/structure/stack/ArrayStack.java)
+- [链式栈](./structure/src/main/java/com/wjd/structure/stack/ListStack.java)
 
 ## 五、树（Tree）
 
 ### 5.1 结构（Structure）
 
-- [二叉搜索树（BST）](./algorithm/src/main/java/com/wjd/structure/tree/bst/BSTreeImpl.java)
+- [二叉搜索树（BST）](./structure/src/main/java/com/wjd/structure/tree/bst/BSTreeImpl.java)
 - 平衡二叉搜索树
-  - [平衡二叉树（AVL）](./algorithm/src/main/java/com/wjd/structure/tree/avl/AVLTreeImpl.java)
-  - [双偏向红黑树（Both-Leaning RB Tree）](./algorithm/src/main/java/com/wjd/structure/tree/redblack/BLRBTree.java)
-  - [左偏向红黑树（Left-Leaning RB Tree）](./algorithm/src/main/java/com/wjd/structure/tree/redblack/LLRBTree.java)
-- [哈夫曼树（HuffmanTree）](./algorithm/src/main/java/com/wjd/structure/tree/huffman/HuffmanTreeImpl.java)
+  - [平衡二叉树（AVL）](./structure/src/main/java/com/wjd/structure/tree/avl/AVLTreeImpl.java)
+  - [双偏向红黑树（Both-Leaning RB Tree）](./structure/src/main/java/com/wjd/structure/tree/redblack/BLRBTree.java)
+  - [左偏向红黑树（Left-Leaning RB Tree）](./structure/src/main/java/com/wjd/structure/tree/redblack/LLRBTree.java)
+- [哈夫曼树（HuffmanTree）](./structure/src/main/java/com/wjd/structure/tree/huffman/HuffmanTreeImpl.java)
 - 并查集（Union-Find）
-  - [并查集-数组](./algorithm/src/main/java/com/wjd/structure/tree/ufs/ArrayUnionFind.java)
-  - [并查集-映射](./algorithm/src/main/java/com/wjd/structure/tree/ufs/MapUnionFind.java)
+  - [并查集-数组](./structure/src/main/java/com/wjd/structure/tree/ufs/ArrayUnionFind.java)
+  - [并查集-映射](./structure/src/main/java/com/wjd/structure/tree/ufs/MapUnionFind.java)
 - 线段树（SegmentTree）
-  - [线段树-数组](./algorithm/src/main/java/com/wjd/structure/tree/segment/ArraySegmentTree.java)
-  - [线段树-链表](./algorithm/src/main/java/com/wjd/structure/tree/segment/LinkSegmentTree.java)
-- [树状数组（二叉索引树，BIT）](./algorithm/src/main/java/com/wjd/structure/tree/binaryindex/BinaryIndexTree.java)
+  - [线段树-数组](./structure/src/main/java/com/wjd/structure/tree/segment/ArraySegmentTree.java)
+  - [线段树-链表](./structure/src/main/java/com/wjd/structure/tree/segment/LinkSegmentTree.java)
+- [树状数组（二叉索引树，BIT）](./structure/src/main/java/com/wjd/structure/tree/binaryindex/BinaryIndexTree.java)
 - 多叉树
-  - [B-树](./algorithm/src/main/java/com/wjd/structure/tree/btree/BTreeImpl.java)
-  - [B+树](./algorithm/src/main/java/com/wjd/structure/tree/bplus/BPTreeImpl.java)
+  - [B-树](./structure/src/main/java/com/wjd/structure/tree/btree/BTreeImpl.java)
+  - [B+树](./structure/src/main/java/com/wjd/structure/tree/bplus/BPTreeImpl.java)
 
 ### 5.2 构建（Build）
 
@@ -108,8 +108,8 @@
 
 ## 六、堆（Heap）
 
-- [堆](./algorithm/src/main/java/com/wjd/structure/tree/heap/HeapImpl.java)
-- [索引堆](./algorithm/src/main/java/com/wjd/structure/tree/heap/IndexHeapImpl.java)
+- [堆](./structure/src/main/java/com/wjd/structure/tree/heap/HeapImpl.java)
+- [索引堆](./structure/src/main/java/com/wjd/structure/tree/heap/IndexHeapImpl.java)
 - [左倾堆]
 - [斜堆]
 - [二项堆]
@@ -117,29 +117,29 @@
 
 ## 七、散列表（Hash Table）
 
-- [散列表-开放寻址法](./algorithm/src/main/java/com/wjd/structure/hashtable/LinkedHashTable.java)
-- [散列表-拉链法](./algorithm/src/main/java/com/wjd/structure/hashtable/LinkedHashTable.java)
+- [散列表-开放寻址法](./structure/src/main/java/com/wjd/structure/hashtable/LinkedHashTable.java)
+- [散列表-拉链法](./structure/src/main/java/com/wjd/structure/hashtable/LinkedHashTable.java)
 
 ## 八、图
 
 ### 8.1 结构（Structure）
 
 - 无向图（Graph）
-  - [邻接矩阵](./algorithm/src/main/java/com/wjd/structure/graph/undirected/impl/MatrixGraph.java)
-  - [邻接表](./algorithm/src/main/java/com/wjd/structure/graph/undirected/impl/ListGraph.java)
+  - [邻接矩阵](./structure/src/main/java/com/wjd/structure/graph/undirected/impl/MatrixGraph.java)
+  - [邻接表](./structure/src/main/java/com/wjd/structure/graph/undirected/impl/ListGraph.java)
   - [邻接多重表]
-  - [符号无向图](./algorithm/src/main/java/com/wjd/structure/graph/undirected/impl/SymbolGraphImpl.java)
+  - [符号无向图](./structure/src/main/java/com/wjd/structure/graph/undirected/impl/SymbolGraphImpl.java)
 - 加权无向图（Weighted Graph）
-  - [邻接矩阵](./algorithm/src/main/java/com/wjd/structure/graph/undirected/impl/MatrixWeightedGraph.java)
-  - [邻接表](./algorithm/src/main/java/com/wjd/structure/graph/undirected/impl/ListWeightedGraph.java)
+  - [邻接矩阵](./structure/src/main/java/com/wjd/structure/graph/undirected/impl/MatrixWeightedGraph.java)
+  - [邻接表](./structure/src/main/java/com/wjd/structure/graph/undirected/impl/ListWeightedGraph.java)
 - 有向图（Digraph）
-  - [邻接矩阵](./algorithm/src/main/java/com/wjd/structure/graph/directed/impl/MatrixDigraph.java)
-  - [邻接表](./algorithm/src/main/java/com/wjd/structure/graph/directed/impl/ListDigraph.java)
+  - [邻接矩阵](./structure/src/main/java/com/wjd/structure/graph/directed/impl/MatrixDigraph.java)
+  - [邻接表](./structure/src/main/java/com/wjd/structure/graph/directed/impl/ListDigraph.java)
   - [十字链表]
-  - [符号有向图](./algorithm/src/main/java/com/wjd/structure/graph/directed/impl/SymbolDigraphImpl.java)
+  - [符号有向图](./structure/src/main/java/com/wjd/structure/graph/directed/impl/SymbolDigraphImpl.java)
 - 加权有向图（Weighted Digraph）
-  - [邻接矩阵](./algorithm/src/main/java/com/wjd/structure/graph/directed/impl/MatrixWeightedDigraph.java)
-  - [邻接表](./algorithm/src/main/java/com/wjd/structure/graph/directed/impl/ListWeightedDigraph.java)
+  - [邻接矩阵](./structure/src/main/java/com/wjd/structure/graph/directed/impl/MatrixWeightedDigraph.java)
+  - [邻接表](./structure/src/main/java/com/wjd/structure/graph/directed/impl/ListWeightedDigraph.java)
 
 ### 8.2 遍历（Search）
 
@@ -202,9 +202,9 @@
 ### 9.2 单词查找树（Trie）
 
 - 字典树（Trie）
-  - [字典树-字母](./algorithm/src/main/java/com/wjd/structure/tree/trie/LetterTrie.java)
-  - [字典树-字符](./algorithm/src/main/java/com/wjd/structure/tree/trie/CharacterTrie.java)
-- [三向字典树（TernaryTrie）](./algorithm/src/main/java/com/wjd/structure/tree/trie/TernaryTrie.java)
+  - [字典树-字母](./structure/src/main/java/com/wjd/structure/tree/trie/LetterTrie.java)
+  - [字典树-字符](./structure/src/main/java/com/wjd/structure/tree/trie/CharacterTrie.java)
+- [三向字典树（TernaryTrie）](./structure/src/main/java/com/wjd/structure/tree/trie/TernaryTrie.java)
 
 ### 9.3 匹配（Pattern Match）
 
@@ -225,6 +225,6 @@
 
 ### 10.1 跳表（SkipList）
 
-- [整数跳表-数组](./algorithm/src/main/java/com/wjd/structure/skiplist/SimpleSkipList.java)
-- [跳表-数组](./algorithm/src/main/java/com/wjd/structure/skiplist/ArraySkipList.java)
-- [跳表-链表](./algorithm/src/main/java/com/wjd/structure/skiplist/LinkedSkipList.java)
+- [整数跳表-数组](./structure/src/main/java/com/wjd/structure/skiplist/SimpleSkipList.java)
+- [跳表-数组](./structure/src/main/java/com/wjd/structure/skiplist/ArraySkipList.java)
+- [跳表-链表](./structure/src/main/java/com/wjd/structure/skiplist/LinkedSkipList.java)
