@@ -1,4 +1,4 @@
-# jode-day
+# day-algo
 
 一日复一日，明日何其多。
 
