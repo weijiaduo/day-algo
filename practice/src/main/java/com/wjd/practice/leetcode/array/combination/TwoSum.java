@@ -1,5 +1,7 @@
 package com.wjd.practice.leetcode.array.combination;
 
+import com.wjd.practice.leetcode.TestCase;
+
 import java.util.Arrays;
 import java.util.HashMap;
 import java.util.Map;
@@ -36,6 +38,8 @@ public class TwoSum {
      * 执行耗时:50 ms,击败了32.94% 的Java用户
      * 内存消耗:41.3 MB,击败了83.54% 的Java用户
      */
+    @TestCase(input = {"[2,7,11,15]", "9", "[3,2,4]", "6", "[3,3]", "6"},
+            output = {"[0,1]", "[1,2]", "[0,1]"})
     private int[] bfSolve(int[] nums, int target) {
         int n = nums.length;
         for (int i = 0; i < n - 1; i++) {
@@ -56,6 +60,8 @@ public class TwoSum {
      * 执行耗时:7 ms,击败了45.36% 的Java用户
      * 内存消耗:41.9 MB,击败了15.42% 的Java用户
      */
+    @TestCase(input = {"[2,7,11,15]", "9", "[3,2,4]", "6", "[3,3]", "6"},
+            output = {"[0,1]", "[1,2]", "[0,1]"})
     private int[] sortSolve(int[] nums, int target) {
         int n = nums.length;
         Integer[] indexes = new Integer[n];
@@ -88,6 +94,8 @@ public class TwoSum {
      * 执行耗时:1 ms,击败了99.67% 的Java用户
      * 内存消耗:41.3 MB,击败了89.56% 的Java用户
      */
+    @TestCase(input = {"[2,7,11,15]", "9", "[3,2,4]", "6", "[3,3]", "6"},
+            output = {"[0,1]", "[1,2]", "[0,1]"})
     private int[] hashSolve(int[] nums, int target) {
         Map<Integer, Integer> map = new HashMap<>();
         int n = nums.length;
