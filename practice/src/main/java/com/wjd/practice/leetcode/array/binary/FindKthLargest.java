@@ -36,8 +36,8 @@ public class FindKthLargest {
      * <p>
      * 复杂度：时间 O(n) 空间 O(logn)
      * <p>
-     * 执行耗时:15 ms,击败了18.43% 的Java用户
-     * 内存消耗:49.1 MB,击败了5.07% 的Java用户
+     * 执行耗时:4 ms,击败了97.07% 的Java用户
+     * 内存消耗:54.9 MB,击败了16.86% 的Java用户
      */
     @TestCase(input = {"[3,2,1,5,6,4]", "2", "[3,2,3,1,2,4,5,5,6]", "4"},
             output = {"5", "4"})
@@ -65,16 +65,12 @@ public class FindKthLargest {
      * <p>
      * 复杂度：时间 O(n) 空间 O(logn)
      * <p>
-     * 执行耗时:18 ms,击败了15.68% 的Java用户
-     * 内存消耗:48.7 MB,击败了5.07% 的Java用户
-     *
-     * @param nums 数组
-     * @param k    索引k
-     * @return 第K大的值
+     * 执行耗时:4 ms,击败了97.07% 的Java用户
+     * 内存消耗:54.7 MB,击败了28.44% 的Java用户
      */
     @TestCase(input = {"[3,2,1,5,6,4]", "2", "[3,2,3,1,2,4,5,5,6]", "4"},
             output = {"5", "4"})
-    private int iteration(int[] nums, int k) {
+    private int iterate(int[] nums, int k) {
         k -= 1;
         int start = 0, end = nums.length;
         while (start < end) {
@@ -99,6 +95,7 @@ public class FindKthLargest {
      * @return 分隔点索引
      */
     private int partition(int[] nums, int start, int end) {
+        // 随机对于某些特殊情况而言，性能提升很多
         int p = pivot(nums, start, end - 1);
         swap(nums, start, p);
         int ref = nums[start], lp = start;
