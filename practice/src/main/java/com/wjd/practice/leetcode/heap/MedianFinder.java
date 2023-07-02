@@ -31,14 +31,13 @@ import java.util.PriorityQueue;
  */
 public class MedianFinder {
 
-    public Void solve(Object... args) {
+    public void solve() {
         MedianFinder medianFinder = new MedianFinder();
         medianFinder.addNum(1);
         medianFinder.addNum(2);
         System.out.println(medianFinder.findMedian());
         medianFinder.addNum(3);
         System.out.println(medianFinder.findMedian());
-        return null;
     }
 
     /**
