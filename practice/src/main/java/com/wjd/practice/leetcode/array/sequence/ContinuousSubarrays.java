@@ -2,6 +2,8 @@ package com.wjd.practice.leetcode.array.sequence;
 
 import com.wjd.practice.leetcode.TestCase;
 
+import java.util.ArrayDeque;
+import java.util.Deque;
 import java.util.TreeMap;
 
 /**
@@ -51,13 +53,63 @@ import java.util.TreeMap;
 public class ContinuousSubarrays {
 
     /**
-     * 思路：滑动窗口+排序计数，记录每个数字的出现频率，并按照数字大小排序
+     * 思路：单调队列，递增队列 + 递减队列
      * <p>
-     * 复杂度：时间 O(nlogn) 空间 O(n)
+     * 递增队列记录最小值，递减队列记录最大值
+     * <p>
+     * 从列尾添加新数字，从列头删除旧数字
+     * <p>
+     * 复杂度：时间 O(n) 空间 O(n)
+     * <p>
+     * 执行用时：17 ms, 在所有 Java 提交中击败了100.00%的用户
+     * 内存消耗：59.2 MB, 在所有 Java 提交中击败了100.00%的用户
      */
     @TestCase(input = {"[5,4,2,4]", "[1,2,3]", "[65,66,67,66,66,65,64,65,65,64]"},
             output = {"8", "6", "43"})
-    private long slide(int[] nums) {
+    private long monotone(int[] nums) {
+        long ans = 0;
+        // 单调双向队列，一个递增一个递减
+        Deque<Integer> minMd = new ArrayDeque<>();
+        Deque<Integer> maxMd = new ArrayDeque<>();
+        int n = nums.length;
+        for (int i = 0, j = 0; i < n; i++) {
+            // 滑动窗口扩张，在列尾添加数字
+            while (!minMd.isEmpty() && nums[i] <= nums[minMd.getLast()]) {
+                minMd.pollLast();
+            }
+            minMd.addLast(i);
+            while (!maxMd.isEmpty() && nums[i] >= nums[maxMd.getLast()]) {
+                maxMd.pollLast();
+            }
+            maxMd.addLast(i);
+
+            // 滑动窗口收缩，从列头移除数字
+            while (nums[maxMd.getFirst()] - nums[minMd.getFirst()] > 2) {
+                if (j == minMd.getFirst()) {
+                    minMd.pollFirst();
+                }
+                if (j == maxMd.getFirst()) {
+                    maxMd.pollFirst();
+                }
+                j++;
+            }
+            // [j, i] 内所有以 i 结尾的子数组数量
+            ans += i - j + 1;
+        }
+        return ans;
+    }
+
+    /**
+     * 思路：滑动窗口+排序计数，记录每个数字的出现频率，并按照数字大小排序
+     * <p>
+     * 复杂度：时间 O(nlogn) 空间 O(n)
+     * <p>
+     * 执行用时：24 ms, 在所有 Java 提交中击败了100.00%的用户
+     * 内存消耗：55.4 MB, 在所有 Java 提交中击败了100.00%的用户
+     */
+    @TestCase(input = {"[5,4,2,4]", "[1,2,3]", "[65,66,67,66,66,65,64,65,65,64]"},
+            output = {"8", "6", "43"})
+    private long count(int[] nums) {
         long ans = 0;
         int n = nums.length;
         TreeMap<Integer, Integer> cnt = new TreeMap<>();
