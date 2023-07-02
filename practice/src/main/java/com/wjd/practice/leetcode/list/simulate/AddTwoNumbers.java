@@ -1,5 +1,6 @@
 package com.wjd.practice.leetcode.list.simulate;
 
+import com.wjd.practice.leetcode.TestCase;
 import com.wjd.practice.leetcode.structure.ListNode;
 
 /**
@@ -32,32 +33,30 @@ import com.wjd.practice.leetcode.structure.ListNode;
  * 每个链表中的节点数在范围 [1, 100] 内
  * 0 <= Node.val <= 9
  * 题目数据保证列表表示的数字不含前导零
+ *
+ * @author weijiaduo
+ * @since 2023/7/2
  */
 public class AddTwoNumbers {
 
     /**
-     * 思路：直接模拟加法即可
+     * 思路：直接模拟加法即可，加个哨兵节点避免头节点判断
      * <p>
      * 复杂度：时间 O(n) 空间 O(1)
      * <p>
      * 执行耗时:1 ms,击败了100.00% 的Java用户
      * 内存消耗:42.1 MB,击败了20.87% 的Java用户
      */
+    @TestCase(input = {"[2,4,3]", "[5,6,4]", "[0]", "[0]", "[9,9,9,9,9,9,9]", "[9,9,9,9]"},
+            output = {"[7,0,8]", "[0]", "[8,9,9,9,0,0,0,1]"})
     public ListNode addTwoNumbers(ListNode l1, ListNode l2) {
-        if (l1 == null) {
-            return l2;
-        }
-        if (l2 == null) {
-            return l1;
-        }
-
-        ListNode l = new ListNode(-1);
-        ListNode t = l, p = l1, q = l2;
+        ListNode dummy = new ListNode(-1);
+        ListNode t = dummy, p1 = l1, p2 = l2;
         int carry = 0;
-        while (p != null || q != null || carry != 0) {
+        while (p1 != null || p2 != null || carry != 0) {
             // 执行加法，当前数位和 + 上一轮的进位
-            int num1 = p != null ? p.val : 0;
-            int num2 = q != null ? q.val : 0;
+            int num1 = p1 != null ? p1.val : 0;
+            int num2 = p2 != null ? p2.val : 0;
             int sum = num1 + num2 + carry;
 
             // 保存当前数位的结果，并记录进位
@@ -66,10 +65,10 @@ public class AddTwoNumbers {
             t = t.next;
 
             // 执行到下一个数位
-            p = p != null ? p.next : null;
-            q = q != null ? q.next : null;
+            p1 = p1 != null ? p1.next : null;
+            p2 = p2 != null ? p2.next : null;
         }
-        return l.next;
+        return dummy.next;
     }
 
 }
