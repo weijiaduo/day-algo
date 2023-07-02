@@ -99,8 +99,9 @@ public class FindKthLargest {
      * @return 分隔点索引
      */
     private int partition(int[] nums, int start, int end) {
-        int ref = pivot(nums, start, end - 1);
-        int lp = start;
+        int p = pivot(nums, start, end - 1);
+        swap(nums, start, p);
+        int ref = nums[start], lp = start;
         for (int i = lp + 1; i < end; i++) {
             if (nums[i] >= ref) {
                 swap(nums, ++lp, i);
