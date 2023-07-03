@@ -37,23 +37,24 @@ public class MaxProfit {
      * 思路：优先用最小值，然后找它后面的更大值，两者差就是利润
      * <p>
      * 复杂度：时间 O(n) 空间 O(1)
+     * <p>
+     * 执行耗时:1 ms,击败了100.00% 的Java用户
+     * 内存消耗:57.4 MB,击败了73.57% 的Java用户
      */
     @TestCase(input = {"[7,1,5,3,6,4]", "[7,6,4,3,1]"},
             output = {"5", "0"})
     private int maxProfit(int[] prices) {
-        int maxDiffVal = 0;
-        int lp = 0;
-        for (int rp = lp; rp < prices.length; rp++) {
-            if (prices[rp] < prices[lp]) {
+        int maxProfit = 0, minPrice = Integer.MAX_VALUE;
+        for (int price : prices) {
+            if (price < minPrice) {
                 // 找到更小值，那后面的最大差值就和之前的最小值没关系了
-                // 后面就用最新的最小值来计算差值
-                lp = rp;
-            } else if (prices[rp] - prices[lp] > maxDiffVal) {
+                minPrice = price;
+            } else if (price - minPrice > maxProfit) {
                 // 找到更大值，更新最新的差值
-                maxDiffVal = prices[rp] - prices[lp];
+                maxProfit = price - minPrice;
             }
         }
-        return maxDiffVal;
+        return maxProfit;
     }
 
 }
