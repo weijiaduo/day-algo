@@ -75,7 +75,7 @@ public class Primes {
             }
             for (int prime : primes) {
                 int x = i * prime;
-                if (x > n) {
+                if (x < 0 || x > n) {
                     break;
                 }
                 flg[x] = -1;
