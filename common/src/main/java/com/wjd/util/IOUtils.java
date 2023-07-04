@@ -107,6 +107,7 @@ public final class IOUtils {
     }
 
     public static String toStr(String line) {
+        line = line.trim();
         if (line.startsWith("\"") && line.endsWith("\"")) {
             line = line.substring(1, line.length() - 1);
         }
