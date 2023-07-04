@@ -107,10 +107,10 @@ public class LCRunner {
             // 构造输入输出
             byte[] inBytes = String.join("\n", inputs).getBytes();
             InputStream ins = new ByteArrayInputStream(inBytes);
-            Input input = new Input(ins, method.getParameterTypes());
+            Input input = new Input(ins, method.getGenericParameterTypes());
             byte[] outBytes = String.join("\n", outputs).getBytes();
             InputStream outs = new ByteArrayInputStream(outBytes);
-            Output output = new Output(outs, method.getReturnType());
+            Output output = new Output(outs, method.getGenericReturnType());
 
             // 执行所有用例
             runTestCase(cls, method, input, output);

@@ -8,6 +8,7 @@ import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.InputStreamReader;
+import java.lang.reflect.Type;
 
 /**
  * 力扣输入模型
@@ -32,7 +33,7 @@ public class IOModel {
      * @param types 指定输入类型
      * @return 输入数据
      */
-    public Object[] read(Class<?>[] types) throws IOException {
+    public Object[] read(Type[] types) throws IOException {
         if (types.length == 0) {
             close();
             return null;
@@ -55,7 +56,7 @@ public class IOModel {
      * @param type 指定输入类型
      * @return 输入数据
      */
-    public Object read(Class<?> type) throws IOException {
+    public Object read(Type type) throws IOException {
         if (buf == null) {
             return null;
         }
@@ -73,7 +74,7 @@ public class IOModel {
      * @param line 行数据
      * @param type 类型
      */
-    private Object parse(String line, Class<?> type) {
+    private Object parse(String line, Type type) {
         Object ret;
         if (Node.class.equals(type)) {
             Integer[] values = IOUtils.toBoxIntArray(line);

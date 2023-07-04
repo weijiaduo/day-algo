@@ -2,6 +2,7 @@ package com.wjd.practice.leetcode;
 
 import java.io.IOException;
 import java.io.InputStream;
+import java.lang.reflect.Type;
 
 /**
  * 输出接口
@@ -18,9 +19,9 @@ public class Output {
     /**
      * 数据类型
      */
-    Class<?> type;
+    Type type;
 
-    public Output(InputStream inputStream, Class<?> type) {
+    public Output(InputStream inputStream, Type type) {
         model = new IOModel(inputStream);
         this.type = type;
     }

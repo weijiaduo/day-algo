@@ -1,5 +1,10 @@
 package com.wjd.util;
 
+import java.lang.reflect.ParameterizedType;
+import java.lang.reflect.Type;
+import java.util.ArrayList;
+import java.util.List;
+
 /**
  * 输入输出工具类
  *
@@ -15,7 +20,7 @@ public final class IOUtils {
      * @param type 实际数据类型
      * @return 解析后的数据
      */
-    public static Object parse(String line, Class<?> type) {
+    public static Object parse(String line, Type type) {
         Object ret = line;
         if (boolean.class.equals(type) || Boolean.class.equals(type)) {
             ret = toBool(line);
@@ -53,6 +58,10 @@ public final class IOUtils {
             ret = toStringArray(line);
         } else if (int[][].class.equals(type)) {
             ret = toIntMatrix(line);
+        } else if (type instanceof ParameterizedType parameterizedType) {
+            if (List.class == parameterizedType.getRawType()) {
+                ret = toList(line, type);
+            }
         }
         return ret;
     }
@@ -274,6 +283,41 @@ public final class IOUtils {
             arr[i] = toBoxIntArray(tokens[i]);
         }
         return arr;
+    }
+
+    private static Object toList(String line, Type type) {
+        if (line.contains("[")) {
+            line = line.replaceAll("[\\[\\]]", "");
+        }
+        if (line.isEmpty()) {
+            return new ArrayList<>();
+        }
+
+        Class<?> elemType = extractGenericType(type);
+        @SuppressWarnings("unchecked")
+        List<Object> list = (List<Object>) createList(elemType);
+        String[] tokens = line.split(",");
+        for (String token : tokens) {
+            list.add(parse(token, elemType));
+        }
+        return list;
+    }
+
+    private static <T> List<T> createList(Class<T> type) {
+        return new ArrayList<>();
+    }
+
+    private static Class<?> extractGenericType(Type type) {
+        if (type instanceof ParameterizedType parameterizedType) {
+            Type[] typeArguments = parameterizedType.getActualTypeArguments();
+            if (typeArguments.length > 0) {
+                Type elementType = typeArguments[0];
+                if (elementType instanceof Class) {
+                    return (Class<?>) elementType;
+                }
+            }
+        }
+        return null;
     }
 
 }
