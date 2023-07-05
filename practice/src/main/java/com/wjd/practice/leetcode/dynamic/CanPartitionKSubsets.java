@@ -1,4 +1,4 @@
-package com.wjd.practice.leetcode.array.combination;
+package com.wjd.practice.leetcode.dynamic;
 
 import java.util.Arrays;
 
