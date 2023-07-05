@@ -1,5 +1,7 @@
 package com.wjd.practice.leetcode.array.sequence;
 
+import com.wjd.practice.leetcode.TestCase;
+
 import java.util.Arrays;
 
 /**
@@ -11,19 +13,35 @@ import java.util.Arrays;
  * <p>
  * 例如，[3,6,2,7] 是数组 [0,3,1,6,2,2,7] 的子序列。
  * <p>
+ * 示例 1：
+ * <p>
  * 输入：nums = [10,9,2,5,3,7,101,18]
  * 输出：4
  * 解释：最长递增子序列是 [2,3,7,101]，因此长度为 4 。
+ * <p>
+ * 示例 2：
+ * <p>
+ * 输入：nums = [0,1,0,3,2,3]
+ * 输出：4
+ * <p>
+ * 示例 3：
+ * <p>
+ * 输入：nums = [7,7,7,7,7,7,7]
+ * 输出：1
+ * <p>
+ * 提示：
+ * <p>
+ * 1 <= nums.length <= 2500
+ * -10⁴ <= nums[i] <= 10⁴
+ * <p>
+ * 进阶：
+ * <p>
+ * 你能将算法的时间复杂度降低到 O(n log(n)) 吗?
  *
  * @author weijiaduo
  * @since 2022/9/10
  */
 public class LengthOfLIS {
-
-    public int lengthOfLIS(int[] nums) {
-        // return dynamic(nums);
-        return binary(nums);
-    }
 
     /**
      * 思路：动态规划，先算出以 nums[i] 结尾的最长子序列，再推导出下一个以 num[i+1]
@@ -32,10 +50,9 @@ public class LengthOfLIS {
      * <p>
      * 执行耗时:55 ms,击败了71.96% 的Java用户
      * 内存消耗:40.7 MB,击败了93.08% 的Java用户
-     *
-     * @param nums 数组
-     * @return 最长递增子序列长度
      */
+    @TestCase(input = {"[10,9,2,5,3,7,101,18]", "[0,1,0,3,2,3]", "[7,7,7,7,7,7,7]"},
+            output = {"4", "4", "1"})
     private int dynamic(int[] nums) {
         // 状态定义
         // dp[i] 表示以 nums[i] 结尾的子序列的最大长度
@@ -59,7 +76,6 @@ public class LengthOfLIS {
                 ans = dp[i];
             }
         }
-
         return ans;
     }
 
@@ -76,35 +92,34 @@ public class LengthOfLIS {
      * <p>
      * 执行耗时:2 ms,击败了99.59% 的Java用户
      * 内存消耗:41 MB,击败了50.57% 的Java用户
-     *
-     * @param nums 数组
-     * @return 最长递增子序列的长度
      */
+    @TestCase(input = {"[10,9,2,5,3,7,101,18]", "[0,1,0,3,2,3]", "[7,7,7,7,7,7,7]"},
+            output = {"4", "4", "1"})
     private int binary(int[] nums) {
         // 状态定义
-        // dp[i] 表示以 nums[i] 结尾的子序列的最大长度
-        int n = nums.length;
-        // 状态初始化0
-        int[] dp = new int[n];
+        // dp[i] 表示长度为 i 的最长上升子序列的末尾元素的最小值
+        int[] dp = new int[nums.length + 1];
+
+        // 状态初始化
+        dp[0] = nums[0];
 
         // 状态转移
         // 找到第一个大于等于 num 的位置 dp[i]，替换 dp[i] 为更小值 num
-        int size = 0;
+        int len = 0;
         for (int num : nums) {
-            int idx = findFirstNotLessThan(dp, size, num);
-            if (idx >= size) {
-                size = idx + 1;
+            int idx = findFirstGreatEqual(dp, len, num);
+            if (idx >= len) {
+                len = idx + 1;
             }
             dp[idx] = num;
         }
-
-        return size;
+        return len;
     }
 
     /**
      * 找到第一个大于等于指定值的位置
      */
-    private int findFirstNotLessThan(int[] dp, int size, int num) {
+    private int findFirstGreatEqual(int[] dp, int size, int num) {
         int low = 0, high = size - 1;
         while (low <= high) {
             int mid = low + (high - low) / 2;
