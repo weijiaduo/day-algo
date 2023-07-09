@@ -1,5 +1,7 @@
 package com.wjd.practice.leetcode.array.combination;
 
+import com.wjd.practice.leetcode.TestCase;
+
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
@@ -7,15 +9,43 @@ import java.util.List;
 /**
  * 15. 三数之和
  * <p>
- * 给你一个包含 n 个整数的数组 nums，判断 nums 中是否存在三个元素 a，b，c ，使得 a + b + c = 0 ？
+ * 给你一个整数数组 nums ，判断是否存在三元组 [nums[i], nums[j], nums[k]]
  * <p>
- * 请你找出所有和为 0 且不重复的三元组。
+ * 满足 i != j、i != k 且 j !=k ，同时还满足 nums[i] + nums[j] + nums[k] == 0 。
+ * <p>
+ * 请你返回所有和为 0 且不重复的三元组。
  * <p>
  * 注意：答案中不可以包含重复的三元组。
  * <p>
- * 0 <= nums.length <= 3000
- * -105 <= nums[i] <= 105
+ * 示例 1：
+ * <p>
+ * 输入：nums = [-1,0,1,2,-1,-4]
+ * 输出：[[-1,-1,2],[-1,0,1]]
+ * 解释：
+ * nums[0] + nums[1] + nums[2] = (-1) + 0 + 1 = 0 。
+ * nums[1] + nums[2] + nums[4] = 0 + 1 + (-1) = 0 。
+ * nums[0] + nums[3] + nums[4] = (-1) + 2 + (-1) = 0 。
+ * 不同的三元组是 [-1,0,1] 和 [-1,-1,2] 。
+ * 注意，输出的顺序和三元组的顺序并不重要。
+ * <p>
+ * 示例 2：
+ * <p>
+ * 输入：nums = [0,1,1]
+ * 输出：[]
+ * 解释：唯一可能的三元组和不为 0 。
+ * <p>
+ * 示例 3：
+ * <p>
+ * 输入：nums = [0,0,0]
+ * 输出：[[0,0,0]]
+ * 解释：唯一可能的三元组和为 0 。
+ * <p>
+ * 提示：
+ * <p>
+ * 3 <= nums.length <= 3000
+ * -10⁵ <= nums[i] <= 10⁵
  *
+ * @author weijiaduo
  * @since 2021-06-30
  */
 public class ThreeSum {
@@ -37,27 +67,26 @@ public class ThreeSum {
      * @param nums 数组
      * @return 所有三元组
      */
+    @TestCase(input = {"[-1,0,1,2,-1,-4]", "[0,1,1]", "[0,0,0]"},
+            output = {"[[-1,-1,2],[-1,0,1]]", "[]", "[0,0,0]"})
     public List<List<Integer>> threeSum(int[] nums) {
-        List<List<Integer>> result = new ArrayList<>();
+        List<List<Integer>> ans = new ArrayList<>();
         int n = nums.length;
         if (n < 3) {
-            return result;
+            return ans;
         }
         Arrays.sort(nums);
         if (nums[0] > 0 || nums[n - 1] < 0) {
-            return result;
+            return ans;
         }
         for (int i = 0; i < n && nums[i] <= 0; i++) {
-            List<List<Integer>> sumList = twoSum(nums, -nums[i], i + 1, n - 1);
-            if (sumList.size() > 0) {
-                result.addAll(sumList);
-            }
             // 去重
-            while (i < n - 1 && nums[i] == nums[i + 1]) {
-                i++;
+            if (i > 0 && nums[i - 1] == nums[i]) {
+                continue;
             }
+            ans.addAll(twoSum(nums, -nums[i], i + 1, n - 1));
         }
-        return result;
+        return ans;
     }
 
     /**
@@ -70,16 +99,12 @@ public class ThreeSum {
      * @return 两数，或null
      */
     private List<List<Integer>> twoSum(int[] nums, int sum, int start, int end) {
-        List<List<Integer>> result = new ArrayList<>();
+        List<List<Integer>> ans = new ArrayList<>();
         int lp = start, rp = end;
         while (lp < rp) {
             int temp = nums[lp] + nums[rp];
             if (temp == sum) {
-                List<Integer> sumList = new ArrayList<>(3);
-                sumList.add(-sum);
-                sumList.add(nums[lp]);
-                sumList.add(nums[rp]);
-                result.add(sumList);
+                ans.add(Arrays.asList(-sum, nums[lp], nums[rp]));
                 // 去重
                 while (lp < rp && nums[lp] == nums[++lp]) ;
                 while (lp < rp && nums[rp] == nums[--rp]) ;
@@ -89,7 +114,7 @@ public class ThreeSum {
                 rp--;
             }
         }
-        return result;
+        return ans;
     }
 
 }
