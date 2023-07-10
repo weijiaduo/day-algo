@@ -60,6 +60,12 @@ public final class IOUtils {
             ret = toIntMatrix(line);
         } else if (type instanceof ParameterizedType parameterizedType) {
             if (List.class == parameterizedType.getRawType()) {
+                Type elemType = parameterizedType.getActualTypeArguments()[0];
+                if (elemType instanceof ParameterizedType parameterizedElemType) {
+                    if (List.class == parameterizedElemType.getRawType()) {
+                        return toListList(line, type);
+                    }
+                }
                 ret = toList(line, type);
             }
         }
@@ -294,7 +300,8 @@ public final class IOUtils {
             return new ArrayList<>();
         }
 
-        Class<?> elemType = extractGenericType(type);
+        ParameterizedType parameterizedType = (ParameterizedType) type;
+        Class<?> elemType = (Class<?>) parameterizedType.getActualTypeArguments()[0];
         @SuppressWarnings("unchecked")
         List<Object> list = (List<Object>) createList(elemType);
         String[] tokens = line.split(",");
@@ -304,21 +311,19 @@ public final class IOUtils {
         return list;
     }
 
-    private static <T> List<T> createList(Class<T> type) {
-        return new ArrayList<>();
+    private static Object toListList(String line, Type type) {
+        ParameterizedType parameterizedType = (ParameterizedType) type;
+        Type elemType = parameterizedType.getActualTypeArguments()[0];
+        List<Object> list = createList(Object.class);
+        String[] tokens = line.split("],");
+        for (String token : tokens) {
+            list.add(parse(token, elemType));
+        }
+        return list;
     }
 
-    private static Class<?> extractGenericType(Type type) {
-        if (type instanceof ParameterizedType parameterizedType) {
-            Type[] typeArguments = parameterizedType.getActualTypeArguments();
-            if (typeArguments.length > 0) {
-                Type elementType = typeArguments[0];
-                if (elementType instanceof Class) {
-                    return (Class<?>) elementType;
-                }
-            }
-        }
-        return null;
+    private static <T> List<T> createList(Class<T> type) {
+        return new ArrayList<>();
     }
 
 }
