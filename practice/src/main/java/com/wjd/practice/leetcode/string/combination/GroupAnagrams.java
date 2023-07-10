@@ -1,5 +1,7 @@
 package com.wjd.practice.leetcode.string.combination;
 
+import com.wjd.practice.leetcode.TestCase;
+
 import java.util.*;
 
 /**
@@ -32,13 +34,10 @@ import java.util.*;
  * 0 <= strs[i].length <= 100
  * strs[i] 仅包含小写字母
  *
+ * @author weijiaduo
  * @since 2022/5/29
  */
 public class GroupAnagrams {
-
-    public List<List<String>> groupAnagrams(String[] strs) {
-        return countGroupAnagrams(strs);
-    }
 
     /**
      * 思路：给每个字符串排序，如果排序后的字符串一致，那就属于异位字母分词
@@ -48,13 +47,13 @@ public class GroupAnagrams {
      * 执行耗时:6 ms,击败了78.53% 的Java用户
      * 内存消耗:44.1 MB,击败了83.72% 的Java用户
      */
-    private List<List<String>> sortGroupAnagrams(String[] strs) {
+    @TestCase(input = {"[\"eat\", \"tea\", \"tan\", \"ate\", \"nat\", \"bat\"]", "[\"\"]", "[\"a\"]"},
+            output = {"[[\"bat\"],[\"nat\",\"tan\"],[\"ate\",\"eat\",\"tea\"]]", "[[\"\"]]", "[[\"a\"]]"})
+    public List<List<String>> sort(String[] strs) {
         List<List<String>> ans = new ArrayList<>();
         Map<String, List<String>> map = new HashMap<>();
         for (String str : strs) {
-            char[] arr = str.toCharArray();
-            Arrays.sort(arr);
-            String s = new String(arr);
+            String s = sortKey(str);
             List<String> list = map.get(s);
             if (list == null) {
                 list = new ArrayList<>();
@@ -64,6 +63,12 @@ public class GroupAnagrams {
             list.add(str);
         }
         return ans;
+    }
+
+    private String sortKey(String str) {
+        char[] arr = str.toCharArray();
+        Arrays.sort(arr);
+        return new String(arr);
     }
 
     /**
@@ -76,11 +81,13 @@ public class GroupAnagrams {
      * 执行耗时:7 ms,击败了39.94% 的Java用户
      * 内存消耗:44.9 MB,击败了14.16% 的Java用户
      */
-    private List<List<String>> countGroupAnagrams(String[] strs) {
+    @TestCase(input = {"[\"eat\", \"tea\", \"tan\", \"ate\", \"nat\", \"bat\"]", "[\"\"]", "[\"a\"]"},
+            output = {"[[\"bat\"],[\"nat\",\"tan\"],[\"ate\",\"eat\",\"tea\"]]", "[[\"\"]]", "[[\"a\"]]"})
+    public List<List<String>> count(String[] strs) {
         List<List<String>> ans = new ArrayList<>();
         Map<String, List<String>> map = new HashMap<>();
         for (String str : strs) {
-            String s = getCountString(str);
+            String s = countKey(str);
             List<String> list = map.get(s);
             if (list == null) {
                 list = new ArrayList<>();
@@ -92,7 +99,7 @@ public class GroupAnagrams {
         return ans;
     }
 
-    private String getCountString(String str) {
+    private String countKey(String str) {
         int[] counts = new int[26];
         int n = str.length();
         for (int i = 0; i < n; i++) {
