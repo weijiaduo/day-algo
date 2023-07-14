@@ -81,6 +81,27 @@ public class Conversion {
     }
 
     /**
+     * 浮点数转成二进制字符串
+     *
+     * @param val 浮点数
+     * @return 二进制字符串
+     */
+    public String toBinaryStr(double val) {
+        StringBuilder sb = new StringBuilder();
+        int num = (int) val;
+        String intStr = toBinaryStr(num);
+        sb.append(intStr).append(".");
+        val -= num;
+        for (int i = 0; i < 32 && val != 0; i++) {
+            val *= 2;
+            int d = (int) val;
+            sb.append(d);
+            val -= d;
+        }
+        return sb.toString();
+    }
+
+    /**
      * 十进制数字转成二进制字符串
      *
      * @param val 十进制数字
