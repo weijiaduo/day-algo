@@ -50,8 +50,10 @@ public class GcdOfStrings {
         String ss = n1 > n2 ? str2 : str1;
         for (int i = ss.length(); i > 0; i--) {
             String r = ss.substring(0, i);
-            if (check(ls, r) && check(ss, r)) {
-                return r;
+            if (n1 % i == 0 && n2 % i == 0) {
+                if (check(ls, r) && check(ss, r)) {
+                    return r;
+                }
             }
         }
         return "";
@@ -62,18 +64,37 @@ public class GcdOfStrings {
      * <p>
      * 复杂度：时间 O(n) 空间 O(n)
      * <p>
-     * 执行耗时:7 ms,击败了11.97% 的Java用户
-     * 内存消耗:42.1 MB,击败了14.53% 的Java用户
+     * 执行耗时:0 ms,击败了100.00% 的Java用户
+     * 内存消耗:39.7 MB,击败了97.80% 的Java用户
      */
     @TestCase(input = {"ABCABC", "ABC", "ABABAB", "ABAB", "LEET", "CODE"},
             output = {"ABC", "AB", ""})
-    public String gcdString(String str1, String str2) {
+    public String gcd(String str1, String str2) {
         int n1 = str1.length(), n2 = str2.length();
         String t = str1.substring(0, gcd(n1, n2));
         if (check(str1, t) && check(str2, t)) {
             return t;
         }
         return "";
+    }
+
+    /**
+     * 思路：数学，如果 str1+str2 = str2+str1，
+     * <p>
+     * 那么就存在x，能够同时整除 str1 和 str2
+     * <p>
+     * 复杂度：时间 O(n) 空间 O(n)
+     * <p>
+     * 执行耗时:1 ms,击败了76.24% 的Java用户
+     * 内存消耗:40.1 MB,击败了71.44% 的Java用户
+     */
+    @TestCase(input = {"ABCABC", "ABC", "ABABAB", "ABAB", "LEET", "CODE"},
+            output = {"ABC", "AB", ""})
+    public String math(String str1, String str2) {
+        if (!(str1 + str2).equals(str2 + str1)) {
+            return "";
+        }
+        return str1.substring(0, gcd(str1.length(), str2.length()));
     }
 
     /**
