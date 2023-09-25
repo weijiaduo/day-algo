@@ -1,5 +1,7 @@
 package com.wjd.practice.leetcode.string.simulate;
 
+import com.wjd.practice.leetcode.TestCase;
+
 /**
  * 1768. 交替合并字符串
  * <p>
@@ -31,6 +33,8 @@ public class MergeAlternately {
      * 执行耗时:0 ms,击败了100.00% 的Java用户
      * 内存消耗:39.5 MB,击败了79.54% 的Java用户
      */
+    @TestCase(input = {"abc", "pqr", "ab", "pqrs", "abcd", "pq"},
+            output = {"apbqcr", "apbqrs", "apbqcd"})
     public String solve(String word1, String word2) {
         int m = word1.length(), n = word2.length();
         char[] chars = new char[m + n];
