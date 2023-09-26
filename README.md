@@ -112,8 +112,8 @@
 ## 六、堆（Heap）
 
 - [堆（Heap）](./structure/src/main/java/com/wjd/structure/tree/heap/HeapImpl.java)
-- [索引堆（Index Heap）](./structure/src/main/java/com/wjd/structure/tree/heap/IndexHeapImpl.java)
-- [左倾堆（Leftist Heap）](./structure/src/main/java/com/wjd/structure/tree/heap/LeftistHeapImpl.java)
+- [索引堆（Index Heap）](./structure/src/main/java/com/wjd/structure/tree/indexheap/IndexHeapImpl.java)
+- [左倾堆（Leftist Heap）](./structure/src/main/java/com/wjd/structure/tree/leftistheap/LeftistHeapImpl.java)
 - [斜堆（Skew Heap）]
 - [二项堆（Binomial Heap）]
 - [斐波那契堆（Fibonacci Heap）]
