@@ -1,4 +1,4 @@
-package com.wjd.structure.tree.heap;
+package com.wjd.structure.heap.binary;
 
 import org.junit.jupiter.api.Test;
 

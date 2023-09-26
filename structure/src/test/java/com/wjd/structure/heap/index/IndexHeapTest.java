@@ -1,4 +1,4 @@
-package com.wjd.structure.tree.indexheap;
+package com.wjd.structure.heap.index;
 
 import org.junit.jupiter.api.Test;
 

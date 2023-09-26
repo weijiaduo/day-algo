@@ -1,4 +1,4 @@
-package com.wjd.structure.tree.leftistheap;
+package com.wjd.structure.heap.leftist;
 
 /**
  * 左倾堆（Leftist Heap）

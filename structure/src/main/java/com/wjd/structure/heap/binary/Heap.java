@@ -1,4 +1,4 @@
-package com.wjd.structure.tree.heap;
+package com.wjd.structure.heap.binary;
 
 /**
  * 堆接口
