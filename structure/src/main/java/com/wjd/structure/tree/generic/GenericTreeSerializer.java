@@ -1,6 +1,4 @@
-package com.wjd.serializer.tree.generic;
-
-import com.wjd.structure.tree.generic.Node;
+package com.wjd.structure.tree.generic;
 
 import java.util.*;
 

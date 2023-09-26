@@ -1,6 +1,4 @@
-package com.wjd.serializer.tree.btree;
-
-import com.wjd.structure.tree.btree.BTNode;
+package com.wjd.structure.tree.btree;
 
 import java.util.ArrayList;
 import java.util.LinkedList;

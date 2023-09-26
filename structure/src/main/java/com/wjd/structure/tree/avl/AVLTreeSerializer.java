@@ -1,6 +1,4 @@
-package com.wjd.serializer.tree.leftistheap;
-
-import com.wjd.structure.tree.leftistheap.LeftistHeapNode;
+package com.wjd.structure.tree.avl;
 
 import java.util.ArrayList;
 import java.util.LinkedList;
@@ -8,26 +6,32 @@ import java.util.List;
 import java.util.Queue;
 
 /**
- * 左倾堆序列化器
+ * AVL 平衡二叉树序列化器
  *
  * @author weijiaduo
- * @since 2023/9/26
+ * @since 2023/6/29
  */
-public class LeftistHeapSerializer {
+public class AVLTreeSerializer {
 
-    public <T extends Comparable<T>> String[] serialize(LeftistHeapNode<T> root) {
+    /**
+     * 序列化 AVL 平衡二叉树
+     *
+     * @param root 根节点
+     * @return 序列化值
+     */
+    public Integer[] serialize(AVLTNode root) {
         if (root == null) {
-            return new String[0];
+            return new Integer[0];
         }
 
-        List<String> values = new ArrayList<>();
-        Queue<LeftistHeapNode<T>> queue = new LinkedList<>();
+        List<Integer> values = new ArrayList<>();
+        Queue<AVLTNode> queue = new LinkedList<>();
         queue.offer(root);
         int notNull = queue.size();
         while (notNull > 0) {
-            LeftistHeapNode<T> node = queue.poll();
+            AVLTNode node = queue.poll();
             notNull--;
-            values.add(node != null ? node.toString() : null);
+            values.add(node != null ? node.val : null);
             if (node == null) {
                 continue;
             }
@@ -37,14 +41,13 @@ public class LeftistHeapSerializer {
             if (node.left != null) {
                 notNull = queue.size();
             }
-
             // 右子节点
             queue.offer(node.right);
             if (node.right != null) {
                 notNull = queue.size();
             }
         }
-        return values.toArray(new String[0]);
+        return values.toArray(new Integer[0]);
     }
 
 }

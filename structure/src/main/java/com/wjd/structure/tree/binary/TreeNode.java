@@ -1,7 +1,5 @@
 package com.wjd.structure.tree.binary;
 
-import com.wjd.serializer.tree.binary.BinaryTreeSerializer;
-
 import java.util.Arrays;
 import java.util.List;
 

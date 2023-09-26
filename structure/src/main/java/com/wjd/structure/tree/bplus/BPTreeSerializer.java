@@ -1,6 +1,4 @@
-package com.wjd.serializer.tree.bptree;
-
-import com.wjd.structure.tree.bplus.BPTNode;
+package com.wjd.structure.tree.bplus;
 
 import java.util.ArrayList;
 import java.util.LinkedList;

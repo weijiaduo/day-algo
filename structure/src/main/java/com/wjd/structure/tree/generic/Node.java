@@ -1,7 +1,5 @@
 package com.wjd.structure.tree.generic;
 
-import com.wjd.serializer.tree.generic.GenericTreeSerializer;
-
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;

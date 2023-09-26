@@ -1,6 +1,4 @@
-package com.wjd.serializer.tree.redblack;
-
-import com.wjd.structure.tree.redblack.RBTNode;
+package com.wjd.structure.tree.redblack;
 
 import java.util.ArrayList;
 import java.util.LinkedList;

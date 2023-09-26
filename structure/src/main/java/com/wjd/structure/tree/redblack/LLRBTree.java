@@ -1,7 +1,5 @@
 package com.wjd.structure.tree.redblack;
 
-import com.wjd.serializer.tree.redblack.RedBlackTreeSerializer;
-
 import java.util.Arrays;
 
 /**

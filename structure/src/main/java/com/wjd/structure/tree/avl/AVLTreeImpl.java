@@ -1,7 +1,5 @@
 package com.wjd.structure.tree.avl;
 
-import com.wjd.serializer.tree.avl.AVLTreeSerializer;
-
 import java.util.Arrays;
 
 /**

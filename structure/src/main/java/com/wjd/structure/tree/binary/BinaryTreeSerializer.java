@@ -1,6 +1,4 @@
-package com.wjd.serializer.tree.binary;
-
-import com.wjd.structure.tree.binary.TreeNode;
+package com.wjd.structure.tree.binary;
 
 import java.util.*;
 
