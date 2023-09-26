@@ -1,7 +1,7 @@
 package com.wjd.practice.learn.tree.heap;
 
-import com.wjd.structure.tree.heap.IndexHeap;
-import com.wjd.structure.tree.heap.IndexHeapImpl;
+import com.wjd.structure.tree.indexheap.IndexHeap;
+import com.wjd.structure.tree.indexheap.IndexHeapImpl;
 import com.wjd.util.ByteUtil;
 
 import java.io.*;
