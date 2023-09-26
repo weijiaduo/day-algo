@@ -1,6 +1,6 @@
-package com.wjd.serializer.tree.heap;
+package com.wjd.serializer.tree.leftistheap;
 
-import com.wjd.structure.tree.heap.LeftistHeapNode;
+import com.wjd.structure.tree.leftistheap.LeftistHeapNode;
 
 import java.util.ArrayList;
 import java.util.LinkedList;

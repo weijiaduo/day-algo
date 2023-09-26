@@ -1,4 +1,4 @@
-package com.wjd.structure.tree.heap;
+package com.wjd.structure.tree.leftistheap;
 
 /**
  * 左倾堆节点
