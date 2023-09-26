@@ -1,7 +1,7 @@
 package com.wjd.practice.learn.tree.heap;
 
-import com.wjd.structure.tree.heap.Heap;
-import com.wjd.structure.tree.heap.HeapImpl;
+import com.wjd.structure.heap.binary.Heap;
+import com.wjd.structure.heap.binary.HeapImpl;
 import com.wjd.util.ByteUtil;
 
 import java.io.ByteArrayInputStream;
