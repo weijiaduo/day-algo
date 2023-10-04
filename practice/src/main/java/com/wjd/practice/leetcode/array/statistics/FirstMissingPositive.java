@@ -1,15 +1,33 @@
 package com.wjd.practice.leetcode.array.statistics;
 
+import com.wjd.practice.leetcode.TestCase;
+
 /**
  * 41. 缺失的第一个整数
  * <p>
  * 给你一个未排序的整数数组 nums ，请你找出其中没有出现的最小的正整数。
  * <p>
- * 请你实现时间复杂度为 O(n) 并且只使用常数级别额外空间的解决方案。
+ * 请你实现时间复杂度为O(n) 并且只使用常数级别额外空间的解决方案。
+ * <p>
+ * 示例 1：
+ * <p>
+ * 输入：nums = [1,2,0]
+ * 输出：3
+ * <p>
+ * 示例 2：
  * <p>
  * 输入：nums = [3,4,-1,1]
  * 输出：2
  * <p>
+ * 示例 3：
+ * <p>
+ * 输入：nums = [7,8,9,11,12]
+ * 输出：1
+ * <p>
+ * 提示：
+ * <p>
+ * 1 <= nums.length <= 5 * 10⁵
+ * -2³¹ <= nums[i] <= 2³¹ - 1
  *
  * @since 2022/5/22
  */
@@ -23,6 +41,8 @@ public class FirstMissingPositive {
      * 执行耗时:1 ms,击败了97.45% 的Java用户
      * 内存消耗:57.9 MB,击败了10.69% 的Java用户
      */
+    @TestCase(input = {"[1,2,0]", "[3,4,-1,1]", "[7,8,9,11,12]"},
+            output = {"3", "2", "1"})
     public int firstMissingPositive(int[] nums) {
         int n = nums.length;
         for (int i = 0; i < n; i++) {
@@ -62,7 +82,9 @@ public class FirstMissingPositive {
      * <p>
      * 复杂度：时间 O(n) 空间 O(1)
      */
-    private int firstMissingPositive2(int[] nums) {
+    @TestCase(input = {"[1,2,0]", "[3,4,-1,1]", "[7,8,9,11,12]"},
+            output = {"3", "2", "1"})
+    public int firstMissingPositive2(int[] nums) {
         // 非法数值都改成超出正常范围的值
         int n = nums.length;
         for (int i = 0; i < n; ++i) {
@@ -87,4 +109,5 @@ public class FirstMissingPositive {
         }
         return n + 1;
     }
+
 }
