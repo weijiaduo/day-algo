@@ -1,5 +1,7 @@
 package com.wjd.practice.leetcode.array.sliding;
 
+import com.wjd.practice.leetcode.TestCase;
+
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
@@ -40,10 +42,6 @@ import java.util.List;
  */
 public class FindAnagrams {
 
-    public List<Integer> findAnagrams(String s, String p) {
-        return dynamicSlide(s, p);
-    }
-
     /**
      * 思路：滑动窗口
      * <p>
@@ -55,12 +53,10 @@ public class FindAnagrams {
      * <p>
      * 执行耗时:8 ms,击败了71.69% 的Java用户
      * 内存消耗:42.9 MB,击败了21.94% 的Java用户
-     *
-     * @param s the s
-     * @param p the p
-     * @return the list
      */
-    private List<Integer> fixedSlide(String s, String p) {
+    @TestCase(input = {"cbaebabacd", "abc", "abab", "ab"},
+            output = {"[0,6]", "[0,1,2]"})
+    public List<Integer> fixedSlide(String s, String p) {
         List<Integer> ret = new ArrayList<>();
         final char base = 'a';
         int n = s.length(), m = p.length();
@@ -99,12 +95,10 @@ public class FindAnagrams {
      * <p>
      * 执行耗时:5 ms,击败了96.15% 的Java用户
      * 内存消耗:42.8 MB,击败了31.09% 的Java用户
-     *
-     * @param s the s
-     * @param p the p
-     * @return the list
      */
-    private List<Integer> dynamicSlide(String s, String p) {
+    @TestCase(input = {"cbaebabacd", "abc", "abab", "ab"},
+            output = {"[0,6]", "[0,1,2]"})
+    public List<Integer> dynamicSlide(String s, String p) {
         List<Integer> ret = new ArrayList<>();
         int n = s.length(), m = p.length();
         int[] pc = new int[128];
