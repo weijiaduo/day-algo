@@ -1,5 +1,7 @@
 package com.wjd.practice.leetcode.matrix;
 
+import com.wjd.practice.leetcode.TestCase;
+
 import java.util.Deque;
 import java.util.LinkedList;
 
@@ -53,6 +55,8 @@ public class OrangesRotting {
      * 执行耗时:1 ms,击败了100.00% 的Java用户
      * 内存消耗:40 MB,击败了89.92% 的Java用户
      */
+    @TestCase(input = {"[[2,1,1],[1,1,0],[0,1,1]]", "[[2,1,1],[0,1,1],[1,0,1]]", "[[0,2]]"},
+            output = {"4", "-1", "0"})
     public int orangesRotting(int[][] grid) {
         // 统计新鲜和腐烂的数量
         int m = grid.length, n = grid[0].length;
