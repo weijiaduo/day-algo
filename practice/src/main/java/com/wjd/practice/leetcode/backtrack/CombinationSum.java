@@ -1,5 +1,7 @@
 package com.wjd.practice.leetcode.backtrack;
 
+import com.wjd.practice.leetcode.TestCase;
+
 import java.util.ArrayList;
 import java.util.List;
 
@@ -48,13 +50,6 @@ import java.util.List;
  */
 public class CombinationSum {
 
-    public List<List<Integer>> combinationSum(int[] candidates, int target) {
-        List<List<Integer>> result = new ArrayList<>();
-        List<Integer> list = new ArrayList<>();
-        backtrack(candidates, 0, target, result, list);
-        return result;
-    }
-
     /**
      * 思路：回溯，每个数字可以有 2 种选择：选择或不选择
      * <p>
@@ -65,6 +60,15 @@ public class CombinationSum {
      * 执行耗时:3 ms,击败了53.98% 的Java用户
      * 内存消耗:41.5 MB,击败了76.28% 的Java用户
      */
+    @TestCase(input = {"[2,3,6,7]", "7", "[2,3,5]", "8", "[2]", "1"},
+            output = {"[[2,2,3],[7]]", "[[2,2,2,2],[2,3,3],[3,5]]", "[]"})
+    public List<List<Integer>> backtrack(int[] candidates, int target) {
+        List<List<Integer>> result = new ArrayList<>();
+        List<Integer> list = new ArrayList<>();
+        backtrack(candidates, 0, target, result, list);
+        return result;
+    }
+
     private void backtrack(int[] candidates, int index, int target,
                            List<List<Integer>> ans, List<Integer> list) {
         if (index >= candidates.length || target < 0) {
