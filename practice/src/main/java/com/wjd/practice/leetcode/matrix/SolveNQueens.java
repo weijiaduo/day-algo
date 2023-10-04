@@ -1,5 +1,7 @@
 package com.wjd.practice.leetcode.matrix;
 
+import com.wjd.practice.leetcode.TestCase;
+
 import java.util.*;
 
 /**
@@ -32,12 +34,6 @@ import java.util.*;
  */
 public class SolveNQueens {
 
-    public List<List<String>> solveNQueens(int n) {
-        // return dfs(n);
-        // return iterate(n);
-        return backtrack(n);
-    }
-
     /**
      * 思路：回溯法，递归实现
      * <p>
@@ -46,7 +42,9 @@ public class SolveNQueens {
      * 执行耗时:3 ms,击败了55.83% 的Java用户
      * 内存消耗:42.8 MB,击败了28.68% 的Java用户
      */
-    private List<List<String>> dfs(int n) {
+    @TestCase(input = {"4", "1"},
+            output = {"[[\".Q..\",\"...Q\",\"Q...\",\"..Q.\"],[\"..Q.\",\"Q...\",\"...Q\",\".Q..\"]]", "[[\"Q\"]]"})
+    public List<List<String>> dfs(int n) {
         char[][] queues = new char[n][n];
         for (int i = 0; i < n; i++) {
             for (int j = 0; j < n; j++) {
@@ -111,7 +109,9 @@ public class SolveNQueens {
      * 执行耗时:5 ms,击败了25.47% 的Java用户
      * 内存消耗:41.6 MB,击败了57.05% 的Java用户
      */
-    private List<List<String>> iterate(int n) {
+    @TestCase(input = {"4", "1"},
+            output = {"[[\".Q..\",\"...Q\",\"Q...\",\"..Q.\"],[\"..Q.\",\"Q...\",\"...Q\",\".Q..\"]]", "[[\"Q\"]]"})
+    public List<List<String>> iterate(int n) {
         List<List<String>> ans = new ArrayList<>();
         int[] indexes = new int[n];
         int k = 0;
@@ -170,7 +170,9 @@ public class SolveNQueens {
      * 执行耗时:4 ms,击败了42.88% 的Java用户
      * 内存消耗:42.8 MB,击败了32.98% 的Java用户
      */
-    private List<List<String>> backtrack(int n) {
+    @TestCase(input = {"4", "1"},
+            output = {"[[\".Q..\",\"...Q\",\"Q...\",\"..Q.\"],[\"..Q.\",\"Q...\",\"...Q\",\".Q..\"]]", "[[\"Q\"]]"})
+    public List<List<String>> backtrack(int n) {
         int[] queens = new int[n];
         Arrays.fill(queens, -1);
         List<List<String>> ans = new ArrayList<>();
