@@ -1,5 +1,7 @@
 package com.wjd.practice.leetcode.array.binary;
 
+import com.wjd.practice.leetcode.TestCase;
+
 /**
  * 4. 寻找两个正序数组的中位数
  * <p>
@@ -35,11 +37,6 @@ package com.wjd.practice.leetcode.array.binary;
  */
 public class FindMedianSortedArrays {
 
-    public double findMedianSortedArrays(int[] nums1, int[] nums2) {
-        // return binary(nums1, nums2);
-        return slice(nums1, nums2);
-    }
-
     /**
      * 官方题解
      * <p>
@@ -62,6 +59,8 @@ public class FindMedianSortedArrays {
      * 执行耗时:1 ms,击败了100.00% 的Java用户
      * 内存消耗:43.6 MB,击败了17.33% 的Java用户
      */
+    @TestCase(input = {"[1,3]", "[2]", "[1,2]", "[3,4]"},
+            output = {"2.00000", "2.50000"})
     private double binary(int[] nums1, int[] nums2) {
         int m = nums1.length, n = nums2.length;
         if ((m + n) % 2 == 0) {
@@ -144,6 +143,8 @@ public class FindMedianSortedArrays {
      * 执行耗时:2 ms,击败了33.07% 的Java用户
      * 内存消耗:43.4 MB,击败了33.50% 的Java用户
      */
+    @TestCase(input = {"[1,3]", "[2]", "[1,2]", "[3,4]"},
+            output = {"2.00000", "2.50000"})
     private double slice(int[] nums1, int[] nums2) {
         int m = nums1.length, n = nums2.length;
         if (m > n) {
