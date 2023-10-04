@@ -150,6 +150,10 @@ public class LCRunner {
             boolean acc = method.canAccess(instance);
             method.setAccessible(true);
             Object actual = method.invoke(instance, args);
+            if (method.getReturnType().equals(Void.TYPE)) {
+                // 如果没有返回值，默认输出第一个入参
+                actual = args[0];
+            }
             method.setAccessible(acc);
 
             // 打印输出
