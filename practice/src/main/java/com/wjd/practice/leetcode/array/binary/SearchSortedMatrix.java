@@ -1,5 +1,7 @@
 package com.wjd.practice.leetcode.array.binary;
 
+import com.wjd.practice.leetcode.TestCase;
+
 /**
  * 74. 搜索矩阵
  * <p>
@@ -32,10 +34,6 @@ package com.wjd.practice.leetcode.array.binary;
  */
 public class SearchSortedMatrix {
 
-    public boolean searchMatrix(int[][] matrix, int target) {
-        return searchArray(matrix, target);
-    }
-
     /**
      * 思路：二维二分查找法，先做行二分，再做列二分
      * <p>
@@ -44,6 +42,9 @@ public class SearchSortedMatrix {
      * 执行耗时:0 ms,击败了100.00% 的Java用户
      * 内存消耗:40.9 MB,击败了65.12% 的Java用户
      */
+    @TestCase(input = {"[[1,3,5,7],[10,11,16,20],[23,30,34,60]]", "3",
+            "[[1,3,5,7],[10,11,16,20],[23,30,34,60]]", "13"},
+            output = {"true", "false"})
     public boolean searchRowCol(int[][] matrix, int target) {
         if (matrix.length == 0 || matrix[0].length == 0) {
             return false;
@@ -90,6 +91,9 @@ public class SearchSortedMatrix {
      * 执行耗时:0 ms,击败了100.00% 的Java用户
      * 内存消耗:40.9 MB,击败了77.84% 的Java用户
      */
+    @TestCase(input = {"[[1,3,5,7],[10,11,16,20],[23,30,34,60]]", "3",
+            "[[1,3,5,7],[10,11,16,20],[23,30,34,60]]", "13"},
+            output = {"true", "false"})
     public boolean searchArray(int[][] matrix, int target) {
         if (matrix.length == 0 || matrix[0].length == 0) {
             return false;
