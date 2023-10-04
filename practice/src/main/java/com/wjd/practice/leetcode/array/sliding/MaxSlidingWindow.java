@@ -1,5 +1,7 @@
 package com.wjd.practice.leetcode.array.sliding;
 
+import com.wjd.practice.leetcode.TestCase;
+
 import java.util.ArrayDeque;
 import java.util.Deque;
 import java.util.PriorityQueue;
@@ -45,10 +47,6 @@ import java.util.PriorityQueue;
  */
 public class MaxSlidingWindow {
 
-    public int[] maxSlidingWindow(int[] nums, int k) {
-        return stack(nums, k);
-    }
-
     /**
      * 思路：使用最大值堆记录数组索引，滑动的时候更新堆
      * <p>
@@ -61,6 +59,8 @@ public class MaxSlidingWindow {
      * 行耗时:85 ms,击败了17.88% 的Java用户
      * 内存消耗:58.4 MB,击败了40.80% 的Java用户
      */
+    @TestCase(input = {"[1,3,-1,-3,5,3,6,7]", "3"},
+            output = {"[3,3,5,5,6,7]"})
     private int[] heap(int[] nums, int k) {
         int n = nums.length;
         int m = n - k + 1;
@@ -102,7 +102,9 @@ public class MaxSlidingWindow {
      * 执行耗时:30 ms,击败了65.75% 的Java用户
      * 内存消耗:59.1 MB,击败了35.28% 的Java用户
      */
-    private int[] stack(int[] nums, int k) {
+    @TestCase(input = {"[1,3,-1,-3,5,3,6,7]", "3"},
+            output = {"[3,3,5,5,6,7]"})
+    public int[] stack(int[] nums, int k) {
         int n = nums.length;
         int m = n - k + 1;
         int[] ret = new int[m];
