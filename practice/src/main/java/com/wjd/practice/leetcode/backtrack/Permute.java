@@ -1,5 +1,7 @@
 package com.wjd.practice.leetcode.backtrack;
 
+import com.wjd.practice.leetcode.TestCase;
+
 import java.util.ArrayList;
 import java.util.List;
 
@@ -33,24 +35,26 @@ import java.util.List;
  */
 public class Permute {
 
-    public List<List<Integer>> permute(int[] nums) {
-        List<List<Integer>> ans = new ArrayList<>();
-        backtrack(nums, 0, ans);
-        return ans;
-    }
-
     /**
-     * 递归法
-     * <p>
-     * 思路：数字不重复，所以直接递归遍历，直接按照全排列的定义计算
+     * 思路：回溯，数字不重复，所以直接递归遍历，直接按照全排列的定义计算
      * 第1个位置，有n种情况
      * 第2个位置，有n-1种情况
      * ......
      * 第n个位置，有1种情况
      * <p>
+     * 复杂度：时间 O(n!) 空间 O(n)
+     * <p>
      * 执行耗时:0 ms,击败了100.00% 的Java用户
      * 内存消耗:41.5 MB,击败了52.44% 的Java用户
      */
+    @TestCase(input = {"[1,2,3]", "[0,1]", "[1]"},
+            output = {"[[1,2,3],[1,3,2],[2,1,3],[2,3,1],[3,1,2],[3,2,1]]", "[[0,1],[1,0]]", "[[1]]"})
+    public List<List<Integer>> backtrack(int[] nums) {
+        List<List<Integer>> ans = new ArrayList<>();
+        backtrack(nums, 0, ans);
+        return ans;
+    }
+
     private void backtrack(int[] nums, int index, List<List<Integer>> ans) {
         if (index == nums.length - 1) {
             List<Integer> path = new ArrayList<>(nums.length);
@@ -69,4 +73,5 @@ public class Permute {
             nums[index] = temp;
         }
     }
+
 }
