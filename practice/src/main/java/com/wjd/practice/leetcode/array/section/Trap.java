@@ -1,5 +1,7 @@
 package com.wjd.practice.leetcode.array.section;
 
+import com.wjd.practice.leetcode.TestCase;
+
 import java.util.Deque;
 import java.util.LinkedList;
 
@@ -29,10 +31,6 @@ import java.util.LinkedList;
  */
 public class Trap {
 
-    public int trap(int[] height) {
-        return doublePoint(height);
-    }
-
     /**
      * 官方解答
      * <p>
@@ -45,7 +43,9 @@ public class Trap {
      * 执行耗时:1 ms,击败了79.41% 的Java用户
      * 内存消耗:43 MB,击败了24.83% 的Java用户
      */
-    private int dynamic(int[] height) {
+    @TestCase(input = {"[0,1,0,2,1,0,1,3,2,1,2,1]", "[4,2,0,3,2,5]"},
+            output = {"6", "9"})
+    public int dynamic(int[] height) {
         int n = height.length;
 
         // leftMax[i] 表示 i 左边柱子的最大高度
@@ -84,7 +84,9 @@ public class Trap {
      * 执行耗时:2 ms,击败了41.27% 的Java用户
      * 内存消耗:44.1 MB,击败了5.00% 的Java用户
      */
-    private int singleStack(int[] height) {
+    @TestCase(input = {"[0,1,0,2,1,0,1,3,2,1,2,1]", "[4,2,0,3,2,5]"},
+            output = {"6", "9"})
+    public int singleStack(int[] height) {
         int area = 0;
         Deque<Integer> minStack = new LinkedList<>();
         int n = height.length;
@@ -139,7 +141,9 @@ public class Trap {
      * 执行耗时:0 ms,击败了100.00% 的Java用户
      * 内存消耗:43.4 MB,击败了12.91% 的Java用户
      */
-    private int doublePoint(int[] height) {
+    @TestCase(input = {"[0,1,0,2,1,0,1,3,2,1,2,1]", "[4,2,0,3,2,5]"},
+            output = {"6", "9"})
+    public int doublePoint(int[] height) {
         int area = 0;
         int n = height.length;
         int leftMax = 0, rightMax = 0;
@@ -164,12 +168,15 @@ public class Trap {
 
     /**
      * 思路：收缩双指针法
-     *
+     * <p>
+     * 复杂度：时间 O(n) 空间 O(1)
      * <p>
      * 执行耗时:0 ms,击败了100.00% 的Java用户
      * 内存消耗:42.2 MB,击败了22.59% 的Java用户
      */
-    private int doublePoint1(int[] height) {
+    @TestCase(input = {"[0,1,0,2,1,0,1,3,2,1,2,1]", "[4,2,0,3,2,5]"},
+            output = {"6", "9"})
+    public int doublePoint1(int[] height) {
         int area = 0;
         int lp = 0, rp = height.length - 1;
         while (lp < rp) {
