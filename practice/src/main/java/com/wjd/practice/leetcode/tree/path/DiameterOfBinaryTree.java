@@ -1,5 +1,6 @@
 package com.wjd.practice.leetcode.tree.path;
 
+import com.wjd.practice.leetcode.TestCase;
 import com.wjd.structure.tree.binary.TreeNode;
 
 /**
@@ -32,10 +33,6 @@ import com.wjd.structure.tree.binary.TreeNode;
  */
 public class DiameterOfBinaryTree {
 
-    public int diameterOfBinaryTree(TreeNode root) {
-        return dfs(root)[1];
-    }
-
     /**
      * 思路：递归，先拿到子树的最大高度和最长路径，然后判断根节点的高度和最长路径
      * <p>
@@ -50,8 +47,15 @@ public class DiameterOfBinaryTree {
      * 执行耗时:0 ms,击败了100.00% 的Java用户
      * 内存消耗:41.9 MB,击败了5.10% 的Java用户
      */
+    @TestCase(input = {"[1,2,3,4,5]", "[1,2]"},
+            output = {"3", "1"})
+    public int diameterOfBinaryTree(TreeNode root) {
+        return dfs(root)[1];
+    }
+
     private int[] dfs(TreeNode root) {
         if (root == null) {
+            // [最大高度, 最长路径]
             return new int[]{0, 0};
         }
         int[] l = dfs(root.left);
