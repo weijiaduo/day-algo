@@ -1,5 +1,6 @@
 package com.wjd.practice.leetcode.list.transform;
 
+import com.wjd.practice.leetcode.TestCase;
 import com.wjd.practice.leetcode.structure.ListNode;
 
 import java.util.Deque;
@@ -38,12 +39,6 @@ import java.util.LinkedList;
  */
 public class RemoveNthFromEnd {
 
-    public ListNode removeNthFromEnd(ListNode head, int n) {
-        // return offset(head, n);
-        return stack(head, n);
-        // return doublePoint(head, n);
-    }
-
     /**
      * 官方题解
      * <p>
@@ -54,7 +49,9 @@ public class RemoveNthFromEnd {
      * 执行耗时:0 ms,击败了100.00% 的Java用户
      * 内存消耗:39.8 MB,击败了12.56% 的Java用户
      */
-    private ListNode offset(ListNode head, int n) {
+    @TestCase(input = {"[1,2,3,4,5]", "2", "[1]", "1", "[1,2]", "1"},
+            output = {"[1,2,3,5]", "[]", "[1]"})
+    public ListNode offset(ListNode head, int n) {
         if (head == null || n <= 0) {
             return head;
         }
@@ -95,7 +92,9 @@ public class RemoveNthFromEnd {
      * 执行耗时:1 ms,击败了4.95% 的Java用户
      * 内存消耗:39.6 MB,击败了47.09% 的Java用户
      */
-    private ListNode stack(ListNode head, int n) {
+    @TestCase(input = {"[1,2,3,4,5]", "2", "[1]", "1", "[1,2]", "1"},
+            output = {"[1,2,3,5]", "[]", "[1]"})
+    public ListNode stack(ListNode head, int n) {
         if (head == null || n <= 0) {
             return head;
         }
@@ -132,7 +131,9 @@ public class RemoveNthFromEnd {
      * 执行耗时:0 ms,击败了100.00% 的Java用户
      * 内存消耗:39.7 MB,击败了19.37% 的Java用户
      */
-    private ListNode doublePoint(ListNode head, int n) {
+    @TestCase(input = {"[1,2,3,4,5]", "2", "[1]", "1", "[1,2]", "1"},
+            output = {"[1,2,3,5]", "[]", "[1]"})
+    public ListNode doublePoint(ListNode head, int n) {
         if (head == null || n <= 0) {
             return head;
         }
