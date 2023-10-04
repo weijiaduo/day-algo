@@ -1,5 +1,6 @@
 package com.wjd.practice.leetcode.tree.path;
 
+import com.wjd.practice.leetcode.TestCase;
 import com.wjd.structure.tree.binary.TreeNode;
 
 import java.util.HashMap;
@@ -35,15 +36,6 @@ import java.util.Map;
  */
 public class PathSum3 {
 
-    public int pathSum(TreeNode root, int targetSum) {
-        // return dfs(root, targetSum);
-        return prefix(root, targetSum);
-    }
-
-    private int dfs(TreeNode root, int targetSum) {
-        return dfs(root, targetSum, false);
-    }
-
     /**
      * 思路：递归，以每个节点为起始节点，往下遍历所有子节点，寻找目标值
      * <p>
@@ -51,6 +43,16 @@ public class PathSum3 {
      * <p>
      * 执行耗时:37 ms,击败了10.16% 的Java用户
      * 内存消耗:41.4 MB,击败了46.85% 的Java用户
+     */
+    @TestCase(input = {"[10,5,-3,3,2,null,11,3,-2,null,1]", "8",
+            "[5,4,8,11,null,13,4,7,2,null,null,5,1]", "22"},
+            output = {"3", "3"})
+    public int dfs(TreeNode root, int targetSum) {
+        return dfs(root, targetSum, false);
+    }
+
+    /**
+     * 递归，以每个节点为起始节点，往下遍历所有子节点，寻找目标值
      *
      * @param root    根节点
      * @param target  目标值，用 int 类型的话，可能会溢出
@@ -83,12 +85,6 @@ public class PathSum3 {
     // 前缀和频率
     Map<Long, Integer> map = new HashMap<>();
 
-    private int prefix(TreeNode root, int targetSum) {
-        map = new HashMap<>();
-        map.put(0L, 1);
-        return prefix(root, targetSum, 0);
-    }
-
     /**
      * 官方题解
      * <p>
@@ -101,6 +97,15 @@ public class PathSum3 {
      * 执行耗时:3 ms,击败了79.34% 的Java用户
      * 内存消耗:42.3 MB,击败了8.42% 的Java用户
      */
+    @TestCase(input = {"[10,5,-3,3,2,null,11,3,-2,null,1]", "8",
+            "[5,4,8,11,null,13,4,7,2,null,null,5,1]", "22"},
+            output = {"3", "3"})
+    public int prefix(TreeNode root, int targetSum) {
+        map = new HashMap<>();
+        map.put(0L, 1);
+        return prefix(root, targetSum, 0);
+    }
+
     private int prefix(TreeNode root, int targetSum, long sum) {
         if (root == null) {
             return 0;
