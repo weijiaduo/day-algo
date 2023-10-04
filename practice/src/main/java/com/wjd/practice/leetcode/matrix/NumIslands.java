@@ -1,5 +1,7 @@
 package com.wjd.practice.leetcode.matrix;
 
+import com.wjd.practice.leetcode.TestCase;
+
 /**
  * 200. 岛屿数量
  * <p>
@@ -9,6 +11,8 @@ package com.wjd.practice.leetcode.matrix;
  * <p>
  * 此外，你可以假设该网格的四条边均被水包围。
  * <p>
+ * 示例 1：
+ * <p>
  * 输入：grid = [
  * ["1","1","1","1","0"],
  * ["1","1","0","1","0"],
@@ -16,16 +20,28 @@ package com.wjd.practice.leetcode.matrix;
  * ["0","0","0","0","0"]
  * ]
  * 输出：1
+ * <p>
+ * 示例 2：
+ * <p>
+ * 输入：grid = [
+ * ["1","1","0","0","0"],
+ * ["1","1","0","0","0"],
+ * ["0","0","1","0","0"],
+ * ["0","0","0","1","1"]
+ * ]
+ * 输出：3
+ * <p>
+ * 提示：
+ * <p>
+ * m == grid.length
+ * n == grid[i].length
+ * 1 <= m, n <= 300
+ * grid[i][j] 的值为 '0' 或 '1'
  *
  * @author weijiaduo
  * @since 2022/9/28
  */
 public class NumIslands {
-
-    public int numIslands(char[][] grid) {
-        // return dfsNumIslands(grid);
-        return unionFind(grid);
-    }
 
     /**
      * 思路：深度遍历，把属于同一个岛屿的都遍历过一遍
@@ -35,7 +51,10 @@ public class NumIslands {
      * 执行耗时:2 ms,击败了100.00% 的Java用户
      * 内存消耗:50.1 MB,击败了18.11% 的Java用户
      */
-    private int dfsNumIslands(char[][] grid) {
+    @TestCase(input = {"[['1','1','1','1','0'],['1','1','0','1','0'],['1','1','0','0','0'],['0','0','0','0','0']]"
+            , "[['1','1','0','0','0'],['1','1','0','0','0'],['0','0','1','0','0'],['0','0','0','1','1']]"},
+            output = {"1", "3"})
+    public int dfsNumIslands(char[][] grid) {
         if (grid.length == 0) {
             return 0;
         }
@@ -57,7 +76,8 @@ public class NumIslands {
      * 深度优先遍历
      */
     private void dfs(char[][] grid, int i, int j) {
-        if (!inArea(grid, i, j)) {
+        if (i < 0 || i >= grid.length
+                || j < 0 || j >= grid[0].length) {
             return;
         }
 
@@ -75,20 +95,15 @@ public class NumIslands {
     }
 
     /**
-     * 是否在范围内
-     */
-    private boolean inArea(char[][] grid, int i, int j) {
-        return i >= 0 && i < grid.length
-                && j >= 0 && j < grid[0].length;
-    }
-
-    /**
      * 思路：并查集，不同岛屿属于不同集合
      * <p>
      * 执行耗时:8 ms,击败了6.58% 的Java用户
      * 内存消耗:49.9 MB,击败了41.08% 的Java用户
      */
-    private int unionFind(char[][] grid) {
+    @TestCase(input = {"[['1','1','1','1','0'],['1','1','0','1','0'],['1','1','0','0','0'],['0','0','0','0','0']]"
+            , "[['1','1','0','0','0'],['1','1','0','0','0'],['0','0','1','0','0'],['0','0','0','1','1']]"},
+            output = {"1", "3"})
+    public int unionFind(char[][] grid) {
         if (grid.length == 0) {
             return 0;
         }
