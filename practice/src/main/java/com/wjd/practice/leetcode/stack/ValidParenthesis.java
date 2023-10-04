@@ -1,5 +1,7 @@
 package com.wjd.practice.leetcode.stack;
 
+import com.wjd.practice.leetcode.TestCase;
+
 import java.util.ArrayDeque;
 import java.util.Deque;
 
@@ -11,11 +13,28 @@ import java.util.Deque;
  * 有效字符串需满足：
  * <p>
  * 左括号必须用相同类型的右括号闭合。
- * <p>
  * 左括号必须以正确的顺序闭合。
+ * 每个右括号都有一个对应的相同类型的左括号。
+ * <p>
+ * 示例 1：
+ * <p>
+ * 输入：s = "()"
+ * 输出：true
+ * <p>
+ * 示例 2：
  * <p>
  * 输入：s = "()[]{}"
  * 输出：true
+ * <p>
+ * 示例 3：
+ * <p>
+ * 输入：s = "(]"
+ * 输出：false
+ * <p>
+ * 提示：
+ * <p>
+ * 1 <= s.length <= 10⁴
+ * s 仅由括号 '()[]{}' 组成
  *
  * @author weijiaduo
  * @since 2022/8/24
@@ -30,6 +49,8 @@ public class ValidParenthesis {
      * 执行耗时:1 ms,击败了98.88% 的Java用户
      * 内存消耗:39.5 MB,击败了57.00% 的Java用户
      */
+    @TestCase(input = {"()", "()[]{}", "(]"},
+            output = {"true", "true", "false"})
     public boolean isValid(String s) {
         Deque<Character> stack = new ArrayDeque<>();
         int n = s.length();
