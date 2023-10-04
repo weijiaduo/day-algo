@@ -1,9 +1,13 @@
 package com.wjd.practice.leetcode.array.transform;
 
+import com.wjd.practice.leetcode.TestCase;
+
 /**
  * 189. 轮转数组
  * <p>
- * 给你一个数组，将数组中的元素向右轮转 k 个位置，其中 k 是非负数。
+ * 给定一个整数数组 nums，将数组中的元素向右轮转 k 个位置，其中 k 是非负数。
+ * <p>
+ * 示例 1:
  * <p>
  * 输入: nums = [1,2,3,4,5,6,7], k = 3
  * 输出: [5,6,7,1,2,3,4]
@@ -11,18 +15,25 @@ package com.wjd.practice.leetcode.array.transform;
  * 向右轮转 1 步: [7,1,2,3,4,5,6]
  * 向右轮转 2 步: [6,7,1,2,3,4,5]
  * 向右轮转 3 步: [5,6,7,1,2,3,4]
+ * <p>
+ * 示例 2:
+ * <p>
+ * 输入：nums = [-1,-100,3,99], k = 2
+ * 输出：[3,99,-1,-100]
+ * 解释:
+ * 向右轮转 1 步: [99,-1,-100,3]
+ * 向右轮转 2 步: [3,99,-1,-100]
+ * <p>
+ * 提示：
+ * <p>
+ * 1 <= nums.length <= 10⁵
+ * -2³¹ <= nums[i] <= 2³¹ - 1
+ * 0 <= k <= 10⁵
  *
  * @author weijiaduo
  * @since 2022/7/8
  */
 public class RotateArray {
-
-    public void rotate(int[] nums, int k) {
-        // stepRotate(nums, k);
-        // copyRotate(nums, k);
-        // reverseRotate(nums, k);
-        circleRotate(nums, k);
-    }
 
     /**
      * 思路：一步一轮转，直到转完k步
@@ -35,7 +46,9 @@ public class RotateArray {
      * @param nums 数组
      * @param k    轮转位置
      */
-    private void stepRotate(int[] nums, int k) {
+    @TestCase(input = {"[1,2,3,4,5,6,7]", "3", "[-1,-100,3,99]", "2"},
+            output = {"[5,6,7,1,2,3,4]", "[3,99,-1,-100]"})
+    public void stepRotate(int[] nums, int k) {
         int n = nums.length;
         if (n == 0) {
             return;
@@ -62,7 +75,9 @@ public class RotateArray {
      * @param nums 数组
      * @param k    轮转位置
      */
-    private void copyRotate(int[] nums, int k) {
+    @TestCase(input = {"[1,2,3,4,5,6,7]", "3", "[-1,-100,3,99]", "2"},
+            output = {"[5,6,7,1,2,3,4]", "[3,99,-1,-100]"})
+    public void copyRotate(int[] nums, int k) {
         int n = nums.length;
         if (n == 0) {
             return;
@@ -88,7 +103,9 @@ public class RotateArray {
      * @param nums 数组
      * @param k    轮转位置
      */
-    private void reverseRotate(int[] nums, int k) {
+    @TestCase(input = {"[1,2,3,4,5,6,7]", "3", "[-1,-100,3,99]", "2"},
+            output = {"[5,6,7,1,2,3,4]", "[3,99,-1,-100]"})
+    public void reverseRotate(int[] nums, int k) {
         int n = nums.length;
         if (n == 0) {
             return;
@@ -153,7 +170,9 @@ public class RotateArray {
      * @param nums 数组
      * @param k    移动位置
      */
-    private void circleRotate(int[] nums, int k) {
+    @TestCase(input = {"[1,2,3,4,5,6,7]", "3", "[-1,-100,3,99]", "2"},
+            output = {"[5,6,7,1,2,3,4]", "[3,99,-1,-100]"})
+    public void circleRotate(int[] nums, int k) {
         int n = nums.length;
         if (n == 0) {
             return;
