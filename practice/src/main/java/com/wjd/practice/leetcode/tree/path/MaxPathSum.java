@@ -1,11 +1,12 @@
 package com.wjd.practice.leetcode.tree.path;
 
+import com.wjd.practice.leetcode.TestCase;
 import com.wjd.structure.tree.binary.TreeNode;
 
 /**
  * 124. 二叉树中的最大路径和
  * <p>
- * 路径 被定义为一条从树中任意节点出发，沿父节点-子节点连接，达到任意节点的序列。
+ * 二叉树中的 路径 被定义为一条节点序列，序列中每对相邻节点之间都存在一条边。
  * <p>
  * 同一个节点在一条路径序列中 至多出现一次 。
  * <p>
@@ -15,19 +16,27 @@ import com.wjd.structure.tree.binary.TreeNode;
  * <p>
  * 给你一个二叉树的根节点 root ，返回其 最大路径和 。
  * <p>
+ * 示例 1：
+ * <p>
  * 输入：root = [1,2,3]
  * 输出：6
  * 解释：最优路径是 2 -> 1 -> 3 ，路径和为 2 + 1 + 3 = 6
+ * <p>
+ * 示例 2：
+ * <p>
+ * 输入：root = [-10,9,20,null,null,15,7]
+ * 输出：42
+ * 解释：最优路径是 15 -> 20 -> 7 ，路径和为 15 + 20 + 7 = 42
+ * <p>
+ * 提示：
+ * <p>
+ * 树中节点数目范围是 [1, 3 * 10⁴]
+ * -1000 <= Node.val <= 1000
  *
  * @author weijiaduo
  * @since 2022/6/21
  */
 public class MaxPathSum {
-
-    public int maxPathSum(TreeNode root) {
-        int[] result = dfs2(root);
-        return result[0] > 0 ? result[0] : result[2];
-    }
 
     /**
      * 思路：路径分为3种情况：1、路径经过根节点 2、路径只在左子树 3、路径只在右子树
@@ -39,14 +48,24 @@ public class MaxPathSum {
      * 执行耗时:1 ms,击败了23.03% 的Java用户
      * 内存消耗:42.9 MB,击败了58.30% 的Java用户
      */
-    private int[] dfs2(TreeNode root) {
+    @TestCase(input = {"[1,2,3]", "[-10,9,20,null,null,15,7]"},
+            output = {"6", "42"})
+    public int dfs(TreeNode root) {
+        int[] result = dfs0(root);
+        return result[0] > 0 ? result[0] : result[2];
+    }
+
+    private int[] dfs0(TreeNode root) {
+        // [0] 当前子树内所有路径的最大值
+        // [1] 从当前节点出发的路径最大值
+        // [2] 所有节点中的最大值
         int[] max = {0, 0, Integer.MIN_VALUE};
         if (root == null) {
             return max;
         }
 
-        int[] l = dfs2(root.left);
-        int[] r = dfs2(root.right);
+        int[] l = dfs0(root.left);
+        int[] r = dfs0(root.right);
 
         // 1、最大值路径经过根节点
         // 2、最大值路径在左子树
@@ -72,21 +91,28 @@ public class MaxPathSum {
      * 执行耗时:0 ms,击败了100.00% 的Java用户
      * 内存消耗:42.8 MB,击败了61.73% 的Java用户
      */
-    public int maxGain(TreeNode node) {
+    @TestCase(input = {"[1,2,3]", "[-10,9,20,null,null,15,7]"},
+            output = {"6", "42"})
+    public int maxGain(TreeNode root) {
+        maxGain0(root);
+        return maxSum;
+    }
+
+    private int maxGain0(TreeNode node) {
         if (node == null) {
             return 0;
         }
 
         // 递归计算左右子节点的最大贡献值
         // 只有在最大贡献值大于 0 时，才会选取对应子节点
-        int leftGain = Math.max(maxGain(node.left), 0);
-        int rightGain = Math.max(maxGain(node.right), 0);
+        int leftGain = Math.max(maxGain0(node.left), 0);
+        int rightGain = Math.max(maxGain0(node.right), 0);
 
         // 节点的最大路径和取决于该节点的值与该节点的左右子节点的最大贡献值
-        int priceNewpath = node.val + leftGain + rightGain;
+        int priceNewPath = node.val + leftGain + rightGain;
 
         // 更新答案
-        maxSum = Math.max(maxSum, priceNewpath);
+        maxSum = Math.max(maxSum, priceNewPath);
 
         // 返回节点的最大贡献值
         return node.val + Math.max(leftGain, rightGain);
