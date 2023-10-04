@@ -1,5 +1,7 @@
 package com.wjd.practice.leetcode.array.binary;
 
+import com.wjd.practice.leetcode.TestCase;
+
 /**
  * 153. 寻找旋转排序数组中的最小值
  * <p>
@@ -60,6 +62,8 @@ public class FindMin {
      * 执行耗时:0 ms,击败了100.00% 的Java用户
      * 内存消耗:41.4 MB,击败了5.08% 的Java用户
      */
+    @TestCase(input = {"[3,4,5,1,2]", "[4,5,6,7,0,1,2]", "[11,13,15,17]"},
+            output = {"1", "0", "11"})
     public int findMin(int[] nums) {
         if (nums.length == 0) {
             return 0;
