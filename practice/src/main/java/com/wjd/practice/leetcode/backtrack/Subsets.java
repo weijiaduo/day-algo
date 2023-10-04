@@ -1,5 +1,7 @@
 package com.wjd.practice.leetcode.backtrack;
 
+import com.wjd.practice.leetcode.TestCase;
+
 import java.util.ArrayList;
 import java.util.List;
 
@@ -30,15 +32,6 @@ import java.util.List;
  */
 public class Subsets {
 
-    public List<List<Integer>> subsets(int[] nums) {
-        List<List<Integer>> ans = new ArrayList<>();
-        // for (int i = 0; i <= nums.length; i++) {
-        //     dfs(nums, 0, i, new ArrayList<>(), ans);
-        // }
-        backtrack(nums, 0, new ArrayList<>(), ans);
-        return ans;
-    }
-
     /**
      * 思路：遍历每种长度的子集，每个子集用回溯法找出所有排列
      * <p>
@@ -47,6 +40,16 @@ public class Subsets {
      * 执行耗时:0 ms,击败了100.00% 的Java用户
      * 内存消耗:41.8 MB,击败了7.74% 的Java用户
      */
+    @TestCase(input = {"[1,2,3]", "[0]"},
+            output = {"[[],[1],[2],[1,2],[3],[1,3],[2,3],[1,2,3]]", "[[],[0]]"})
+    public List<List<Integer>> dfs(int[] nums) {
+        List<List<Integer>> ans = new ArrayList<>();
+        for (int i = 0; i <= nums.length; i++) {
+            dfs(nums, 0, i, new ArrayList<>(), ans);
+        }
+        return ans;
+    }
+
     private void dfs(int[] nums, int i, int k, List<Integer> list, List<List<Integer>> ans) {
         if (k == list.size()) {
             ans.add(new ArrayList<>(list));
@@ -75,6 +78,14 @@ public class Subsets {
      * 执行耗时:0 ms,击败了100.00% 的Java用户
      * 内存消耗:41 MB,击败了70.77% 的Java用户
      */
+    @TestCase(input = {"[1,2,3]", "[0]"},
+            output = {"[[],[1],[2],[1,2],[3],[1,3],[2,3],[1,2,3]]", "[[],[0]]"})
+    public List<List<Integer>> backtrack(int[] nums) {
+        List<List<Integer>> ans = new ArrayList<>();
+        backtrack(nums, 0, new ArrayList<>(), ans);
+        return ans;
+    }
+
     private void backtrack(int[] nums, int i, List<Integer> list, List<List<Integer>> ans) {
         if (i == nums.length) {
             ans.add(new ArrayList<>(list));
