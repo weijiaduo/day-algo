@@ -1,5 +1,6 @@
 package com.wjd.practice.leetcode.tree.validate;
 
+import com.wjd.practice.leetcode.TestCase;
 import com.wjd.structure.tree.binary.TreeNode;
 
 /**
@@ -7,27 +8,34 @@ import com.wjd.structure.tree.binary.TreeNode;
  * <p>
  * 给你一个二叉树的根节点 root ，判断其是否是一个有效的二叉搜索树。
  * <p>
+ * 有效 二叉搜索树定义如下：
+ * <p>
  * 节点的左子树只包含 小于 当前节点的数。
- * <p>
  * 节点的右子树只包含 大于 当前节点的数。
- * <p>
  * 所有左子树和右子树自身必须也是二叉搜索树。
+ * <p>
+ * 示例 1：
  * <p>
  * 输入：root = [2,1,3]
  * 输出：true
+ * <p>
+ * 示例 2：
+ * <p>
+ * 输入：root = [5,1,4,null,null,3,6]
+ * 输出：false
+ * 解释：根节点的值是 5 ，但是右子节点的值是 4 。
+ * <p>
+ * 提示：
+ * <p>
+ * 树中节点数目范围在[1, 10⁴] 内
+ * -2³¹ <= Node.val <= 2³¹ - 1
  *
  * @since 2022/6/11
  */
 public class IsValidBST {
 
-    public boolean isValidBST(TreeNode root) {
-        return divide(root, null, null);
-    }
-
     /**
-     * 二分递归
-     * <p>
-     * 思路：把根节点的值作为左右子树的边界，只要左右子树不满足要求，就是非法的
+     * 思路：二分递归，把根节点的值作为左右子树的边界，只要左右子树不满足要求，就是非法的
      * <p>
      * 特别需要注意边界值的判断 Integer.MAX_VALUE 和 Integer.MIN_VALUE
      * <p>
@@ -36,15 +44,21 @@ public class IsValidBST {
      * 执行耗时:0 ms,击败了100.00% 的Java用户
      * 内存消耗:41.3 MB,击败了6.16% 的Java用户
      */
-    private boolean divide(TreeNode root, Integer min, Integer max) {
+    @TestCase(input = {"[2,1,3]", "[5,1,4,null,null,3,6]"},
+            output = {"true", "false"})
+    public boolean dfs(TreeNode root) {
+        return dfs(root, null, null);
+    }
+
+    private boolean dfs(TreeNode root, Integer min, Integer max) {
         if (root == null) {
             return true;
         }
         if (min != null && root.val <= min || max != null && root.val >= max) {
             return false;
         }
-        return divide(root.left, min, root.val)
-                && divide(root.right, root.val, max);
+        return dfs(root.left, min, root.val)
+                && dfs(root.right, root.val, max);
     }
 
     TreeNode pre = null;
@@ -56,11 +70,10 @@ public class IsValidBST {
      * <p>
      * 执行用时：0 ms, 在所有 Java 提交中击败了 100.00% 的用户
      * 内存消耗：40.8 MB, 在所有 Java 提交中击败了 89.53% 的用户
-     *
-     * @param root 根节点
-     * @return 是否是二叉搜索树
      */
-    private boolean inorder(TreeNode root) {
+    @TestCase(input = {"[2,1,3]", "[5,1,4,null,null,3,6]"},
+            output = {"true", "false"})
+    public boolean inorder(TreeNode root) {
         if (root == null) {
             return true;
         }
