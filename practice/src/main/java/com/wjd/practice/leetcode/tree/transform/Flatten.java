@@ -1,5 +1,6 @@
 package com.wjd.practice.leetcode.tree.transform;
 
+import com.wjd.practice.leetcode.TestCase;
 import com.wjd.structure.tree.binary.TreeNode;
 
 /**
@@ -11,20 +12,29 @@ import com.wjd.structure.tree.binary.TreeNode;
  * <p>
  * 展开后的单链表应该与二叉树 先序遍历 顺序相同。
  * <p>
+ * 示例 1：
+ * <p>
  * 输入：root = [1,2,5,3,4,null,6]
  * 输出：[1,null,2,null,3,null,4,null,5,null,6]
+ * <p>
+ * 示例 2：
+ * <p>
+ * 输入：root = []
+ * 输出：[]
+ * <p>
+ * 示例 3：
+ * <p>
+ * 输入：root = [0]
+ * 输出：[0]
+ * <p>
+ * 提示：
+ * <p>
+ * 树中结点数在范围 [0, 2000] 内
+ * -100 <= Node.val <= 100
  *
  * @since 2022/6/19
  */
 public class Flatten {
-
-    public void flatten(TreeNode root) {
-        if (root == null) {
-            return;
-        }
-        dfs(root);
-        root.left = null;
-    }
 
     /**
      * 思路：递归构造链表，先把左子树构成链表，返回链头，再把右子树构造成链表，也是返回链头，然后把根-左链表-右链表连接起来即可
@@ -36,7 +46,17 @@ public class Flatten {
      * 执行耗时:0 ms,击败了100.00% 的Java用户
      * 内存消耗:41.1 MB,击败了33.04% 的Java用户
      */
-    private TreeNode dfs(TreeNode root) {
+    @TestCase(input = {"[1,2,5,3,4,null,6]", "[]", "[0]"},
+            output = {"[1,null,2,null,3,null,4,null,5,null,6]", "[]", "[0]"})
+    public void dfs(TreeNode root) {
+        if (root == null) {
+            return;
+        }
+        dfs0(root);
+        root.left = null;
+    }
+
+    private TreeNode dfs0(TreeNode root) {
         if (root == null) {
             return null;
         }
@@ -45,14 +65,14 @@ public class Flatten {
         TreeNode left = root.left, right = root.right;
         if (left != null) {
             // 左子树成链
-            tail.right = dfs(left);
+            tail.right = dfs0(left);
             temp = tail.right.left;
             tail.right.left = null;
             tail = temp;
         }
         if (right != null) {
             // 右子树成链
-            tail.right = dfs(right);
+            tail.right = dfs0(right);
             temp = tail.right.left;
             tail.right.left = null;
             tail = temp;
@@ -72,7 +92,9 @@ public class Flatten {
      * 执行耗时:0 ms,击败了100.00% 的Java用户
      * 内存消耗:40.1 MB,击败了77.62% 的Java用户
      */
-    private void iterate(TreeNode root) {
+    @TestCase(input = {"[1,2,5,3,4,null,6]", "[]", "[0]"},
+            output = {"[1,null,2,null,3,null,4,null,5,null,6]", "[]", "[0]"})
+    public void iterate(TreeNode root) {
         TreeNode cur = root;
         while (cur != null) {
             if (cur.left == null) {
