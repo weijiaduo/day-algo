@@ -1,5 +1,7 @@
 package com.wjd.practice.leetcode.array.sliding;
 
+import com.wjd.practice.leetcode.TestCase;
+
 import java.util.HashMap;
 import java.util.Map;
 
@@ -29,10 +31,6 @@ import java.util.Map;
  */
 public class SubarraySum {
 
-    public int subarraySum(int[] nums, int k) {
-        return prefix(nums, k);
-    }
-
     /**
      * 官方解答
      * <p>
@@ -43,7 +41,9 @@ public class SubarraySum {
      * 执行耗时:1688 ms,击败了21.46% 的Java用户
      * 内存消耗:43.8 MB,击败了87.76% 的Java用户
      */
-    private int brute(int[] nums, int k) {
+    @TestCase(input = {"[1,1,1]", "2", "[1,2,3]", "3"},
+            output = {"2", "2"})
+    public int brute(int[] nums, int k) {
         int cnt = 0;
         int n = nums.length;
         for (int l = 0; l < n; l++) {
@@ -74,7 +74,9 @@ public class SubarraySum {
      * 执行耗时:24 ms,击败了53.86% 的Java用户
      * 内存消耗:45.5 MB,击败了31.13% 的Java用户
      */
-    private int prefix(int[] nums, int k) {
+    @TestCase(input = {"[1,1,1]", "2", "[1,2,3]", "3"},
+            output = {"2", "2"})
+    public int prefix(int[] nums, int k) {
         int cnt = 0;
         Map<Integer, Integer> map = new HashMap<>();
         map.put(0, 1);
