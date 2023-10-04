@@ -1,5 +1,7 @@
 package com.wjd.practice.leetcode.backtrack;
 
+import com.wjd.practice.leetcode.TestCase;
+
 import java.util.ArrayList;
 import java.util.List;
 
@@ -46,11 +48,35 @@ public class LetterCombinations {
             {'w', 'x', 'y', 'z'}
     };
 
-    public List<String> letterCombinations(String digits) {
-        // return iterate(digits);
+    /**
+     * 思路：回溯法的递归实现
+     * <p>
+     * 复杂度：时间 O(3^n) 空间 O(n)
+     * <p>
+     * 执行耗时:0 ms,击败了100.00% 的Java用户
+     * 内存消耗:40.3 MB,击败了30.04% 的Java用户
+     */
+    @TestCase(input = {"23", "2"},
+            output = {"[\"ad\",\"ae\",\"af\",\"bd\",\"be\",\"bf\",\"cd\",\"ce\",\"cf\"]", "[\"a\",\"b\",\"c\"]"})
+    public List<String> backtrack(String digits) {
         List<String> ans = new ArrayList<>();
         backtrack(digits, 0, new StringBuilder(), ans);
         return ans;
+    }
+
+    private void backtrack(String digits, int i, StringBuilder sb, List<String> ans) {
+        if (i == digits.length()) {
+            if (sb.length() > 0) {
+                ans.add(sb.toString());
+            }
+            return;
+        }
+        char[] ds = characters[digits.charAt(i) - '0' - 1];
+        for (char c : ds) {
+            sb.append(c);
+            backtrack(digits, i + 1, sb, ans);
+            sb.deleteCharAt(sb.length() - 1);
+        }
     }
 
     /**
@@ -61,7 +87,9 @@ public class LetterCombinations {
      * 执行耗时:0 ms,击败了100.00% 的Java用户
      * 内存消耗:40 MB,击败了76.97% 的Java用户
      */
-    private List<String> iterate(String digits) {
+    @TestCase(input = {"23", "2"},
+            output = {"[\"ad\",\"ae\",\"af\",\"bd\",\"be\",\"bf\",\"cd\",\"ce\",\"cf\"]", "[\"a\",\"b\",\"c\"]"})
+    public List<String> iterate(String digits) {
         List<String> combinations = new ArrayList<>();
         int n = digits.length();
         if (n == 0) {
@@ -103,29 +131,6 @@ public class LetterCombinations {
             }
         }
         return combinations;
-    }
-
-    /**
-     * 思路：回溯法的递归实现
-     * <p>
-     * 复杂度：时间 O(3^n) 空间 O(n)
-     * <p>
-     * 执行耗时:0 ms,击败了100.00% 的Java用户
-     * 内存消耗:40.3 MB,击败了30.04% 的Java用户
-     */
-    private void backtrack(String digits, int i, StringBuilder sb, List<String> ans) {
-        if (i == digits.length()) {
-            if (sb.length() > 0) {
-                ans.add(sb.toString());
-            }
-            return;
-        }
-        char[] ds = characters[digits.charAt(i) - '0' - 1];
-        for (char c : ds) {
-            sb.append(c);
-            backtrack(digits, i + 1, sb, ans);
-            sb.deleteCharAt(sb.length() - 1);
-        }
     }
 
 }
