@@ -1,5 +1,7 @@
 package com.wjd.practice.leetcode.array.binary;
 
+import com.wjd.practice.leetcode.TestCase;
+
 /**
  * 34. 在排序数组中查找元素的第一个和最后一个位置
  * <p>
@@ -45,20 +47,22 @@ public class SearchRange {
      * 执行耗时:0 ms,击败了100.00% 的Java用户
      * 内存消耗:43.6 MB,击败了65.62% 的Java用户
      */
+    @TestCase(input = {"[5,7,7,8,8,10]", "8", "[5,7,7,8,8,10]", "6", "[]", "0"},
+            output = {"[3,4]", "[-1,-1]", "[-1,-1]"})
     public int[] searchRange(int[] nums, int target) {
         int n = nums.length;
-        int l = firstNotLessThan(nums, 0, n - 1, target);
+        int l = firstGreatEqual(nums, 0, n - 1, target);
         if (l == -1 || nums[l] != target) {
             return new int[]{-1, -1};
         }
-        int r = lastNotGreatThan(nums, l, n - 1, target);
+        int r = lastLessEqual(nums, l, n - 1, target);
         return new int[]{l, r};
     }
 
     /**
      * 第一个大于等于 target 的位置
      */
-    private int firstNotLessThan(int[] nums, int l, int r, int target) {
+    private int firstGreatEqual(int[] nums, int l, int r, int target) {
         while (l <= r) {
             int m = l + (r - l) / 2;
             if (nums[m] >= target) {
@@ -76,7 +80,7 @@ public class SearchRange {
     /**
      * 最后一个小于等于 target 的位置
      */
-    private int lastNotGreatThan(int[] nums, int l, int r, int target) {
+    private int lastLessEqual(int[] nums, int l, int r, int target) {
         while (l <= r) {
             int m = l + (r - l) / 2;
             if (nums[m] <= target) {
