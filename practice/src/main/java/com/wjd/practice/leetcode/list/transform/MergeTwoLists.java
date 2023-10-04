@@ -1,5 +1,6 @@
 package com.wjd.practice.leetcode.list.transform;
 
+import com.wjd.practice.leetcode.TestCase;
 import com.wjd.practice.leetcode.structure.ListNode;
 
 /**
@@ -33,11 +34,6 @@ import com.wjd.practice.leetcode.structure.ListNode;
  */
 public class MergeTwoLists {
 
-    public ListNode mergeTwoLists(ListNode list1, ListNode list2) {
-        // return iterate(list1, list2);
-        return recursive(list1, list2);
-    }
-
     /**
      * 思路：将两条链表按大小顺序重新插入一条新链表
      * <p>
@@ -46,7 +42,9 @@ public class MergeTwoLists {
      * 执行耗时:0 ms,击败了100.00% 的Java用户
      * 内存消耗:40.1 MB,击败了96.00% 的Java用户
      */
-    private ListNode iterate(ListNode list1, ListNode list2) {
+    @TestCase(input = {"[1,2,4]", "[1,3,4]", "[]", "[]", "[]", "[0]"},
+            output = {"[1,1,2,3,4,4]", "[]", "[0]"})
+    public ListNode iterate(ListNode list1, ListNode list2) {
         if (list1 == null) {
             return list2;
         }
@@ -82,7 +80,9 @@ public class MergeTwoLists {
      * 执行耗时:0 ms,击败了100.00% 的Java用户
      * 内存消耗:40.4 MB,击败了84.12% 的Java用户
      */
-    private ListNode recursive(ListNode list1, ListNode list2) {
+    @TestCase(input = {"[1,2,4]", "[1,3,4]", "[]", "[]", "[]", "[0]"},
+            output = {"[1,1,2,3,4,4]", "[]", "[0]"})
+    public ListNode recursive(ListNode list1, ListNode list2) {
         if (list1 == null) {
             return list2;
         }
