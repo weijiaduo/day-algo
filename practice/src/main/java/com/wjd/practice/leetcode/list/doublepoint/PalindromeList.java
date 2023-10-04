@@ -1,5 +1,6 @@
 package com.wjd.practice.leetcode.list.doublepoint;
 
+import com.wjd.practice.leetcode.TestCase;
 import com.wjd.practice.leetcode.structure.ListNode;
 
 /**
@@ -35,6 +36,8 @@ public class PalindromeList {
      * 执行耗时:4 ms,击败了79.22% 的Java用户
      * 内存消耗:58 MB,击败了26.02% 的Java用户
      */
+    @TestCase(input = {"[1,2,2,1]", "[1,2]"},
+            output = {"true", "false"})
     public boolean isPalindrome(ListNode head) {
         if (head == null || head.next == null) {
             return true;
