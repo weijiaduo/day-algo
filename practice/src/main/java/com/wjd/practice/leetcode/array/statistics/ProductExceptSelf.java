@@ -1,5 +1,7 @@
 package com.wjd.practice.leetcode.array.statistics;
 
+import com.wjd.practice.leetcode.TestCase;
+
 import java.util.Arrays;
 
 /**
@@ -32,10 +34,6 @@ import java.util.Arrays;
  */
 public class ProductExceptSelf {
 
-    public int[] productExceptSelf(int[] nums) {
-        return productExceptSelf2(nums);
-    }
-
     /**
      * 思路：前缀积和后缀积
      * <p>
@@ -50,6 +48,8 @@ public class ProductExceptSelf {
      * 执行耗时:2 ms,击败了25.52% 的Java用户
      * 内存消耗:49.7 MB,击败了59.09% 的Java用户
      */
+    @TestCase(input = {"[1,2,3,4]", "[-1,1,0,-3,3]"},
+            output = {"[24,12,8,6]", "[0,0,9,0,0]"})
     public int[] productExceptSelf1(int[] nums) {
         int n = nums.length;
         // 前缀积
@@ -82,7 +82,9 @@ public class ProductExceptSelf {
      * 执行耗时:2 ms,击败了25.52% 的Java用户
      * 内存消耗:50.3 MB,击败了33.35% 的Java用户
      */
-    private int[] productExceptSelf2(int[] nums) {
+    @TestCase(input = {"[1,2,3,4]", "[-1,1,0,-3,3]"},
+            output = {"[24,12,8,6]", "[0,0,9,0,0]"})
+    public int[] productExceptSelf2(int[] nums) {
         int n = nums.length;
         int[] ret = new int[n];
         Arrays.fill(ret, 1);
