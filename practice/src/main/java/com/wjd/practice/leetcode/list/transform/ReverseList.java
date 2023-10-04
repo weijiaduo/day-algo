@@ -1,5 +1,6 @@
 package com.wjd.practice.leetcode.list.transform;
 
+import com.wjd.practice.leetcode.TestCase;
 import com.wjd.practice.leetcode.structure.ListNode;
 
 /**
@@ -7,8 +8,25 @@ import com.wjd.practice.leetcode.structure.ListNode;
  * <p>
  * 给你单链表的头节点 head ，请你反转链表，并返回反转后的链表。
  * <p>
+ * 示例 1：
+ * <p>
  * 输入：head = [1,2,3,4,5]
  * 输出：[5,4,3,2,1]
+ * <p>
+ * 示例 2：
+ * <p>
+ * 输入：head = [1,2]
+ * 输出：[2,1]
+ * <p>
+ * 示例 3：
+ * <p>
+ * 输入：head = []
+ * 输出：[]
+ * <p>
+ * 提示：
+ * <p>
+ * 链表中节点的数目范围是 [0, 5000]
+ * -5000 <= Node.val <= 5000
  *
  * @author weijiaduo
  * @since 2022/7/14
@@ -23,6 +41,8 @@ public class ReverseList {
      * 执行耗时:0 ms,击败了100.00% 的Java用户
      * 内存消耗:41.5 MB,击败了14.90% 的Java用户
      */
+    @TestCase(input = {"[1,2,3,4,5]", "[1,2]"},
+            output = {"[5,4,3,2,1]", "[2,1]"})
     public ListNode reverseList(ListNode head) {
         ListNode dummy = new ListNode(0);
         ListNode p = head, q;
@@ -43,7 +63,9 @@ public class ReverseList {
      * 执行耗时:0 ms,击败了100.00% 的Java用户
      * 内存消耗:40.7 MB,击败了98.19% 的Java用户
      */
-    private ListNode dfsReverseList(ListNode head) {
+    @TestCase(input = {"[1,2,3,4,5]", "[1,2]"},
+            output = {"[5,4,3,2,1]", "[2,1]"})
+    public ListNode dfsReverseList(ListNode head) {
         if (head == null || head.next == null) {
             return head;
         }
