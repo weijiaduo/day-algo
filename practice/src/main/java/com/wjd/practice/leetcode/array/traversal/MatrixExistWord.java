@@ -1,5 +1,7 @@
 package com.wjd.practice.leetcode.array.traversal;
 
+import com.wjd.practice.leetcode.TestCase;
+
 import java.util.HashSet;
 import java.util.Set;
 
@@ -14,27 +16,48 @@ import java.util.Set;
  * <p>
  * 同一个单元格内的字母不允许被重复使用。
  * <p>
+ * 示例 1：
+ * <p>
  * 输入：board = [["A","B","C","E"],["S","F","C","S"],["A","D","E","E"]], word = "ABCCED"
  * 输出：true
  * <p>
+ * 示例 2：
+ * <p>
+ * 输入：board = [["A","B","C","E"],["S","F","C","S"],["A","D","E","E"]], word = "SEE"
+ * 输出：true
+ * <p>
+ * 示例 3：
+ * <p>
+ * 输入：board = [["A","B","C","E"],["S","F","C","S"],["A","D","E","E"]], word = "ABCB"
+ * 输出：false
+ * <p>
+ * 提示：
+ * <p>
+ * m == board.length
+ * n = board[i].length
+ * 1 <= m, n <= 6
+ * 1 <= word.length <= 15
+ * board 和 word 仅由大小写英文字母组成
  *
  * @since 2022/6/5
  */
 public class MatrixExistWord {
 
-    public boolean exist(char[][] board, String word) {
-        return matrixExist(board, word);
-    }
-
     /**
      * 思路：递归遍历所有情况
      * <p>
-     * 看起来很慢啊~~
+     * 复杂度：时间 O(mn*mn) 空间 O(m+n)
      * <p>
      * 执行耗时:1514 ms,击败了5.02% 的Java用户
      * 内存消耗:42.2 MB,击败了5.08% 的Java用户
+     * <p>
+     * 看起来很慢啊~~
      */
-    private boolean setExist(char[][] board, String word) {
+    @TestCase(input = {"[['A','B','C','E'],['S','F','C','S'],['A','D','E','E']]", "ABCCED",
+            "[['A','B','C','E'],['S','F','C','S'],['A','D','E','E']]", "SEE",
+            "[['A','B','C','E'],['S','F','C','S'],['A','D','E','E']]", "ABCB"},
+            output = {"true", "true", "false"})
+    public boolean setExist(char[][] board, String word) {
         Set<String> keys = new HashSet<>();
         for (int i = 0; i < board.length; i++) {
             for (int j = 0; j < board[0].length; j++) {
@@ -74,12 +97,18 @@ public class MatrixExistWord {
     }
 
     /**
-     * 集合换矩阵标记，确实快很多
+     * 思路：集合换矩阵标记（确实快了很多）
+     * <p>
+     * 复杂度：时间 O(mn*mn) 空间 O(mn)
      * <p>
      * 执行耗时:109 ms,击败了45.61% 的Java用户
      * 存消耗:39.6 MB,击败了51.96% 的Java用户
      */
-    private boolean matrixExist(char[][] board, String word) {
+    @TestCase(input = {"[['A','B','C','E'],['S','F','C','S'],['A','D','E','E']]", "ABCCED",
+            "[['A','B','C','E'],['S','F','C','S'],['A','D','E','E']]", "SEE",
+            "[['A','B','C','E'],['S','F','C','S'],['A','D','E','E']]", "ABCB"},
+            output = {"true", "true", "false"})
+    public boolean matrixExist(char[][] board, String word) {
         boolean[][] visited = new boolean[board.length][board[0].length];
         for (int i = 0; i < board.length; i++) {
             for (int j = 0; j < board[0].length; j++) {
