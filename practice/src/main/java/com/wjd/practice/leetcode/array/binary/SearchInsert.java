@@ -1,5 +1,7 @@
 package com.wjd.practice.leetcode.array.binary;
 
+import com.wjd.practice.leetcode.TestCase;
+
 /**
  * 35. 搜索插入位置
  * <p>
@@ -41,7 +43,9 @@ public class SearchInsert {
      * 执行耗时:0 ms,击败了100.00% 的Java用户
      * 内存消耗:42.5 MB,击败了5.14% 的Java用户
      */
-    public int binarySearchInsert(int[] nums, int target) {
+    @TestCase(input = {"[1,3,5,6]", "5", "[1,3,5,6]", "2", "[1,3,5,6]", "7"},
+            output = {"2", "1", "4"})
+    public int binary(int[] nums, int target) {
         int lp = 0, rp = nums.length - 1;
         while (lp <= rp) {
             int mp = lp + (rp - lp) / 2;
@@ -56,4 +60,5 @@ public class SearchInsert {
         }
         return nums.length;
     }
+
 }
