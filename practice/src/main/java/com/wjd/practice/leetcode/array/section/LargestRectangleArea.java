@@ -33,10 +33,6 @@ import java.util.Deque;
  */
 public class LargestRectangleArea {
 
-    public int largestRectangleArea(int[] heights) {
-        return twiceLargestRectangleArea(heights);
-    }
-
     /**
      * 官方题解
      * <p>
@@ -57,7 +53,7 @@ public class LargestRectangleArea {
      */
     @TestCase(input = {"[2,1,5,6,2,3]", "[2,4]"},
             output = {"10", "4"})
-    private int twiceLargestRectangleArea(int[] heights) {
+    public int twiceLargestRectangleArea(int[] heights) {
         int n = heights.length;
         int[] left = new int[n];
         int[] right = new int[n];
@@ -103,7 +99,7 @@ public class LargestRectangleArea {
      */
     @TestCase(input = {"[2,1,5,6,2,3]", "[2,4]"},
             output = {"10", "4"})
-    private int onceLargestRectangleArea(int[] heights) {
+    public int onceLargestRectangleArea(int[] heights) {
         int n = heights.length;
         int[] left = new int[n];
         int[] right = new int[n];
