@@ -1,5 +1,7 @@
 package com.wjd.practice.leetcode.matrix;
 
+import com.wjd.practice.leetcode.TestCase;
+
 /**
  * 73. 矩阵置零
  * <p>
@@ -7,24 +9,34 @@ package com.wjd.practice.leetcode.matrix;
  * <p>
  * 请使用 原地 算法。
  * <p>
+ * 示例 1：
+ * <p>
  * 输入：matrix = [[1,1,1],[1,0,1],[1,1,1]]
  * 输出：[[1,0,1],[0,0,0],[1,0,1]]
+ * <p>
+ * 示例 2：
+ * <p>
+ * 输入：matrix = [[0,1,2,0],[3,4,5,2],[1,3,1,5]]
+ * 输出：[[0,0,0,0],[0,4,5,0],[0,3,1,0]]
+ * <p>
+ * 提示：
+ * <p>
+ * m == matrix.length
+ * n == matrix[0].length
+ * 1 <= m, n <= 200
+ * -2³¹ <= matrix[i][j] <= 2³¹ - 1
  *
  * @since 2022/6/4
  */
 public class SetMatrixZeroes {
-
-    public void setZeroes(int[][] matrix) {
-        // matrixSetZeroes(matrix);
-        // arraySetZeroes(matrix);
-        constSetZeroes(matrix);
-    }
 
     /**
      * 思路：额外的二维空间保存 0 的值
      * <p>
      * 复杂度：时间 O(nm(m+n)) 空间 O(mn)
      */
+    @TestCase(input = {"[[1,1,1],[1,0,1],[1,1,1]]", "[[0,1,2,0],[3,4,5,2],[1,3,1,5]]"},
+            output = {"[[1,0,1],[0,0,0],[1,0,1]]", "[[0,0,0,0],[0,4,5,0],[0,3,1,0]]"})
     public void matrixSetZeroes(int[][] matrix) {
         if (matrix.length == 0 || matrix[0].length == 0) {
             return;
@@ -58,6 +70,8 @@ public class SetMatrixZeroes {
      * 执行耗时:1 ms,击败了37.14% 的Java用户
      * 内存消耗:42.6 MB,击败了93.23% 的Java用户
      */
+    @TestCase(input = {"[[1,1,1],[1,0,1],[1,1,1]]", "[[0,1,2,0],[3,4,5,2],[1,3,1,5]]"},
+            output = {"[[1,0,1],[0,0,0],[1,0,1]]", "[[0,0,0,0],[0,4,5,0],[0,3,1,0]]"})
     public void arraySetZeroes(int[][] matrix) {
         if (matrix.length == 0 || matrix[0].length == 0) {
             return;
@@ -96,10 +110,14 @@ public class SetMatrixZeroes {
      * 执行耗时:0 ms,击败了100.00% 的Java用户
      * 内存消耗:42.8 MB,击败了69.13% 的Java用户
      */
+    @TestCase(input = {"[[1,1,1],[1,0,1],[1,1,1]]", "[[0,1,2,0],[3,4,5,2],[1,3,1,5]]"},
+            output = {"[[1,0,1],[0,0,0],[1,0,1]]", "[[0,0,0,0],[0,4,5,0],[0,3,1,0]]"})
     public void constSetZeroes(int[][] matrix) {
         if (matrix.length == 0 || matrix[0].length == 0) {
             return;
         }
+
+        // 先记录第1行和第1列是否有0存在
         int m = matrix.length, n = matrix[0].length;
         boolean row = false, col = false;
         for (int i = 0; i < m; i++) {
@@ -114,6 +132,8 @@ public class SetMatrixZeroes {
                 break;
             }
         }
+
+        // 投影到第1行和第1列，表示此处需要置零
         for (int i = 1; i < m; i++) {
             for (int j = 1; j < n; j++) {
                 if (matrix[i][j] == 0) {
@@ -122,6 +142,8 @@ public class SetMatrixZeroes {
                 }
             }
         }
+
+        // 根据投影到第1行和第1列的零，对矩阵进行置零
         for (int i = 1; i < m; i++) {
             if (matrix[i][0] == 0) {
                 for (int j = 1; j < n; j++) {
@@ -136,13 +158,14 @@ public class SetMatrixZeroes {
                 }
             }
         }
-        // 第一列
+
+        // 最后需要单独判断第1行和第1列是否需要置零
         for (int i = 0; row && i < m; i++) {
             matrix[i][0] = 0;
         }
-        // 第一行
         for (int j = 0; col && j < n; j++) {
             matrix[0][j] = 0;
         }
     }
+
 }
