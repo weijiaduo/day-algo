@@ -1,5 +1,7 @@
 package com.wjd.practice.leetcode.array.sequence;
 
+import com.wjd.practice.leetcode.TestCase;
+
 /**
  * 53. 最大子数组和
  * <p>
@@ -46,6 +48,8 @@ public class MaxSubArray {
      * 执行耗时:1 ms,击败了100.00% 的Java用户
      * 内存消耗:56.3 MB,击败了16.69% 的Java用户
      */
+    @TestCase(input = {"[-2,1,-3,4,-1,2,1,-5,4]", "[1]", "[5,4,-1,7,8]"},
+            output = {"6", "1", "23"})
     public int maxSubArray(int[] nums) {
         int maxSum = nums[0], pre = 0;
         for (int num : nums) {
