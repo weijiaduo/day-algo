@@ -1,5 +1,7 @@
 package com.wjd.practice.leetcode.array.sequence;
 
+import com.wjd.practice.leetcode.TestCase;
+
 import java.util.HashMap;
 import java.util.HashSet;
 import java.util.Map;
@@ -33,10 +35,6 @@ import java.util.Set;
  */
 public class LongestConsecutive {
 
-    public int longestConsecutive(int[] nums) {
-        return hashLongestConsecutive(nums);
-    }
-
     /**
      * 思路：哈希表，使用哈希保存每个值的连续长度
      * <p>
@@ -45,7 +43,9 @@ public class LongestConsecutive {
      * 执行耗时:29 ms,击败了43.70% 的Java用户
      * 内存消耗:58 MB,击败了24.75% 的Java用户
      */
-    private int hashLongestConsecutive(int[] nums) {
+    @TestCase(input = {"[100,4,200,1,3,2]", "[0,3,7,2,5,8,4,6,0,1]"},
+            output = {"4", "9"})
+    public int hashLongestConsecutive(int[] nums) {
         int maxLength = 0;
         int n = nums.length;
         Map<Integer, Integer> lengths = new HashMap<>(n);
@@ -84,7 +84,9 @@ public class LongestConsecutive {
      * 执行耗时:19 ms,击败了56.17% 的Java用户
      * 内存消耗:59.8 MB,击败了8.21% 的Java用户
      */
-    private int setLongestConsecutive(int[] nums) {
+    @TestCase(input = {"[100,4,200,1,3,2]", "[0,3,7,2,5,8,4,6,0,1]"},
+            output = {"4", "9"})
+    public int setLongestConsecutive(int[] nums) {
         Set<Integer> numSet = new HashSet<>();
         for (int num : nums) {
             numSet.add(num);
@@ -118,7 +120,9 @@ public class LongestConsecutive {
      * 执行耗时:77 ms,击败了32.10% 的Java用户
      * 内存消耗:62.2 MB,击败了5.19% 的Java用户
      */
-    private int unionLongestConsecutive(int[] nums) {
+    @TestCase(input = {"[100,4,200,1,3,2]", "[0,3,7,2,5,8,4,6,0,1]"},
+            output = {"4", "9"})
+    public int unionLongestConsecutive(int[] nums) {
         if (nums == null || nums.length == 0) {
             return 0;
         }
