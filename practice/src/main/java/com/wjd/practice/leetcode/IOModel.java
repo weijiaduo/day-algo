@@ -43,7 +43,8 @@ public class IOModel {
         Object[] rets = new Object[n];
         for (int i = 0; i < n; i++) {
             Object ret = read(types[i]);
-            if (ret == null) {
+            // 输入流关闭判断
+            if (buf == null) {
                 return null;
             }
             rets[i] = ret;
@@ -88,8 +89,9 @@ public class IOModel {
             ret = ListNode.build(arr);
         } else {
             ret = IOUtils.parse(line, type);
+            ret = ret != null ? ret : line;
         }
-        return ret != null ? ret : line;
+        return ret;
     }
 
     /**
