@@ -1,5 +1,7 @@
 package com.wjd.practice.leetcode.string.combination;
 
+import com.wjd.practice.leetcode.TestCase;
+
 import java.util.ArrayList;
 import java.util.List;
 
@@ -30,14 +32,6 @@ import java.util.List;
  */
 public class PartitionString {
 
-    public List<List<String>> partition(String s) {
-        List<List<String>> ans = new ArrayList<>();
-        // dfs(s, 0, new ArrayList<>(), ans);
-        int[][] cache = new int[s.length()][s.length()];
-        dfsCache(s, 0, new ArrayList<>(), ans, cache);
-        return ans;
-    }
-
     /**
      * 思路：回溯遍历所有子串
      * <p>
@@ -46,6 +40,14 @@ public class PartitionString {
      * 执行耗时:6 ms,击败了98.86% 的Java用户
      * 内存消耗:53.5 MB,击败了64.78% 的Java用户
      */
+    @TestCase(input = {"aab", "a"},
+            output = {"[[\"a\",\"a\",\"b\"],[\"aa\",\"b\"]]", "[[\"a\"]]"})
+    public List<List<String>> dfs(String s) {
+        List<List<String>> ans = new ArrayList<>();
+        dfs(s, 0, new ArrayList<>(), ans);
+        return ans;
+    }
+
     private void dfs(String s, int i, List<String> path, List<List<String>> ans) {
         if (i >= s.length()) {
             ans.add(new ArrayList<>(path));
@@ -72,6 +74,15 @@ public class PartitionString {
      * 执行耗时:6 ms,击败了98.86% 的Java用户
      * 内存消耗:53.4 MB,击败了70.87% 的Java用户
      */
+    @TestCase(input = {"aab", "a"},
+            output = {"[[\"a\",\"a\",\"b\"],[\"aa\",\"b\"]]", "[[\"a\"]]"})
+    public List<List<String>> dfsCache(String s) {
+        List<List<String>> ans = new ArrayList<>();
+        int[][] cache = new int[s.length()][s.length()];
+        dfsCache(s, 0, new ArrayList<>(), ans, cache);
+        return ans;
+    }
+
     private void dfsCache(String s, int i, List<String> path, List<List<String>> ans, int[][] cache) {
         if (i >= s.length()) {
             ans.add(new ArrayList<>(path));
