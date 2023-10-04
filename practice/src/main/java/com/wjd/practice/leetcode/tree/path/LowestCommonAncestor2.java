@@ -1,5 +1,6 @@
 package com.wjd.practice.leetcode.tree.path;
 
+import com.wjd.practice.leetcode.TestCase;
 import com.wjd.structure.tree.binary.TreeNode;
 
 import java.util.Iterator;
@@ -45,11 +46,6 @@ import java.util.List;
  */
 public class LowestCommonAncestor2 {
 
-    public TreeNode lowestCommonAncestor(TreeNode root, TreeNode p, TreeNode q) {
-        // return path(root, p, q);
-        return dfs(root, p, q);
-    }
-
     /**
      * 思路：深度优先遍历，如果 p，q 刚好位于不同子树中，说明根节点就是最近公共祖先
      * <p>
@@ -58,7 +54,10 @@ public class LowestCommonAncestor2 {
      * 执行耗时:6 ms,击败了99.90% 的Java用户
      * 内存消耗:42.5 MB,击败了58.84% 的Java用户
      */
-    private TreeNode dfs(TreeNode root, TreeNode p, TreeNode q) {
+    @TestCase(input = {"[3,5,1,6,2,0,8,null,null,7,4]", "5", "1",
+            "[3,5,1,6,2,0,8,null,null,7,4]", "5", "4"},
+            output = {"3", "5"})
+    public TreeNode dfs(TreeNode root, TreeNode p, TreeNode q) {
         if (root == null) {
             return null;
         }
@@ -88,7 +87,10 @@ public class LowestCommonAncestor2 {
      * 执行耗时:9 ms,击败了15.08% 的Java用户
      * 内存消耗:44.4 MB,击败了5.01% 的Java用户
      */
-    private TreeNode path(TreeNode root, TreeNode p, TreeNode q) {
+    @TestCase(input = {"[3,5,1,6,2,0,8,null,null,7,4]", "5", "1",
+            "[3,5,1,6,2,0,8,null,null,7,4]", "5", "4"},
+            output = {"3", "5"})
+    public TreeNode path(TreeNode root, TreeNode p, TreeNode q) {
         List<TreeNode> path1 = path(root, p);
         List<TreeNode> path2 = path(root, q);
         TreeNode ancestor = root;
