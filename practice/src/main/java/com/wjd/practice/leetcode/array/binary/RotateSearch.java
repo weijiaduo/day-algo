@@ -1,5 +1,7 @@
 package com.wjd.practice.leetcode.array.binary;
 
+import com.wjd.practice.leetcode.TestCase;
+
 /**
  * 33.搜索旋转排序数组
  * <p>
@@ -43,13 +45,6 @@ package com.wjd.practice.leetcode.array.binary;
 public class RotateSearch {
 
     /**
-     * 搜索旋转排序数组
-     */
-    public int search(int[] nums, int target) {
-        return binary(nums, 0, nums.length - 1, target);
-    }
-
-    /**
      * 思路：二分法，将数组分半后，左边和右边肯定有一边是有序的
      * <p>
      * 如果 nums[left] <= nums[mid]，那么左边肯定是有序的
@@ -63,6 +58,12 @@ public class RotateSearch {
      * 执行耗时:0 ms,击败了100.00% 的Java用户
      * 内存消耗:39.9 MB,击败了82.17% 的Java用户
      */
+    @TestCase(input = {"[4,5,6,7,0,1,2]", "0", "[4,5,6,7,0,1,2]", "3", "[1]", "0"},
+            output = {"4", "-1", "-1"})
+    public int search(int[] nums, int target) {
+        return binary(nums, 0, nums.length - 1, target);
+    }
+
     private int binary(int[] nums, int l, int r, int target) {
         while (l <= r) {
             int m = l + (r - l) / 2;
