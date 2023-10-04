@@ -1,5 +1,7 @@
 package com.wjd.practice.leetcode.array.transform;
 
+import com.wjd.practice.leetcode.TestCase;
+
 /**
  * 283. 移动零
  * <p>
@@ -35,9 +37,9 @@ public class MoveZeroes {
      * <p>
      * 执行耗时:1 ms,击败了100.00% 的Java用户
      * 内存消耗:44.2 MB,击败了7.40% 的Java用户
-     *
-     * @param nums 数组
      */
+    @TestCase(input = {"[0,1,0,3,12]", "[0]"},
+            output = {"[1,3,12,0,0]", "[0]"})
     public void moveZeroes(int[] nums) {
         int n = nums.length;
         int lp = 0, rp = 0;
