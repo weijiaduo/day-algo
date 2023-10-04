@@ -1,5 +1,7 @@
 package com.wjd.practice.leetcode.array.sliding;
 
+import com.wjd.practice.leetcode.TestCase;
+
 /**
  * 76. 最小覆盖子串
  * <p>
@@ -56,11 +58,9 @@ public class MinWindow {
      * <p>
      * 执行耗时:2 ms,击败了98.76% 的Java用户
      * 内存消耗:42.6 MB,击败了34.44% 的Java用户
-     *
-     * @param s the s
-     * @param t the t
-     * @return the string
      */
+    @TestCase(input = {"ADOBECODEBANC", "ABC", "a", "a", "a", "aa"},
+            output = {"BANC", "a", ""})
     public String minWindow(String s, String t) {
         // 这个 s.length < t.length 还是很有用的
         if (s == null || t == null || s.length() < t.length()) {
