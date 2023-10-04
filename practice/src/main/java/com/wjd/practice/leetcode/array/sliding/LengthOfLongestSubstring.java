@@ -1,5 +1,7 @@
 package com.wjd.practice.leetcode.array.sliding;
 
+import com.wjd.practice.leetcode.TestCase;
+
 import java.util.Arrays;
 
 /**
@@ -48,6 +50,8 @@ public class LengthOfLongestSubstring {
      * 执行耗时:2 ms,击败了92.74% 的Java用户
      * 内存消耗:42.5 MB,击败了18.59% 的Java用户
      */
+    @TestCase(input = {"abcabcbb", "bbbbb", "pwwkew"},
+            output = {"3", "1", "3"})
     public int lengthOfLongestSubstring(String s) {
         int maxLength = 0;
         int[] indexes = new int[256];
