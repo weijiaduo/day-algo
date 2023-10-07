@@ -179,14 +179,51 @@
 
 ## 一、数组
 
+### 子序列
+
+- [334. 递增的三元子序列](practice/src/main/java/com/wjd/practice/leetcode/array/sequence/IncreasingTriplet.java)
+
+### 滑动窗口
+
+- [643. 子数组最大平均数 I](practice/src/main/java/com/wjd/practice/leetcode/array/sliding/MaxAverage.java)
+- [1004. 最大连续1的个数 III](practice/src/main/java/com/wjd/practice/leetcode/array/sliding/LongestOnes.java)
+- [1493. 删掉一个元素以后全为 1 的最长子数组](practice/src/main/java/com/wjd/practice/leetcode/array/sliding/LongestSubarray.java)
+
+### 双指针
+
+- [1679. K 和数对的最大数目](practice/src/main/java/com/wjd/practice/leetcode/array/statistics/MaxOperations.java)
+
+### 统计
+
 - [1431. 拥有最多糖果的孩子](practice/src/main/java/com/wjd/practice/leetcode/array/statistics/KidsWithCandies.java)
 - [605. 种花问题](practice/src/main/java/com/wjd/practice/leetcode/array/statistics/PlaceFlowers.java)
 - [238. 除自身以外数组的乘积](practice/src/main/java/com/wjd/practice/leetcode/array/statistics/ProductExceptSelf.java)
-- [334. 递增的三元子序列](practice/src/main/java/com/wjd/practice/leetcode/array/sequence/IncreasingTriplet.java)
+
+### 前缀和
+
+- [1732. 找到最高海拔](practice/src/main/java/com/wjd/practice/leetcode/array/prefix/LargestAltitude.java)
+- [724. 寻找数组的中心下标](practice/src/main/java/com/wjd/practice/leetcode/array/prefix/PivotIndex.java)
 
 ## 二、字符串
 
-- [1768. 交替合并字符串](practice/src/main/java/com/wjd/practice/leetcode/string/simulate/MergeAlternately.java)
+### 滑动窗口
+
+- [1456. 定长子串中元音的最大数目](practice/src/main/java/com/wjd/practice/leetcode/array/sliding/MaxVowels.java)
+
+### 子序列
+
 - [1071. 字符串的最大公因子](practice/src/main/java/com/wjd/practice/leetcode/string/compare/GcdOfStrings.java)
+- [392. 判断子序列](practice/src/main/java/com/wjd/practice/leetcode/string/sequence/IsSubsequence.java)
+
+### 字符串变换
+
+- [1768. 交替合并字符串](practice/src/main/java/com/wjd/practice/leetcode/string/simulate/MergeAlternately.java)
 - [345. 反转字符串中的元音字母](practice/src/main/java/com/wjd/practice/leetcode/string/transform/ReverseWords.java)
 - [151. 颠倒字符串中的单词](practice/src/main/java/com/wjd/practice/leetcode/string/transform/ReverseWords.java)
+- [443. 压缩字符串](practice/src/main/java/com/wjd/practice/leetcode/string/transform/Compress.java)
+
+## 三、哈希
+
+- [2215. 找出两数组的不同](practice/src/main/java/com/wjd/practice/leetcode/hash/FindDifference.java)
+- [1207. 独一无二的出现次数](practice/src/main/java/com/wjd/practice/leetcode/hash/UniqueOccurrences.java)
+- [1657. 确定两个字符串是否接近](practice/src/main/java/com/wjd/practice/leetcode/hash/CloseStrings.java)
