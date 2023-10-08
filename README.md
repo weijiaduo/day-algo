@@ -227,3 +227,9 @@
 - [2215. 找出两数组的不同](practice/src/main/java/com/wjd/practice/leetcode/hash/FindDifference.java)
 - [1207. 独一无二的出现次数](practice/src/main/java/com/wjd/practice/leetcode/hash/UniqueOccurrences.java)
 - [1657. 确定两个字符串是否接近](practice/src/main/java/com/wjd/practice/leetcode/hash/CloseStrings.java)
+
+## 四、栈
+
+- [2390. 从字符串中移除星号](practice/src/main/java/com/wjd/practice/leetcode/stack/RemoveStars.java)
+- [735. 行星碰撞](practice/src/main/java/com/wjd/practice/leetcode/stack/AsteroidCollision.java)
+- [394. 字符串解码](practice/src/main/java/com/wjd/practice/leetcode/string/encode/DecodeString.java)
