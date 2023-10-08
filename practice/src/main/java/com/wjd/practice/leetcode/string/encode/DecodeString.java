@@ -51,12 +51,6 @@ import java.util.LinkedList;
  */
 public class DecodeString {
 
-    @TestCase(input = {"3[a]2[bc]", "3[a2[c]]", "2[abc]3[cd]ef", "abc3[cd]xyz", "10[a]"},
-            output = {"aaabcbc", "accaccacc", "abcabccdcdcdef", "abccdcdcdxyz", "aaaaaaaaaa"})
-    private String dfs(String s) {
-        return dfs(s, 0, s.length() - 1);
-    }
-
     /**
      * 思路：栈+递归，利用栈找到 k[sub] 里面的 sub，然后再递归处理 sub
      * <p>
@@ -73,6 +67,12 @@ public class DecodeString {
      * 执行耗时:0 ms,击败了100.00% 的Java用户
      * 内存消耗:39.4 MB,击败了85.73% 的Java用户
      */
+    @TestCase(input = {"3[a]2[bc]", "3[a2[c]]", "2[abc]3[cd]ef", "abc3[cd]xyz", "10[a]"},
+            output = {"aaabcbc", "accaccacc", "abcabccdcdcdef", "abccdcdcdxyz", "aaaaaaaaaa"})
+    public String dfs(String s) {
+        return dfs(s, 0, s.length() - 1);
+    }
+
     private String dfs(String s, int start, int end) {
         if (start > end) {
             return "";
@@ -135,7 +135,7 @@ public class DecodeString {
      */
     @TestCase(input = {"3[a]2[bc]", "3[a2[c]]", "2[abc]3[cd]ef", "abc3[cd]xyz", "10[a]"},
             output = {"aaabcbc", "accaccacc", "abcabccdcdcdef", "abccdcdcdxyz", "aaaaaaaaaa"})
-    private String doubleStack(String s) {
+    public String doubleStack(String s) {
         StringBuilder str = new StringBuilder();
         int times = 0;
         Deque<Integer> timesStack = new LinkedList<>();
