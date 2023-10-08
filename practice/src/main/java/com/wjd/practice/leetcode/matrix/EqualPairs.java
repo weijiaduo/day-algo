@@ -1,5 +1,7 @@
 package com.wjd.practice.leetcode.matrix;
 
+import com.wjd.practice.leetcode.TestCase;
+
 /**
  * 2352. 相等行列对
  * <p>
@@ -35,7 +37,7 @@ package com.wjd.practice.leetcode.matrix;
 public class EqualPairs {
 
     /**
-     * 思路：遍历矩阵的每个点，以该点为一行一列的交叉点，验证行列是否相等
+     * 思路：模拟，遍历矩阵的每个点，以该点为一行一列的交叉点，验证行列是否相等
      * <p>
      * 复杂度：时间 O(n^3) 空间 O(1)
      * <p>
@@ -45,7 +47,9 @@ public class EqualPairs {
      * @param grid the grid
      * @return the int
      */
-    public int equalPairs(int[][] grid) {
+    @TestCase(input = {"[[3,2,1],[1,7,6],[2,7,7]]", "[[3,1,2,2],[1,4,4,5],[2,4,2,2],[2,4,2,2]]"},
+            output = {"1", "3"})
+    public int imitate(int[][] grid) {
         int cnt = 0;
         int n = grid.length;
         for (int i = 0; i < n; i++) {
