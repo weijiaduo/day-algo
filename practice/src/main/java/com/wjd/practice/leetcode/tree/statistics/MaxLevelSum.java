@@ -1,5 +1,6 @@
 package com.wjd.practice.leetcode.tree.statistics;
 
+import com.wjd.practice.leetcode.TestCase;
 import com.wjd.structure.tree.binary.TreeNode;
 
 import java.util.ArrayDeque;
@@ -12,6 +13,8 @@ import java.util.Queue;
  * <p>
  * 请返回层内元素之和 最大 的那几层（可能只有一层）的层号，并返回其中 最小 的那个。
  * <p>
+ * 示例 1：
+ * <p>
  * 输入：root = [1,7,0,7,-8,null,null]
  * 输出：2
  * 解释：
@@ -19,6 +22,18 @@ import java.util.Queue;
  * 第 2 层各元素之和为 7 + 0 = 7，
  * 第 3 层各元素之和为 7 + -8 = -1，
  * 所以我们返回第 2 层的层号，它的层内元素之和最大。
+ * <p>
+ * 示例 2：
+ * <p>
+ * 输入：root = [989,null,10250,98693,-89388,null,null,null,-32127]
+ * 输出：2
+ * <p>
+ * 提示：
+ * <p>
+ * 树中的节点数在
+ * [1, 10⁴]范围内
+ * <p>
+ * -10⁵ <= Node.val <= 10⁵
  *
  * @author weijiaduo
  * @since 2022/7/31
@@ -32,11 +47,10 @@ public class MaxLevelSum {
      * <p>
      * 执行耗时:8 ms,击败了78.17% 的Java用户
      * 内存消耗:43.9 MB,击败了88.95% 的Java用户
-     *
-     * @param root 根节点
-     * @return 最大和层数
      */
-    public int maxLevelSum(TreeNode root) {
+    @TestCase(input = {"[1,7,0,7,-8,null,null]", "[989,null,10250,98693,-89388,null,null,null,-32127]"},
+            output = {"2", "2"})
+    public int bfs(TreeNode root) {
         if (root == null) {
             return 0;
         }
