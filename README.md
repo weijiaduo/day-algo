@@ -89,7 +89,7 @@
 - [84. 柱状图中最大的矩形](practice/src/main/java/com/wjd/practice/leetcode/array/section/LargestRectangleArea.java)
 
 ## 四、哈希
-
+ 
 - [1. 两数之和](practice/src/main/java/com/wjd/practice/leetcode/array/combination/TwoSum.java)
 - [49. 字母异位词分组](practice/src/main/java/com/wjd/practice/leetcode/string/combination/GroupAnagrams.java)
 - [128. 最长连续序列](practice/src/main/java/com/wjd/practice/leetcode/array/sequence/LongestConsecutive.java)
@@ -233,3 +233,20 @@
 - [2390. 从字符串中移除星号](practice/src/main/java/com/wjd/practice/leetcode/stack/RemoveStars.java)
 - [735. 行星碰撞](practice/src/main/java/com/wjd/practice/leetcode/stack/AsteroidCollision.java)
 - [394. 字符串解码](practice/src/main/java/com/wjd/practice/leetcode/string/encode/DecodeString.java)
+
+## 五、队列
+
+- [933. 最近的请求次数](practice/src/main/java/com/wjd/practice/leetcode/queue/RecentCounter.java)
+- [649. Dota2 参议院](practice/src/main/java/com/wjd/practice/leetcode/queue/PredictPartyVictory.java)
+
+## 六、链表
+
+- [2095. 删除链表的中间节点](practice/src/main/java/com/wjd/practice/leetcode/list/doublepoint/DeleteMiddle.java)
+- [328. 奇偶链表](practice/src/main/java/com/wjd/practice/leetcode/list/transform/OddEvenList.java)
+- [2130. 链表最大孪生和](practice/src/main/java/com/wjd/practice/leetcode/list/doublepoint/PairSum.java)
+
+## 七、树
+
+- [104. 二叉树的最大深度](practice/src/main/java/com/wjd/practice/leetcode/tree/statistics/MaximumDepthOfBinaryTree.java)
+- [872. 叶子相似的树](practice/src/main/java/com/wjd/practice/leetcode/tree/traversal/LeafSimilar.java)
+- [1448. 统计二叉树中好节点的数目](practice/src/main/java/com/wjd/practice/leetcode/tree/statistics/GoodNodes.java)
