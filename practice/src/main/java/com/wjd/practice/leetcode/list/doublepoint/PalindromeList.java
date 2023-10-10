@@ -50,7 +50,7 @@ public class PalindromeList {
             slow = slow.next;
         }
 
-        // 反转后半部分链表指针
+        // 反转后半部分链表指针（这里结束后有个自环）
         ListNode head2 = slow, p = slow;
         while (p != null) {
             ListNode tmp = p.next;
@@ -59,7 +59,7 @@ public class PalindromeList {
             p = tmp;
         }
 
-        // 判断回文
+        // 判断回文（利用自环判断遍历结束）
         boolean flag = true;
         ListNode l = head, r = head2;
         while (l != r) {
@@ -72,12 +72,13 @@ public class PalindromeList {
         }
 
         // 恢复后半部分的链表
-        p = head2;
-        while (head2 != slow) {
-            ListNode tmp = p.next;
-            p.next = head2;
-            head2 = p;
-            p = tmp;
+        l = head2;
+        r = null;
+        while (r != slow) {
+            ListNode tmp = l.next;
+            l.next = r;
+            r = l;
+            l = tmp;
         }
 
         return flag;
