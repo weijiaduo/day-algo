@@ -1,5 +1,6 @@
 package com.wjd.practice.leetcode.tree.transform;
 
+import com.wjd.practice.leetcode.TestCase;
 import com.wjd.structure.tree.binary.TreeNode;
 
 /**
@@ -9,79 +10,93 @@ import com.wjd.structure.tree.binary.TreeNode;
  * <p>
  * 返回二叉搜索树（有可能被更新）的根节点的引用。
  * <p>
+ * 一般来说，删除节点可分为两个步骤：
+ * <p>
+ * 首先找到需要删除的节点；如果找到了，删除它。
+ * <p>
+ * 示例 1:
+ * <p>
  * 输入：root = [5,3,6,2,4,null,7], key = 3
  * 输出：[5,4,6,2,null,null,7]
+ * 解释：给定需要删除的节点值是 3，所以我们首先找到 3 这个节点，然后删除它。
+ * 一个正确的答案是 [5,4,6,2,null,null,7], 如下图所示。
+ * 另一个正确答案是 [5,2,6,null,4,null,7]。
  * <p>
+ * 示例 2:
+ * <p>
+ * 输入: root = [5,3,6,2,4,null,7], key = 0
+ * 输出: [5,3,6,2,4,null,7]
+ * 解释: 二叉树不包含值为 0 的节点
+ * <p>
+ * 示例 3:
+ * <p>
+ * 输入: root = [], key = 0
+ * 输出: []
+ * <p>
+ * 提示:
+ * <p>
+ * 节点数的范围 [0, 10⁴].
+ * -10⁵ <= Node.val <= 10⁵
+ * 节点值唯一
+ * root 是合法的二叉搜索树
+ * -10⁵ <= key <= 10⁵
  *
  * @since 2022/6/2
  */
 public class DeleteNode {
 
     /**
-     * 思路：找到右子树的最小值，或左子树的最大值，替换删除节点即可
+     * 思路：递归搜索和删除节点，返回删除节点后的根节点
+     * <p>
+     * 复杂度：时间 O(n) 空间 O(n)
      * <p>
      * 执行耗时:0 ms,击败了100.00% 的Java用户
-     * 内存消耗:41.8 MB,击败了33.98% 的Java用户
+     * 内存消耗:44.1 MB,击败了24.85% 的Java用户
+     *
+     * @param root 当前节点
+     * @param key  指定删除 key
+     * @return 新的当前节点
      */
-    public TreeNode deleteNode(TreeNode root, int key) {
-        // 寻找要删除的节点
-        TreeNode parent = null, node = root;
-        while (node != null && node.val != key) {
-            parent = node;
-            if (node.val > key) {
-                node = node.left;
-            } else {
-                node = node.right;
-            }
+    @TestCase(input = {"[5,3,6,2,4,null,7]", "3",
+            "[5,3,6,2,4,null,7]", "0",
+            "[]", "0"},
+            output = {"[5,4,6,2,null,null,7]",
+                    "[5,3,6,2,4,null,7]",
+                    "[]"})
+    public TreeNode dfs(TreeNode root, int key) {
+        if (root == null) {
+            return null;
         }
 
-        // 删除节点不存在
-        if (node == null) {
+        if (key < root.val) {
+            root.left = dfs(root.left, key);
             return root;
-        }
-
-        // 寻找可替代的节点
-        TreeNode replace = null, replaceParent = null;
-        if (node.right != null) {
-            // 从右子树找最小值
-            replaceParent = node;
-            replace = replaceParent.right;
-            while (replace.left != null) {
-                replaceParent = replace;
-                replace = replace.left;
-            }
-        } else if (node.left != null) {
-            // 从左子树找最大值
-            replaceParent = node;
-            replace = replaceParent.left;
-            while (replace.right != null) {
-                replaceParent = replace;
-                replace = replace.right;
-            }
-        }
-
-        // 交换删除节点
-        if (replace != null) {
-            // FIXME: 暂时先简单地换个值
-            node.val = replace.val;
-            node = replace;
-            parent = replaceParent;
-        }
-
-        // 删除节点
-        if (parent == null) {
-            // 只有一个根节点，而且被删除了
-            root = null;
+        } else if (key > root.val) {
+            root.right = dfs(root.right, key);
+            return root;
         } else {
-            if (parent.left == node) {
-                parent.left = node.right == null ? node.left : node.right;
-            } else {
-                parent.right = node.left == null ? node.right : node.left;
+            if (root.left == null && root.right == null) {
+                return null;
             }
-            node.left = node.right = null;
-        }
+            if (root.right == null) {
+                return root.left;
+            }
+            if (root.left == null) {
+                return root.right;
+            }
 
-        return root;
+            // 寻找替代的节点
+            TreeNode successor = root.right;
+            while (successor.left != null) {
+                successor = successor.left;
+            }
+
+            // 替换根节点，并删除替代节点
+            root.right = dfs(root.right, successor.val);
+            successor.left = root.left;
+            successor.right = root.right;
+            return successor;
+        }
     }
 
 }
