@@ -99,8 +99,8 @@ public class LCRunner {
         for (TestCase testCase : testCases) {
             String[] inputs = testCase.input();
             String[] outputs = testCase.output();
-            if (inputs.length == 0 || outputs.length == 0
-                    || inputs.length % outputs.length != 0) {
+            if (inputs.length == 0 || (
+                    outputs.length != 0 && inputs.length % outputs.length != 0)) {
                 continue;
             }
 
