@@ -40,7 +40,7 @@ import java.util.LinkedList;
 public class DailyTemperatures {
 
     /**
-     * 思路：非递增单调栈，一直出栈直到栈顶不比当前值小为止
+     * 思路：正向遍历，非递增单调栈，一直出栈直到栈顶不比当前值小为止
      * <p>
      * 复杂度：时间 O(n) 空间 O(n)
      * <p>
@@ -49,15 +49,42 @@ public class DailyTemperatures {
      */
     @TestCase(input = {"[73,74,75,71,69,72,76,73]", "[30,40,50,60]", "[30,60,90]"},
             output = {"[1,1,4,2,1,1,0,0]", "[1,1,1,0]", "[1,1,0]"})
-    public int[] dailyTemperatures(int[] temperatures) {
+    public int[] forward(int[] temperatures) {
         int n = temperatures.length;
         int[] ans = new int[n];
         Deque<Integer> stack = new LinkedList<>();
         for (int i = 0; i < n; i++) {
-            while (!stack.isEmpty()
-                    && temperatures[stack.peek()] < temperatures[i]) {
+            int t = temperatures[i];
+            while (!stack.isEmpty() && temperatures[stack.peek()] < t) {
                 int j = stack.pop();
                 ans[j] = i - j;
+            }
+            stack.push(i);
+        }
+        return ans;
+    }
+
+    /**
+     * 逆向遍历，递减单调栈，一直出栈直到栈顶比当前值大为止
+     * <p>
+     * 复杂度：时间 O(n) 空间 O(n)
+     * <p>
+     * 执行耗时:27 ms,击败了58.98% 的Java用户
+     * 内存消耗:57.2 MB,击败了5.53% 的Java用户
+     */
+    @TestCase(input = {"[73,74,75,71,69,72,76,73]", "[30,40,50,60]", "[30,60,90]"},
+            output = {"[1,1,4,2,1,1,0,0]", "[1,1,1,0]", "[1,1,0]"})
+    public int[] backward(int[] temperatures) {
+        int n = temperatures.length;
+        int[] ans = new int[n];
+        Deque<Integer> stack = new LinkedList<>();
+        for (int i = n - 1; i >= 0; i--) {
+            int t = temperatures[i];
+            while (!stack.isEmpty() && temperatures[stack.peek()] <= t) {
+                stack.pop();
+            }
+            if (!stack.isEmpty()) {
+                ans[i] = stack.peek() - i;
             }
             stack.push(i);
         }
