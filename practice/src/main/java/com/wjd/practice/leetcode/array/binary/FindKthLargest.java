@@ -36,8 +36,8 @@ public class FindKthLargest {
      * <p>
      * 复杂度：时间 O(n) 空间 O(logn)
      * <p>
-     * 执行耗时:4 ms,击败了97.07% 的Java用户
-     * 内存消耗:54.9 MB,击败了16.86% 的Java用户
+     * 执行耗时:4 ms,击败了97.91% 的Java用户
+     * 内存消耗:55.03MB MB,击败了30.66% 的Java用户
      */
     @TestCase(input = {"[3,2,1,5,6,4]", "2", "[3,2,3,1,2,4,5,5,6]", "4"},
             output = {"5", "4"})
@@ -65,8 +65,8 @@ public class FindKthLargest {
      * <p>
      * 复杂度：时间 O(n) 空间 O(logn)
      * <p>
-     * 执行耗时:4 ms,击败了97.07% 的Java用户
-     * 内存消耗:54.7 MB,击败了28.44% 的Java用户
+     * 执行耗时:5 ms,击败了94.00% 的Java用户
+     * 内存消耗:55.16MB,击败了23.16% 的Java用户
      */
     @TestCase(input = {"[3,2,1,5,6,4]", "2", "[3,2,3,1,2,4,5,5,6]", "4"},
             output = {"5", "4"})
@@ -98,14 +98,20 @@ public class FindKthLargest {
         // 随机对于某些特殊情况而言，性能提升很多
         int p = pivot(nums, start, end - 1);
         swap(nums, start, p);
-        int ref = nums[start], lp = start;
-        for (int i = lp + 1; i < end; i++) {
-            if (nums[i] >= ref) {
-                swap(nums, ++lp, i);
+        int ref = nums[start];
+        int lp = start, rp = end;
+        // 将数据与分区点对比，分成小于和大于2部分
+        while (lp < rp) {
+            // 对于大量重复值的情况，这种写法能够尽量均分数组
+            do rp--; while (lp < rp && nums[rp] < ref);
+            do lp++; while (lp < rp && nums[lp] > ref);
+            if (lp < rp) {
+                swap(nums, lp, rp);
             }
         }
-        swap(nums, start, lp);
-        return lp;
+        // 将分区点放到它最终的位置
+        swap(nums, start, rp);
+        return rp;
     }
 
     /**
