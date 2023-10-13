@@ -14,6 +14,10 @@
 - [33.搜索旋转排序数组](practice/src/main/java/com/wjd/practice/leetcode/array/binary/RotateSearch.java)
 - [153. 寻找旋转排序数组中的最小值](practice/src/main/java/com/wjd/practice/leetcode/array/binary/FindMin.java)
 - [4. 寻找两个正序数组的中位数](practice/src/main/java/com/wjd/practice/leetcode/array/binary/FindMedianSortedArrays.java)
+- [2300. 咒语和药水的成功对数](practice/src/main/java/com/wjd/practice/leetcode/array/binary/SuccessfulPairs.java)
+- [162. 寻找峰值](practice/src/main/java/com/wjd/practice/leetcode/array/binary/FindPeakElement.java)
+- [875. 爱吃香蕉的珂珂](practice/src/main/java/com/wjd/practice/leetcode/array/binary/MinEatingSpeed.java)
+- [215. 数组中的第K个最大元素](practice/src/main/java/com/wjd/practice/leetcode/array/binary/FindKthLargest.java)
 
 ### 双指针
 
@@ -22,6 +26,7 @@
 - [15. 三数之和](practice/src/main/java/com/wjd/practice/leetcode/array/combination/ThreeSum.java)
 - [42. 接雨水](practice/src/main/java/com/wjd/practice/leetcode/array/section/Trap.java)
 - [1679. K 和数对的最大数目](practice/src/main/java/com/wjd/practice/leetcode/array/statistics/MaxOperations.java)
+- [2300. 咒语和药水的成功对数](practice/src/main/java/com/wjd/practice/leetcode/array/binary/SuccessfulPairs.java)
 
 ### 滑动窗口
 
@@ -42,7 +47,6 @@
 
 - [1732. 找到最高海拔](practice/src/main/java/com/wjd/practice/leetcode/array/prefix/LargestAltitude.java)
 - [724. 寻找数组的中心下标](practice/src/main/java/com/wjd/practice/leetcode/array/prefix/PivotIndex.java)
-
 
 ### 区间
 
@@ -125,6 +129,7 @@
 - [84. 柱状图中最大的矩形](practice/src/main/java/com/wjd/practice/leetcode/array/section/LargestRectangleArea.java)
 - [2390. 从字符串中移除星号](practice/src/main/java/com/wjd/practice/leetcode/stack/RemoveStars.java)
 - [735. 行星碰撞](practice/src/main/java/com/wjd/practice/leetcode/stack/AsteroidCollision.java)
+- [901. 股票价格的跨度](practice/src/main/java/com/wjd/practice/leetcode/stack/StockSpanner.java)
 
 ## 五、队列
 
@@ -159,6 +164,7 @@
 
 ### 查找
 
+- [700. 二叉搜索树中的搜索](practice/src/main/java/com/wjd/practice/leetcode/tree/search/SearchBST.java)
 - [230. 二叉搜索树中第K小的元素](practice/src/main/java/com/wjd/practice/leetcode/tree/search/KthSmallest.java)
 - [236. 二叉树的最近公共祖先](practice/src/main/java/com/wjd/practice/leetcode/tree/path/LowestCommonAncestor2.java)
 - [437. 路径总和 III](practice/src/main/java/com/wjd/practice/leetcode/tree/path/PathSum3.java)
@@ -175,17 +181,21 @@
 
 - [226. 翻转二叉树](practice/src/main/java/com/wjd/practice/leetcode/tree/transform/InvertTree.java)
 - [114. 二叉树展开为链表](practice/src/main/java/com/wjd/practice/leetcode/tree/transform/Flatten.java)
+- [450. 删除二叉搜索树中的节点](practice/src/main/java/com/wjd/practice/leetcode/tree/transform/DeleteNode.java)
 
 ## 八、堆
 
 - [347. 前K个高频元素](practice/src/main/java/com/wjd/practice/leetcode/array/statistics/TopKFrequent.java)
 - [295. 数据流的中位数](practice/src/main/java/com/wjd/practice/leetcode/heap/MedianFinder.java)
+- [2542. 最大子序列的分数](practice/src/main/java/com/wjd/practice/leetcode/heap/MaxScore.java)
 
 ## 九、图论
 
 - [200. 岛屿数量](practice/src/main/java/com/wjd/practice/leetcode/matrix/NumIslands.java)
 - [994. 腐烂的橘子](practice/src/main/java/com/wjd/practice/leetcode/matrix/OrangesRotting.java)
 - [207. 课程表](practice/src/main/java/com/wjd/practice/leetcode/graph/FinishCourses.java)
+- [841. 钥匙和房间](practice/src/main/java/com/wjd/practice/leetcode/graph/CanVisitAllRooms.java)
+- [547. 省份数量](practice/src/main/java/com/wjd/practice/leetcode/graph/FindCircleNum.java)
 
 ## 十、回溯
 
