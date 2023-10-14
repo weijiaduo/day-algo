@@ -188,6 +188,7 @@
 - [347. 前K个高频元素](practice/src/main/java/com/wjd/practice/leetcode/array/statistics/TopKFrequent.java)
 - [295. 数据流的中位数](practice/src/main/java/com/wjd/practice/leetcode/heap/MedianFinder.java)
 - [2542. 最大子序列的分数](practice/src/main/java/com/wjd/practice/leetcode/heap/MaxScore.java)
+- [2462. 雇佣 K 位工人的总代价](practice/src/main/java/com/wjd/practice/leetcode/heap/TotalCost.java)
 
 ## 九、图论
 
