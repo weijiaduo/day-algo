@@ -62,6 +62,7 @@
 - [54. 螺旋矩阵](practice/src/main/java/com/wjd/practice/leetcode/matrix/SpiralOrder.java)
 - [48. 旋转图像](practice/src/main/java/com/wjd/practice/leetcode/matrix/RotateMatrix.java)
 - [240. 搜索二维矩阵 II](practice/src/main/java/com/wjd/practice/leetcode/array/binary/SearchMatrix2.java)
+- [1926. 迷宫中离入口最近的出口](practice/src/main/java/com/wjd/practice/leetcode/matrix/NearestExit.java)
 
 ### 统计
 
