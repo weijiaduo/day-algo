@@ -221,8 +221,9 @@
 
 ## 十二、动态规划
 
-### 二维动态规划
+### 一维动态规划
 
+- [1137. 第 N 个泰波那契数](practice/src/main/java/com/wjd/practice/leetcode/dynamic/Tribonacci.java)
 - [70. 爬楼梯](practice/src/main/java/com/wjd/practice/leetcode/dynamic/ClimbStairs.java)
 - [118. 杨辉三角](practice/src/main/java/com/wjd/practice/leetcode/array/transform/PascalTrianglePrint.java)
 - [198. 打家劫舍](practice/src/main/java/com/wjd/practice/leetcode/dynamic/Rob.java)
@@ -234,7 +235,7 @@
 - [416. 分割等和子集](practice/src/main/java/com/wjd/practice/leetcode/dynamic/CanPartition.java)
 - [32. 最长有效括号](practice/src/main/java/com/wjd/practice/leetcode/string/sequence/LongestValidParentheses.java)
 
-### 多维动态规划
+### 二维动态规划
 
 - [62. 不同路径](practice/src/main/java/com/wjd/practice/leetcode/dynamic/UniquePaths.java)
 - [64. 最小路径和](practice/src/main/java/com/wjd/practice/leetcode/dynamic/MinPathSum.java)
