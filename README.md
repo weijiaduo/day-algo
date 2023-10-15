@@ -210,6 +210,7 @@
 - [79. 单词搜索](practice/src/main/java/com/wjd/practice/leetcode/array/traversal/MatrixExistWord.java)
 - [131. 分割回文串](practice/src/main/java/com/wjd/practice/leetcode/string/combination/PartitionString.java)
 - [51. N皇后](practice/src/main/java/com/wjd/practice/leetcode/matrix/SolveNQueens.java)
+- [216. 组合总和3](practice/src/main/java/com/wjd/practice/leetcode/backtrack/CombinationSum3.java)
 
 ## 十一、贪心
 
