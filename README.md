@@ -225,6 +225,7 @@
 
 - [1137. 第 N 个泰波那契数](practice/src/main/java/com/wjd/practice/leetcode/dynamic/Tribonacci.java)
 - [70. 爬楼梯](practice/src/main/java/com/wjd/practice/leetcode/dynamic/ClimbStairs.java)
+- [746. 使用最小花费爬楼梯](practice/src/main/java/com/wjd/practice/leetcode/greedy/MinCostClimbingStairs.java)
 - [118. 杨辉三角](practice/src/main/java/com/wjd/practice/leetcode/array/transform/PascalTrianglePrint.java)
 - [198. 打家劫舍](practice/src/main/java/com/wjd/practice/leetcode/dynamic/Rob.java)
 - [279. 完全平方数](practice/src/main/java/com/wjd/practice/leetcode/dynamic/NumSquares.java)
