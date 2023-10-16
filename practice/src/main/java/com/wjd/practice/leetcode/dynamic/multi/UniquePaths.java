@@ -1,4 +1,4 @@
-package com.wjd.practice.leetcode.dynamic;
+package com.wjd.practice.leetcode.dynamic.multi;
 
 import com.wjd.practice.leetcode.TestCase;
 

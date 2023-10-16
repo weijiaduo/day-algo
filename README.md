@@ -223,23 +223,22 @@
 
 ### 一维动态规划
 
-- [1137. 第 N 个泰波那契数](practice/src/main/java/com/wjd/practice/leetcode/dynamic/Tribonacci.java)
-- [70. 爬楼梯](practice/src/main/java/com/wjd/practice/leetcode/dynamic/ClimbStairs.java)
-- [746. 使用最小花费爬楼梯](practice/src/main/java/com/wjd/practice/leetcode/greedy/MinCostClimbingStairs.java)
-- [118. 杨辉三角](practice/src/main/java/com/wjd/practice/leetcode/array/transform/PascalTrianglePrint.java)
-- [198. 打家劫舍](practice/src/main/java/com/wjd/practice/leetcode/dynamic/Rob.java)
-- [279. 完全平方数](practice/src/main/java/com/wjd/practice/leetcode/dynamic/NumSquares.java)
-- [322. 零钱兑换](practice/src/main/java/com/wjd/practice/leetcode/dynamic/CoinChange.java)
+- [1137. 第 N 个泰波那契数](practice/src/main/java/com/wjd/practice/leetcode/dynamic/one/Tribonacci.java)
+- [70. 爬楼梯](practice/src/main/java/com/wjd/practice/leetcode/dynamic/one/ClimbStairs.java)
+- [746. 使用最小花费爬楼梯](practice/src/main/java/com/wjd/practice/leetcode/dynamic/one/MinCostClimbingStairs.java)
+- [198. 打家劫舍](practice/src/main/java/com/wjd/practice/leetcode/dynamic/one/Rob.java)
+- [279. 完全平方数](practice/src/main/java/com/wjd/practice/leetcode/dynamic/one/NumSquares.java)
+- [322. 零钱兑换](practice/src/main/java/com/wjd/practice/leetcode/dynamic/one/CoinChange.java)
 - [139. 单词拆分](practice/src/main/java/com/wjd/practice/leetcode/string/combination/WordBreak.java)
 - [300. 最长递增子序列](practice/src/main/java/com/wjd/practice/leetcode/array/sequence/LengthOfLIS.java)
 - [152. 乘积最大子数组](practice/src/main/java/com/wjd/practice/leetcode/array/statistics/MaxProduct.java)
-- [416. 分割等和子集](practice/src/main/java/com/wjd/practice/leetcode/dynamic/CanPartition.java)
 - [32. 最长有效括号](practice/src/main/java/com/wjd/practice/leetcode/string/sequence/LongestValidParentheses.java)
 
-### 二维动态规划
+### 多维动态规划
 
-- [62. 不同路径](practice/src/main/java/com/wjd/practice/leetcode/dynamic/UniquePaths.java)
-- [64. 最小路径和](practice/src/main/java/com/wjd/practice/leetcode/dynamic/MinPathSum.java)
-- [5. 最长回文子串](practice/src/main/java/com/wjd/practice/leetcode/dynamic/LongestPalindrome.java)
-- [1143. 最长公共子序列](practice/src/main/java/com/wjd/practice/leetcode/dynamic/LongestCommonSubsequence.java)
-- [72. 编辑距离](practice/src/main/java/com/wjd/practice/leetcode/dynamic/MinDistance.java)
+- [416. 分割等和子集](practice/src/main/java/com/wjd/practice/leetcode/dynamic/multi/CanPartition.java)
+- [62. 不同路径](practice/src/main/java/com/wjd/practice/leetcode/dynamic/multi/UniquePaths.java)
+- [64. 最小路径和](practice/src/main/java/com/wjd/practice/leetcode/dynamic/multi/MinPathSum.java)
+- [5. 最长回文子串](practice/src/main/java/com/wjd/practice/leetcode/dynamic/multi/LongestPalindrome.java)
+- [1143. 最长公共子序列](practice/src/main/java/com/wjd/practice/leetcode/dynamic/multi/LongestCommonSubsequence.java)
+- [72. 编辑距离](practice/src/main/java/com/wjd/practice/leetcode/dynamic/multi/MinDistance.java)

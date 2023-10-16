@@ -1,4 +1,4 @@
-package com.wjd.practice.leetcode.greedy;
+package com.wjd.practice.leetcode.dynamic.one;
 
 import com.wjd.practice.leetcode.TestCase;
 
