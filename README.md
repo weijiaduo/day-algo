@@ -214,7 +214,6 @@
 
 ## 十一、贪心
 
-- [121. 买卖股票的最佳时机](practice/src/main/java/com/wjd/practice/leetcode/array/statistics/MaxProfit.java)
 - [55. 跳跃游戏](practice/src/main/java/com/wjd/practice/leetcode/greedy/CanJumpToEnd.java)
 - [45. 跳跃游戏 II](practice/src/main/java/com/wjd/practice/leetcode/greedy/JumpToEnd.java)
 - [763. 划分字母区间](practice/src/main/java/com/wjd/practice/leetcode/greedy/PartitionLabels.java)
@@ -241,5 +240,6 @@
 - [64. 最小路径和](practice/src/main/java/com/wjd/practice/leetcode/dynamic/multi/MinPathSum.java)
 - [5. 最长回文子串](practice/src/main/java/com/wjd/practice/leetcode/dynamic/multi/LongestPalindrome.java)
 - [1143. 最长公共子序列](practice/src/main/java/com/wjd/practice/leetcode/dynamic/multi/LongestCommonSubsequence.java)
+- [121. 买卖股票的最佳时机](practice/src/main/java/com/wjd/practice/leetcode/dynamic/multi/MaxProfit.java)
 - [714. 买卖股票的最佳时机含手续费](practice/src/main/java/com/wjd/practice/leetcode/dynamic/multi/MaxProfitWithFee.java)
 - [72. 编辑距离](practice/src/main/java/com/wjd/practice/leetcode/dynamic/multi/MinDistance.java)
