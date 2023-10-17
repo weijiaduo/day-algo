@@ -244,4 +244,5 @@
 - [122. 买卖股票的最佳时机 II](practice/src/main/java/com/wjd/practice/leetcode/dynamic/multi/MaxProfit2.java)
 - [714. 买卖股票的最佳时机含手续费](practice/src/main/java/com/wjd/practice/leetcode/dynamic/multi/MaxProfitWithFee.java)
 - [123. 买卖股票的最佳时机 III](practice/src/main/java/com/wjd/practice/leetcode/dynamic/multi/MaxProfit3.java)
+- [188. 买卖股票的最佳时机 IV](practice/src/main/java/com/wjd/practice/leetcode/dynamic/multi/MaxProfit4.java)
 - [72. 编辑距离](practice/src/main/java/com/wjd/practice/leetcode/dynamic/multi/MinDistance.java)
