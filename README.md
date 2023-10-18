@@ -250,3 +250,4 @@
 ## 十三、位运算
 
 - [338. 比特位计数](practice/src/main/java/com/wjd/practice/leetcode/bit/CountBits.java)
+- [136. 只出现一次的数字](practice/src/main/java/com/wjd/practice/leetcode/bit/SingleNumber.java)

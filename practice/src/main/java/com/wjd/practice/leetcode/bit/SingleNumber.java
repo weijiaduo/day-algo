@@ -1,4 +1,4 @@
-package com.wjd.practice.leetcode.array.statistics;
+package com.wjd.practice.leetcode.bit;
 
 import com.wjd.practice.leetcode.TestCase;
 
