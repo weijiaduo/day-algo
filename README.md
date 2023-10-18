@@ -246,3 +246,7 @@
 - [123. 买卖股票的最佳时机 III](practice/src/main/java/com/wjd/practice/leetcode/dynamic/multi/MaxProfit3.java)
 - [188. 买卖股票的最佳时机 IV](practice/src/main/java/com/wjd/practice/leetcode/dynamic/multi/MaxProfit4.java)
 - [72. 编辑距离](practice/src/main/java/com/wjd/practice/leetcode/dynamic/multi/MinDistance.java)
+
+## 十三、位运算
+
+- [338. 比特位计数](practice/src/main/java/com/wjd/practice/leetcode/bit/CountBits.java)
