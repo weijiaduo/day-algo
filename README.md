@@ -88,6 +88,10 @@
 - [151. 颠倒字符串中的单词](practice/src/main/java/com/wjd/practice/leetcode/string/transform/ReverseWords.java)
 - [443. 压缩字符串](practice/src/main/java/com/wjd/practice/leetcode/string/transform/Compress.java)
 
+### 字典树
+
+- [1268. 搜索推荐系统](practice/src/main/java/com/wjd/practice/leetcode/trie/SuggestedProducts.java)
+
 ## 三、链表
 
 ### 单链
