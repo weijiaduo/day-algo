@@ -54,7 +54,7 @@ import com.wjd.practice.leetcode.TestCase;
  * @author weijiaduo
  * @since 2023/10/22
  */
-public class removeDuplicates1 {
+public class RemoveDuplicates1 {
 
     /**
      * 思路：双指针，一个遍历，一个执行非重复数组末尾
@@ -79,6 +79,26 @@ public class removeDuplicates1 {
             rp++;
         }
         return lp + 1;
+    }
+
+    /**
+     * 思路：双指针，一个遍历，一个执行非重复数组末尾
+     * <p>
+     * 复杂度：时间 O(n) 空间 O(1)
+     * <p>
+     * 执行耗时:0 ms,击败了100.00% 的Java用户
+     * 内存消耗:41.98MB,击败了14.62% 的Java用户
+     */
+    @TestCase(input = {"[1,1,2]", "[0,0,1,1,1,2,2,3,3,4]"},
+            output = {"2", "5"})
+    public int doublePoint2(int[] nums) {
+        int p = 0, k = 1;
+        for (int num : nums) {
+            if (p < k || nums[p - k] != num) {
+                nums[p++] = num;
+            }
+        }
+        return p;
     }
 
 }

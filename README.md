@@ -79,7 +79,8 @@
 ### 转换
 
 - [27. 移除元素](practice/src/main/java/com/wjd/practice/leetcode/array/transform/RemoveElement.java)
-- [26. 删除有序数组中的重复项](practice/src/main/java/com/wjd/practice/leetcode/array/transform/removeDuplicates1.java)
+- [26. 删除有序数组中的重复项](practice/src/main/java/com/wjd/practice/leetcode/array/transform/RemoveDuplicates1.java)
+- [80. 删除有序数组中的重复项](practice/src/main/java/com/wjd/practice/leetcode/array/transform/RemoveDuplicates2.java)
 
 ## 二、字符串
 
