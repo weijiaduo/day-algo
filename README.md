@@ -74,7 +74,11 @@
 
 ### 排序
 
-- [88. 合并两个有序数组](practice/src/main/java/com/wjd/practice/leetcode/array/transform/MergeSortedArray.java)
+- [88. 合并两个有序数组](practice/src/main/java/com/wjd/practice/leetcode/array/sort/MergeSortedArray.java)
+
+### 转换
+
+- [27. 移除元素](practice/src/main/java/com/wjd/practice/leetcode/array/transform/RemoveElement.java)
 
 ## 二、字符串
 
