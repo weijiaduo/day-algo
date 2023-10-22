@@ -68,6 +68,7 @@
 
 ### 统计
 
+- [169. 多数元素](practice/src/main/java/com/wjd/practice/leetcode/array/statistics/MajorityElement.java)
 - [1431. 拥有最多糖果的孩子](practice/src/main/java/com/wjd/practice/leetcode/array/statistics/KidsWithCandies.java)
 - [605. 种花问题](practice/src/main/java/com/wjd/practice/leetcode/array/statistics/PlaceFlowers.java)
 - [238. 除自身以外数组的乘积](practice/src/main/java/com/wjd/practice/leetcode/array/statistics/ProductExceptSelf.java)
