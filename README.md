@@ -52,7 +52,6 @@
 
 - [53. 最大子数组和](practice/src/main/java/com/wjd/practice/leetcode/array/sequence/MaxSubArray.java)
 - [56. 合并区间](practice/src/main/java/com/wjd/practice/leetcode/array/section/MergeIntervals.java)
-- [189. 轮转数组](practice/src/main/java/com/wjd/practice/leetcode/array/transform/RotateArray.java)
 - [238. 除自身以外数组的乘积](practice/src/main/java/com/wjd/practice/leetcode/array/statistics/ProductExceptSelf.java)
 - [41. 缺失的第一个整数](practice/src/main/java/com/wjd/practice/leetcode/array/statistics/FirstMissingPositive.java)
 - [435. 无重叠区间](practice/src/main/java/com/wjd/practice/leetcode/array/section/EraseOverlapIntervals.java)
@@ -82,6 +81,7 @@
 - [27. 移除元素](practice/src/main/java/com/wjd/practice/leetcode/array/transform/RemoveElement.java)
 - [26. 删除有序数组中的重复项](practice/src/main/java/com/wjd/practice/leetcode/array/transform/RemoveDuplicates1.java)
 - [80. 删除有序数组中的重复项](practice/src/main/java/com/wjd/practice/leetcode/array/transform/RemoveDuplicates2.java)
+- [189. 轮转数组](practice/src/main/java/com/wjd/practice/leetcode/array/transform/RotateArray.java)
 
 ## 二、字符串
 
