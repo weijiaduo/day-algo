@@ -39,7 +39,7 @@ import com.wjd.practice.leetcode.TestCase;
  *
  * @since 2021-05-29
  */
-public class MaxProfit2 {
+public class MaxProfit2 extends MaxProfit {
 
     /**
      * 思路：贪心，只要有增长的地方，就买入和卖出
@@ -49,8 +49,8 @@ public class MaxProfit2 {
      * 执行耗时:0 ms,击败了100.00% 的Java用户
      * 内存消耗:43.1 MB,击败了64.29% 的Java用户
      */
-    @TestCase(input = {"[7,1,5,3,6,4]", "[1,2,3,4,5]", "[7,6,4,3,1]"},
-            output = {"7", "4", "0"})
+    @TestCase(input = {"[7,1,5,3,6,4]", "[1,2,3,4,5]", "[7,6,4,3,1]", "[1,2,4,2,5,7,2,4,9,0,9]"},
+            output = {"7", "4", "0", "24"})
     public int greedy(int[] prices) {
         int sumVal = 0;
         for (int rp = 1; rp < prices.length; rp++) {
@@ -80,8 +80,8 @@ public class MaxProfit2 {
      * 执行耗时:3 ms,击败了29.97% 的Java用户
      * 内存消耗:43.2 MB,击败了30.88% 的Java用户
      */
-    @TestCase(input = {"[7,1,5,3,6,4]", "[1,2,3,4,5]", "[7,6,4,3,1]"},
-            output = {"7", "4", "0"})
+    @TestCase(input = {"[7,1,5,3,6,4]", "[1,2,3,4,5]", "[7,6,4,3,1]", "[1,2,4,2,5,7,2,4,9,0,9]"},
+            output = {"7", "4", "0", "24"})
     public int dynamic1(int[] prices) {
         // 状态定义
         int n = prices.length;
@@ -107,8 +107,8 @@ public class MaxProfit2 {
      * 执行耗时:2 ms,击败了35.24% 的Java用户
      * 内存消耗:43.1 MB,击败了68.97% 的Java用户
      */
-    @TestCase(input = {"[7,1,5,3,6,4]", "[1,2,3,4,5]", "[7,6,4,3,1]"},
-            output = {"7", "4", "0"})
+    @TestCase(input = {"[7,1,5,3,6,4]", "[1,2,3,4,5]", "[7,6,4,3,1]", "[1,2,4,2,5,7,2,4,9,0,9]"},
+            output = {"7", "4", "0", "24"})
     public int dynamic0(int[] prices) {
         // 状态定义
         int n = prices.length;
@@ -123,6 +123,34 @@ public class MaxProfit2 {
             dp[1] = Math.max(dp[0] + prices[i], dp[1]);
         }
         return dp[1];
+    }
+
+    /**
+     * 思路：动态规划
+     * <p>
+     * 复杂度：时间 O(n) 空间 O(n)
+     * <p>
+     * 执行耗时:2 ms,击败了35.8% 的Java用户
+     * 内存消耗:42.5 MB,击败了99.73% 的Java用户
+     */
+    @TestCase(input = {"[7,1,5,3,6,4]", "[1,2,3,4,5]", "[7,6,4,3,1]", "[1,2,4,2,5,7,2,4,9,0,9]"},
+            output = {"7", "4", "0", "24"})
+    public int commonDynamic1(int[] prices) {
+        return dynamic1K(prices, -1, 0);
+    }
+
+    /**
+     * 思路：动态规划，滚动数组压缩空间
+     * <p>
+     * 复杂度：时间 O(n) 空间 O(1)
+     * <p>
+     * 执行耗时:1 ms,击败了68.71% 的Java用户
+     * 内存消耗:42.7 MB,击败了98.50% 的Java用户
+     */
+    @TestCase(input = {"[7,1,5,3,6,4]", "[1,2,3,4,5]", "[7,6,4,3,1]", "[1,2,4,2,5,7,2,4,9,0,9]"},
+            output = {"7", "4", "0", "24"})
+    public int commonDynamic0(int[] prices) {
+        return dynamic0K(prices, -1, 0);
     }
 
 }

@@ -38,7 +38,7 @@ import com.wjd.practice.leetcode.TestCase;
  * @author weijiaduo
  * @since 2023/10/17
  */
-public class MaxProfitWithFee {
+public class MaxProfitWithFee extends MaxProfit {
 
     /**
      * 思路：动态规划
@@ -99,6 +99,34 @@ public class MaxProfitWithFee {
             sell = Math.max(buy + prices[i] - fee, sell);
         }
         return sell;
+    }
+
+    /**
+     * 思路：动态规划
+     * <p>
+     * 复杂度：时间 O(n) 空间 O(n)
+     * <p>
+     * 执行耗时:28 ms,击败了5.43% 的Java用户
+     * 内存消耗:53.2 MB,击败了77.86% 的Java用户
+     */
+    @TestCase(input = {"[1, 3, 2, 8, 4, 9]", "2", "[1,3,7,5,10,3]", "3"},
+            output = {"8", "6"})
+    public int commonDynamic1(int[] prices, int fee) {
+        return dynamic1K(prices, -1, fee);
+    }
+
+    /**
+     * 思路：动态规划，滚动数组压缩空间
+     * <p>
+     * 复杂度：时间 O(n) 空间 O(1)
+     * <p>
+     * 执行耗时:5 ms,击败了73.89% 的Java用户
+     * 内存消耗:51.52MB,击败了97.10% 的Java用户
+     */
+    @TestCase(input = {"[1, 3, 2, 8, 4, 9]", "2", "[1,3,7,5,10,3]", "3"},
+            output = {"8", "6"})
+    public int commonDynamic0(int[] prices, int fee) {
+        return dynamic0K(prices, -1, fee);
     }
 
     /**

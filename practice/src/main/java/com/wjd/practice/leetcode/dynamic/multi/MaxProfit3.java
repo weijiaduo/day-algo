@@ -47,7 +47,7 @@ import java.util.Arrays;
  * @author weijiaduo
  * @since 2022/6/21
  */
-public class MaxProfit3 {
+public class MaxProfit3 extends MaxProfit {
 
     /**
      * 思路：动态规划
@@ -131,7 +131,9 @@ public class MaxProfit3 {
      * 执行耗时:1 ms,击败了100.00% 的Java用户
      * 内存消耗:57.8 MB,击败了25.63% 的Java用户
      */
-    public int dynamic3(int[] prices) {
+    @TestCase(input = {"[3,3,5,0,0,3,1,4]", "[1,2,3,4,5]", "[7,6,4,3,1] "},
+            output = {"6", "4", "0"})
+    public int dynamic00(int[] prices) {
         int n = prices.length;
         int buy1 = -prices[0], sell1 = 0;
         int buy2 = -prices[0], sell2 = 0;
@@ -142,6 +144,34 @@ public class MaxProfit3 {
             sell2 = Math.max(sell2, buy2 + prices[i]);
         }
         return sell2;
+    }
+
+    /**
+     * 思路：动态规划
+     * <p>
+     * 复杂度：时间 O(n) 空间 O(n)
+     * <p>
+     * 执行耗时:40 ms,击败了18.86% 的Java用户
+     * 内存消耗:57.3 MB,击败了19.52% 的Java用户
+     */
+    @TestCase(input = {"[3,3,5,0,0,3,1,4]", "[1,2,3,4,5]", "[7,6,4,3,1] "},
+            output = {"6", "4", "0"})
+    public int commonDynamic1(int[] prices) {
+        return dynamic1K(prices, 2, 0);
+    }
+
+    /**
+     * 思路：动态规划，滚动数组压缩空间
+     * <p>
+     * 复杂度：时间 O(n) 空间 O(1)
+     * <p>
+     * 执行耗时:9 ms,击败了50.57% 的Java用户
+     * 内存消耗:52.90MB,击败了94.95% 的Java用户
+     */
+    @TestCase(input = {"[3,3,5,0,0,3,1,4]", "[1,2,3,4,5]", "[7,6,4,3,1] "},
+            output = {"6", "4", "0"})
+    public int commonDynamic0(int[] prices) {
+        return dynamic0K(prices, 2, 0);
     }
 
 }
