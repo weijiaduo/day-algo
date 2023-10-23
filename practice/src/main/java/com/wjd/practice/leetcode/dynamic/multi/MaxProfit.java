@@ -42,7 +42,7 @@ public abstract class MaxProfit {
         // 状态初始化
         // 第 0 天内不允许卖出，最大利润都是 0
         // Arrays.fill(sell[0], 0);
-        // 第 0 天内只允许卖出第 0 个股票，最大利润都是 -prices[0]
+        // 第 0 天内只允许买入第 0 个股票，最大利润都是 -prices[0]
         Arrays.fill(buy[0], -prices[0]);
 
         // 状态转移
