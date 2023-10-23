@@ -17,7 +17,7 @@ public abstract class MaxProfit {
     /**
      * 动态规划，常规数组空间
      * <p>
-     * 复杂度：时间 O(n) 空间 O(nk)
+     * 复杂度：时间 O(nk) 空间 O(nk)
      *
      * @param prices 价格
      * @param k      最多交易次数，k < 0 表示无限制次数
@@ -61,7 +61,7 @@ public abstract class MaxProfit {
     /**
      * 动态规划，滚动数组压缩空间
      * <p>
-     * 复杂度：时间 O(n) 空间 O(k)
+     * 复杂度：时间 O(nk) 空间 O(k)
      *
      * @param prices 价格
      * @param k      最多交易次数，k < 0 表示无限制次数
