@@ -75,6 +75,7 @@
 ### 排序
 
 - [88. 合并两个有序数组](practice/src/main/java/com/wjd/practice/leetcode/array/sort/MergeSortedArray.java)
+- [274. H指数](practice/src/main/java/com/wjd/practice/leetcode/array/statistics/HIndex.java)
 
 ### 转换
 
