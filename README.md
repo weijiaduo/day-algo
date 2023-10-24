@@ -43,16 +43,16 @@
 - [76. 最小覆盖子串](practice/src/main/java/com/wjd/practice/leetcode/array/sliding/MinWindow.java)
 - [334. 递增的三元子序列](practice/src/main/java/com/wjd/practice/leetcode/array/sequence/IncreasingTriplet.java)
 
-### 前缀和
+### 前后缀
 
 - [1732. 找到最高海拔](practice/src/main/java/com/wjd/practice/leetcode/array/prefix/LargestAltitude.java)
 - [724. 寻找数组的中心下标](practice/src/main/java/com/wjd/practice/leetcode/array/prefix/PivotIndex.java)
+- [238. 除自身以外数组的乘积](practice/src/main/java/com/wjd/practice/leetcode/array/statistics/ProductExceptSelf.java)
 
 ### 区间
 
 - [53. 最大子数组和](practice/src/main/java/com/wjd/practice/leetcode/array/sequence/MaxSubArray.java)
 - [56. 合并区间](practice/src/main/java/com/wjd/practice/leetcode/array/section/MergeIntervals.java)
-- [238. 除自身以外数组的乘积](practice/src/main/java/com/wjd/practice/leetcode/array/statistics/ProductExceptSelf.java)
 - [41. 缺失的第一个整数](practice/src/main/java/com/wjd/practice/leetcode/array/statistics/FirstMissingPositive.java)
 - [435. 无重叠区间](practice/src/main/java/com/wjd/practice/leetcode/array/section/EraseOverlapIntervals.java)
 - [452. 用最少数量的箭引爆气球](practice/src/main/java/com/wjd/practice/leetcode/array/section/FindMinArrowShots.java)
