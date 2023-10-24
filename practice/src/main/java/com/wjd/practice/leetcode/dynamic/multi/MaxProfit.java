@@ -47,12 +47,12 @@ public abstract class MaxProfit {
 
         // 状态转移
         for (int i = 1; i < n; i++) {
-            // 这里取余是为了处理 k < 0 的情况，如果 k > 0 则不需要取余，可提升性能
+            // 这里取余是为了处理 k < 0 的情况
             for (int j = 1 % m; j < m; j++) {
                 // 当天卖出/不买不卖，记得加上服务费
-                sell[i][j % m] = Math.max(buy[i - 1][j % m] + prices[i] - fee, sell[i - 1][j % m]);
+                sell[i][j] = Math.max(buy[i - 1][j] + prices[i] - fee, sell[i - 1][j]);
                 // 当天买入/不买不卖
-                buy[i][j % m] = Math.max(sell[i - 1][(j - 1) % m] - prices[i], buy[i - 1][j % m]);
+                buy[i][j] = Math.max(sell[i - 1][(j - 1) % m] - prices[i], buy[i - 1][j]);
             }
         }
         return sell[n - 1][m - 1];
@@ -91,12 +91,12 @@ public abstract class MaxProfit {
 
         // 状态转移
         for (int i = 1; i < n; i++) {
-            // 这里取余是为了处理 k < 0 的情况，如果 k > 0 则不需要取余，可提升性能
+            // 这里取余是为了处理 k < 0 的情况
             for (int j = 1 % m; j < m; j++) {
                 // 当天卖出/不买不卖，记得加上服务费
-                sell[j % m] = Math.max(buy[j % m] + prices[i] - fee, sell[j % m]);
+                sell[j] = Math.max(buy[j] + prices[i] - fee, sell[j]);
                 // 当天买入/不买不卖
-                buy[j % m] = Math.max(sell[(j - 1) % m] - prices[i], buy[j % m]);
+                buy[j] = Math.max(sell[(j - 1) % m] - prices[i], buy[j]);
             }
         }
 
