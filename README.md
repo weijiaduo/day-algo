@@ -234,6 +234,7 @@
 
 - [55. 跳跃游戏](practice/src/main/java/com/wjd/practice/leetcode/greedy/CanJumpToEnd.java)
 - [45. 跳跃游戏 II](practice/src/main/java/com/wjd/practice/leetcode/greedy/JumpToEnd.java)
+- [134. 加油站](practice/src/main/java/com/wjd/practice/leetcode/greedy/CanCompleteCircuit.java)
 - [763. 划分字母区间](practice/src/main/java/com/wjd/practice/leetcode/greedy/PartitionLabels.java)
 
 ## 十二、动态规划
