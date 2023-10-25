@@ -12,6 +12,8 @@ import java.io.InputStream;
 import java.lang.reflect.Constructor;
 import java.lang.reflect.Method;
 import java.lang.reflect.Modifier;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Objects;
 
 /**
@@ -41,32 +43,36 @@ public class LCRunner {
      * @param cls 类的Class对象
      */
     public static void run(Class<?> cls) throws Exception {
-        // 优先找注解用例方法
-        boolean found = false;
+        List<Method> annoTests = new ArrayList<>();
+        List<Method> fileTests = new ArrayList<>();
         for (Method m : cls.getDeclaredMethods()) {
             TestCase[] testCases = m.getAnnotationsByType(TestCase.class);
             if (testCases.length > 0) {
-                found = true;
+                // 优先找注解用例方法
+                annoTests.add(m);
+            } else if ("solve".equals(m.getName())) {
+                // 然后找特定的 solve 方法
+                fileTests.add(m);
+            } else if (Modifier.isPublic(m.getModifiers())) {
+                // 最后找 public 方法
+                fileTests.add(m);
+            }
+        }
+
+        // 运行注解方法
+        for (Method m : annoTests) {
+            try {
                 runAnnotationTestCase(cls, m);
+            } catch (Exception e) {
+                e.printStackTrace();
             }
         }
-        if (found) {
-            return;
-        }
-
-        // 然后找特定的 solve 方法
-        for (Method m : cls.getDeclaredMethods()) {
-            if ("solve".equals(m.getName())) {
+        // 运行其他特殊方法 solve 或 public
+        for (Method m : fileTests) {
+            try {
                 runFileTestCase(cls, m);
-                return;
-            }
-        }
-
-        // 最后找 public 方法
-        for (Method m : cls.getDeclaredMethods()) {
-            if (Modifier.isPublic(m.getModifiers())) {
-                runFileTestCase(cls, m);
-                return;
+            } catch (Exception e) {
+                e.printStackTrace();
             }
         }
     }
@@ -80,9 +86,9 @@ public class LCRunner {
     private static void runFileTestCase(Class<?> cls, Method method) throws Exception {
         // 构造输入输出
         InputStream ins = new FileInputStream(new File(DIR, IN_FILE));
-        Input input = new Input(ins, method.getParameterTypes());
+        Input input = new Input(ins, method.getGenericParameterTypes());
         InputStream outs = new FileInputStream(new File(DIR, OUT_FILE));
-        Output output = new Output(outs, method.getReturnType());
+        Output output = new Output(outs, method.getGenericReturnType());
 
         // 执行所有用例
         runTestCase(cls, method, input, output);
