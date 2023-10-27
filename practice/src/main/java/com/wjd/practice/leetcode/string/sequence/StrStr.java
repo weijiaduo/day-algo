@@ -1,26 +1,50 @@
 package com.wjd.practice.leetcode.string.sequence;
 
+import com.wjd.practice.leetcode.TestCase;
+
 /**
  * 28. 实现 strStr 函数
  * <p>
- * 给你两个字符串 haystack 和 needle ，请你在 haystack 字符串中找出 needle 字符串出现的第一个位置（下标从 0 开始）。
+ * 给你两个字符串 haystack 和 needle ，请你在 haystack 字符串中找出 needle 字符串的第一个匹配项的下标（下标从 0 开始）。
  * <p>
- * 如果不存在，则返回 -1 。
+ * 如果 needle 不是 haystack 的一部分，则返回 -1 。
  * <p>
- * 对于本题而言，当 needle 是空字符串时我们应当返回 0 。这与 C 语言的 strstr() 以及 Java 的 indexOf() 定义相符。
+ * 示例 1：
  * <p>
- * 输入：haystack = "hello", needle = "ll"
+ * 输入：haystack = "sadbutsad", needle = "sad"
+ * 输出：0
+ * 解释："sad" 在下标 0 和 6 处匹配。
+ * 第一个匹配项的下标是 0 ，所以返回 0 。
  * <p>
- * 输出：2
+ * 示例 2：
  * <p>
+ * 输入：haystack = "leetcode", needle = "leeto"
+ * 输出：-1
+ * 解释："leeto" 没有在 "leetcode" 中出现，所以返回 -1 。
+ * <p>
+ * 提示：
+ * <p>
+ * 1 <= haystack.length, needle.length <= 10⁴
+ * haystack 和 needle 仅由小写英文字符组成
  *
  * @since 2022/5/17
  */
 public class StrStr {
 
-    public int strStr(String haystack, String needle) {
-        int m = haystack.length();
-        int n = needle.length();
+    /**
+     * 思路：直接模拟暴力匹配
+     * <p>
+     * 遍历字符串每个起点，然后尝试匹配
+     * <p>
+     * 复杂度：时间 O(nm) 空间 O(1)
+     * <p>
+     * 执行耗时:0 ms,击败了100.00% 的Java用户
+     * 内存消耗:39.6 MB,击败了12.14% 的Java用户
+     */
+    @TestCase(input = {"sadbutsad", "sad", "leetcode", "leeto"},
+            output = {"0", "-1"})
+    public int indexOf(String haystack, String needle) {
+        int m = haystack.length(), n = needle.length();
         for (int i = 0; i + n <= m; i++) {
             boolean flag = true;
             for (int j = 0; j < n; j++) {
