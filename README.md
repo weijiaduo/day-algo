@@ -106,6 +106,7 @@
 - [345. 反转字符串中的元音字母](practice/src/main/java/com/wjd/practice/leetcode/string/transform/ReverseWords.java)
 - [151. 颠倒字符串中的单词](practice/src/main/java/com/wjd/practice/leetcode/string/transform/ReverseWords.java)
 - [443. 压缩字符串](practice/src/main/java/com/wjd/practice/leetcode/string/transform/Compress.java)
+- [6. Z字形变换](practice/src/main/java/com/wjd/practice/leetcode/string/transform/ZConvert.java)
 
 ### 字典树
 
