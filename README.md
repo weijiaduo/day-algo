@@ -92,6 +92,7 @@
 
 ### 子序列
 
+- [58. 最后一个单词的长度](practice/src/main/java/com/wjd/practice/leetcode/string/sequence/LengthOfLastWord.java)
 - [1071. 字符串的最大公因子](practice/src/main/java/com/wjd/practice/leetcode/string/compare/GcdOfStrings.java)
 - [392. 判断子序列](practice/src/main/java/com/wjd/practice/leetcode/string/sequence/IsSubsequence.java)
 
