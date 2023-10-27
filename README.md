@@ -35,12 +35,13 @@
 - [643. 子数组最大平均数 I](practice/src/main/java/com/wjd/practice/leetcode/array/sliding/MaxAverage.java)
 - [1004. 最大连续1的个数 III](practice/src/main/java/com/wjd/practice/leetcode/array/sliding/LongestOnes.java)
 - [1493. 删掉一个元素以后全为 1 的最长子数组](practice/src/main/java/com/wjd/practice/leetcode/array/sliding/LongestSubarray.java)
-
-### 子串子序列
-
 - [560. 和为 K 的子数组](practice/src/main/java/com/wjd/practice/leetcode/array/sliding/SubarraySum.java)
 - [239. 滑动窗口最大值](practice/src/main/java/com/wjd/practice/leetcode/array/sliding/MaxSlidingWindow.java)
 - [76. 最小覆盖子串](practice/src/main/java/com/wjd/practice/leetcode/array/sliding/MinWindow.java)
+
+### 子序列
+
+- [53. 最大子数组和](practice/src/main/java/com/wjd/practice/leetcode/array/sequence/MaxSubArray.java)
 - [334. 递增的三元子序列](practice/src/main/java/com/wjd/practice/leetcode/array/sequence/IncreasingTriplet.java)
 
 ### 前后缀
@@ -51,9 +52,7 @@
 
 ### 区间
 
-- [53. 最大子数组和](practice/src/main/java/com/wjd/practice/leetcode/array/sequence/MaxSubArray.java)
 - [56. 合并区间](practice/src/main/java/com/wjd/practice/leetcode/array/section/MergeIntervals.java)
-- [41. 缺失的第一个整数](practice/src/main/java/com/wjd/practice/leetcode/array/statistics/FirstMissingPositive.java)
 - [435. 无重叠区间](practice/src/main/java/com/wjd/practice/leetcode/array/section/EraseOverlapIntervals.java)
 - [452. 用最少数量的箭引爆气球](practice/src/main/java/com/wjd/practice/leetcode/array/section/FindMinArrowShots.java)
 
@@ -67,6 +66,7 @@
 
 ### 统计
 
+- [41. 缺失的第一个整数](practice/src/main/java/com/wjd/practice/leetcode/array/statistics/FirstMissingPositive.java)
 - [169. 多数元素](practice/src/main/java/com/wjd/practice/leetcode/array/statistics/MajorityElement.java)
 - [1431. 拥有最多糖果的孩子](practice/src/main/java/com/wjd/practice/leetcode/array/statistics/KidsWithCandies.java)
 - [605. 种花问题](practice/src/main/java/com/wjd/practice/leetcode/array/statistics/PlaceFlowers.java)
@@ -236,6 +236,7 @@
 - [45. 跳跃游戏 II](practice/src/main/java/com/wjd/practice/leetcode/greedy/JumpToEnd.java)
 - [134. 加油站](practice/src/main/java/com/wjd/practice/leetcode/greedy/CanCompleteCircuit.java)
 - [763. 划分字母区间](practice/src/main/java/com/wjd/practice/leetcode/greedy/PartitionLabels.java)
+- [135. 分发糖果](practice/src/main/java/com/wjd/practice/leetcode/greedy/Candy.java)
 
 ## 十二、动态规划
 
