@@ -96,6 +96,10 @@
 - [1071. 字符串的最大公因子](practice/src/main/java/com/wjd/practice/leetcode/string/compare/GcdOfStrings.java)
 - [392. 判断子序列](practice/src/main/java/com/wjd/practice/leetcode/string/sequence/IsSubsequence.java)
 
+### 前后缀
+
+- [14. 最长公共前缀](practice/src/main/java/com/wjd/practice/leetcode/string/prefix/LongestCommonPrefix.java)
+
 ### 字符串变换
 
 - [1768. 交替合并字符串](practice/src/main/java/com/wjd/practice/leetcode/string/simulate/MergeAlternately.java)
