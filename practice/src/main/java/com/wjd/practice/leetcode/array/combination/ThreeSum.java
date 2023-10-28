@@ -61,8 +61,8 @@ public class ThreeSum {
      * <p>
      * 复杂度：时间 O(nlogn + n^2) 空间 O(1)
      * <p>
-     * 执行耗时:32 ms,击败了61.33% 的Java用户
-     * 内存消耗:49.5 MB,击败了17.95% 的Java用户
+     * 执行耗时:29ms,击败了87.44% 的Java用户
+     * 内存消耗:48.11MB,击败了52.58% 的Java用户
      *
      * @param nums 数组
      * @return 所有三元组
@@ -106,8 +106,12 @@ public class ThreeSum {
             if (temp == sum) {
                 ans.add(Arrays.asList(-sum, nums[lp], nums[rp]));
                 // 去重
-                while (lp < rp && nums[lp] == nums[++lp]) ;
-                while (lp < rp && nums[rp] == nums[--rp]) ;
+                do {
+                    lp++;
+                } while (lp < rp && nums[lp] == nums[lp - 1]);
+                do {
+                    rp--;
+                } while (lp < rp && nums[rp] == nums[rp + 1]);
             } else if (temp < sum) {
                 lp++;
             } else {
