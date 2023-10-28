@@ -64,7 +64,7 @@ public class FindMin {
      */
     @TestCase(input = {"[3,4,5,1,2]", "[4,5,6,7,0,1,2]", "[11,13,15,17]"},
             output = {"1", "0", "11"})
-    public int findMin(int[] nums) {
+    public int binary(int[] nums) {
         if (nums.length == 0) {
             return 0;
         }
@@ -80,6 +80,38 @@ public class FindMin {
             }
         }
         return nums[low];
+    }
+
+    /**
+     * 思路：二分查找，判断中值处于左边大值部分，还是右边的小值部分
+     * <p>
+     * 复杂度：时间 O(logn) 空间 O(1)
+     * <p>
+     * 执行耗时:0 ms,击败了100.00% 的Java用户
+     * 内存消耗:39.7 MB,击败了65.72% 的Java用户
+     */
+    @TestCase(input = {"[3,4,5,1,2]", "[4,5,6,7,0,1,2]", "[11,13,15,17]"},
+            output = {"1", "0", "11"})
+    public int binary2(int[] nums) {
+        if (nums.length == 0) {
+            return 0;
+        }
+        int low = 0, high = nums.length - 1;
+        while (low <= high) {
+            int mid = low + (high - low) / 2;
+            if (nums[mid] <= nums[high]) {
+                // 中值处于右半部分
+                if (mid == 0 || nums[mid] < nums[mid - 1]) {
+                    // 最小值
+                    return nums[mid];
+                }
+                high = mid - 1;
+            } else {
+                // 中值处于左半部分
+                low = mid + 1;
+            }
+        }
+        return -1;
     }
 
 }
