@@ -49,37 +49,38 @@ public class Flatten {
     @TestCase(input = {"[1,2,5,3,4,null,6]", "[]", "[0]"},
             output = {"[1,null,2,null,3,null,4,null,5,null,6]", "[]", "[0]"})
     public void dfs(TreeNode root) {
-        if (root == null) {
-            return;
-        }
         dfs0(root);
-        root.left = null;
     }
 
+    /**
+     * 将二叉树转成链表，并返回链尾节点
+     *
+     * @param root 根节点
+     * @return 链尾节点
+     */
     private TreeNode dfs0(TreeNode root) {
         if (root == null) {
             return null;
         }
+        if (root.left == null && root.right == null) {
+            return root;
+        }
 
-        TreeNode tail = root, temp;
-        TreeNode left = root.left, right = root.right;
-        if (left != null) {
-            // 左子树成链
-            tail.right = dfs0(left);
-            temp = tail.right.left;
-            tail.right.left = null;
-            tail = temp;
+        TreeNode leftTail = dfs0(root.left);
+        TreeNode rightTail = dfs0(root.right);
+        if (leftTail != null) {
+            // 左链表插入到根节点和右链表之间
+            leftTail.right = root.right;
+            root.right = root.left;
+            root.left = null;
         }
-        if (right != null) {
-            // 右子树成链
-            tail.right = dfs0(right);
-            temp = tail.right.left;
-            tail.right.left = null;
-            tail = temp;
+
+        // 返回链尾节点
+        if (rightTail != null) {
+            return rightTail;
+        } else {
+            return leftTail;
         }
-        // 用 root.left 保存链尾
-        root.left = tail;
-        return root;
     }
 
     /**
