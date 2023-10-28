@@ -2,7 +2,6 @@ package com.wjd.practice.book.sword.math;
 
 /**
  * 求整数1～n中1出现的次数
- *
  */
 public class NumberOf1Between1AndN {
 
@@ -11,12 +10,12 @@ public class NumberOf1Between1AndN {
         long start = System.currentTimeMillis();
         System.out.println(getNumberOf1Between1AndN(n));
         long end = System.currentTimeMillis();
-        System.out.println("暴力时间： " + (end-start) + " ms");
+        System.out.println("暴力时间： " + (end - start) + " ms");
 
         start = System.currentTimeMillis();
         System.out.println(getNumberOf1Between1AndNByDigit(n));
         end = System.currentTimeMillis();
-        System.out.println("快速时间： " + (end-start) + " ms");
+        System.out.println("快速时间： " + (end - start) + " ms");
     }
 
     /**
@@ -25,21 +24,21 @@ public class NumberOf1Between1AndN {
      * @param n
      * @return
      */
-    public static int getNumberOf1Between1AndN(int n){
+    public static int getNumberOf1Between1AndN(int n) {
         int num = 0;
-        for (int i=1; i<=n ;i++){
-            num+=getNumberOf1(i);
+        for (int i = 1; i <= n; i++) {
+            num += getNumberOf1(i);
         }
         return num;
     }
 
-    public static int getNumberOf1(int n){
+    public static int getNumberOf1(int n) {
         int count = 0;
-        while (n > 0){
-            if (n%10 == 1){
+        while (n > 0) {
+            if (n % 10 == 1) {
                 count++;
             }
-            n/=10;
+            n /= 10;
         }
         return count;
     }

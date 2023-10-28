@@ -1,4 +1,4 @@
-package com.wjd.practice.leetcode;
+package com.wjd.practice;
 
 import java.lang.annotation.ElementType;
 import java.lang.annotation.Retention;

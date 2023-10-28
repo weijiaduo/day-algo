@@ -1,6 +1,6 @@
 package com.wjd.practice.leetcode.dynamic.multi;
 
-import com.wjd.practice.leetcode.TestCase;
+import com.wjd.practice.TestCase;
 
 /**
  * 5. 最长回文子串

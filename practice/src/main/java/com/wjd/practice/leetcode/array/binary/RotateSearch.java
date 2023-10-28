@@ -1,6 +1,6 @@
 package com.wjd.practice.leetcode.array.binary;
 
-import com.wjd.practice.leetcode.TestCase;
+import com.wjd.practice.TestCase;
 
 /**
  * 33.搜索旋转排序数组

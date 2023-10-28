@@ -1,6 +1,6 @@
 package com.wjd.practice.leetcode.list.transform;
 
-import com.wjd.practice.leetcode.structure.ListNode;
+import com.wjd.structure.list.ListNode;
 
 /**
  * 203. 移除链表元素
@@ -47,7 +47,8 @@ public class RemoveElements {
      * 内存消耗:42.1 MB,击败了67.30% 的Java用户
      */
     private ListNode removeElements2(ListNode head, int val) {
-        ListNode dummy = new ListNode(0, head);
+        ListNode dummy = new ListNode(0);
+        dummy.next = head;
         ListNode q = dummy, p = q.next;
         while (p != null) {
             if (p.val == val) {

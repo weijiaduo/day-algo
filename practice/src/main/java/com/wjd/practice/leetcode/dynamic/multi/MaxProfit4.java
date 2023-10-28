@@ -1,6 +1,6 @@
 package com.wjd.practice.leetcode.dynamic.multi;
 
-import com.wjd.practice.leetcode.TestCase;
+import com.wjd.practice.TestCase;
 
 /**
  * 188. 买卖股票的最佳时机 IV

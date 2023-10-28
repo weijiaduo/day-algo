@@ -1,6 +1,6 @@
 package com.wjd.practice.leetcode.string.sequence;
 
-import com.wjd.practice.leetcode.TestCase;
+import com.wjd.practice.TestCase;
 
 /**
  * 28. 实现 strStr 函数

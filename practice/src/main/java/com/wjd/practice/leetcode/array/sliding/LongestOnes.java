@@ -1,6 +1,6 @@
 package com.wjd.practice.leetcode.array.sliding;
 
-import com.wjd.practice.leetcode.TestCase;
+import com.wjd.practice.TestCase;
 
 /**
  * 1004. 最大连续1的个数 III

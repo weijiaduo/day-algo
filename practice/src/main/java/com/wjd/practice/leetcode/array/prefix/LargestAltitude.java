@@ -1,6 +1,6 @@
 package com.wjd.practice.leetcode.array.prefix;
 
-import com.wjd.practice.leetcode.TestCase;
+import com.wjd.practice.TestCase;
 
 /**
  * 1732. 找到最高海拔

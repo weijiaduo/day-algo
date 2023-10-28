@@ -1,6 +1,6 @@
 package com.wjd.practice.leetcode.stack;
 
-import com.wjd.practice.leetcode.structure.ListNode;
+import com.wjd.structure.list.ListNode;
 
 import java.util.Deque;
 import java.util.LinkedList;

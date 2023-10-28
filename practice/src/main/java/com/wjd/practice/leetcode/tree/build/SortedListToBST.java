@@ -1,6 +1,6 @@
 package com.wjd.practice.leetcode.tree.build;
 
-import com.wjd.practice.leetcode.structure.ListNode;
+import com.wjd.structure.list.ListNode;
 import com.wjd.structure.tree.binary.TreeNode;
 
 /**

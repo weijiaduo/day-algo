@@ -1,6 +1,6 @@
 package com.wjd.practice.leetcode.array.sliding;
 
-import com.wjd.practice.leetcode.TestCase;
+import com.wjd.practice.TestCase;
 
 /**
  * 1493. 删掉一个元素以后全为 1 的最长子数组

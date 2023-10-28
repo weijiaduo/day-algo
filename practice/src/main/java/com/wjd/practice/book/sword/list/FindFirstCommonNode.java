@@ -1,12 +1,11 @@
 package com.wjd.practice.book.sword.list;
 
-import com.wjd.practice.book.sword.structure.ListNode;
+import com.wjd.structure.list.ListNode;
 
 import java.util.ArrayList;
 
 /**
  * 输入两个链表，找出它们的第一个公共结点。
- *
  */
 public class FindFirstCommonNode {
 
@@ -88,7 +87,7 @@ public class FindFirstCommonNode {
             }
 
             // 寻找第一个公共节点
-            while (p1 != null && p2 != null && p1 != p2){
+            while (p1 != null && p2 != null && p1 != p2) {
                 p1 = p1.next;
                 p2 = p2.next;
             }

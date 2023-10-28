@@ -1,7 +1,7 @@
 package com.wjd.practice.leetcode.list.transform;
 
-import com.wjd.practice.leetcode.TestCase;
-import com.wjd.practice.leetcode.structure.ListNode;
+import com.wjd.practice.TestCase;
+import com.wjd.structure.list.ListNode;
 
 /**
  * 21. 合并两个有序链表

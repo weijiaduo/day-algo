@@ -1,16 +1,11 @@
 package com.wjd.practice.book.sword.list;
 
-
-import com.wjd.practice.book.sword.structure.ListNode;
+import com.wjd.structure.list.ListNode;
 
 import java.util.ArrayList;
 import java.util.Collections;
 
 public class PrintListFromTailToHead {
-
-    public static void main(String[] args) {
-
-    }
 
     public static ArrayList<Integer> printListFromTailToHead(ListNode listNode) {
         ArrayList<Integer> res = new ArrayList<>();

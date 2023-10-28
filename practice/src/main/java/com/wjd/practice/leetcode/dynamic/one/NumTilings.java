@@ -1,6 +1,6 @@
 package com.wjd.practice.leetcode.dynamic.one;
 
-import com.wjd.practice.leetcode.TestCase;
+import com.wjd.practice.TestCase;
 
 /**
  * 790. 多米诺和托米诺平铺

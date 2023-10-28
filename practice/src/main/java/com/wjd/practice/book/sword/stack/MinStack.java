@@ -4,7 +4,6 @@ import java.util.LinkedList;
 
 /**
  * 定义栈的数据结构，请在该类型中实现一个能够得到栈中所含最小元素的min函数（时间复杂度应为O（1））。
- *
  */
 public class MinStack {
 
@@ -20,27 +19,27 @@ public class MinStack {
     LinkedList<Integer> stack = new LinkedList<>();
     LinkedList<Integer> minStack = new LinkedList<>();
 
-    public void push(int node){
+    public void push(int node) {
         stack.push(node);
 
-        if (minStack.isEmpty() || node <= min()){
+        if (minStack.isEmpty() || node <= min()) {
             minStack.push(node);
         }
     }
 
-    public void pop(){
-        if (stack.isEmpty()){
+    public void pop() {
+        if (stack.isEmpty()) {
             throw new RuntimeException("Empty Stack!");
         }
 
         int res = stack.pop();
-        if (res == min()){
+        if (res == min()) {
             minStack.pop();
         }
     }
 
-    public int top(){
-        if (stack.isEmpty()){
+    public int top() {
+        if (stack.isEmpty()) {
             throw new RuntimeException("Empty Stack!");
         }
 
@@ -48,7 +47,7 @@ public class MinStack {
     }
 
     public int min() {
-        if (minStack.isEmpty()){
+        if (minStack.isEmpty()) {
             throw new RuntimeException("Empty Stack!");
         }
 

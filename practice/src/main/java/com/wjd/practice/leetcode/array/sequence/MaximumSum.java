@@ -1,6 +1,6 @@
 package com.wjd.practice.leetcode.array.sequence;
 
-import com.wjd.practice.leetcode.TestCase;
+import com.wjd.practice.TestCase;
 
 /**
  * 1186. 删除一次得到子数组最大和

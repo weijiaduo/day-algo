@@ -6,12 +6,11 @@ import java.util.Arrays;
 /**
  * 给一个数组，返回它的最大连续子序列的和
  * 例如:{6,-3,-2,7,-15,1,2,2},连续子向量的最大和为8(从第0个开始,到第3个为止)。
- *
  */
 public class FindGreatestSumOfSubArray {
 
     public static void main(String[] args) {
-        int[] a = {6,-3,-2,7,-15,1,2,2};
+        int[] a = {6, -3, -2, 7, -15, 1, 2, 2};
         System.out.println(findGreatestSumOfSubArray(a));
     }
 

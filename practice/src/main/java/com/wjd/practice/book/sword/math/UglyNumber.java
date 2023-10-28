@@ -2,7 +2,6 @@ package com.wjd.practice.book.sword.math;
 
 /**
  * 只有因子是2，3，5的数才是丑数，求第n个丑数
- *
  */
 public class UglyNumber {
     public static void main(String[] args) {

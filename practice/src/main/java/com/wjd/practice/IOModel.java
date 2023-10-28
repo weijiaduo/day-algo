@@ -1,6 +1,6 @@
-package com.wjd.practice.leetcode;
+package com.wjd.practice;
 
-import com.wjd.practice.leetcode.structure.ListNode;
+import com.wjd.structure.list.ListNode;
 import com.wjd.structure.tree.binary.TreeNode;
 import com.wjd.structure.tree.generic.Node;
 import com.wjd.util.IOUtils;
@@ -79,7 +79,7 @@ public class IOModel {
     private Object parse(String line, Type type) {
         Object ret;
         if (TreeNode.class.equals(type)) {
-            Integer[] values = IOUtils.toBoxIntArray(line);
+            String[] values = IOUtils.toStringArray(line);
             ret = TreeNode.build(values);
         } else if (Node.class.equals(type)) {
             Integer[] values = IOUtils.toBoxIntArray(line);

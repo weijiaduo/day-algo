@@ -1,6 +1,6 @@
 package com.wjd.practice.leetcode.matrix;
 
-import com.wjd.practice.leetcode.TestCase;
+import com.wjd.practice.TestCase;
 
 /**
  * 2352. 相等行列对

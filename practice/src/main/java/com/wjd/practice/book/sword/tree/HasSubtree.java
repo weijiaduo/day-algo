@@ -1,25 +1,21 @@
 package com.wjd.practice.book.sword.tree;
 
-import com.wjd.practice.book.sword.structure.TreeNode;
+import com.wjd.structure.tree.binary.TreeNode;
 
 /**
  * 输入两棵二叉树A，B，判断B是不是A的子结构。
  * （ps：我们约定空树不是任意一个树的子结构）
- *
  */
 public class HasSubtree {
 
     public static void main(String[] args) {
-        String[] s = {"8","8","7","9","2","#","#","#","#","4","7"};
-        TreeNode tree = TreeNode.buildTree(s);
+        String[] s = {"8", "8", "7", "9", "2", "#", "#", "#", "#", "4", "7"};
+        TreeNode tree = TreeNode.build(s);
 
         String[] s1 = {"8", "9", "2"};
-        TreeNode tree1 = TreeNode.buildTree(s1);
+        TreeNode tree1 = TreeNode.build(s1);
 
-//        System.out.println(TreeNode.preTraverse(tree));
-//        System.out.println(TreeNode.preTraverse(tree1));
-
-        System.out.println(hasSubtree(tree,tree1));
+        System.out.println(hasSubtree(tree, tree1));
         System.out.println(contain(tree.left, tree1));
     }
 
@@ -32,7 +28,7 @@ public class HasSubtree {
         if (root1.val == root2.val) {
             flag = contain(root1, root2);
         }
-        if (!flag){
+        if (!flag) {
             flag = (hasSubtree(root1.left, root2) || hasSubtree(root1.right, root2));
         }
 

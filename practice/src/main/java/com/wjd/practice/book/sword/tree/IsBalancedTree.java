@@ -1,16 +1,15 @@
 package com.wjd.practice.book.sword.tree;
 
-import com.wjd.practice.book.sword.structure.TreeNode;
+import com.wjd.structure.tree.binary.TreeNode;
 
 /**
  * 输入一棵二叉树，判断该二叉树是否是平衡二叉树。
- *
  */
 public class IsBalancedTree {
 
     public static void main(String[] args) {
-        String[] s = {"8","8","7","9","2"};
-        TreeNode tree = TreeNode.buildTree(s);
+        String[] s = {"8", "8", "7", "9", "2"};
+        TreeNode tree = TreeNode.build(s);
 
         System.out.println(isBalanced(tree));
     }
@@ -19,7 +18,7 @@ public class IsBalancedTree {
         if (root == null) {
             return true;
         }
-        return depTree(root) != -1 ? true : false;
+        return depTree(root) != -1;
     }
 
     private static int depTree(TreeNode root) {

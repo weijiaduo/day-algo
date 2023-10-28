@@ -11,7 +11,7 @@ import java.util.Arrays;
 public class DuplicateNumber {
 
     public static void main(String[] args) {
-        int[] numbers = {2,3,1,0};
+        int[] numbers = {2, 3, 1, 0};
         int[] duplication = new int[1];
         boolean result = duplicate(numbers, numbers.length, duplication);
         System.out.println(result + " " + duplication[0]);
@@ -25,7 +25,7 @@ public class DuplicateNumber {
     //    这里要特别注意~返回任意重复的一个，赋值duplication[0]
     // Return value:       true if the input is valid, and there are some duplications in the array number
     //                     otherwise false
-    public static boolean duplicate(int numbers[],int length,int [] duplication) {
+    public static boolean duplicate(int[] numbers, int length, int[] duplication) {
         if (numbers == null || numbers.length == 0 || length <= 0) {
             return false;
         }

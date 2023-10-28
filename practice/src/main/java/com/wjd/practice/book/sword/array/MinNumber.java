@@ -5,14 +5,13 @@ import java.util.Arrays;
 /**
  * 输入一个正整数数组，把数组里所有数字拼接起来排成一个数，打印能拼接出的所有数字中最小的一个。
  * 例如输入数组{3，32，321}，则打印出这三个数字能排成的最小数字为321323。
- *
  */
 public class MinNumber {
 
     public static void main(String[] args) {
-        int[] nums1 = {1,6,5,4};
+        int[] nums1 = {1, 6, 5, 4};
         System.out.println(printMinNumber1(nums1));
-        int[] nums2 = {1,3,2,4,6};
+        int[] nums2 = {1, 3, 2, 4, 6};
         System.out.println(printMinNumber2(nums2));
     }
 
@@ -45,7 +44,7 @@ public class MinNumber {
             return null;
         }
 
-        quickSort(numbers, 0, numbers.length-1);
+        quickSort(numbers, 0, numbers.length - 1);
 
         StringBuilder sb = new StringBuilder();
         for (int i = 0; i < numbers.length; i++) {
@@ -87,9 +86,9 @@ public class MinNumber {
     }
 
     private static boolean compare(int num1, int num2) {
-        String n1 = Integer.toString(num1) + Integer.toString(num2);
-        String n2 = Integer.toString(num2) + Integer.toString(num1);
-        return n1.compareTo(n2) >= 0 ? true : false;
+        String n1 = Integer.toString(num1) + num2;
+        String n2 = Integer.toString(num2) + num1;
+        return n1.compareTo(n2) >= 0;
     }
 
 }

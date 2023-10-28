@@ -1,6 +1,6 @@
 package com.wjd.practice.leetcode.stack;
 
-import com.wjd.practice.leetcode.TestCase;
+import com.wjd.practice.TestCase;
 
 import java.util.ArrayDeque;
 

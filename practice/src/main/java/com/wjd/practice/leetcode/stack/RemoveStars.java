@@ -1,6 +1,6 @@
 package com.wjd.practice.leetcode.stack;
 
-import com.wjd.practice.leetcode.TestCase;
+import com.wjd.practice.TestCase;
 
 /**
  * 2390. 从字符串中移除星号

@@ -1,6 +1,6 @@
 package com.wjd.practice.leetcode.array.statistics;
 
-import com.wjd.practice.leetcode.TestCase;
+import com.wjd.practice.TestCase;
 
 /**
  * 287. 寻找重复数

@@ -1,6 +1,6 @@
 package com.wjd.practice.leetcode.matrix;
 
-import com.wjd.practice.leetcode.structure.ListNode;
+import com.wjd.structure.list.ListNode;
 
 import java.util.Arrays;
 

@@ -1,6 +1,6 @@
 package com.wjd.practice.leetcode.list.transform;
 
-import com.wjd.practice.leetcode.structure.ListNode;
+import com.wjd.structure.list.ListNode;
 
 /**
  * 23. 合并K个升序链表

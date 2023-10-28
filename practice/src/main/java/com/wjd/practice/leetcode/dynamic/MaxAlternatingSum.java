@@ -1,6 +1,6 @@
 package com.wjd.practice.leetcode.dynamic;
 
-import com.wjd.practice.leetcode.TestCase;
+import com.wjd.practice.TestCase;
 
 /**
  * 1911. 最大子序列交替和

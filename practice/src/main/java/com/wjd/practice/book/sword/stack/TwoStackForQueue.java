@@ -15,7 +15,7 @@ public class TwoStackForQueue {
         }
 
         for (int i = 0; i < 5; i++) {
-            queue.push(i*3);
+            queue.push(i * 3);
         }
 
         for (int i = 0; i < 8; i++) {
@@ -31,11 +31,11 @@ public class TwoStackForQueue {
     }
 
     public int pop() {
-        if (stack1.empty() && stack2.empty()){
+        if (stack1.empty() && stack2.empty()) {
             throw new RuntimeException("Queue is empty!");
         }
-        if (stack2.empty()){
-            while (!stack1.empty()){
+        if (stack2.empty()) {
+            while (!stack1.empty()) {
                 stack2.push(stack1.pop());
             }
         }

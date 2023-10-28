@@ -35,7 +35,7 @@ public class StringIsNumeric {
         char[] inte;
         if (pIndex != -1) {
             inte = Arrays.copyOfRange(str, 0, pIndex);
-        } else if(eIndex != -1) {
+        } else if (eIndex != -1) {
             inte = Arrays.copyOfRange(str, 0, eIndex);
         } else {
             inte = str;

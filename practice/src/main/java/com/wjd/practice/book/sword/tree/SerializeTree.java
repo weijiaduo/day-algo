@@ -1,6 +1,6 @@
 package com.wjd.practice.book.sword.tree;
 
-import com.wjd.practice.book.sword.structure.TreeNode;
+import com.wjd.structure.tree.binary.TreeNode;
 
 import java.util.LinkedList;
 
@@ -10,12 +10,12 @@ import java.util.LinkedList;
 public class SerializeTree {
 
     public static void main(String[] args) {
-        String[] s = {"8","7","17","9","2","3","5","#","#","#","#","26","#","#","3","#","#","#","11"};
-        TreeNode tree = TreeNode.buildTree(s);
+        String[] s = {"8", "7", "17", "9", "2", "3", "5", "#", "#", "#", "#", "26", "#", "#", "3", "#", "#", "#", "11"};
+        TreeNode tree = TreeNode.build(s);
 
         String serial = serialize(tree);
         System.out.println(serial);
-        String deserial = TreeNode.preTraverse(deserialize(serial));
+        String deserial = TreeNode.toString(deserialize(serial), "#");
         System.out.println(deserial);
     }
 
@@ -90,6 +90,7 @@ public class SerializeTree {
 
     /**
      * 验证是否是正确的序列化字符串
+     *
      * @param s
      * @return
      */

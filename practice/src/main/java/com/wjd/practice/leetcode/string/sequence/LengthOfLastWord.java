@@ -1,6 +1,6 @@
 package com.wjd.practice.leetcode.string.sequence;
 
-import com.wjd.practice.leetcode.TestCase;
+import com.wjd.practice.TestCase;
 
 /**
  * 58. 最后一个单词的长度

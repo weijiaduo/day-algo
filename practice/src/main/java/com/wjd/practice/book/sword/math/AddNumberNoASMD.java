@@ -29,7 +29,7 @@ public class AddNumberNoASMD {
         int[] sum = new int[s1.length];
 
         int c = 0;
-        for (int i = s1.length - 1; i >= 0 ; i--) {
+        for (int i = s1.length - 1; i >= 0; i--) {
             sum[i] = s1[i] ^ s2[i] ^ c;
             // 三个数中至少有两个1时向前进位
             if ((s1[i] & s2[i] & c) == 1 || (sum[i] == 0 && (s1[i] | s2[i] | c) == 1)) {

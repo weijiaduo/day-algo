@@ -29,14 +29,14 @@ public class PatternMatch {
             return false;
         }
 
-        if (k < pattern.length - 1 && pattern[k+1] == '*') {
+        if (k < pattern.length - 1 && pattern[k + 1] == '*') {
             if (i < str.length && (str[i] == pattern[k] || pattern[k] == '.')) {
-                return match(str, i+1, pattern, k) || match(str, i, pattern, k+2);
+                return match(str, i + 1, pattern, k) || match(str, i, pattern, k + 2);
             } else {
-                return match(str, i, pattern, k+2);
+                return match(str, i, pattern, k + 2);
             }
         } else if (i < str.length && (str[i] == pattern[k] || pattern[k] == '.')) {
-            return match(str, i+1, pattern, k+1);
+            return match(str, i + 1, pattern, k + 1);
         }
 
         return false;

@@ -1,6 +1,6 @@
 package com.wjd.practice.leetcode.math;
 
-import com.wjd.practice.leetcode.TestCase;
+import com.wjd.practice.TestCase;
 
 /**
  * 面试题 05.02. 二进制数转字符串

@@ -24,7 +24,7 @@ public class GetMedianInStream {
 
     public static void insert(Integer num) {
         int i = list.size() - 1;
-        for (; i >= 0 ; i--) {
+        for (; i >= 0; i--) {
             if (list.get(i) <= num) {
                 break;
             }

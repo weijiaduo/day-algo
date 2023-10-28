@@ -1,6 +1,6 @@
 package com.wjd.practice.leetcode.graph;
 
-import com.wjd.practice.leetcode.TestCase;
+import com.wjd.practice.TestCase;
 
 /**
  * 547. 省份数量

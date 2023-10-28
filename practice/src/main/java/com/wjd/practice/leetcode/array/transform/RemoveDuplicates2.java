@@ -1,6 +1,6 @@
 package com.wjd.practice.leetcode.array.transform;
 
-import com.wjd.practice.leetcode.TestCase;
+import com.wjd.practice.TestCase;
 
 /**
  * 80. 删除有序数组中的重复项

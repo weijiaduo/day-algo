@@ -1,6 +1,6 @@
 package com.wjd.practice.leetcode.array.sliding;
 
-import com.wjd.practice.leetcode.TestCase;
+import com.wjd.practice.TestCase;
 
 /**
  * 643. 子数组最大平均数 I

@@ -1,6 +1,6 @@
 package com.wjd.practice.leetcode.array.prefix;
 
-import com.wjd.practice.leetcode.TestCase;
+import com.wjd.practice.TestCase;
 
 /**
  * 724. 寻找数组的中心下标

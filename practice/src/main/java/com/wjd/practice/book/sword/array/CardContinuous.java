@@ -11,16 +11,15 @@ import java.util.Arrays;
  * 上面的5张牌就可以变成“1,2,3,4,5”(大小王分别看作2和4),“So Lucky!”。
  * LL决定去买体育彩票啦。 现在,要求你使用这幅牌模拟上面的过程,然后告诉我们LL的运气如何，
  * 如果牌能组成顺子就输出true，否则就输出false。为了方便起见,你可以认为大小王是0。
- *
  */
 public class CardContinuous {
 
     public static void main(String[] args) {
-        int[] numbers = {1,0,3,0,2};
+        int[] numbers = {1, 0, 3, 0, 2};
         System.out.println(isContinuous(numbers));
     }
 
-    public static boolean isContinuous(int [] numbers) {
+    public static boolean isContinuous(int[] numbers) {
         if (numbers == null || numbers.length != 5) {
             return false;
         }
@@ -43,10 +42,6 @@ public class CardContinuous {
             notZeroSum += numbers[notZeroIndex + 1] - numbers[notZeroIndex] - 1;
         }
 
-        if (notZeroSum <= numOfZero) {
-            return true;
-        }
-
-        return false;
+        return notZeroSum <= numOfZero;
     }
 }

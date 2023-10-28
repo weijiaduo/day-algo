@@ -1,19 +1,18 @@
 package com.wjd.practice.book.sword.tree;
 
-import com.wjd.practice.book.sword.structure.TreeNode;
+import com.wjd.structure.tree.binary.TreeNode;
 
 import java.util.ArrayList;
 import java.util.LinkedList;
 
 /**
  * 从上往下打印出二叉树的每个节点，同层节点从左至右打印。
- *
  */
 public class PrintTreeFromTopToBottom {
 
     public static void main(String[] args) {
-        String[] s = {"8","8","7","9","2","#","#","#","#","4","7"};
-        TreeNode tree = TreeNode.buildTree(s);
+        String[] s = {"8", "8", "7", "9", "2", "#", "#", "#", "#", "4", "7"};
+        TreeNode tree = TreeNode.build(s);
 
         ArrayList<Integer> rs = printFromTopToBottom(tree);
         System.out.println(rs);

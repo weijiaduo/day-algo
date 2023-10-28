@@ -2,12 +2,11 @@ package com.wjd.practice.book.sword.array;
 
 /**
  * 统计一个数字在排序数组中出现的次数。
- *
  */
 public class GetNumberOfKInSorted {
 
     public static void main(String[] args) {
-        int[] array = {1,2,3,3,3,4};
+        int[] array = {1, 2, 3, 3, 3, 4};
         System.out.println(getNumberOfK(array, 3));
     }
 

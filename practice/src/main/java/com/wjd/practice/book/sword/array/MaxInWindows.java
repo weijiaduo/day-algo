@@ -12,18 +12,18 @@ import java.util.ArrayList;
 public class MaxInWindows {
 
     public static void main(String[] args) {
-        int[] a = {2,3,4,2,6,8,5,7};
+        int[] a = {2, 3, 4, 2, 6, 8, 5, 7};
         System.out.println(maxInWindows(a, 3));
     }
 
-    public static ArrayList<Integer> maxInWindows(int [] num, int size) {
+    public static ArrayList<Integer> maxInWindows(int[] num, int size) {
         ArrayList<Integer> res = new ArrayList<>();
 
         if (num.length >= size && size > 0) {
             int maxIndex = 0;
-            for (int i = 0, j = 0; i <= num.length && j <= num.length - size;) {
+            for (int i = 0, j = 0; i <= num.length && j <= num.length - size; ) {
                 if (i - j < size) {
-                    if (num[i] >= num[maxIndex]){
+                    if (num[i] >= num[maxIndex]) {
                         maxIndex = i;
                     }
                     i++;

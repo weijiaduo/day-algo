@@ -1,6 +1,6 @@
 package com.wjd.practice.leetcode.string.prefix;
 
-import com.wjd.practice.leetcode.TestCase;
+import com.wjd.practice.TestCase;
 
 /**
  * 14. 最长公共前缀

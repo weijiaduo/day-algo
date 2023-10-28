@@ -1,6 +1,6 @@
 package com.wjd.practice.leetcode.dynamic.one;
 
-import com.wjd.practice.leetcode.TestCase;
+import com.wjd.practice.TestCase;
 
 /**
  * 1137. 第 N 个泰波那契数

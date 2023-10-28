@@ -1,6 +1,6 @@
 package com.wjd.practice.book.sword.list;
 
-import com.wjd.practice.book.sword.structure.ListNode;
+import com.wjd.structure.list.ListNode;
 
 /**
  * 给一个链表，若其中包含环，请找出该链表的环的入口结点，否则，输出null。
@@ -52,4 +52,5 @@ public class EntryNodeOfLoop {
 
         return null;
     }
+
 }

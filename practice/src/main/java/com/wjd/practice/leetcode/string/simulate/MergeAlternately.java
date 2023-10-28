@@ -1,6 +1,6 @@
 package com.wjd.practice.leetcode.string.simulate;
 
-import com.wjd.practice.leetcode.TestCase;
+import com.wjd.practice.TestCase;
 
 /**
  * 1768. 交替合并字符串

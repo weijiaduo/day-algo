@@ -1,6 +1,6 @@
 package com.wjd.practice.leetcode.list.sort;
 
-import com.wjd.practice.leetcode.structure.ListNode;
+import com.wjd.structure.list.ListNode;
 
 /**
  * 147. 对链表进行插入排序

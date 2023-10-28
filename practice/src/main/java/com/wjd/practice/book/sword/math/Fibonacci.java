@@ -2,7 +2,6 @@ package com.wjd.practice.book.sword.math;
 
 /**
  * 要求输入一个整数n，请你输出斐波那契数列的第n项（从0开始，第0项为0）。
- *
  */
 public class Fibonacci {
 
@@ -11,7 +10,7 @@ public class Fibonacci {
         System.out.println(fibonacci(n));
     }
 
-    public static int fibonacci (int n) {
+    public static int fibonacci(int n) {
         if (n < 0) {
             return -1;
         }

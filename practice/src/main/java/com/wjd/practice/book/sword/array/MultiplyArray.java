@@ -10,7 +10,7 @@ import java.util.Arrays;
 public class MultiplyArray {
 
     public static void main(String[] args) {
-        int[] a =  {1,2,3};
+        int[] a = {1, 2, 3};
         int[] b = multiply(a);
         System.out.println(Arrays.toString(b));
     }
@@ -26,11 +26,11 @@ public class MultiplyArray {
         if (A.length > 0) {
             c[0] = 1;
             for (int i = 1; i < A.length; i++) {
-                c[i] = c[i-1] * A[i-1];
+                c[i] = c[i - 1] * A[i - 1];
             }
 
             int temp = 1;
-            for (int i = A.length-1; i >= 0 ; i--) {
+            for (int i = A.length - 1; i >= 0; i--) {
                 b[i] = c[i] * temp;
                 temp *= A[i];
             }

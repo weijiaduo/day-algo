@@ -1,6 +1,6 @@
 package com.wjd.practice.leetcode.list.transform;
 
-import com.wjd.practice.leetcode.structure.ListNode;
+import com.wjd.structure.list.ListNode;
 
 /**
  * 143. 重排链表

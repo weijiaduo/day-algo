@@ -1,6 +1,6 @@
 package com.wjd.practice.leetcode.array.sequence;
 
-import com.wjd.practice.leetcode.TestCase;
+import com.wjd.practice.TestCase;
 
 import java.util.HashMap;
 import java.util.HashSet;

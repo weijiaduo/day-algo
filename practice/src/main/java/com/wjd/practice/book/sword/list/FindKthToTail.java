@@ -1,10 +1,9 @@
 package com.wjd.practice.book.sword.list;
 
-import com.wjd.practice.book.sword.structure.ListNode;
+import com.wjd.structure.list.ListNode;
 
 /**
  * 输入一个链表，输出该链表中倒数第k个结点。
- *
  */
 public class FindKthToTail {
 
@@ -16,7 +15,7 @@ public class FindKthToTail {
         System.out.println(findKthToTail(head, 1).val);
     }
 
-    public static ListNode findKthToTail (ListNode head, int k) {
+    public static ListNode findKthToTail(ListNode head, int k) {
         if (head == null || k <= 0) {
             return null;
         }

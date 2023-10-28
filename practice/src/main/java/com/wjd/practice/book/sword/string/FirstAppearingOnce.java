@@ -8,8 +8,8 @@ package com.wjd.practice.book.sword.string;
  */
 public class FirstAppearingOnce {
 
-    private static StringBuffer str = new StringBuffer();
-    private static int[] charNum = new int[256];
+    private static final StringBuffer str = new StringBuffer();
+    private static final int[] charNum = new int[256];
 
     public static void main(String[] args) {
         String s = "google";

@@ -6,12 +6,11 @@ import java.util.Map;
 /**
  * 一个整型数组里除了两个数字之外，其他的数字都出现了偶数次。
  * 请写程序找出这两个只出现一次的数字。
- *
  */
 public class FindNumsAppearOnce {
 
     public static void main(String[] args) {
-        int[] array = {1,2,3,4,4,1};
+        int[] array = {1, 2, 3, 4, 4, 1};
         int[] num1 = new int[1];
         int[] num2 = new int[1];
         findNumsAppearOnce1(array, num1, num2);
@@ -23,7 +22,7 @@ public class FindNumsAppearOnce {
             return;
         }
         Map<Integer, Integer> nums = new HashMap<>();
-        for (int t: array) {
+        for (int t : array) {
             if (nums.containsKey(t)) {
                 nums.remove(t);
             } else {
@@ -45,7 +44,7 @@ public class FindNumsAppearOnce {
         int groupFlag = getGroupFlag(array);
         num1[0] = 0;
         num2[0] = 0;
-        for (int t: array) {
+        for (int t : array) {
             if ((groupFlag & t) == 0) {
                 num1[0] ^= t;
             } else {
@@ -56,7 +55,7 @@ public class FindNumsAppearOnce {
 
     private static int getGroupFlag(int[] array) {
         int flag = 0;
-        for (int t: array) {
+        for (int t : array) {
             flag ^= t;
         }
 

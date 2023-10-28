@@ -1,6 +1,6 @@
 package com.wjd.practice.leetcode.string.compare;
 
-import com.wjd.practice.leetcode.TestCase;
+import com.wjd.practice.TestCase;
 
 /**
  * 2490. 回环句

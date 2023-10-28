@@ -1,7 +1,7 @@
 package com.wjd.practice.leetcode.list.transform;
 
-import com.wjd.practice.leetcode.TestCase;
-import com.wjd.practice.leetcode.structure.ListNode;
+import com.wjd.practice.TestCase;
+import com.wjd.structure.list.ListNode;
 
 import java.util.Deque;
 import java.util.LinkedList;

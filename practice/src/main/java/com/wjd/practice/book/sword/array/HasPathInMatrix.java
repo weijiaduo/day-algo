@@ -39,7 +39,7 @@ public class HasPathInMatrix {
     }
 
     private static boolean hasPath(char[] matrix, int rows, int cols, int x, int y,
-                            char[] str, int index, List<Integer> path) {
+                                   char[] str, int index, List<Integer> path) {
         if (x < 0 || x >= rows || y < 0 || y >= cols || index >= str.length) {
             return false;
         }
@@ -51,12 +51,9 @@ public class HasPathInMatrix {
             path.add(i);
         }
 
-        boolean flag = false;
+        boolean flag = index == str.length - 1;
 
         // 匹配结束
-        if (index == str.length - 1) {
-            flag = true;
-        }
 
         // 上
         if (!flag && !path.contains(i - cols)) {

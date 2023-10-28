@@ -1,9 +1,6 @@
-package com.wjd.practice.leetcode;
+package com.wjd.practice;
 
-import com.wjd.practice.leetcode.structure.ListNode;
-import com.wjd.structure.tree.binary.TreeNode;
-import com.wjd.structure.tree.generic.Node;
-import com.wjd.util.StringUtils;
+import com.wjd.practice.util.Utils;
 
 import java.io.ByteArrayInputStream;
 import java.io.File;
@@ -17,12 +14,12 @@ import java.util.List;
 import java.util.Objects;
 
 /**
- * 力扣运行器
+ * 测试运行器
  *
  * @author weijiaduo
  * @since 2022/10/1
  */
-public class LCRunner {
+public class TestRunner {
 
     /**
      * 输入用例文件
@@ -35,14 +32,14 @@ public class LCRunner {
     /**
      * 用例文件目录
      */
-    final static String DIR = Objects.requireNonNull(LCRunner.class.getResource("")).getPath();
+    final static String DIR = Objects.requireNonNull(TestRunner.class.getResource("")).getPath();
 
     /**
      * 反射运行指定的类
      *
      * @param cls 类的Class对象
      */
-    public static void run(Class<?> cls) throws Exception {
+    public static void run(Class<?> cls) {
         List<Method> annoTests = new ArrayList<>();
         List<Method> fileTests = new ArrayList<>();
         for (Method m : cls.getDeclaredMethods()) {
@@ -147,7 +144,7 @@ public class LCRunner {
             // 打印输入
             System.out.println("input:");
             for (Object in : args) {
-                System.out.println(toStr(in));
+                System.out.println(Utils.toStr(in));
             }
 
             // 运行测试
@@ -164,9 +161,9 @@ public class LCRunner {
 
             // 打印输出
             System.out.println("expect:");
-            System.out.println(toStr(expect));
+            System.out.println(Utils.toStr(expect));
             System.out.println("actual:");
-            System.out.println(toStr(actual));
+            System.out.println(Utils.toStr(actual));
             System.out.println();
         }
 
@@ -176,20 +173,5 @@ public class LCRunner {
         System.out.println();
     }
 
-    private static String toStr(Object object) {
-        // 链表节点
-        if (object instanceof ListNode) {
-            return ListNode.listString((ListNode) object);
-        }
-        // 树
-        if (object instanceof Node) {
-            return Node.traverse((Node) object).toString();
-        }
-        // 二叉树
-        if (object instanceof TreeNode) {
-            return TreeNode.traverse((TreeNode) object).toString();
-        }
-        return StringUtils.toStr(object);
-    }
 
 }

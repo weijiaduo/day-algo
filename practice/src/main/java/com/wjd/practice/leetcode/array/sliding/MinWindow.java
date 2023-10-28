@@ -1,6 +1,6 @@
 package com.wjd.practice.leetcode.array.sliding;
 
-import com.wjd.practice.leetcode.TestCase;
+import com.wjd.practice.TestCase;
 
 /**
  * 76. 最小覆盖子串

@@ -1,6 +1,6 @@
 package com.wjd.practice.leetcode.array.sort;
 
-import com.wjd.practice.leetcode.TestCase;
+import com.wjd.practice.TestCase;
 
 /**
  * 88. 合并两个有序数组

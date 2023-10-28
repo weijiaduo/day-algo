@@ -5,12 +5,12 @@ public class CuttingRope {
     public static void main(String[] args) {
         int n = 100, m = 53;
         long start = System.currentTimeMillis();
-        System.out.println(cutRopeDynamic(n,m));
+        System.out.println(cutRopeDynamic(n, m));
         long end = System.currentTimeMillis();
         System.out.println("动态规划时间: " + (end - start) + " ms");
 
         start = System.currentTimeMillis();
-        System.out.println(cutRopeDynamic2(n,m));
+        System.out.println(cutRopeDynamic2(n, m));
         end = System.currentTimeMillis();
         System.out.println("优化动态规划时间: " + (end - start) + " ms");
     }
@@ -22,7 +22,7 @@ public class CuttingRope {
      * @param m
      * @return
      */
-    public static long cutRopeDynamic(int n, int m){
+    public static long cutRopeDynamic(int n, int m) {
         if (n <= 0 || m <= 0 || m > n) {
             return 0;
         }
@@ -55,7 +55,7 @@ public class CuttingRope {
      * @param m
      * @return
      */
-    public static long cutRopeDynamic2(int n, int m){
+    public static long cutRopeDynamic2(int n, int m) {
         if (n <= 0 || m <= 0 || m > n) {
             return 0;
         }

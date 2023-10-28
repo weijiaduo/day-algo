@@ -1,6 +1,6 @@
 package com.wjd.practice.leetcode.list.transform;
 
-import com.wjd.practice.leetcode.structure.ListNode;
+import com.wjd.structure.list.ListNode;
 
 /**
  * 83. 删除排序链表中的重复元素

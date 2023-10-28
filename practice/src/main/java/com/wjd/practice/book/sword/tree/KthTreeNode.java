@@ -1,6 +1,7 @@
 package com.wjd.practice.book.sword.tree;
 
-import com.wjd.practice.book.sword.structure.TreeNode;
+import com.wjd.practice.TestCase;
+import com.wjd.structure.tree.binary.TreeNode;
 
 import java.util.LinkedList;
 
@@ -10,18 +11,9 @@ import java.util.LinkedList;
  */
 public class KthTreeNode {
 
-    public static void main(String[] args) {
-        String[] s = {"8","8","7","9","2","#","#","#","#","4","7"};
-        TreeNode tree = TreeNode.buildTree(s);
-
-        System.out.println(TreeNode.preTraverse(tree));
-        System.out.println(TreeNode.preTraverseByLoop(tree));
-        System.out.println(TreeNode.innerTraverse(tree));
-        System.out.println(TreeNode.innerTraverseByLoop(tree));
-        System.out.println(kthNode(tree, 7).val);
-    }
-
-    public static TreeNode kthNode(TreeNode pRoot, int k) {
+    @TestCase(input = {"[5, 3, 7, 2, 4, 6, 8]", "3"},
+            output = "4")
+    public TreeNode kthNode(TreeNode pRoot, int k) {
         if (pRoot != null && k > 0) {
             LinkedList<TreeNode> stack = new LinkedList<>();
             TreeNode cur = pRoot;
@@ -38,7 +30,7 @@ public class KthTreeNode {
                 }
             }
         }
-
         return null;
     }
+
 }

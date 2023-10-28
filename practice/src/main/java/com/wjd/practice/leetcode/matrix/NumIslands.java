@@ -1,6 +1,6 @@
 package com.wjd.practice.leetcode.matrix;
 
-import com.wjd.practice.leetcode.TestCase;
+import com.wjd.practice.TestCase;
 
 /**
  * 200. 岛屿数量

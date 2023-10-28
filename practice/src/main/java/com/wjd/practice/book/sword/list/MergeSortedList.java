@@ -1,6 +1,6 @@
 package com.wjd.practice.book.sword.list;
 
-import com.wjd.practice.book.sword.structure.ListNode;
+import com.wjd.structure.list.ListNode;
 
 public class MergeSortedList {
 

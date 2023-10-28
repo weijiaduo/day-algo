@@ -5,12 +5,11 @@ package com.wjd.practice.book.sword.array;
  * 例如输入一个长度为9的数组{1,2,3,2,2,2,5,4,2}。
  * 由于数字2在数组中出现了5次，超过数组长度的一半，因此输出2。
  * 如果不存在则输出0。
- *
  */
 public class MoreThanHalfNum {
 
     public static void main(String[] args) {
-        int[] array = {2,2,2,2,2,1,3,4,5};
+        int[] array = {2, 2, 2, 2, 2, 1, 3, 4, 5};
         System.out.println(moreThanHalfNum(array));
         System.out.println(quickMoreThanHalfNum(array));
     }
@@ -26,15 +25,15 @@ public class MoreThanHalfNum {
                 k = array[i];
                 num = 1;
             } else {
-              if (k == array[i]){
-                  num++;
-              } else {
-                  num--;
-              }
+                if (k == array[i]) {
+                    num++;
+                } else {
+                    num--;
+                }
             }
         }
 
-        if (checkMoreThanHalfNum(array, k)){
+        if (checkMoreThanHalfNum(array, k)) {
             return k;
         }
 
@@ -95,7 +94,7 @@ public class MoreThanHalfNum {
 
     /**
      * 检查该数字是否超过一半
-     * 
+     *
      * @param array
      * @param k
      * @return
@@ -107,9 +106,6 @@ public class MoreThanHalfNum {
                 count++;
             }
         }
-        if (count > (len >> 1)) {
-            return true;
-        }
-        return false;
+        return count > (len >> 1);
     }
 }

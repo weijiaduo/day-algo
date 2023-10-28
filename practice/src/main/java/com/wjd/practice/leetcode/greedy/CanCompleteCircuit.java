@@ -1,6 +1,6 @@
 package com.wjd.practice.leetcode.greedy;
 
-import com.wjd.practice.leetcode.TestCase;
+import com.wjd.practice.TestCase;
 
 /**
  * 134. 加油站

@@ -10,11 +10,11 @@ import java.util.Arrays;
 public class InversePairs {
 
     public static void main(String[] args) {
-        int[] a = {1,2,3,4,5,6,7,0};
+        int[] a = {1, 2, 3, 4, 5, 6, 7, 0};
         System.out.println(inversePairs(a));
     }
 
-    public static int inversePairs(int [] array) {
+    public static int inversePairs(int[] array) {
         if (array == null || array.length == 0) {
             return 0;
         }
@@ -51,6 +51,6 @@ public class InversePairs {
             copy[k--] = array[j--];
         }
 
-        return (int)(sum % 1000000007);
+        return (int) (sum % 1000000007);
     }
 }

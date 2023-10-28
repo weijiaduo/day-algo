@@ -1,6 +1,6 @@
 package com.wjd.practice.leetcode.array.binary;
 
-import com.wjd.practice.leetcode.TestCase;
+import com.wjd.practice.TestCase;
 
 /**
  * 153. 寻找旋转排序数组中的最小值

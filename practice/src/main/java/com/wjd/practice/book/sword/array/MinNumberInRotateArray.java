@@ -3,11 +3,11 @@ package com.wjd.practice.book.sword.array;
 public class MinNumberInRotateArray {
 
     public static void main(String[] args) {
-        int[] a = {2,2,2,2,2};
+        int[] a = {2, 2, 2, 2, 2};
         System.out.println(minNumberInRotateArray(a));
     }
 
-    public static int minNumberInRotateArray(int [] array) {
+    public static int minNumberInRotateArray(int[] array) {
         if (array == null || array.length == 0) {
             return 0;
         }

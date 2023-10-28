@@ -7,7 +7,7 @@ public class FindNumberInSortedArray {
         System.out.println(find(2, a));
     }
 
-    public static boolean find(int target, int [][] array) {
+    public static boolean find(int target, int[][] array) {
         boolean flag = false;
 
         if (array != null) {

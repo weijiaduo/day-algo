@@ -1,6 +1,6 @@
 package com.wjd.practice.leetcode.list.doublepoint;
 
-import com.wjd.practice.leetcode.structure.ListNode;
+import com.wjd.structure.list.ListNode;
 
 /**
  * 142. 环形链表2

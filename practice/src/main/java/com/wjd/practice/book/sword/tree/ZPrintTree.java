@@ -1,6 +1,6 @@
 package com.wjd.practice.book.sword.tree;
 
-import com.wjd.practice.book.sword.structure.TreeNode;
+import com.wjd.structure.tree.binary.TreeNode;
 
 import java.util.ArrayList;
 import java.util.LinkedList;
@@ -13,8 +13,8 @@ import java.util.LinkedList;
 public class ZPrintTree {
 
     public static void main(String[] args) {
-        String[] s = {"8","6","10","5","7","9","11"};
-        TreeNode tree = TreeNode.buildTree(s);
+        String[] s = {"8", "6", "10", "5", "7", "9", "11"};
+        TreeNode tree = TreeNode.build(s);
 
         System.out.println(print(tree));
     }

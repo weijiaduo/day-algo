@@ -1,16 +1,16 @@
-package com.wjd.practice.leetcode;
+package com.wjd.practice;
 
 import java.io.IOException;
 import java.io.InputStream;
 import java.lang.reflect.Type;
 
 /**
- * 输出接口
+ * 输入接口
  *
  * @author weijiaduo
  * @since 2022/10/1
  */
-public class Output {
+public class Input {
 
     /**
      * 数据流模型
@@ -19,19 +19,19 @@ public class Output {
     /**
      * 数据类型
      */
-    Type type;
+    Type[] types;
 
-    public Output(InputStream inputStream, Type type) {
+    public Input(InputStream inputStream, Type[] types) {
         model = new IOModel(inputStream);
-        this.type = type;
+        this.types = types;
     }
 
     /**
      * @return 下一个测试用例
      */
-    public Object nextCase() {
+    public Object[] nextCase() {
         try {
-            return model.read(type);
+            return model.read(types);
         } catch (IOException e) {
             throw new RuntimeException(e);
         }

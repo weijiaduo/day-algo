@@ -1,6 +1,6 @@
 package com.wjd.practice.leetcode.tree.traversal;
 
-import com.wjd.practice.leetcode.TestCase;
+import com.wjd.practice.TestCase;
 import com.wjd.structure.tree.binary.TreeNode;
 
 /**

@@ -1,7 +1,7 @@
 package com.wjd.practice.book.sword.tree;
 
 
-import com.wjd.practice.book.sword.structure.TreeNode;
+import com.wjd.structure.tree.binary.TreeNode;
 
 /**
  * 操作给定的二叉树，将其变换为源二叉树的镜像。
@@ -17,17 +17,14 @@ import com.wjd.practice.book.sword.structure.TreeNode;
  *   10   6
  *  / \  / \
  * 11 9 7  5
- *
  */
 public class MirrorTree {
 
     public static void main(String[] args) {
         String[] s = {"7", "8", "9"};
-        TreeNode tree = TreeNode.buildTree(s);
+        TreeNode tree = TreeNode.build(s);
 
-        System.out.println(TreeNode.preTraverse(tree));
         mirror(tree);
-        System.out.println(TreeNode.preTraverse(tree));
     }
 
     public static void mirror(TreeNode root) {

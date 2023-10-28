@@ -1,6 +1,6 @@
 package com.wjd.practice.leetcode.array.section;
 
-import com.wjd.practice.leetcode.TestCase;
+import com.wjd.practice.TestCase;
 
 /**
  * 11. 盛最多水的容器

@@ -1,6 +1,6 @@
 package com.wjd.practice.leetcode.array.binary;
 
-import com.wjd.practice.leetcode.TestCase;
+import com.wjd.practice.TestCase;
 
 /**
  * 215. 数组中的第K个最大元素

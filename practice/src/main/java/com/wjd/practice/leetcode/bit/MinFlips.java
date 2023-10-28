@@ -1,6 +1,6 @@
 package com.wjd.practice.leetcode.bit;
 
-import com.wjd.practice.leetcode.TestCase;
+import com.wjd.practice.TestCase;
 
 /**
  * 1318. 或运算的最小翻转次数
