@@ -86,6 +86,10 @@
 
 ## 二、字符串
 
+### 双指针
+
+- [125. 验证回文串](practice/src/main/java/com/wjd/practice/leetcode/string/compare/IsPalindrome.java)
+
 ### 滑动窗口
 
 - [1456. 定长子串中元音的最大数目](practice/src/main/java/com/wjd/practice/leetcode/array/sliding/MaxVowels.java)

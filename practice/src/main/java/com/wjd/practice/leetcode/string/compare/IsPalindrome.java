@@ -49,21 +49,17 @@ public class IsPalindrome {
      */
     @TestCase(input = {"A man, a plan, a canal: Panama", "race a car", " "},
             output = {"true", "false", "true"})
-    public boolean isPalindrome(String s) {
-        if (s == null) {
-            return false;
-        }
-
+    public boolean doublePoint(String s) {
         s = s.toLowerCase();
         int left = 0, right = s.length() - 1;
         while (left < right) {
-            while (left <= right && !isLegal(s.charAt(left))) {
+            while (left < right && !isValid(s.charAt(left))) {
                 left++;
             }
-            while (left <= right && !isLegal(s.charAt(right))) {
+            while (left < right && !isValid(s.charAt(right))) {
                 right--;
             }
-            if (left <= right) {
+            if (left < right) {
                 if (s.charAt(left) != s.charAt(right)) {
                     return false;
                 }
@@ -74,7 +70,13 @@ public class IsPalindrome {
         return true;
     }
 
-    private boolean isLegal(char ch) {
+    /**
+     * 是否是合法字符（字母+数字）
+     *
+     * @param ch 字符
+     * @return true/false
+     */
+    private boolean isValid(char ch) {
         return '0' <= ch && ch <= '9' || 'a' <= ch && ch <= 'z';
     }
 
