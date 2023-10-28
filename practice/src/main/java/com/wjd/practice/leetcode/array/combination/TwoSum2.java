@@ -50,11 +50,11 @@ import com.wjd.practice.leetcode.TestCase;
 public class TwoSum2 {
 
     /**
-     * 思路：二分法，查找2个数的和
+     * 思路：双指针，左右指针分别指向前后两端。计算 2 个数的和
      * <p>
-     * 如果大于指定值，减少右边界
+     * 1. 如果大于指定值，收缩右边界
      * <p>
-     * 如果小于指定值，增加左边界
+     * 2. 如果小于指定值，收缩左边界
      * <p>
      * 复杂度：时间 O(logn) 空间 O(1)
      * <p>
@@ -63,7 +63,7 @@ public class TwoSum2 {
      */
     @TestCase(input = {"[2,7,11,15]", "9", "[2,3,4]", "6", "[-1,0]", "-1"},
             output = {"[1,2]", "[1,3]", "[1,2]"})
-    public int[] twoSum(int[] numbers, int target) {
+    public int[] doublePoint(int[] numbers, int target) {
         int lp = 0, rp = numbers.length - 1;
         while (lp < rp) {
             int sum = numbers[lp] + numbers[rp];

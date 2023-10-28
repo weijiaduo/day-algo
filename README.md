@@ -23,6 +23,8 @@
 
 - [283. 移动零](practice/src/main/java/com/wjd/practice/leetcode/array/transform/MoveZeroes.java)
 - [11. 盛最多水的容器](practice/src/main/java/com/wjd/practice/leetcode/array/section/MaxArea.java)
+- [167. 两数之和 II - 输入有序数组](practice/src/main/java/com/wjd/practice/leetcode/array/combination/TwoSum2.java)
+- [1. 两数之和](practice/src/main/java/com/wjd/practice/leetcode/array/combination/TwoSum.java)
 - [15. 三数之和](practice/src/main/java/com/wjd/practice/leetcode/array/combination/ThreeSum.java)
 - [42. 接雨水](practice/src/main/java/com/wjd/practice/leetcode/array/section/Trap.java)
 - [1679. K 和数对的最大数目](practice/src/main/java/com/wjd/practice/leetcode/array/statistics/MaxOperations.java)
