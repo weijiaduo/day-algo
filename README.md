@@ -176,6 +176,7 @@
 - [2215. 找出两数组的不同](practice/src/main/java/com/wjd/practice/leetcode/hash/FindDifference.java)
 - [1207. 独一无二的出现次数](practice/src/main/java/com/wjd/practice/leetcode/hash/UniqueOccurrences.java)
 - [1657. 确定两个字符串是否接近](practice/src/main/java/com/wjd/practice/leetcode/hash/CloseStrings.java)
+- [380. O(1) 时间插入、删除和获取随机元素](practice/src/main/java/com/wjd/practice/leetcode/hash/RandomizedSet.java)
 
 ## 七、二叉树
 
