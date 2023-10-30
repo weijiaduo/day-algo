@@ -3,6 +3,8 @@ package com.wjd.practice.leetcode.array.sliding;
 import com.wjd.practice.TestCase;
 
 import java.util.Arrays;
+import java.util.HashSet;
+import java.util.Set;
 
 /**
  * 3. 无重复字符的最长子串
@@ -47,33 +49,29 @@ public class LengthOfLongestSubstring {
      * <p>
      * 复杂度：时间 O(n) 空间 O(1)
      * <p>
-     * 执行耗时:2 ms,击败了92.74% 的Java用户
+     * 执行耗时:4 ms,击败了89.73% 的Java用户
      * 内存消耗:42.5 MB,击败了18.59% 的Java用户
      */
     @TestCase(input = {"abcabcbb", "bbbbb", "pwwkew"},
             output = {"3", "1", "3"})
-    public int lengthOfLongestSubstring(String s) {
-        int maxLength = 0;
-        int[] indexes = new int[256];
-        Arrays.fill(indexes, -1);
-
+    public int slide(String s) {
+        int ans = 0;
+        Set<Character> set = new HashSet<>();
         int n = s.length();
         for (int l = 0, r = 0; r < n; r++) {
-            int c = s.charAt(r);
-            int lastR = indexes[c];
-            indexes[c] = r;
-
-            // 重复字符，收缩左边界
-            if (lastR >= l) {
-                l = lastR + 1;
+            char c = s.charAt(r);
+            if (!set.add(c)) {
+                // 重复字符，收缩左边界
+                while (s.charAt(l) != c) {
+                    set.remove(s.charAt(l));
+                    l++;
+                }
+                l++;
             }
-
             // 更新最大长度
-            if (r - l + 1 > maxLength) {
-                maxLength = r - l + 1;
-            }
+            ans = Math.max(r - l + 1, ans);
         }
-        return maxLength;
+        return ans;
     }
 
 }
