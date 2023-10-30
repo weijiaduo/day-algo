@@ -1,4 +1,4 @@
-package com.wjd.practice.leetcode.array.sliding;
+package com.wjd.practice.leetcode.string.sliding;
 
 import com.wjd.practice.TestCase;
 
@@ -61,7 +61,7 @@ public class MinWindow {
      */
     @TestCase(input = {"ADOBECODEBANC", "ABC", "a", "a", "a", "aa"},
             output = {"BANC", "a", ""})
-    public String minWindow(String s, String t) {
+    public String slide(String s, String t) {
         // 这个 s.length < t.length 还是很有用的
         if (s == null || t == null || s.length() < t.length()) {
             return "";

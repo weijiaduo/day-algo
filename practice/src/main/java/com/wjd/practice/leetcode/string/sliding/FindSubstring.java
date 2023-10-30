@@ -1,4 +1,4 @@
-package com.wjd.practice.leetcode.string.combination;
+package com.wjd.practice.leetcode.string.sliding;
 
 import com.wjd.practice.TestCase;
 
