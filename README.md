@@ -41,6 +41,7 @@
 - [209. 长度最小的子数组](practice/src/main/java/com/wjd/practice/leetcode/array/sliding/MinSubArrayLen.java)
 - [239. 滑动窗口最大值](practice/src/main/java/com/wjd/practice/leetcode/array/sliding/MaxSlidingWindow.java)
 - [76. 最小覆盖子串](practice/src/main/java/com/wjd/practice/leetcode/array/sliding/MinWindow.java)
+- [30. 串联所有单次的字串](practice/src/main/java/com/wjd/practice/leetcode/string/combination/FindSubstring.java)
 
 ### 子序列
 
