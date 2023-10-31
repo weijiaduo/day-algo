@@ -58,6 +58,7 @@
 
 ### 矩阵
 
+- [36. 有效的数独](practice/src/main/java/com/wjd/practice/leetcode/matrix/ValidSudoku.java)
 - [73. 矩阵置零](practice/src/main/java/com/wjd/practice/leetcode/matrix/SetMatrixZeroes.java)
 - [54. 螺旋矩阵](practice/src/main/java/com/wjd/practice/leetcode/matrix/SpiralOrder.java)
 - [48. 旋转图像](practice/src/main/java/com/wjd/practice/leetcode/matrix/RotateMatrix.java)

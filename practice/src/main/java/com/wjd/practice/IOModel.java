@@ -1,9 +1,9 @@
 package com.wjd.practice;
 
+import com.wjd.practice.util.Utils;
 import com.wjd.structure.list.ListNode;
 import com.wjd.structure.tree.binary.TreeNode;
 import com.wjd.structure.tree.generic.Node;
-import com.wjd.util.IOUtils;
 
 import java.io.BufferedReader;
 import java.io.IOException;
@@ -79,16 +79,16 @@ public class IOModel {
     private Object parse(String line, Type type) {
         Object ret;
         if (TreeNode.class.equals(type)) {
-            String[] values = IOUtils.toStringArray(line);
+            String[] values = Utils.toStringArray(line);
             ret = TreeNode.build(values);
         } else if (Node.class.equals(type)) {
-            Integer[] values = IOUtils.toBoxIntArray(line);
+            Integer[] values = Utils.toBoxIntArray(line);
             ret = Node.build(values);
         } else if (ListNode.class.equals(type)) {
-            int[] arr = IOUtils.toIntArray(line);
+            int[] arr = Utils.toIntArray(line);
             ret = ListNode.build(arr);
         } else {
-            ret = IOUtils.parse(line, type);
+            ret = Utils.fromStr(line, type);
             ret = ret != null ? ret : line;
         }
         return ret;
