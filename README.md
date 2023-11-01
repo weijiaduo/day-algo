@@ -32,6 +32,7 @@
 
 ### 滑动窗口
 
+- [219. 存在重复元素 II](practice/src/main/java/com/wjd/practice/leetcode/array/sliding/ContainsNearbyDuplicate.java)
 - [643. 子数组最大平均数 I](practice/src/main/java/com/wjd/practice/leetcode/array/sliding/MaxAverage.java)
 - [1004. 最大连续1的个数 III](practice/src/main/java/com/wjd/practice/leetcode/array/sliding/LongestOnes.java)
 - [1493. 删掉一个元素以后全为 1 的最长子数组](practice/src/main/java/com/wjd/practice/leetcode/array/sliding/LongestSubarray.java)
