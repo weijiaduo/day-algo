@@ -1,4 +1,6 @@
-package com.wjd.practice.leetcode.string.compare;
+package com.wjd.practice.leetcode.hash;
+
+import com.wjd.practice.TestCase;
 
 /**
  * 242. 有效的字母异位词
@@ -7,8 +9,20 @@ package com.wjd.practice.leetcode.string.compare;
  * <p>
  * 注意：若 s 和 t 中每个字符出现的次数都相同，则称 s 和 t 互为字母异位词。
  * <p>
+ * 示例 1:
+ * <p>
  * 输入: s = "anagram", t = "nagaram"
  * 输出: true
+ * <p>
+ * 示例 2:
+ * <p>
+ * 输入: s = "rat", t = "car"
+ * 输出: false
+ * <p>
+ * 提示:
+ * <p>
+ * 1 <= s.length, t.length <= 5 * 10⁴
+ * s 和 t 仅包含小写字母
  *
  * @author weijiaduo
  * @since 2022/9/6
@@ -23,7 +37,9 @@ public class IsAnagram {
      * 执行耗时:3 ms,击败了60.57% 的Java用户
      * 内存消耗:41.3 MB,击败了77.30% 的Java用户
      */
-    public boolean isAnagram(String s, String t) {
+    @TestCase(input = {"anagram", "nagaram", "rat", "car"},
+            output = {"true", "false"})
+    public boolean hash(String s, String t) {
         int m = s.length(), n = t.length();
         if (m != n) {
             return false;
