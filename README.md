@@ -174,6 +174,7 @@
 ## 六、哈希
  
 - [1. 两数之和](practice/src/main/java/com/wjd/practice/leetcode/array/combination/TwoSum.java)
+- [383. 赎金信](practice/src/main/java/com/wjd/practice/leetcode/hash/CanConstruct.java)
 - [49. 字母异位词分组](practice/src/main/java/com/wjd/practice/leetcode/string/combination/GroupAnagrams.java)
 - [128. 最长连续序列](practice/src/main/java/com/wjd/practice/leetcode/array/sequence/LongestConsecutive.java)
 - [2215. 找出两数组的不同](practice/src/main/java/com/wjd/practice/leetcode/hash/FindDifference.java)
