@@ -174,6 +174,7 @@
 ## 六、哈希
  
 - [1. 两数之和](practice/src/main/java/com/wjd/practice/leetcode/array/combination/TwoSum.java)
+- [202. 快乐数](practice/src/main/java/com/wjd/practice/leetcode/math/HappyNumber.java)
 - [383. 赎金信](practice/src/main/java/com/wjd/practice/leetcode/hash/CanConstruct.java)
 - [290. 单词规律](practice/src/main/java/com/wjd/practice/leetcode/hash/WordPattern.java)
 - [205. 同构字符串](practice/src/main/java/com/wjd/practice/leetcode/hash/IsomorphicString.java)
