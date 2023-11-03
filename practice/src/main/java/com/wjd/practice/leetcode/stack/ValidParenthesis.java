@@ -4,6 +4,8 @@ import com.wjd.practice.TestCase;
 
 import java.util.ArrayDeque;
 import java.util.Deque;
+import java.util.HashMap;
+import java.util.Map;
 
 /**
  * 20. 有效的括号
@@ -49,9 +51,9 @@ public class ValidParenthesis {
      * 执行耗时:1 ms,击败了98.88% 的Java用户
      * 内存消耗:39.5 MB,击败了57.00% 的Java用户
      */
-    @TestCase(input = {"()", "()[]{}", "(]"},
-            output = {"true", "true", "false"})
-    public boolean isValid(String s) {
+    @TestCase(input = {"()", "()[]{}", "(]", "([)]"},
+            output = {"true", "true", "false", "false"})
+    public boolean stack(String s) {
         Deque<Character> stack = new ArrayDeque<>();
         int n = s.length();
         for (int i = 0; i < n; i++) {
@@ -78,6 +80,43 @@ public class ValidParenthesis {
                 }
                 default -> {
                 }
+            }
+        }
+        return stack.isEmpty();
+    }
+
+
+    final Map<Character, Character> map = new HashMap<>() {{
+        put('(', ')');
+        put('[', ']');
+        put('{', '}');
+    }};
+
+    /**
+     * 思路：栈匹配，遇到左括号入栈，遇到右括号出栈，最终栈为空则是有效的括号
+     * <p>
+     * 复杂度：时间 O(n) 空间 O(n)
+     * <p>
+     * 执行耗时:1 ms,击败了51.42%的Java用户
+     * 内存消耗:38.40MB,击败了78.81% 的Java用户
+     */
+    @TestCase(input = {"()", "()[]{}", "(]", "([)]"},
+            output = {"true", "true", "false", "false"})
+    public boolean stack2(String s) {
+        Deque<Character> stack = new ArrayDeque<>();
+        int n = s.length();
+        for (int i = 0; i < n; i++) {
+            char ch = s.charAt(i);
+            // 左括号
+            if (map.containsKey(ch)) {
+                stack.push(ch);
+                continue;
+            }
+            // 右括号
+            if (stack.isEmpty() || map.get(stack.peek()) != ch) {
+                return false;
+            } else {
+                stack.pop();
             }
         }
         return stack.isEmpty();
