@@ -161,6 +161,7 @@
 ## 四、栈
 
 - [20. 有效的括号](practice/src/main/java/com/wjd/practice/leetcode/stack/ValidParenthesis.java)
+- [71. 简化路径](practice/src/main/java/com/wjd/practice/leetcode/string/transform/SimplifyPath.java)
 - [155. 最小栈](practice/src/main/java/com/wjd/practice/leetcode/stack/MinStack.java)
 - [394. 字符串解码](practice/src/main/java/com/wjd/practice/leetcode/string/encode/DecodeString.java)
 - [739. 每日温度](practice/src/main/java/com/wjd/practice/leetcode/stack/DailyTemperatures.java)
