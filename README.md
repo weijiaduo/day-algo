@@ -152,6 +152,7 @@
 - [206. 反转链表](practice/src/main/java/com/wjd/practice/leetcode/list/transform/ReverseList.java)
 - [92. 反转链表2](practice/src/main/java/com/wjd/practice/leetcode/list/transform/ReverseBetween.java)
 - [19. 删除链表的倒数第N个节点](practice/src/main/java/com/wjd/practice/leetcode/list/transform/RemoveNthFromEnd.java)
+- [83. 删除排序链表中的重复元素](practice/src/main/java/com/wjd/practice/leetcode/list/transform/DeleteDuplicates.java)
 - [82. 删除排序链表中的重复元素 II](practice/src/main/java/com/wjd/practice/leetcode/list/transform/DeleteDuplicates2.java)
 - [24. 两两交换链表中的节点](practice/src/main/java/com/wjd/practice/leetcode/list/transform/SwapPairs.java)
 - [138. 复制带随机指针的链表](practice/src/main/java/com/wjd/practice/leetcode/list/simulate/CopyRandomList.java)
