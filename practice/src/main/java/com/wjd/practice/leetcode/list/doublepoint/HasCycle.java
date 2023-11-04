@@ -1,5 +1,6 @@
 package com.wjd.practice.leetcode.list.doublepoint;
 
+import com.wjd.practice.TestCase;
 import com.wjd.structure.list.ListNode;
 
 /**
@@ -43,6 +44,20 @@ import com.wjd.structure.list.ListNode;
  */
 public class HasCycle {
 
+    @TestCase(input = {"[3,2,0,-4]", "1", "[1,2]", "0", "[1]", "-1"},
+            output = {"true", "true", "false"})
+    public boolean hasCycle(ListNode head, int pos) {
+        ListNode tail = head, p = pos >= 0 ? head : null;
+        while (tail.next != null) {
+            tail = tail.next;
+            if (pos-- > 0 && p != null) {
+                p = p.next;
+            }
+        }
+        tail.next = p;
+        return hasCycle(head);
+    }
+
     /**
      * 思路：快慢指针，快指针追上慢指针的话，就说明回头了，存在环
      * <p>
@@ -51,23 +66,19 @@ public class HasCycle {
      * 执行耗时:0 ms,击败了100.00% 的Java用户
      * 内存消耗:43.1 MB,击败了5.07% 的Java用户
      */
-    public boolean hasCycle(ListNode head) {
+    private boolean hasCycle(ListNode head) {
         if (head == null || head.next == null) {
             return false;
         }
 
-        ListNode p = head.next, q = head;
-        while (p != null) {
-            if (p == q || p.next == q) {
+        ListNode fast = head.next, slow = head;
+        while (fast != null && fast.next != null) {
+            if (fast == slow || fast.next == slow) {
                 return true;
             }
-            p = p.next;
-            if (p != null) {
-                p = p.next;
-            }
-            q = q.next;
+            slow = slow.next;
+            fast = fast.next.next;
         }
-
         return false;
     }
 
