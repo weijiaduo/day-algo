@@ -161,6 +161,7 @@
 - [2095. 删除链表的中间节点](practice/src/main/java/com/wjd/practice/leetcode/list/doublepoint/DeleteMiddle.java)
 - [328. 奇偶链表](practice/src/main/java/com/wjd/practice/leetcode/list/transform/OddEvenList.java)
 - [2130. 链表最大孪生和](practice/src/main/java/com/wjd/practice/leetcode/list/doublepoint/PairSum.java)
+- [86. 分隔链表](practice/src/main/java/com/wjd/practice/leetcode/list/transform/Partition.java)
 
 ## 四、栈
 
