@@ -156,6 +156,7 @@
 - [24. 两两交换链表中的节点](practice/src/main/java/com/wjd/practice/leetcode/list/transform/SwapPairs.java)
 - [138. 复制带随机指针的链表](practice/src/main/java/com/wjd/practice/leetcode/list/simulate/CopyRandomList.java)
 - [25. K个一组翻转链表](practice/src/main/java/com/wjd/practice/leetcode/list/transform/ReverseKGroup.java)
+- [61. 旋转链表](practice/src/main/java/com/wjd/practice/leetcode/list/transform/RotateRight.java)
 - [2095. 删除链表的中间节点](practice/src/main/java/com/wjd/practice/leetcode/list/doublepoint/DeleteMiddle.java)
 - [328. 奇偶链表](practice/src/main/java/com/wjd/practice/leetcode/list/transform/OddEvenList.java)
 - [2130. 链表最大孪生和](practice/src/main/java/com/wjd/practice/leetcode/list/doublepoint/PairSum.java)
