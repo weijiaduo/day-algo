@@ -215,6 +215,7 @@
 
 ### 查找
 
+- [100. 相同的树](practice/src/main/java/com/wjd/practice/leetcode/tree/validate/IsSameTree.java)
 - [700. 二叉搜索树中的搜索](practice/src/main/java/com/wjd/practice/leetcode/tree/search/SearchBST.java)
 - [230. 二叉搜索树中第K小的元素](practice/src/main/java/com/wjd/practice/leetcode/tree/search/KthSmallest.java)
 - [236. 二叉树的最近公共祖先](practice/src/main/java/com/wjd/practice/leetcode/tree/path/LowestCommonAncestor2.java)
