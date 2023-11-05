@@ -202,6 +202,7 @@
 
 - [108. 将有序数组转换为二叉搜索树](practice/src/main/java/com/wjd/practice/leetcode/tree/build/SortedArrayToBST.java)
 - [105. 从前序与中序遍历序列构造二叉树](practice/src/main/java/com/wjd/practice/leetcode/tree/build/BuildTreeFromPreorderAndInorder.java)
+- [106. 从中序与后序遍历序列构造二叉树](practice/src/main/java/com/wjd/practice/leetcode/tree/build/BuildTreeFromPostorderAndInorder.java)
 
 ### 遍历
 
