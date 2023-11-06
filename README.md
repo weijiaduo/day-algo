@@ -211,6 +211,7 @@
 - [543. 二叉树的直径](practice/src/main/java/com/wjd/practice/leetcode/tree/path/DiameterOfBinaryTree.java)
 - [102. 二叉树的层序遍历](practice/src/main/java/com/wjd/practice/leetcode/tree/traversal/LevelOrder.java)
 - [98. 验证二叉搜索树](practice/src/main/java/com/wjd/practice/leetcode/tree/validate/IsValidBST.java)
+- [173. 二叉搜索树迭代器](practice/src/main/java/com/wjd/practice/leetcode/tree/traversal/BSTIterator.java)
 - [199. 二叉树的右视图](practice/src/main/java/com/wjd/practice/leetcode/tree/traversal/RightSideView.java)
 - [872. 叶子相似的树](practice/src/main/java/com/wjd/practice/leetcode/tree/traversal/LeafSimilar.java)
 
