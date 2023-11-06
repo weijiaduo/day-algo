@@ -56,20 +56,23 @@ public class TestRunner {
             }
         }
 
-        // 运行注解方法
-        for (Method m : annoTests) {
-            try {
-                runAnnotationTestCase(cls, m);
-            } catch (Exception e) {
-                e.printStackTrace();
+        if (!annoTests.isEmpty()) {
+            // 运行注解方法
+            for (Method m : annoTests) {
+                try {
+                    runAnnotationTestCase(cls, m);
+                } catch (Exception e) {
+                    e.printStackTrace();
+                }
             }
-        }
-        // 运行其他特殊方法 solve 或 public
-        for (Method m : fileTests) {
-            try {
-                runFileTestCase(cls, m);
-            } catch (Exception e) {
-                e.printStackTrace();
+        } else {
+            // 运行其他特殊方法 solve 或 public
+            for (Method m : fileTests) {
+                try {
+                    runFileTestCase(cls, m);
+                } catch (Exception e) {
+                    e.printStackTrace();
+                }
             }
         }
     }
