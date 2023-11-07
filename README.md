@@ -231,6 +231,7 @@
 - [129. 求根节点到叶节点数字之和](practice/src/main/java/com/wjd/practice/leetcode/tree/statistics/SumNumbers.java)
 - [222. 完全二叉树的节点个数](practice/src/main/java/com/wjd/practice/leetcode/tree/statistics/CountNodes.java)
 - [1448. 统计二叉树中好节点的数目](practice/src/main/java/com/wjd/practice/leetcode/tree/statistics/GoodNodes.java)
+- [637. 二叉树的层平均值](practice/src/main/java/com/wjd/practice/leetcode/tree/statistics/AverageOfLevels.java)
 - [1161. 最大层内元素和](practice/src/main/java/com/wjd/practice/leetcode/tree/statistics/MaxLevelSum.java)
 - [124. 二叉树中的最大路径和](practice/src/main/java/com/wjd/practice/leetcode/tree/path/MaxPathSum.java)
 - [1372. 二叉树中的最长交错路径](practice/src/main/java/com/wjd/practice/leetcode/tree/traversal/LongestZigZag.java)
