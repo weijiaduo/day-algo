@@ -213,6 +213,7 @@
 - [98. 验证二叉搜索树](practice/src/main/java/com/wjd/practice/leetcode/tree/validate/IsValidBST.java)
 - [173. 二叉搜索树迭代器](practice/src/main/java/com/wjd/practice/leetcode/tree/traversal/BSTIterator.java)
 - [199. 二叉树的右视图](practice/src/main/java/com/wjd/practice/leetcode/tree/traversal/RightSideView.java)
+- [103. Z字形打印树](practice/src/main/java/com/wjd/practice/leetcode/tree/traversal/ZigzagLevelOrder.java)
 - [872. 叶子相似的树](practice/src/main/java/com/wjd/practice/leetcode/tree/traversal/LeafSimilar.java)
 
 ### 查找
