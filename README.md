@@ -235,6 +235,7 @@
 - [1161. 最大层内元素和](practice/src/main/java/com/wjd/practice/leetcode/tree/statistics/MaxLevelSum.java)
 - [124. 二叉树中的最大路径和](practice/src/main/java/com/wjd/practice/leetcode/tree/path/MaxPathSum.java)
 - [1372. 二叉树中的最长交错路径](practice/src/main/java/com/wjd/practice/leetcode/tree/traversal/LongestZigZag.java)
+- [783. 二叉搜索树节点最小距离](practice/src/main/java/com/wjd/practice/leetcode/tree/statistics/MinDiffInBST.java)
 
 ### 转换
 

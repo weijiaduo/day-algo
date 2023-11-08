@@ -1,5 +1,6 @@
 package com.wjd.practice.leetcode.tree.statistics;
 
+import com.wjd.practice.TestCase;
 import com.wjd.structure.tree.binary.TreeNode;
 
 /**
@@ -9,8 +10,20 @@ import com.wjd.structure.tree.binary.TreeNode;
  * <p>
  * 差值是一个正数，其数值等于两值之差的绝对值。
  * <p>
+ * 示例 1：
+ * <p>
  * 输入：root = [4,2,6,1,3]
  * 输出：1
+ * <p>
+ * 示例 2：
+ * <p>
+ * 输入：root = [1,0,48,null,null,12,49]
+ * 输出：1
+ * <p>
+ * 提示：
+ * <p>
+ * 树中节点的数目范围是 [2, 100]
+ * 0 <= Node.val <= 10⁵
  *
  * @author weijiaduo
  * @since 2022/12/17
@@ -33,10 +46,9 @@ public class MinDiffInBST {
      * <p>
      * 执行耗时:0 ms,击败了100.00% 的Java用户
      * 内存消耗:39.1 MB,击败了57.41% 的Java用户
-     *
-     * @param root 根节点
-     * @return 最小距离
      */
+    @TestCase(input = {"[4,2,6,1,3]", "[1,0,48,null,null,12,49]"},
+            output = {"1", "1"})
     public int minDiffInBST(TreeNode root) {
         minDistance = Integer.MAX_VALUE;
         prev = null;
