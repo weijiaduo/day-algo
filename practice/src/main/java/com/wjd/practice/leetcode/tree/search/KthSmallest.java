@@ -3,6 +3,9 @@ package com.wjd.practice.leetcode.tree.search;
 import com.wjd.practice.TestCase;
 import com.wjd.structure.tree.binary.TreeNode;
 
+import java.util.HashMap;
+import java.util.Map;
+
 /**
  * 230. 二叉搜索树中第K小的元素
  * <p>
@@ -59,6 +62,62 @@ public class KthSmallest {
             ans = root.val;
         }
         inorder(root.right);
+    }
+
+    Map<TreeNode, Integer> countMap;
+
+    /**
+     * 思路：二分法
+     * <p>
+     * 记录每个子树的节点数量，和 k 对比
+     * <p>
+     * 若 n < k，则 k 在右子树
+     * <p>
+     * 若 n > k，则 k 在左子树
+     * <p>
+     * 否则，当前节点就是 k
+     * <p>
+     * 复杂度：时间 O(n) 空间 O(n)
+     * <p>
+     * 执行耗时:2 ms,击败了9.52% 的Java用户
+     * 内存消耗:42.6 MB,击败了96.31% 的Java用户
+     */
+    @TestCase(input = {"[3,1,4,null,2]", "1", "[5,3,6,2,4,null,null,1]", "3"},
+            output = {"1", "3"})
+    public int binary(TreeNode root, int k) {
+        countMap = new HashMap<>();
+        count(root);
+        TreeNode h = root;
+        while (h != null) {
+            int l = countMap.getOrDefault(h.left, 0);
+            if (l == k - 1) {
+                return h.val;
+            }
+            if (l >= k) {
+                // 在左子树内
+                h = h.left;
+            } else {
+                // 在右子树内
+                h = h.right;
+                k -= l + 1;
+            }
+        }
+        return -1;
+    }
+
+    /**
+     * 统计每棵子树的节点数量
+     *
+     * @param root 当前节点
+     * @return 节点数量
+     */
+    private int count(TreeNode root) {
+        if (root == null) {
+            return 0;
+        }
+        int num = 1 + count(root.left) + count(root.right);
+        countMap.put(root, num);
+        return num;
     }
 
 }
