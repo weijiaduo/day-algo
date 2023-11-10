@@ -315,6 +315,7 @@
 - [191. 位1的个数](practice/src/main/java/com/wjd/practice/leetcode/bit/HammingWeight.java)
 - [338. 比特位计数](practice/src/main/java/com/wjd/practice/leetcode/bit/CountBits.java)
 - [136. 只出现一次的数字](practice/src/main/java/com/wjd/practice/leetcode/bit/SingleNumber.java)
+- [137. 只出现一次的数字](practice/src/main/java/com/wjd/practice/leetcode/bit/SingleNumber2.java)
 - [1318. 或运算的最小翻转次数](practice/src/main/java/com/wjd/practice/leetcode/bit/MinFlips.java)
 
 ## 十四、数学
