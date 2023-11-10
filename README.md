@@ -312,6 +312,7 @@
 
 - [67. 二进制求和](practice/src/main/java/com/wjd/practice/leetcode/math/AddBinary.java)
 - [190. 颠倒二进制位](practice/src/main/java/com/wjd/practice/leetcode/bit/ReverseBits.java)
+- [191. 位1的个数](practice/src/main/java/com/wjd/practice/leetcode/bit/HammingWeight.java)
 - [338. 比特位计数](practice/src/main/java/com/wjd/practice/leetcode/bit/CountBits.java)
 - [136. 只出现一次的数字](practice/src/main/java/com/wjd/practice/leetcode/bit/SingleNumber.java)
 - [1318. 或运算的最小翻转次数](practice/src/main/java/com/wjd/practice/leetcode/bit/MinFlips.java)
