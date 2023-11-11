@@ -62,11 +62,11 @@ public class Rob {
             return 0;
         }
 
-        // 创建动态数组
+        // 状态定义
         // dp[i][0] 表示不取，dp[i][1] 表示取
         int[][] dp = new int[n][2];
 
-        // 初始化状态
+        // 状态初始化
         dp[0][0] = 0;
         dp[0][1] = nums[0];
 
@@ -93,7 +93,7 @@ public class Rob {
      * <p>
      * 由此可得到转移公式：
      * <p>
-     * dp[i] = max(dp[i - 1], dp[i -2] + nums[i])
+     * dp[i] = max(dp[i - 1], dp[i - 2] + nums[i])
      * <p>
      * 复杂度：时间 O(n) 空间 O(n)
      * <p>
@@ -111,9 +111,10 @@ public class Rob {
             return nums[0];
         }
 
-        // 创建动态数组
+        // 状态定义
+        // dp[i] 表示前 i 间房子得到的最大值
         int[] dp = new int[n];
-        // 初始化状态
+        // 状态初始化
         dp[0] = nums[0];
         dp[1] = Math.max(nums[0], nums[1]);
         // 状态转移
@@ -142,16 +143,16 @@ public class Rob {
             return 0;
         }
 
-        // 上一次不取，或者上一次取
-        int lastNotFetch = 0, lastFetch = nums[0];
-        for (int i = 1; i < n; i++) {
-            int notFetch = Math.max(lastNotFetch, lastFetch);
-            int fetch = lastNotFetch + nums[i];
-            lastNotFetch = notFetch;
-            lastFetch = fetch;
+        // 状态初始化
+        int lastTwo = nums[0];
+        int lastOne = Math.max(nums[0], nums[1]);
+        // 状态转移
+        for (int i = 2; i < n; i++) {
+            int tmp = Math.max(lastOne, lastTwo + nums[i]);
+            lastTwo = lastOne;
+            lastOne = tmp;
         }
-
-        return Math.max(lastNotFetch, lastFetch);
+        return lastOne;
     }
 
 }
