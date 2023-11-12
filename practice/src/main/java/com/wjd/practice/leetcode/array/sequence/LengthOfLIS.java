@@ -53,7 +53,7 @@ public class LengthOfLIS {
      */
     @TestCase(input = {"[10,9,2,5,3,7,101,18]", "[0,1,0,3,2,3]", "[7,7,7,7,7,7,7]"},
             output = {"4", "4", "1"})
-    private int dynamic(int[] nums) {
+    public int dynamic(int[] nums) {
         // 状态定义
         // dp[i] 表示以 nums[i] 结尾的子序列的最大长度
         int n = nums.length;
@@ -95,7 +95,7 @@ public class LengthOfLIS {
      */
     @TestCase(input = {"[10,9,2,5,3,7,101,18]", "[0,1,0,3,2,3]", "[7,7,7,7,7,7,7]"},
             output = {"4", "4", "1"})
-    private int binary(int[] nums) {
+    public int binary(int[] nums) {
         // 状态定义
         // dp[i] 表示长度为 i 的最长上升子序列的末尾元素的最小值
         int[] dp = new int[nums.length + 1];
