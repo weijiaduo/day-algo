@@ -182,7 +182,7 @@
 - [649. Dota2 参议院](practice/src/main/java/com/wjd/practice/leetcode/queue/PredictPartyVictory.java)
 
 ## 六、哈希
- 
+
 - [1. 两数之和](practice/src/main/java/com/wjd/practice/leetcode/array/combination/TwoSum.java)
 - [202. 快乐数](practice/src/main/java/com/wjd/practice/leetcode/math/HappyNumber.java)
 - [383. 赎金信](practice/src/main/java/com/wjd/practice/leetcode/hash/CanConstruct.java)
@@ -296,6 +296,7 @@
 
 ### 多维动态规划
 
+- [120. 三角形最小路径和](practice/src/main/java/com/wjd/practice/leetcode/dynamic/multi/MinimumTotal.java)
 - [416. 分割等和子集](practice/src/main/java/com/wjd/practice/leetcode/dynamic/multi/CanPartition.java)
 - [62. 不同路径](practice/src/main/java/com/wjd/practice/leetcode/dynamic/multi/UniquePaths.java)
 - [64. 最小路径和](practice/src/main/java/com/wjd/practice/leetcode/dynamic/multi/MinPathSum.java)
