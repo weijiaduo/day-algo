@@ -51,7 +51,7 @@ public class CoinChange {
      */
     @TestCase(input = {"[1, 2, 5]", "11", "[2]", "3", "[1]", "0"},
             output = {"3", "-1", "0"})
-    private int dfs(int[] coins, int amount) {
+    public int dfs(int[] coins, int amount) {
         if (amount == 0) {
             return 0;
         }
@@ -78,7 +78,10 @@ public class CoinChange {
      */
     @TestCase(input = {"[1, 2, 5]", "11", "[2]", "3", "[1]", "0"},
             output = {"3", "-1", "0"})
-    private int memo(int[] coins, int amount) {
+    public int memo(int[] coins, int amount) {
+        // -2 表示还未计算
+        // -1 表示计算失败
+        //  0 表示计算成功
         int[] cache = new int[amount + 1];
         Arrays.fill(cache, -2);
         return meno(coins, amount, cache);
@@ -120,12 +123,12 @@ public class CoinChange {
      */
     @TestCase(input = {"[1, 2, 5]", "11", "[2]", "3", "[1]", "0"},
             output = {"3", "-1", "0"})
-    private int dynamic1(int[] coins, int amount) {
-        // 创建动态数组
+    public int dynamic1(int[] coins, int amount) {
+        // 状态定义
         // dp[i] 表示金额为 i 时的最少硬币数量
         int[] dp = new int[amount + 1];
 
-        // 初始化状态
+        // 状态初始化
         Arrays.fill(dp, amount + 1);
         dp[0] = 0;
 
