@@ -299,6 +299,7 @@
 - [120. 三角形最小路径和](practice/src/main/java/com/wjd/practice/leetcode/dynamic/multi/MinimumTotal.java)
 - [416. 分割等和子集](practice/src/main/java/com/wjd/practice/leetcode/dynamic/multi/CanPartition.java)
 - [62. 不同路径](practice/src/main/java/com/wjd/practice/leetcode/dynamic/multi/UniquePaths.java)
+- [63. 不同路径2](practice/src/main/java/com/wjd/practice/leetcode/dynamic/multi/UniquePathsWithObstacles.java)
 - [64. 最小路径和](practice/src/main/java/com/wjd/practice/leetcode/dynamic/multi/MinPathSum.java)
 - [5. 最长回文子串](practice/src/main/java/com/wjd/practice/leetcode/dynamic/multi/LongestPalindrome.java)
 - [1143. 最长公共子序列](practice/src/main/java/com/wjd/practice/leetcode/dynamic/multi/LongestCommonSubsequence.java)
