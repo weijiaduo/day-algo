@@ -1,4 +1,4 @@
-package com.wjd.practice.leetcode.string.combination;
+package com.wjd.practice.leetcode.dynamic.one;
 
 import com.wjd.practice.TestCase;
 
@@ -49,8 +49,8 @@ public class WordBreak {
      * <p>
      * 复杂度：时间 O(n^2 * m)，空间 O(n^2)
      * <p>
-     * 执行耗时:1 ms,击败了99.64% 的Java用户
-     * 内存消耗:41.4 MB,击败了64.82% 的Java用户
+     * 执行耗时:1 ms,击败了99.53% 的Java用户
+     * 内存消耗:39.9 MB,击败了90.67% 的Java用户
      */
     @TestCase(input = {"leetcode", "[\"leet\", \"code\"]", "applepenapple", "[\"apple\", \"pen\"]"},
             output = {"true", "true"})
@@ -73,7 +73,6 @@ public class WordBreak {
                 continue;
             }
             if (meno(s, i + word.length(), wordDict, cache)) {
-                cache.put(i, true);
                 return true;
             }
         }
@@ -91,15 +90,16 @@ public class WordBreak {
      */
     @TestCase(input = {"leetcode", "[\"leet\", \"code\"]", "applepenapple", "[\"apple\", \"pen\"]"},
             output = {"true", "true"})
-    private boolean dynamic(String s, List<String> wordDict) {
+    public boolean dynamic(String s, List<String> wordDict) {
         // 单词转成Set可提高速度
         Set<String> words = new HashSet<>(wordDict);
 
-        // 创建动态存储
+        // 状态定义
+        // dp[i] 表示长度为 i 的子串是否能够由字典单词拼成
         int n = s.length();
         boolean[] dp = new boolean[n + 1];
 
-        // 初始化状态
+        // 状态初始化
         dp[0] = true;
 
         // 动态计算
@@ -125,7 +125,7 @@ public class WordBreak {
      */
     @TestCase(input = {"leetcode", "[\"leet\", \"code\"]", "applepenapple", "[\"apple\", \"pen\"]"},
             output = {"true", "true"})
-    private boolean dynamic2(String s, List<String> wordDict) {
+    public boolean dynamic2(String s, List<String> wordDict) {
         // 单词转成Set可提高速度
         Set<String> words = new HashSet<>(wordDict.size());
         int wordMaxLength = 0, wordMinLength = Integer.MAX_VALUE;
@@ -135,11 +135,12 @@ public class WordBreak {
             words.add(word);
         }
 
-        // 创建动态存储
+        // 状态定义
+        // dp[i] 表示长度为 i 的子串是否能够由字典单词拼成
         int n = s.length();
         boolean[] dp = new boolean[n + 1];
 
-        // 初始化状态
+        // 状态初始化
         dp[0] = true;
 
         // 动态计算

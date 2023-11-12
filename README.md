@@ -289,7 +289,7 @@
 - [198. 打家劫舍](practice/src/main/java/com/wjd/practice/leetcode/dynamic/one/Rob.java)
 - [279. 完全平方数](practice/src/main/java/com/wjd/practice/leetcode/dynamic/one/NumSquares.java)
 - [322. 零钱兑换](practice/src/main/java/com/wjd/practice/leetcode/dynamic/one/CoinChange.java)
-- [139. 单词拆分](practice/src/main/java/com/wjd/practice/leetcode/string/combination/WordBreak.java)
+- [139. 单词拆分](practice/src/main/java/com/wjd/practice/leetcode/dynamic/one/WordBreak.java)
 - [300. 最长递增子序列](practice/src/main/java/com/wjd/practice/leetcode/array/sequence/LengthOfLIS.java)
 - [152. 乘积最大子数组](practice/src/main/java/com/wjd/practice/leetcode/array/statistics/MaxProduct.java)
 - [32. 最长有效括号](practice/src/main/java/com/wjd/practice/leetcode/string/sequence/LongestValidParentheses.java)
