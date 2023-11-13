@@ -326,5 +326,6 @@
 ## 十四、数学
 
 - [9. 回文数](practice/src/main/java/com/wjd/practice/leetcode/math/PalindromeNumber.java)
+- [66. 加一](practice/src/main/java/com/wjd/practice/leetcode/math/PlusOne.java)
 - [12. 整数转罗马数字](practice/src/main/java/com/wjd/practice/leetcode/math/IntToRoman.java)
 - [13. 罗马数字转整数](practice/src/main/java/com/wjd/practice/leetcode/math/RomanToInt.java)
