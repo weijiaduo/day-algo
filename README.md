@@ -329,5 +329,6 @@
 - [66. 加一](practice/src/main/java/com/wjd/practice/leetcode/math/PlusOne.java)
 - [172. 阶乘后的零](practice/src/main/java/com/wjd/practice/leetcode/math/TrailingZeroes.java)
 - [69. x的平方根](practice/src/main/java/com/wjd/practice/leetcode/math/IntSqrt.java)
+- [50. Pow(x,y)](practice/src/main/java/com/wjd/practice/leetcode/math/MyPow.java)
 - [12. 整数转罗马数字](practice/src/main/java/com/wjd/practice/leetcode/math/IntToRoman.java)
 - [13. 罗马数字转整数](practice/src/main/java/com/wjd/practice/leetcode/math/RomanToInt.java)
