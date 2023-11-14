@@ -332,3 +332,4 @@
 - [50. Pow(x,y)](practice/src/main/java/com/wjd/practice/leetcode/math/MyPow.java)
 - [12. 整数转罗马数字](practice/src/main/java/com/wjd/practice/leetcode/math/IntToRoman.java)
 - [13. 罗马数字转整数](practice/src/main/java/com/wjd/practice/leetcode/math/RomanToInt.java)
+- [149. 直线上最多的点数](practice/src/main/java/com/wjd/practice/leetcode/math/MaxPoints.java)
