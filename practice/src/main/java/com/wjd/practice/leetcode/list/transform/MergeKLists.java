@@ -1,6 +1,9 @@
 package com.wjd.practice.leetcode.list.transform;
 
+import com.wjd.practice.TestCase;
 import com.wjd.structure.list.ListNode;
+
+import java.util.List;
 
 /**
  * 23. 合并K个升序链表
@@ -53,31 +56,44 @@ public class MergeKLists {
      * 执行耗时:1 ms,击败了100.00% 的Java用户
      * 内存消耗:42.1 MB,击败了94.83% 的Java用户
      */
-    // @TestCase(input = {"[[1,4,5],[1,3,4],[2,6]]", "[]", "[[]]"},
-    //         output = {"[1,1,2,3,4,4,5,6]", "[]", "[]"})
-    public ListNode mergeKLists(ListNode[] lists) {
+    @TestCase(input = {"[[1,4,5],[1,3,4],[2,6]]"},
+            output = {"[1,1,2,3,4,4,5,6]"})
+    public ListNode mergeKLists(List<ListNode> lists) {
+        return mergeKLists(lists.toArray(new ListNode[0]));
+    }
+
+    private ListNode mergeKLists(ListNode[] lists) {
         if (lists.length == 0) {
             return null;
         }
-        return partMerge(lists, 0, lists.length - 1);
+        return mergeLists(lists, 0, lists.length - 1);
     }
 
     /**
      * 分治法合并多条链表
      */
-    private ListNode partMerge(ListNode[] lists, int start, int end) {
+    private ListNode mergeLists(ListNode[] lists, int start, int end) {
         if (end <= start) {
             return lists[start];
         }
 
-        // 分治
         int mid = start + (end - start) / 2;
-        ListNode left = partMerge(lists, start, mid);
-        ListNode right = partMerge(lists, mid + 1, end);
+        ListNode left = mergeLists(lists, start, mid);
+        ListNode right = mergeLists(lists, mid + 1, end);
+        return merge(left, right);
+    }
 
+    /**
+     * 合并两条有序链表
+     *
+     * @param list1 链表1
+     * @param list2 链表2
+     * @return 合并后的链表
+     */
+    private ListNode merge(ListNode list1, ListNode list2) {
         ListNode dummy = new ListNode(0);
         ListNode tail = dummy;
-        ListNode p = left, q = right;
+        ListNode p = list1, q = list2;
         while (p != null && q != null) {
             if (p.val < q.val) {
                 tail.next = p;
