@@ -46,7 +46,16 @@ public final class Utils {
      */
     public static Object fromStr(String line, Type type) {
         Object ret = line;
-        if (boolean.class.equals(type) || Boolean.class.equals(type)) {
+        if (TreeNode.class.equals(type)) {
+            String[] values = toStringArray(line);
+            ret = TreeNode.build(values);
+        } else if (Node.class.equals(type)) {
+            Integer[] values = toBoxIntArray(line);
+            ret = Node.build(values);
+        } else if (ListNode.class.equals(type)) {
+            int[] arr = toIntArray(line);
+            ret = ListNode.build(arr);
+        } else if (boolean.class.equals(type) || Boolean.class.equals(type)) {
             ret = toBool(line);
         } else if (char.class.equals(type) || Character.class.equals(type)) {
             ret = toChar(line);
@@ -88,16 +97,10 @@ public final class Utils {
             ret = toCharMatrix(line);
         } else if (type instanceof ParameterizedType parameterizedType) {
             if (List.class == parameterizedType.getRawType()) {
-                Type elemType = parameterizedType.getActualTypeArguments()[0];
-                if (elemType instanceof ParameterizedType parameterizedElemType) {
-                    if (List.class == parameterizedElemType.getRawType()) {
-                        return toListList(line, type);
-                    }
-                }
                 ret = toList(line, type);
             }
         }
-        return ret;
+        return ret != null ? ret : line;
     }
 
     public static Boolean toBool(String line) {
@@ -324,29 +327,28 @@ public final class Utils {
     }
 
     private static Object toList(String line, Type type) {
-        if (line.contains("[")) {
-            line = line.replaceAll("[\\[\\]]", "");
-        }
         if (line.isEmpty()) {
             return new ArrayList<>();
         }
 
         ParameterizedType parameterizedType = (ParameterizedType) type;
-        Class<?> elemType = (Class<?>) parameterizedType.getActualTypeArguments()[0];
-        @SuppressWarnings("unchecked")
-        List<Object> list = (List<Object>) createList(elemType);
-        String[] tokens = line.split(",");
-        for (String token : tokens) {
-            list.add(fromStr(token, elemType));
-        }
-        return list;
-    }
-
-    private static Object toListList(String line, Type type) {
-        ParameterizedType parameterizedType = (ParameterizedType) type;
         Type elemType = parameterizedType.getActualTypeArguments()[0];
-        List<Object> list = createList(Object.class);
-        String[] tokens = line.split("],");
+        Class<?> typeClass;
+        if (elemType instanceof ParameterizedType paramType) {
+            // 泛型嵌套，例如 List<List<Integer>
+            typeClass = (Class<?>) paramType.getRawType();
+        } else {
+            typeClass = (Class<?>) elemType;
+        }
+        @SuppressWarnings("unchecked")
+        List<Object> list = (List<Object>) createList(typeClass);
+
+        String[] tokens;
+        if (line.indexOf('[') != line.lastIndexOf('[')) {
+            tokens = getMatrixStr(line);
+        } else {
+            tokens = getArrayStr(line).split(",");
+        }
         for (String token : tokens) {
             list.add(fromStr(token, elemType));
         }
@@ -377,20 +379,20 @@ public final class Utils {
             return new String[0];
         }
         List<String> list = new ArrayList<>();
-        line = getArrayStr(line);
-        int n = line.length();
+        String rawLine = getArrayStr(line);
+        int n = rawLine.length();
         int l = 0, r = -1;
         while (r < n) {
             l = r + 1;
-            while (l < n && line.charAt(l) != '[') {
+            while (l < n && rawLine.charAt(l) != '[') {
                 l++;
             }
             r = l + 1;
-            while (r < n && line.charAt(r) != ']') {
+            while (r < n && rawLine.charAt(r) != ']') {
                 r++;
             }
             if (r < n) {
-                list.add(line.substring(l + 1, r));
+                list.add(rawLine.substring(l, r + 1));
             }
         }
         if (list.isEmpty()) {

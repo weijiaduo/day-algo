@@ -1,9 +1,6 @@
 package com.wjd.practice;
 
 import com.wjd.practice.util.Utils;
-import com.wjd.structure.list.ListNode;
-import com.wjd.structure.tree.binary.TreeNode;
-import com.wjd.structure.tree.generic.Node;
 
 import java.io.BufferedReader;
 import java.io.IOException;
@@ -67,31 +64,7 @@ public class IOModel {
             close();
             return null;
         }
-        return parse(line, type);
-    }
-
-    /**
-     * 解析行数据
-     *
-     * @param line 行数据
-     * @param type 类型
-     */
-    private Object parse(String line, Type type) {
-        Object ret;
-        if (TreeNode.class.equals(type)) {
-            String[] values = Utils.toStringArray(line);
-            ret = TreeNode.build(values);
-        } else if (Node.class.equals(type)) {
-            Integer[] values = Utils.toBoxIntArray(line);
-            ret = Node.build(values);
-        } else if (ListNode.class.equals(type)) {
-            int[] arr = Utils.toIntArray(line);
-            ret = ListNode.build(arr);
-        } else {
-            ret = Utils.fromStr(line, type);
-            ret = ret != null ? ret : line;
-        }
-        return ret;
+        return Utils.fromStr(line, type);
     }
 
     /**
