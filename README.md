@@ -43,6 +43,7 @@
 ### 子序列
 
 - [53. 最大子数组和](practice/src/main/java/com/wjd/practice/leetcode/array/sequence/MaxSubArray.java)
+- [918. 环形子数组的最大和](practice/src/main/java/com/wjd/practice/leetcode/array/sequence/MaxSubarraySumCircular.java)
 - [334. 递增的三元子序列](practice/src/main/java/com/wjd/practice/leetcode/array/sequence/IncreasingTriplet.java)
 
 ### 前后缀
