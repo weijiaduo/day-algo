@@ -1,42 +1,61 @@
 package com.wjd.practice.leetcode.heap;
 
+import com.wjd.practice.TestCase;
+
 import java.util.PriorityQueue;
 
 /**
  * 295. 数据流的中位数
  * <p>
- * 中位数是有序列表中间的数。如果列表长度是偶数，中位数则是中间两个数的平均值。
+ * 中位数是有序整数列表中的中间值。如果列表的大小是偶数，则没有中间值，中位数是两个中间值的平均值。
  * <p>
- * 例如，
+ * 例如 arr = [2,3,4] 的中位数是 3 。
  * <p>
- * [2,3,4] 的中位数是 3
+ * 例如 arr = [2,3] 的中位数是 (2 + 3) / 2 = 2.5 。
  * <p>
- * [2,3] 的中位数是 (2 + 3) / 2 = 2.5
+ * 实现 MedianFinder 类:
  * <p>
- * 设计一个支持以下两种操作的数据结构：
+ * MedianFinder() 初始化 MedianFinder 对象。
  * <p>
- * void addNum(int num) - 从数据流中添加一个整数到数据结构中。
- * double findMedian() - 返回目前所有元素的中位数。
+ * void addNum(int num) 将数据流中的整数 num 添加到数据结构中。
  * <p>
- * 示例：
+ * double findMedian() 返回到目前为止所有元素的中位数。与实际答案相差 10⁻⁵ 以内的答案将被接受。
  * <p>
- * addNum(1)
- * addNum(2)
- * findMedian() -> 1.5
- * addNum(3)
- * findMedian() -> 2
+ * 示例 1：
+ * <p>
+ * 输入
+ * ["MedianFinder", "addNum", "addNum", "findMedian", "addNum", "findMedian"]
+ * [[], [1], [2], [], [3], []]
+ * 输出
+ * [null, null, null, 1.5, null, 2.0]
+ * <p>
+ * 解释
+ * MedianFinder medianFinder = new MedianFinder();
+ * medianFinder.addNum(1);    // arr = [1]
+ * medianFinder.addNum(2);    // arr = [1, 2]
+ * medianFinder.findMedian(); // 返回 1.5 ((1 + 2) / 2)
+ * medianFinder.addNum(3);    // arr[1, 2, 3]
+ * medianFinder.findMedian(); // return 2.0
+ * <p>
+ * 提示:
+ * <p>
+ * -10⁵ <= num <= 10⁵
+ * 在调用 findMedian 之前，数据结构中至少有一个元素
+ * 最多 5 * 10⁴ 次调用 addNum 和 findMedian
  *
  * @author weijiaduo
  * @since 2022/9/7
  */
 public class MedianFinder {
 
-    public void solve() {
+    @TestCase(input = {"[1,2,3]"},
+            output = {})
+    public void test(int[] nums) {
         MedianFinder medianFinder = new MedianFinder();
-        medianFinder.addNum(1);
-        medianFinder.addNum(2);
+        medianFinder.addNum(nums[0]);
+        medianFinder.addNum(nums[1]);
         System.out.println(medianFinder.findMedian());
-        medianFinder.addNum(3);
+        medianFinder.addNum(nums[2]);
         System.out.println(medianFinder.findMedian());
     }
 
@@ -64,14 +83,16 @@ public class MedianFinder {
         // 优先放小值堆
         if (minHeap.size() == 0 || num >= minHeap.peek()) {
             minHeap.offer(num);
+            // 平均两个堆的数量，大值堆数量 <= 小值堆数量
+            if (minHeap.size() > maxHeap.size() + 1) {
+                maxHeap.offer(minHeap.poll());
+            }
         } else {
             maxHeap.offer(num);
-        }
-        // 平均两个堆的数量，大值堆数量 <= 小值堆数量
-        if (maxHeap.size() > minHeap.size()) {
-            minHeap.offer(maxHeap.poll());
-        } else if (minHeap.size() > maxHeap.size() + 1) {
-            maxHeap.offer(minHeap.poll());
+            // 平均两个堆的数量，大值堆数量 <= 小值堆数量
+            if (maxHeap.size() > minHeap.size()) {
+                minHeap.offer(maxHeap.poll());
+            }
         }
     }
 
