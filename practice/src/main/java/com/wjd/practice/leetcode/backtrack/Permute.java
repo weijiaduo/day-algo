@@ -55,6 +55,13 @@ public class Permute {
         return ans;
     }
 
+    /**
+     * 回溯
+     *
+     * @param nums  候选值
+     * @param index 当前索引
+     * @param ans   结果集
+     */
     private void backtrack(int[] nums, int index, List<List<Integer>> ans) {
         if (index == nums.length - 1) {
             List<Integer> path = new ArrayList<>(nums.length);
@@ -64,6 +71,8 @@ public class Permute {
             ans.add(path);
             return;
         }
+
+        // 从候选值中选择一个值放在 index 位置
         for (int i = index; i < nums.length; i++) {
             int temp = nums[index];
             nums[index] = nums[i];
