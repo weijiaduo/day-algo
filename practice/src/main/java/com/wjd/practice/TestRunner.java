@@ -41,7 +41,8 @@ public class TestRunner {
      */
     public static void run(Class<?> cls) {
         List<Method> annoTests = new ArrayList<>();
-        List<Method> fileTests = new ArrayList<>();
+        List<Method> specialTests = new ArrayList<>();
+        List<Method> publicTests = new ArrayList<>();
         for (Method m : cls.getDeclaredMethods()) {
             TestCase[] testCases = m.getAnnotationsByType(TestCase.class);
             if (testCases.length > 0) {
@@ -49,10 +50,10 @@ public class TestRunner {
                 annoTests.add(m);
             } else if ("solve".equals(m.getName())) {
                 // 然后找特定的 solve 方法
-                fileTests.add(m);
+                specialTests.add(m);
             } else if (Modifier.isPublic(m.getModifiers())) {
                 // 最后找 public 方法
-                fileTests.add(m);
+                publicTests.add(m);
             }
         }
 
@@ -65,9 +66,18 @@ public class TestRunner {
                     e.printStackTrace();
                 }
             }
+        } else if (!specialTests.isEmpty()) {
+            // 运行特殊方法 solve
+            for (Method m : specialTests) {
+                try {
+                    runFileTestCase(cls, m);
+                } catch (Exception e) {
+                    e.printStackTrace();
+                }
+            }
         } else {
-            // 运行其他特殊方法 solve 或 public
-            for (Method m : fileTests) {
+            // 运行其他方法 public
+            for (Method m : publicTests) {
                 try {
                     runFileTestCase(cls, m);
                 } catch (Exception e) {
@@ -175,6 +185,5 @@ public class TestRunner {
         System.out.println("===========================================");
         System.out.println();
     }
-
 
 }
