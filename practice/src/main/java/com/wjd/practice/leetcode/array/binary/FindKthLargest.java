@@ -41,7 +41,7 @@ public class FindKthLargest {
      */
     @TestCase(input = {"[3,2,1,5,6,4]", "2", "[3,2,3,1,2,4,5,5,6]", "4"},
             output = {"5", "4"})
-    private int recursive(int[] nums, int k) {
+    public int recursive(int[] nums, int k) {
         return recursive(nums, 0, nums.length, k - 1);
     }
 
@@ -70,7 +70,7 @@ public class FindKthLargest {
      */
     @TestCase(input = {"[3,2,1,5,6,4]", "2", "[3,2,3,1,2,4,5,5,6]", "4"},
             output = {"5", "4"})
-    private int iterate(int[] nums, int k) {
+    public int iterate(int[] nums, int k) {
         k -= 1;
         int start = 0, end = nums.length;
         while (start < end) {
@@ -132,6 +132,9 @@ public class FindKthLargest {
     }
 
     private void swap(int[] a, int i, int j) {
+        if (i == j) {
+            return;
+        }
         int temp = a[i];
         a[i] = a[j];
         a[j] = temp;
