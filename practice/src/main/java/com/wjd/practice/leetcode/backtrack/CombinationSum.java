@@ -3,6 +3,7 @@ package com.wjd.practice.leetcode.backtrack;
 import com.wjd.practice.TestCase;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 
 /**
@@ -57,35 +58,53 @@ public class CombinationSum {
      * <p>
      * 复杂度：时间 O(n!) 空间 O(n)
      * <p>
-     * 执行耗时:3 ms,击败了53.98% 的Java用户
-     * 内存消耗:41.5 MB,击败了76.28% 的Java用户
+     * 执行耗时:1 ms,击败了99.95% 的Java用户
+     * 内存消耗:42.8 MB,击败了33.65% 的Java用户
      */
     @TestCase(input = {"[2,3,6,7]", "7", "[2,3,5]", "8", "[2]", "1"},
             output = {"[[2,2,3],[7]]", "[[2,2,2,2],[2,3,3],[3,5]]", "[]"})
     public List<List<Integer>> backtrack(int[] candidates, int target) {
-        List<List<Integer>> result = new ArrayList<>();
+        List<List<Integer>> ans = new ArrayList<>();
         List<Integer> list = new ArrayList<>();
-        backtrack(candidates, 0, target, result, list);
-        return result;
+        // 排序，方便后面快速剪枝
+        Arrays.sort(candidates);
+        backtrack(candidates, 0, target, list, ans);
+        return ans;
     }
 
-    private void backtrack(int[] candidates, int index, int target,
-                           List<List<Integer>> ans, List<Integer> list) {
+    /**
+     * 回溯
+     *
+     * @param candidates 备选值
+     * @param index      当前索引
+     * @param target     剩余值
+     * @param list       当前集合
+     * @param ans        结果集
+     */
+    private void backtrack(int[] candidates, int index, int target, List<Integer> list,
+                           List<List<Integer>> ans) {
         if (index >= candidates.length || target < 0) {
             return;
         }
+
+        // 满足要求
         if (target == 0) {
             ans.add(new ArrayList<>(list));
             return;
         }
 
+        // 快速剪枝
+        if (candidates[index] > target) {
+            return;
+        }
+
         // 包括当前元素
         list.add(candidates[index]);
-        backtrack(candidates, index, target - candidates[index], ans, list);
+        backtrack(candidates, index, target - candidates[index], list, ans);
         list.remove(list.size() - 1);
 
         // 不包括当前元素
-        backtrack(candidates, index + 1, target, ans, list);
+        backtrack(candidates, index + 1, target, list, ans);
     }
 
 }
