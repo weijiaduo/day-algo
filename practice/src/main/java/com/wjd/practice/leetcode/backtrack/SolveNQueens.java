@@ -1,4 +1,4 @@
-package com.wjd.practice.leetcode.matrix;
+package com.wjd.practice.leetcode.backtrack;
 
 import com.wjd.practice.TestCase;
 
