@@ -268,7 +268,7 @@
 - [78. 子集](practice/src/main/java/com/wjd/practice/leetcode/backtrack/Subsets.java)
 - [17. 电话号码得字母组合](practice/src/main/java/com/wjd/practice/leetcode/backtrack/LetterCombinations.java)
 - [22. 括号生成](practice/src/main/java/com/wjd/practice/leetcode/backtrack/GenerateParenthesis.java)
-- [79. 单词搜索](practice/src/main/java/com/wjd/practice/leetcode/array/traversal/MatrixExistWord.java)
+- [79. 单词搜索](practice/src/main/java/com/wjd/practice/leetcode/backtrack/MatrixExistWord.java)
 - [131. 分割回文串](practice/src/main/java/com/wjd/practice/leetcode/string/combination/PartitionString.java)
 - [51. N皇后](practice/src/main/java/com/wjd/practice/leetcode/matrix/SolveNQueens.java)
 - [216. 组合总和3](practice/src/main/java/com/wjd/practice/leetcode/backtrack/CombinationSum3.java)

@@ -1,4 +1,4 @@
-package com.wjd.practice.leetcode.array.traversal;
+package com.wjd.practice.leetcode.backtrack;
 
 import com.wjd.practice.TestCase;
 
@@ -43,13 +43,21 @@ import java.util.Set;
  */
 public class MatrixExistWord {
 
+    private static final int[][] DIR = new int[][]{{1, 0}, {0, 1}, {-1, 0}, {0, -1}};
+
+    char[][] board;
+    int m, n;
+    Set<Integer> keys;
+    boolean[][] visited;
+
+
     /**
      * 思路：递归遍历所有情况
      * <p>
      * 复杂度：时间 O(mn*mn) 空间 O(m+n)
      * <p>
-     * 执行耗时:1514 ms,击败了5.02% 的Java用户
-     * 内存消耗:42.2 MB,击败了5.08% 的Java用户
+     * 执行耗时:552 ms,击败了5.00% 的Java用户
+     * 内存消耗:42.9 MB,击败了12.38% 的Java用户
      * <p>
      * 看起来很慢啊~~
      */
@@ -58,10 +66,13 @@ public class MatrixExistWord {
             "[['A','B','C','E'],['S','F','C','S'],['A','D','E','E']]", "ABCB"},
             output = {"true", "true", "false"})
     public boolean setExist(char[][] board, String word) {
-        Set<String> keys = new HashSet<>();
-        for (int i = 0; i < board.length; i++) {
-            for (int j = 0; j < board[0].length; j++) {
-                if (dfs(board, i, j, word, 0, keys)) {
+        this.board = board;
+        m = board.length;
+        n = board[0].length;
+        keys = new HashSet<>();
+        for (int i = 0; i < m; i++) {
+            for (int j = 0; j < n; j++) {
+                if (dfs(i, j, word, 0)) {
                     return true;
                 }
             }
@@ -69,29 +80,27 @@ public class MatrixExistWord {
         return false;
     }
 
-    private boolean dfs(char[][] board, int i, int j, String word, int k, Set<String> keys) {
+    private boolean dfs(int i, int j, String word, int k) {
         if (k >= word.length()) {
             return true;
         }
-        if (i < 0 || i >= board.length
-                || j < 0 || j >= board[0].length) {
+        if (i < 0 || i >= m || j < 0 || j >= n) {
             return false;
         }
 
-        String key = i + "_" + j;
+        int key = i * n + j;
         if (keys.contains(key) || board[i][j] != word.charAt(k)) {
             return false;
         }
 
         keys.add(key);
-
-        if (dfs(board, i + 1, j, word, k + 1, keys)
-                || dfs(board, i, j + 1, word, k + 1, keys)
-                || dfs(board, i - 1, j, word, k + 1, keys)
-                || dfs(board, i, j - 1, word, k + 1, keys)) {
-            return true;
+        for (int[] dir : DIR) {
+            int ni = i + dir[0];
+            int nj = j + dir[1];
+            if (dfs(ni, nj, word, k + 1)) {
+                return true;
+            }
         }
-
         keys.remove(key);
         return false;
     }
@@ -101,18 +110,21 @@ public class MatrixExistWord {
      * <p>
      * 复杂度：时间 O(mn*mn) 空间 O(mn)
      * <p>
-     * 执行耗时:109 ms,击败了45.61% 的Java用户
-     * 存消耗:39.6 MB,击败了51.96% 的Java用户
+     * 执行耗时:171 ms,击败了46.74% 的Java用户
+     * 内存消耗:39.6 MB,击败了37.31% 的Java用户
      */
     @TestCase(input = {"[['A','B','C','E'],['S','F','C','S'],['A','D','E','E']]", "ABCCED",
             "[['A','B','C','E'],['S','F','C','S'],['A','D','E','E']]", "SEE",
             "[['A','B','C','E'],['S','F','C','S'],['A','D','E','E']]", "ABCB"},
             output = {"true", "true", "false"})
     public boolean matrixExist(char[][] board, String word) {
-        boolean[][] visited = new boolean[board.length][board[0].length];
-        for (int i = 0; i < board.length; i++) {
-            for (int j = 0; j < board[0].length; j++) {
-                if (dfs2(board, i, j, word, 0, visited)) {
+        this.board = board;
+        m = board.length;
+        n = board[0].length;
+        visited = new boolean[m][n];
+        for (int i = 0; i < m; i++) {
+            for (int j = 0; j < n; j++) {
+                if (dfs2(i, j, word, 0)) {
                     return true;
                 }
             }
@@ -120,12 +132,11 @@ public class MatrixExistWord {
         return false;
     }
 
-    private boolean dfs2(char[][] board, int i, int j, String word, int k, boolean[][] visited) {
+    private boolean dfs2(int i, int j, String word, int k) {
         if (k >= word.length()) {
             return true;
         }
-        if (i < 0 || i >= board.length
-                || j < 0 || j >= board[0].length) {
+        if (i < 0 || i >= m || j < 0 || j >= n) {
             return false;
         }
 
@@ -134,14 +145,13 @@ public class MatrixExistWord {
         }
 
         visited[i][j] = true;
-
-        if (dfs2(board, i + 1, j, word, k + 1, visited)
-                || dfs2(board, i, j + 1, word, k + 1, visited)
-                || dfs2(board, i - 1, j, word, k + 1, visited)
-                || dfs2(board, i, j - 1, word, k + 1, visited)) {
-            return true;
+        for (int[] dir : DIR) {
+            int ni = i + dir[0];
+            int nj = j + dir[1];
+            if (dfs2(ni, nj, word, k + 1)) {
+                return true;
+            }
         }
-
         visited[i][j] = false;
         return false;
     }
