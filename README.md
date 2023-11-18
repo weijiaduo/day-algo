@@ -125,6 +125,7 @@
 ### 字典树
 
 - [1268. 搜索推荐系统](practice/src/main/java/com/wjd/practice/leetcode/trie/SuggestedProducts.java)
+- [212. 单词搜索2](practice/src/main/java/com/wjd/practice/leetcode/trie/FindWords.java)
 
 ## 三、链表
 

@@ -1,6 +1,11 @@
 package com.wjd.practice.leetcode.trie;
 
-import java.util.*;
+import com.wjd.practice.TestCase;
+
+import java.util.ArrayList;
+import java.util.HashSet;
+import java.util.List;
+import java.util.Set;
 
 /**
  * 212. 单词搜索2
@@ -11,28 +16,52 @@ import java.util.*;
  * <p>
  * 同一个单元格内的字母在一个单词中不允许被重复使用。
  * <p>
- * 输入：board = [["o","a","a","n"],["e","t","a","e"],["i","h","k","r"],["i","f",
- * "l","v"]], words = ["oath","pea","eat","rain"]
+ * 示例 1：
+ * <p>
+ * 输入：board = [["o","a","a","n"],["e","t","a","e"],["i","h","k","r"],["i","f","l","v"]], words = ["oath","pea","eat","rain"]
  * 输出：["eat","oath"]
+ * <p>
+ * 示例 2：
+ * <p>
+ * 输入：board = [["a","b"],["c","d"]], words = ["abcb"]
+ * 输出：[]
+ * <p>
+ * 提示：
+ * <p>
+ * m == board.length
+ * n == board[i].length
+ * 1 <= m, n <= 12
+ * board[i][j] 是一个小写英文字母
+ * 1 <= words.length <= 3 * 10⁴
+ * 1 <= words[i].length <= 10
+ * words[i] 由小写英文字母组成
+ * words 中的所有字符串互不相同
  *
  * @author weijiaduo
  * @since 2022/7/16
  */
 public class FindWords {
 
-    boolean[][] visited;
+    static final int[][] DIRS = new int[][]{{1, 0}, {0, 1}, {-1, 0}, {0, -1}};
+    static char base = 'a';
+
     Set<String> ans;
-    StringBuilder sb;
+    char[][] board;
+    boolean[][] visited;
+    int m, n;
 
     /**
      * 思路：构建字典树，然后遍历所有可能的单词起点
      * <p>
      * 复杂度：时间 O(m^2n^2) 空间 O(mn)
      * <p>
-     * 执行耗时:538 ms,击败了31.95% 的Java用户
-     * 内存消耗:43.8 MB,击败了6.81% 的Java用户
+     * 执行耗时:272 ms,击败了70.91% 的Java用户
+     * 内存消耗:42.6 MB,击败了74.00% 的Java用户
      */
-    private List<String> findWords(char[][] board, String[] words) {
+    @TestCase(input = {"[['o','a','a','n'],['e','t','a','e'],['i','h','k','r'],['i','f','l','v']]", "[\"oath\",\"pea\",\"eat\",\"rain\"]",
+            "[['a','b'],['c','d']]", "[\"abcb\"]"},
+            output = {"[\"eat\",\"oath\"]", "[]"})
+    public List<String> findWords(char[][] board, String[] words) {
         if (board.length == 0 || board[0].length == 0) {
             return new ArrayList<>(0);
         }
@@ -40,17 +69,18 @@ public class FindWords {
         // 构建字典树
         Trie trie = new Trie();
         for (String word : words) {
-            trie.insert(word);
+            insert(trie, word);
         }
 
         // 遍历所有可能的单词
-        int m = board.length, n = board[0].length;
         ans = new HashSet<>();
+        this.board = board;
+        m = board.length;
+        n = board[0].length;
         visited = new boolean[m][n];
-        sb = new StringBuilder();
         for (int i = 0; i < m; i++) {
             for (int j = 0; j < n; j++) {
-                dfs(board, i, j, trie);
+                dfs(i, j, trie);
             }
         }
         return new ArrayList<>(ans);
@@ -59,57 +89,54 @@ public class FindWords {
     /**
      * 回溯遍历
      */
-    private void dfs(char[][] board, int i, int j, Trie trie) {
-        if (i < 0 || i >= board.length
-                || j < 0 || j >= board[0].length
-                || visited[i][j]) {
+    private void dfs(int i, int j, Trie trie) {
+        if (i < 0 || i >= m || j < 0 || j >= n || visited[i][j]) {
             return;
         }
 
         char ch = board[i][j];
-        Trie child = trie.children.get(ch);
+        Trie child = trie.children[ch - base];
         if (child == null) {
             return;
         }
 
         // 找到单词
-        visited[i][j] = true;
-        sb.append(ch);
-        if (child.isEnd()) {
-            ans.add(sb.toString());
+        if (child.val != null) {
+            ans.add(child.val);
         }
 
-        // 回溯遍历所有位置
-        dfs(board, i - 1, j, child);
-        dfs(board, i + 1, j, child);
-        dfs(board, i, j - 1, child);
-        dfs(board, i, j + 1, child);
-
-        sb.deleteCharAt(sb.length() - 1);
+        // 遍历所有位置
+        visited[i][j] = true;
+        for (int[] dir : DIRS) {
+            dfs(i + dir[0], j + dir[1], child);
+        }
         visited[i][j] = false;
+    }
+
+    /**
+     * 插入单词到字典树
+     *
+     * @param trie 字典树
+     * @param word 单词
+     */
+    private void insert(Trie trie, String word) {
+        Trie cur = trie;
+        for (int i = 0; i < word.length(); i++) {
+            char ch = word.charAt(i);
+            Trie child = cur.children[ch - base];
+            if (child == null) {
+                child = new Trie();
+                cur.children[ch - base] = child;
+            }
+            cur = child;
+        }
+        cur.val = word;
     }
 
     static class Trie {
 
-        Map<Character, Trie> children = new HashMap<>();
-        boolean end = false;
-
-        public void insert(String word) {
-            Trie cur = this;
-            for (char ch : word.toCharArray()) {
-                Trie trie = cur.children.get(ch);
-                if (trie == null) {
-                    trie = new Trie();
-                    cur.children.put(ch, trie);
-                }
-                cur = trie;
-            }
-            cur.end = true;
-        }
-
-        public boolean isEnd() {
-            return this.end;
-        }
+        Trie[] children = new Trie[26];
+        String val;
 
     }
 
