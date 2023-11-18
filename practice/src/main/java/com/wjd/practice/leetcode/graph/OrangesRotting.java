@@ -1,4 +1,4 @@
-package com.wjd.practice.leetcode.matrix;
+package com.wjd.practice.leetcode.graph;
 
 import com.wjd.practice.TestCase;
 
