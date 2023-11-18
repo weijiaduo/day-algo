@@ -43,6 +43,8 @@ import com.wjd.practice.TestCase;
  */
 public class NumIslands {
 
+    static final int[][] DIRS = new int[][]{{1, 0}, {0, 1}, {-1, 0}, {0, -1}};
+
     /**
      * 思路：深度遍历，把属于同一个岛屿的都遍历过一遍
      * <p>
@@ -54,7 +56,7 @@ public class NumIslands {
     @TestCase(input = {"[['1','1','1','1','0'],['1','1','0','1','0'],['1','1','0','0','0'],['0','0','0','0','0']]"
             , "[['1','1','0','0','0'],['1','1','0','0','0'],['0','0','1','0','0'],['0','0','0','1','1']]"},
             output = {"1", "3"})
-    public int dfsNumIslands(char[][] grid) {
+    public int dfs(char[][] grid) {
         if (grid.length == 0) {
             return 0;
         }
@@ -85,20 +87,25 @@ public class NumIslands {
             return;
         }
 
-        // 更新值
-        grid[i][j] = 2;
+        // 2 表示已遍历过
+        grid[i][j] = '2';
 
+        // 遍历各个方向
         dfs(grid, i - 1, j);
         dfs(grid, i + 1, j);
         dfs(grid, i, j - 1);
         dfs(grid, i, j + 1);
+        // 这个代码会更简洁，但是速度变慢了
+        // for (int[] dir : DIRS) {
+        //     dfs(grid, i + dir[0], j + dir[1]);
+        // }
     }
 
     /**
      * 思路：并查集，不同岛屿属于不同集合
      * <p>
-     * 执行耗时:8 ms,击败了6.58% 的Java用户
-     * 内存消耗:49.9 MB,击败了41.08% 的Java用户
+     * 执行耗时:6 ms,击败了16.45% 的Java用户
+     * 内存消耗:46.8 MB,击败了15.40% 的Java用户
      */
     @TestCase(input = {"[['1','1','1','1','0'],['1','1','0','1','0'],['1','1','0','0','0'],['0','0','0','0','0']]"
             , "[['1','1','0','0','0'],['1','1','0','0','0'],['0','0','1','0','0'],['0','0','0','1','1']]"},
@@ -125,18 +132,16 @@ public class NumIslands {
                     continue;
                 }
 
-                grid[i][j] = '0';
-                if (i - 1 >= 0 && grid[i - 1][j] == '1') {
-                    unionFind.union(idx, (i - 1) * n + j);
-                }
-                if (i + 1 < m && grid[i + 1][j] == '1') {
-                    unionFind.union(idx, (i + 1) * n + j);
-                }
-                if (j - 1 >= 0 && grid[i][j - 1] == '1') {
-                    unionFind.union(idx, i * n + j - 1);
-                }
-                if (j + 1 < n && grid[i][j + 1] == '1') {
-                    unionFind.union(idx, i * n + j + 1);
+                // 表示已访问过
+                grid[i][j] = '2';
+
+                // 遍历各个方向，合并相邻的 1
+                for (int[] dir : DIRS) {
+                    int ni = i + dir[0], nj = j + dir[1];
+                    if (0 <= ni && ni < m && 0 <= nj && nj < n
+                            && grid[ni][nj] == '1') {
+                        unionFind.union(idx, ni * n + nj);
+                    }
                 }
             }
         }
@@ -153,11 +158,11 @@ public class NumIslands {
         /**
          * 父节点存储
          */
-        private int[] parent;
+        private final int[] parent;
         /**
          * 节点深度
          */
-        private int[] rank;
+        private final int[] rank;
 
         /**
          * 不同子集数量
