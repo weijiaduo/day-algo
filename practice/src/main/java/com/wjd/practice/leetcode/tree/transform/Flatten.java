@@ -37,9 +37,9 @@ import com.wjd.structure.tree.binary.TreeNode;
 public class Flatten {
 
     /**
-     * 思路：递归构造链表，先把左子树构成链表，返回链头，再把右子树构造成链表，也是返回链头，然后把根-左链表-右链表连接起来即可
+     * 思路：递归构造链表，先把左子树构成链表，返回链尾，再把右子树构造成链表，也是返回链尾，返回链尾是为了方便连接
      * <p>
-     * 连接左链表-右链表时，需要知道左链表的链尾，遍历一次也可以，但是为了提高速度，直接用 root.left 保存链尾，快速指向
+     * 最后把根-左链表-右链表连接起来即可
      * <p>
      * 复杂度：时间 O(n) 空间 O(logn)
      * <p>
@@ -112,6 +112,32 @@ public class Flatten {
             cur.right = cur.left;
             cur.left = null;
         }
+    }
+
+    TreeNode prev;
+
+    /**
+     * 思路：逆前序遍历，先访问后面的节点，
+     * <p>
+     * 当访问到前面节点时，将右指针指向上一个访问节点
+     * <p>
+     * 复杂度：时间 O(n) 空间 O(logn)
+     * <p>
+     * 执行耗时:0 ms,击败了100.00% 的Java用户
+     * 内存消耗:40.3 MB,击败了5.23% 的Java用户
+     */
+    @TestCase(input = {"[1,2,5,3,4,null,6]", "[]", "[0]"},
+            output = {"[1,null,2,null,3,null,4,null,5,null,6]", "[]", "[0]"})
+    public void reversePreorder(TreeNode root) {
+        if (root == null) {
+            return;
+        }
+
+        reversePreorder(root.right);
+        reversePreorder(root.left);
+        root.right = prev;
+        root.left = null;
+        prev = root;
     }
 
 }
