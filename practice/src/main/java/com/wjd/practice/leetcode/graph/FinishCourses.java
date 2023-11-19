@@ -48,7 +48,7 @@ public class FinishCourses {
     /**
      * 思路：bfs 拓扑，构建有向图，判断是否存在环
      * <p>
-     * 复杂度：时间 O(n) 空间 O(n)
+     * 复杂度：时间 O(n+e) 空间 O(n)
      * <p>
      * 执行耗时:4 ms,击败了64.51% 的Java用户
      * 内存消耗:42.7 MB,击败了50.64% 的Java用户
@@ -90,7 +90,7 @@ public class FinishCourses {
     /**
      * 思路：dfs 拓扑，构建有向图，判断是否存在环
      * <p>
-     * 复杂度：时间 O(n) 空间 O(n)
+     * 复杂度：时间 O(n+e) 空间 O(n)
      * <p>
      * 执行耗时:4 ms,击败了64.51% 的Java用户
      * 内存消耗:43.1 MB,击败了19.19% 的Java用户
