@@ -2,7 +2,10 @@ package com.wjd.practice.leetcode.graph;
 
 import com.wjd.practice.TestCase;
 
-import java.util.*;
+import java.util.ArrayDeque;
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Queue;
 
 /**
  * 207. 课程表
@@ -43,72 +46,106 @@ import java.util.*;
 public class FinishCourses {
 
     /**
-     * 思路：构建有向图，判断是否存在环
+     * 思路：bfs 拓扑，构建有向图，判断是否存在环
      * <p>
      * 复杂度：时间 O(n) 空间 O(n)
      * <p>
-     * 执行耗时:6 ms,击败了28.25% 的Java用户
-     * 内存消耗:41.8 MB,击败了28.96% 的Java用户
+     * 执行耗时:4 ms,击败了64.51% 的Java用户
+     * 内存消耗:42.7 MB,击败了50.64% 的Java用户
      */
     @TestCase(input = {"2", "[[1,0]]", "2", "[[1,0],[0,1]]"},
             output = {"true", "false"})
-    public boolean canFinish(int numCourses, int[][] prerequisites) {
-        Map<Integer, Node> nodes = new HashMap<>();
+    public boolean bfs(int numCourses, int[][] prerequisites) {
+        // 入度
+        int[] indegrees = new int[numCourses];
+        // 邻接表
+        List<List<Integer>> adjList = new ArrayList<>();
+        for (int i = 0; i < numCourses; i++) {
+            adjList.add(new ArrayList<>());
+        }
         for (int[] p : prerequisites) {
-            // 依赖自己
-            if (p[0] == p[1]) {
-                return false;
-            }
-            Node src = nodes.get(p[1]);
-            if (src == null) {
-                src = new Node();
-                src.val = p[1];
-                nodes.put(src.val, src);
-            }
-            Node tar = nodes.get(p[0]);
-            if (tar == null) {
-                tar = new Node();
-                tar.val = p[0];
-                nodes.put(tar.val, tar);
-            }
-            src.links.add(tar);
-            tar.inDegree++;
+            adjList.get(p[1]).add(p[0]);
+            indegrees[p[0]]++;
         }
-        return !hasCircle(nodes);
-    }
 
-    /**
-     * 是否有环
-     *
-     * @param nodes 有向图节点
-     */
-    private boolean hasCircle(Map<Integer, Node> nodes) {
-        Queue<Node> queue = new ArrayDeque<>();
-        // 初始化入度为0的节点
-        for (Node node : nodes.values()) {
-            if (node.inDegree == 0) {
-                queue.offer(node);
+        // BFS 拓扑
+        Queue<Integer> queue = new ArrayDeque<>();
+        for (int i = 0; i < numCourses; i++) {
+            if (indegrees[i] == 0) {
+                queue.offer(i);
             }
         }
-        // 遍历所有入度为0的节点
         int visited = 0;
-        while (queue.size() > 0) {
+        while (!queue.isEmpty()) {
             visited++;
-            Node node = queue.poll();
-            for (Node link : node.links) {
-                if (--link.inDegree == 0) {
-                    queue.offer(link);
+            for (int a : adjList.get(queue.poll())) {
+                if (--indegrees[a] == 0) {
+                    queue.offer(a);
                 }
             }
         }
-        // 剩余节点的入度不为0，表示有循环
-        return visited != nodes.size();
+        return visited == numCourses;
     }
 
-    static class Node {
-        int val;
-        int inDegree = 0;
-        List<Node> links = new ArrayList<>();
+    /**
+     * 思路：dfs 拓扑，构建有向图，判断是否存在环
+     * <p>
+     * 复杂度：时间 O(n) 空间 O(n)
+     * <p>
+     * 执行耗时:4 ms,击败了64.51% 的Java用户
+     * 内存消耗:43.1 MB,击败了19.19% 的Java用户
+     */
+    @TestCase(input = {"2", "[[1,0]]", "2", "[[1,0],[0,1]]"},
+            output = {"true", "false"})
+    public boolean dfs(int numCourses, int[][] prerequisites) {
+        // 邻接表
+        List<List<Integer>> adjList = new ArrayList<>();
+        for (int i = 0; i < numCourses; i++) {
+            adjList.add(new ArrayList<>());
+        }
+        for (int[] p : prerequisites) {
+            adjList.get(p[1]).add(p[0]);
+        }
+
+        // DFS 拓扑
+        // 0未访问，1访问中，-1已访问
+        int[] flags = new int[numCourses];
+        for (int i = 0; i < numCourses; i++) {
+            if (!dfs(i, adjList, flags)) {
+                return false;
+            }
+        }
+        return true;
+    }
+
+    /**
+     * 递归
+     *
+     * @param i       当前节点
+     * @param adjList 邻接表
+     * @param flags   访问标记
+     * @return true 无环/false 有环
+     */
+    private boolean dfs(int i, List<List<Integer>> adjList, int[] flags) {
+        // 出现环
+        if (flags[i] == 1) {
+            return false;
+        }
+        // 已访问
+        if (flags[i] == -1) {
+            return true;
+        }
+
+        // 访问中
+        flags[i] = 1;
+        for (int a : adjList.get(i)) {
+            if (!dfs(a, adjList, flags)) {
+                return false;
+            }
+        }
+        // 已访问
+        flags[i] = -1;
+        return true;
     }
 
 }
