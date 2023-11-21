@@ -54,7 +54,7 @@ import com.wjd.practice.TestCase;
 public class RemoveElement {
 
     /**
-     * 思路：双指针，一个执行当前非 x 的位置，一个遍历数组
+     * 思路：快慢双指针，一个执行当前非 x 的位置，一个遍历数组
      * <p>
      * 复杂度：时间 O(n) 空间 O(1)
      * <p>
@@ -63,7 +63,7 @@ public class RemoveElement {
      */
     @TestCase(input = {"[3,2,2,3]", "3", "[0,1,2,2,3,0,4,2]", "2"},
             output = {"2", "5"})
-    public int doublePoint(int[] nums, int val) {
+    public int slowFast(int[] nums, int val) {
         int lp = 0, rp = 0;
         int n = nums.length;
         while (rp < n) {
@@ -73,6 +73,28 @@ public class RemoveElement {
             rp++;
         }
         return lp;
+    }
+
+    /**
+     * 思路：左右双指针，将 x 交换至最后面，相当于删除
+     * <p>
+     * 复杂度：时间 O(n) 空间 O(1)
+     * <p>
+     * 执行耗时:0 ms,击败了100.00% 的Java用户
+     * 内存消耗:40.4 MB,击败了5.12% 的Java用户
+     */
+    @TestCase(input = {"[3,2,2,3]", "3", "[0,1,2,2,3,0,4,2]", "2"},
+            output = {"2", "5"})
+    public int leftRight(int[] nums, int val) {
+        int lp = 0, rp = nums.length;
+        while (lp < rp) {
+            if (nums[lp] == val) {
+                nums[lp] = nums[--rp];
+            } else {
+                lp++;
+            }
+        }
+        return rp;
     }
 
 }
