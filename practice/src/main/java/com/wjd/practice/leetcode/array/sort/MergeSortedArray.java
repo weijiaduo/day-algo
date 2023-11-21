@@ -51,6 +51,9 @@ public class MergeSortedArray {
      * 思路：倒着放数组数据即可
      * <p>
      * 复杂度：时间 O(n) 空间 O(1)
+     * <p>
+     * 执行耗时:0 ms,击败了100.00% 的Java用户
+     * 内存消耗:40.5 MB,击败了5.25% 的Java用户
      */
     @TestCase(input = {"[1,2,3,0,0,0]", "3", "[2,5,6]", "3",
             "[1]", "1", "[]", "0",
@@ -61,8 +64,7 @@ public class MergeSortedArray {
         int k = m + n;
         while (--k >= 0) {
             if (j < 0) {
-                nums1[k] = nums1[i--];
-                continue;
+                break;
             }
             if (i < 0) {
                 nums1[k] = nums2[j--];
