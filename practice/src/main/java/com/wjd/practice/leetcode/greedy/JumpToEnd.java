@@ -54,7 +54,7 @@ public class JumpToEnd {
      */
     @TestCase(input = {"[2,3,1,1,4]", "[2,3,0,1,4]"},
             output = {"2", "2"})
-    private int dfsJump(int[] nums) {
+    public int dfsJump(int[] nums) {
         return dfs(nums, 0);
     }
 
@@ -84,9 +84,8 @@ public class JumpToEnd {
      */
     @TestCase(input = {"[2,3,1,1,4]", "[2,3,0,1,4]"},
             output = {"2", "2"})
-    private int cacheJump(int[] nums) {
-        Map<Integer, Integer> cache = new HashMap<>();
-        return cacheDfs(nums, 0, cache);
+    public int cacheJump(int[] nums) {
+        return cacheDfs(nums, 0, new HashMap<>());
     }
 
     private int cacheDfs(int[] nums, int index, Map<Integer, Integer> cache) {
@@ -120,7 +119,7 @@ public class JumpToEnd {
      */
     @TestCase(input = {"[2,3,1,1,4]", "[2,3,0,1,4]"},
             output = {"2", "2"})
-    private int dynamicJump(int[] nums) {
+    public int dynamicJump(int[] nums) {
         int n = nums.length;
         int[] dp = new int[n];
         for (int i = 0; i < n; i++) {
@@ -147,7 +146,7 @@ public class JumpToEnd {
      */
     @TestCase(input = {"[2,3,1,1,4]", "[2,3,0,1,4]"},
             output = {"2", "2"})
-    private int dynamicJump2(int[] nums) {
+    public int dynamicJump2(int[] nums) {
         int n = nums.length;
         int[] dp = new int[n];
         int prevMaxStep = 0;
@@ -177,7 +176,7 @@ public class JumpToEnd {
      */
     @TestCase(input = {"[2,3,1,1,4]", "[2,3,0,1,4]"},
             output = {"2", "2"})
-    private int dynamicJump3(int[] nums) {
+    public int dynamicJump3(int[] nums) {
         int n = nums.length;
         int[] dp = new int[n];
         for (int i = 0; i < n; i++) {
@@ -208,7 +207,7 @@ public class JumpToEnd {
      */
     @TestCase(input = {"[2,3,1,1,4]", "[2,3,0,1,4]"},
             output = {"2", "2"})
-    private int maxJump(int[] nums) {
+    public int maxJump(int[] nums) {
         int steps = 0;
         int nowEnd = 0, nextEnd = 0;
         for (int i = 0; i < nums.length - 1; i++) {
@@ -242,7 +241,7 @@ public class JumpToEnd {
      */
     @TestCase(input = {"[2,3,1,1,4]", "[2,3,0,1,4]"},
             output = {"2", "2"})
-    private int maxJump2(int[] nums) {
+    public int maxJump2(int[] nums) {
         int steps = 0;
         int nowEnd = 0, nextEnd = 0;
         int n = nums.length;
