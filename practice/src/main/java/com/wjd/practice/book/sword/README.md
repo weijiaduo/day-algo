@@ -26,3 +26,7 @@
 # 6. 数学
 
 - [10. 斐波那契数列](math/Fibonacci.java)
+
+# 7. 回溯
+
+- [12. 矩阵中的路径](backtrack/HasPathInMatrix.java)
