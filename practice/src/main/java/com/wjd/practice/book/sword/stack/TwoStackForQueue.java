@@ -1,44 +1,56 @@
 package com.wjd.practice.book.sword.stack;
 
-import java.util.Stack;
+import com.wjd.practice.TestCase;
 
+import java.util.*;
+
+/**
+ * 9. 用两个栈实现队列
+ * <p>
+ * 用两个栈来实现一个队列，完成队列的 Push 和 Pop 操作。
+ *
+ * @author weijiaduo
+ * @since 2023/11/22
+ */
 public class TwoStackForQueue {
 
-    public static void main(String[] args) {
+    @TestCase(input = {"1"}, output = {})
+    public void test(int unused) {
+        List<Integer> expect = Arrays.asList(0, 1, 2, 3, 4, 5, 6, 7, 8, 9);
+        List<Integer> actual = new ArrayList<>();
         TwoStackForQueue queue = new TwoStackForQueue();
         for (int i = 0; i < 5; i++) {
             queue.push(i);
         }
-
         for (int i = 0; i < 2; i++) {
-            System.out.println(queue.pop());
+            actual.add(queue.pop());
         }
-
-        for (int i = 0; i < 5; i++) {
-            queue.push(i * 3);
+        for (int i = 5; i < 10; i++) {
+            queue.push(i);
         }
-
         for (int i = 0; i < 8; i++) {
-            System.out.println(queue.pop());
+            actual.add(queue.pop());
         }
+        assert expect.equals(actual);
     }
 
-    Stack<Integer> stack1 = new Stack<Integer>();
-    Stack<Integer> stack2 = new Stack<Integer>();
+    Deque<Integer> inStack = new ArrayDeque<>();
+    Deque<Integer> outStack = new ArrayDeque<>();
 
     public void push(int node) {
-        stack1.push(node);
+        inStack.push(node);
     }
 
     public int pop() {
-        if (stack1.empty() && stack2.empty()) {
-            throw new RuntimeException("Queue is empty!");
+        if (outStack.isEmpty() && inStack.isEmpty()) {
+            throw new NoSuchElementException();
         }
-        if (stack2.empty()) {
-            while (!stack1.empty()) {
-                stack2.push(stack1.pop());
+        if (outStack.isEmpty()) {
+            while (!inStack.isEmpty()) {
+                outStack.push(inStack.pop());
             }
         }
-        return stack2.pop();
+        return outStack.pop();
     }
+
 }
