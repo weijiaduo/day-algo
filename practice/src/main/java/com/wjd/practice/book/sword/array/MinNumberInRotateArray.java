@@ -16,6 +16,11 @@ import com.wjd.practice.TestCase;
  */
 public class MinNumberInRotateArray {
 
+    /**
+     * 思路：二分查找，在循环数组内不断缩小范围
+     * <p>
+     * 复杂度：时间 O(logn) 空间 O(1)
+     */
     @TestCase(input = {"3,4,5,1,2", "2,2,2,2,2", "1,2,3,3,4"},
             output = {"3", "0", "0"})
     public int find(int[] nums) {

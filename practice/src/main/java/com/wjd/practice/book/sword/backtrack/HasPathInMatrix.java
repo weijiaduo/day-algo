@@ -20,6 +20,11 @@ import com.wjd.practice.TestCase;
  */
 public class HasPathInMatrix {
 
+    /**
+     * 思路：回溯，遍历矩阵，对每个元素进行回溯
+     * <p>
+     * 复杂度：时间 O(mn) 空间 O(mn)
+     */
     @TestCase(input = {"[['A','B','C','E'],['S','F','C','S'],['A','D','E','E']]", "ABCB",
             "[['A','B','C','E'],['S','F','C','S'],['A','D','E','E']]", "ABCCED"},
             output = {"false", "true"})
