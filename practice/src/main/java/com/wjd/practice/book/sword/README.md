@@ -16,3 +16,4 @@
 # 4. 树
 
 - [7. 重建二叉树](tree/ReconstructBinaryTree.java)
+- [8. 二叉树的下一个结点](tree/NextNodeInBinaryTrees.java)
