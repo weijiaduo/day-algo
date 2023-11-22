@@ -83,36 +83,31 @@ public class CanCompleteCircuit {
      * <p>
      * 复杂度：时间 O(n) ，空间 O(1)
      * <p>
-     * 执行耗时:3 ms,击败了21.24% 的Java用户
-     * 内存消耗:61.1 MB,击败了31.91% 的Java用户
+     * 执行耗时:3 ms,击败了47.94% 的Java用户
+     * 内存消耗:54.2 MB,击败了27.15% 的Java用户
      */
     @TestCase(input = {"[1,2,3,4,5]", "[3,4,5,1,2]", "[2,3,4]", "[3,4,3]"},
             output = {"3", "-1"})
     public int greedy(int[] gas, int[] cost) {
         int n = gas.length;
         for (int i = 0; i < n; ) {
-            boolean flag = true;
-            int remain = 0;
-            for (int j = 0; j < n; j++) {
-                int k = (i + j) % n;
-                remain = remain + gas[k] - cost[k];
-                if (remain >= 0) {
-                    continue;
+            int cnt = 0, remain = 0;
+            while (cnt < n) {
+                int j = (i + cnt) % n;
+                remain = remain + gas[j] - cost[j];
+                // 油量不够到下一站
+                if (remain < 0) {
+                    break;
                 }
-                // 回头了，也就不可能再走完一周了
-                // 因为遍历是从头开始的，之前走不完，那回头了依旧不行
-                if (i > k) {
-                    return -1;
-                }
-                // 因为 i 到不了 k+1，那么 [i+1, k] 这些
-                // 肯定也都到不了 k+1，所以下一个从 k+1 开始
-                i = k + 1;
-                flag = false;
-                break;
+                cnt++;
             }
-            if (flag) {
+            // 走完所有站了
+            if (cnt == n) {
                 return i;
             }
+            // 因为 i 到不了 i+cnt+1，那么 [i+1,i+cnt] 这些
+            // 肯定也都到不了 i+cnt+1，所以下一个从 i+cnt+1 开始
+            i = i + cnt + 1;
         }
         return -1;
     }
