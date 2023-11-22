@@ -4,6 +4,7 @@
 
 - [3. 数组中重复的数字](array/DuplicateNumber.java)
 - [4. 二维数组中的查找](array/FindNumberInSortedArray.java)
+- [11. 旋转数组的最小数字](array/MinNumberInRotateArray.java)
 
 # 2. 字符串
 
