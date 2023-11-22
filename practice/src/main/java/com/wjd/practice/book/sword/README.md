@@ -21,3 +21,7 @@
 # 5. 栈和队列
 
 - [9. 用两个栈实现队列](stack/TwoStackForQueue.java)
+
+# 6. 数学
+
+- [10. 斐波那契数列](math/Fibonacci.java)
