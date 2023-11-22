@@ -1,5 +1,7 @@
 package com.wjd.practice.leetcode.array.statistics;
 
+import com.wjd.practice.TestCase;
+
 import java.util.Arrays;
 
 /**
@@ -42,16 +44,17 @@ public class HIndex {
      * 执行耗时:1 ms,击败了78.08% 的Java用户
      * 内存消耗:39.5 MB,击败了50.11% 的Java用户
      */
+    @TestCase(input = {"[3,0,6,1,5]", "[1,3,1]"},
+            output = {"3", "1"})
     public int sort(int[] citations) {
         Arrays.sort(citations);
         int n = citations.length;
-        for (int i = 0; i < n; i++) {
-            int h = n - i;
-            if (citations[i] >= h && (i == 0 || citations[i - 1] <= h)) {
-                return h;
-            }
+        int h = 0, i = n - 1;
+        while (i >= 0 && citations[i] > h) {
+            h++;
+            i--;
         }
-        return 0;
+        return h;
     }
 
     /**
@@ -62,12 +65,15 @@ public class HIndex {
      * 执行耗时:0 ms,击败了100.00% 的Java用户
      * 内存消耗:39.1 MB,击败了93.23% 的Java用户
      */
-    private int countSort(int[] citations) {
+    @TestCase(input = {"[3,0,6,1,5]", "[1,3,1]"},
+            output = {"3", "1"})
+    public int countSort(int[] citations) {
         // 统计各种引用数量的论文数量
         int n = citations.length;
         int[] count = new int[n + 1];
         for (int c : citations) {
             if (c > n) {
+                // 大于 n 的都归类到 n
                 count[n]++;
             } else {
                 count[c]++;
@@ -83,6 +89,52 @@ public class HIndex {
             }
         }
         return 0;
+    }
+
+    /**
+     * 思路：二分法，h 范围是 [0, n]，采用二分法分割范围
+     * <p>
+     * 每次统计数组内 >= h 的数量是否 >= h
+     * <p>
+     * 复杂度：时间 O(nlogn) 空间 O(1)
+     * <p>
+     * 执行耗时:0 ms,击败了100.00% 的Java用户
+     * 内存消耗:39.5 MB,击败了14.48% 的Java用户
+     */
+    @TestCase(input = {"[3,0,6,1,5]", "[1,3,1]"},
+            output = {"3", "1"})
+    public int binary(int[] citations) {
+        int lp = 0, rp = citations.length;
+        while (lp < rp) {
+            // 当 lp 可能不变时，采用向上取整
+            // 当 rp 可能不变时，采用向下取整
+            // 向上取整，避免边界问题
+            int mp = rp - (rp - lp) / 2;
+            if (check(citations, mp)) {
+                lp = mp;
+            } else {
+                rp = mp - 1;
+            }
+        }
+        return lp;
+    }
+
+    /**
+     * 检查引用次数 >= h 的论文数量是否 >= h
+     *
+     * @param citations 论文引用次数
+     * @param h         引用次数
+     * @return true/false
+     */
+    private boolean check(int[] citations, int h) {
+        int cnt = 0;
+        int n = citations.length, i = 0;
+        while (i < n && cnt < h) {
+            if (citations[i++] >= h) {
+                cnt++;
+            }
+        }
+        return cnt >= h;
     }
 
 }
