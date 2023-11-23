@@ -31,3 +31,7 @@
 
 - [12. 矩阵中的路径](backtrack/HasPathInMatrix.java)
 - [13. 机器人的运动范围](backtrack/RobotMovingCount.java)
+
+# 8. 动态规划
+
+- [14. 剪绳子](dynamic/CuttingRope.java)
