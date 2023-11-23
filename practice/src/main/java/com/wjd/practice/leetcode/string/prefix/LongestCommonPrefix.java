@@ -53,15 +53,11 @@ public class LongestCommonPrefix {
         }
 
         String pre = strs[0], cur;
-        int length = pre.length();
-        int n = strs.length;
-        for (int i = 1; i < n; i++) {
+        int n = strs.length, length = pre.length();
+        for (int i = 1; i < n && length > 0; i++) {
             cur = strs[i];
             length = Math.min(cur.length(), length);
             length = prefix(pre, cur, length);
-            if (length == 0) {
-                break;
-            }
         }
         return pre.substring(0, length);
     }
