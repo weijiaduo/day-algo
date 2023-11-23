@@ -14,6 +14,31 @@ import java.util.*;
  */
 public class TwoStackForQueue {
 
+    /**
+     * 数据入栈
+     */
+    Deque<Integer> inStack = new ArrayDeque<>();
+    /**
+     * 数据出栈
+     */
+    Deque<Integer> outStack = new ArrayDeque<>();
+
+    public void push(int node) {
+        inStack.push(node);
+    }
+
+    public int pop() {
+        if (outStack.isEmpty() && inStack.isEmpty()) {
+            throw new NoSuchElementException();
+        }
+        if (outStack.isEmpty()) {
+            while (!inStack.isEmpty()) {
+                outStack.push(inStack.pop());
+            }
+        }
+        return outStack.pop();
+    }
+
     @TestCase(input = {"1"}, output = {})
     public void test(int unused) {
         List<Integer> expect = Arrays.asList(0, 1, 2, 3, 4, 5, 6, 7, 8, 9);
@@ -32,25 +57,6 @@ public class TwoStackForQueue {
             actual.add(queue.pop());
         }
         assert expect.equals(actual);
-    }
-
-    Deque<Integer> inStack = new ArrayDeque<>();
-    Deque<Integer> outStack = new ArrayDeque<>();
-
-    public void push(int node) {
-        inStack.push(node);
-    }
-
-    public int pop() {
-        if (outStack.isEmpty() && inStack.isEmpty()) {
-            throw new NoSuchElementException();
-        }
-        if (outStack.isEmpty()) {
-            while (!inStack.isEmpty()) {
-                outStack.push(inStack.pop());
-            }
-        }
-        return outStack.pop();
     }
 
 }
