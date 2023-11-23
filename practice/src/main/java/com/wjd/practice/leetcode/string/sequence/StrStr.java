@@ -44,10 +44,10 @@ public class StrStr {
     @TestCase(input = {"sadbutsad", "sad", "leetcode", "leeto"},
             output = {"0", "-1"})
     public int indexOf(String haystack, String needle) {
-        int m = haystack.length(), n = needle.length();
-        for (int i = 0; i + n <= m; i++) {
+        int n = haystack.length(), m = needle.length();
+        for (int i = 0; i + m <= n; i++) {
             boolean flag = true;
-            for (int j = 0; j < n; j++) {
+            for (int j = 0; j < m; j++) {
                 if (haystack.charAt(i + j) != needle.charAt(j)) {
                     flag = false;
                     break;
@@ -59,4 +59,5 @@ public class StrStr {
         }
         return -1;
     }
+
 }
