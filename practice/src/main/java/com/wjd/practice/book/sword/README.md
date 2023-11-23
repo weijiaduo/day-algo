@@ -26,6 +26,7 @@
 # 6. 数学
 
 - [10. 斐波那契数列](math/Fibonacci.java)
+- [16. 数值的整数次方](math/Power.java)
 
 # 7. 回溯
 
