@@ -35,3 +35,7 @@
 # 8. 动态规划
 
 - [14. 剪绳子](dynamic/CuttingRope.java)
+
+# 9. 位运算
+
+- [15. 二进制中 1 的个数](bit/NumberOf1InBinary.java)
