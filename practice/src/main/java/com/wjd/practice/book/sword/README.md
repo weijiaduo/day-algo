@@ -10,10 +10,12 @@
 
 - [5. 替换空格](string/ReplaceSpace.java)
 - [17. 打印从 1 到最大的 n 位数](string/Print1ToMaxOfNDigits.java)
+- [19. 正则表达式匹配](string/RegularExpressionsMatching.java)
 
 # 3. 链表
 
 - [6. 从尾到头打印链表](list/PrintListFromTailToHead.java)
+- [18. 删除链表的节点]
 
 # 4. 树
 
