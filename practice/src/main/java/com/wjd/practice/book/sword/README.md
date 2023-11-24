@@ -17,7 +17,7 @@
 # 3. 链表
 
 - [6. 从尾到头打印链表](list/PrintListFromTailToHead.java)
-- [18. 删除链表的节点]
+- [18.1 删除链表的节点](list/DeleteNodeInList.java)
 
 # 4. 树
 
