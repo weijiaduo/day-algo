@@ -16,6 +16,13 @@ import com.wjd.practice.TestCase;
  */
 public class NumericStrings {
 
+    /**
+     * 思路：分段扫描
+     * <p>
+     * 一个数字可以分成三个部分：整数部分、小数部分、指数部分
+     * <p>
+     * 复杂度：时间 O(n) 空间 O(1)
+     */
     @TestCase(input = {"+100", "5e2", "-123", "3.1416", "-1E-16", "12e", "1a3.14", "1.2.3", "+-5", "12e+4.3"},
             output = {"true", "true", "true", "true", "true", "false", "false", "false", "false", "false"})
     public boolean isNumeric(String str) {
