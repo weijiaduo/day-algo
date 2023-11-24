@@ -18,6 +18,7 @@
 
 - [6. 从尾到头打印链表](list/PrintListFromTailToHead.java)
 - [18.1 删除链表的节点](list/DeleteNodeInList.java)
+- [18.2 删除链表中重复的节点](list/DeleteDuplicatedNode.java)
 
 # 4. 树
 
