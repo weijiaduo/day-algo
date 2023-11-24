@@ -9,6 +9,7 @@
 # 2. 字符串
 
 - [5. 替换空格](string/ReplaceSpace.java)
+- [17. 打印从 1 到最大的 n 位数](string/Print1ToMaxOfNDigits.java)
 
 # 3. 链表
 
