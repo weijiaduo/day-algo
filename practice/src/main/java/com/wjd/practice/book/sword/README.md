@@ -11,6 +11,7 @@
 - [5. 替换空格](string/ReplaceSpace.java)
 - [17. 打印从 1 到最大的 n 位数](string/Print1ToMaxOfNDigits.java)
 - [19. 正则表达式匹配](string/RegularExpressionsMatching.java)
+- [20. 表示数值的字符串](string/NumericStrings.java)
 
 # 3. 链表
 
