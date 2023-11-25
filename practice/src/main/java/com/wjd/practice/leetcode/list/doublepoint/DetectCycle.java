@@ -1,5 +1,6 @@
 package com.wjd.practice.leetcode.list.doublepoint;
 
+import com.wjd.practice.TestCase;
 import com.wjd.structure.list.ListNode;
 
 /**
@@ -46,6 +47,21 @@ import com.wjd.structure.list.ListNode;
  */
 public class DetectCycle {
 
+    @TestCase(input = {"[1,2,3,4,5,6,7]", "3", "[1,2,3,4,5,6,7]", "-1"},
+            output = {"[3, 4,5,6,7]", "[]"})
+    public ListNode detectCycle(ListNode head, int pos) {
+        ListNode tail = head, p = null;
+        while (tail.next != null) {
+            if (--pos == 0) {
+                p = tail;
+            }
+            tail = tail.next;
+        }
+        // 构造循环
+        tail.next = p;
+        return fastSlow(head);
+    }
+
     /**
      * 思路：快慢指针，先找到环，然后算出环的长度，最后再用一次快慢指针，快指针领先慢指针环长度个节点
      * <p>
@@ -54,7 +70,7 @@ public class DetectCycle {
      * 执行耗时:0 ms,击败了100.00% 的Java用户
      * 内存消耗:41.9 MB,击败了31.50% 的Java用户
      */
-    public ListNode detectCycle(ListNode head) {
+    public ListNode fastSlow(ListNode head) {
         if (head == null) {
             return null;
         }
