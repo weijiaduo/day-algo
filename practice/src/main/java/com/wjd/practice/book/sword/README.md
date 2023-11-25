@@ -21,6 +21,7 @@
 - [18.2 删除链表中重复的节点](list/DeleteDuplicatedNode.java)
 - [22. 链表中倒数第 k 个节点](list/FindKthToTail.java)
 - [23. 链表中环的入口节点](list/EntryNodeOfLoop.java)
+- [24. 反转链表](list/ReverseList.java)
 
 # 4. 树
 
