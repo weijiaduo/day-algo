@@ -34,8 +34,8 @@ public class IsAnagram {
      * <p>
      * 复杂度：时间 O(n) 空间 O(1)
      * <p>
-     * 执行耗时:3 ms,击败了60.57% 的Java用户
-     * 内存消耗:41.3 MB,击败了77.30% 的Java用户
+     * 执行耗时:3 ms,击败了83.77% 的Java用户
+     * 内存消耗:41.35 MB,击败了50.68% 的Java用户
      */
     @TestCase(input = {"anagram", "nagaram", "rat", "car"},
             output = {"true", "false"})
@@ -44,6 +44,7 @@ public class IsAnagram {
         if (m != n) {
             return false;
         }
+
         int[] count = new int[26];
         for (int i = 0; i < n; i++) {
             count[s.charAt(i) - 'a']++;
