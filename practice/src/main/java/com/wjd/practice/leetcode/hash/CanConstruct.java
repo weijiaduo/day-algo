@@ -45,8 +45,8 @@ public class CanConstruct {
      * <p>
      * 复杂度：时间 O(m+n) 空间 O(1)
      * <p>
-     * 执行耗时:2 ms,击败了58.18% 的Java用户
-     * 内存消耗:42.8 MB,击败了34.06% 的Java用户
+     * 执行耗时:1 ms,击败了99.85% 的Java用户
+     * 内存消耗:42.6 MB,击败了58.73% 的Java用户
      */
     @TestCase(input = {"a", "b", "aa", "ab", "aa", "aab"},
             output = {"false", "false", "true"})
@@ -58,17 +58,19 @@ public class CanConstruct {
         }
 
         // 统计每个字符的出现频率
-        int[] cnt = new int[128];
-        for (int i = 0; i < m; i++) {
-            cnt[magazine.charAt(i)]++;
-        }
+        int[] cnt = new int[26];
         for (int i = 0; i < n; i++) {
-            // 数量小于 0 时表示提供的字符不够
-            if (--cnt[ransomNote.charAt(i)] < 0) {
-                return false;
+            cnt[ransomNote.charAt(i) - 'a']++;
+        }
+
+        // 利用 count 实现剪枝，避免遍历整个 magazine
+        int count = 0;
+        for (int i = 0; i < m && count <= n; i++) {
+            if (--cnt[magazine.charAt(i) - 'a'] >= 0) {
+                count++;
             }
         }
-        return true;
+        return count == n;
     }
 
 }
