@@ -1,52 +1,67 @@
 package com.wjd.practice.book.sword.tree;
 
+import com.wjd.practice.TestCase;
 import com.wjd.structure.tree.binary.TreeNode;
 
 import java.util.ArrayList;
-import java.util.Collections;
+import java.util.List;
 
 /**
+ * 34. 二叉树中和为某一值的路径
+ * <p>
  * 输入一颗二叉树的跟节点和一个整数，打印出二叉树中结点值的和为输入整数的所有路径。
+ * <p>
  * 路径定义为从树的根结点开始往下一直到叶结点所经过的结点形成一条路径。
+ * <p>
  * (注意: 在返回值的list中，数组长度大的数组靠前)
+ *
+ * @author weijiaduo
+ * @since 2023/11/26
  */
 public class FindPathOfSumInTree {
 
-    public static void main(String[] args) {
-        String[] s = {"8", "7", "7", "9", "2", "3", "5", "#", "#", "#", "#", "6", "#", "#", "3", "#", "#", "#", "1"};
-        TreeNode tree = TreeNode.build(s);
-
-        System.out.println(findPath(tree, 24));
-    }
-
-    public static ArrayList<ArrayList<Integer>> findPath(TreeNode root, int target) {
-        ArrayList<ArrayList<Integer>> res = new ArrayList<>();
-
-        if (root != null) {
-            findPath(root, target, new ArrayList<>(), res);
-            Collections.sort(res, (ArrayList<Integer> o1, ArrayList<Integer> o2) -> o2.size() - o1.size());
-        }
-
+    /**
+     * 思路：递归遍历二叉树，遍历到叶子节点时，判断路径上的节点和是否等于目标值
+     * <p>
+     * 复杂度：时间 O(n) 空间 O(n)
+     */
+    @TestCase(input = {"[10,5,12,4,7]", "22"},
+            output = "[[10,5,7], [10,12]]")
+    public List<List<Integer>> findPath(TreeNode root, int target) {
+        List<List<Integer>> res = new ArrayList<>();
+        // 递归遍历二叉树
+        findPath(root, target, new ArrayList<>(), res);
+        // 按照数组长度排序
+        res.sort((List<Integer> o1, List<Integer> o2) -> o2.size() - o1.size());
         return res;
     }
 
-    public static void findPath(TreeNode root, int target, ArrayList<Integer> path, ArrayList<ArrayList<Integer>> res) {
+    /**
+     * 查找等于指定值的路径
+     *
+     * @param root   当前节点
+     * @param target 目标值
+     * @param path   当前路径
+     * @param res    结果集
+     */
+    private void findPath(TreeNode root, int target, List<Integer> path, List<List<Integer>> res) {
         if (root == null) {
             return;
         }
 
-        path.add(root.val);
         target -= root.val;
-
+        path.add(root.val);
         if (root.left == null && root.right == null) {
+            // 叶子节点，且路径和等于目标值
             if (target == 0) {
                 res.add(new ArrayList<>(path));
             }
         } else {
+            // 递归遍历左右子树
             findPath(root.left, target, path, res);
             findPath(root.right, target, path, res);
         }
-
         path.remove(path.size() - 1);
     }
+
 }
