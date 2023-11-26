@@ -34,6 +34,7 @@
 - [28. 对称的二叉树](tree/SymmetricalTree.java)
 - [32.1 从上到下打印二叉树](tree/PrintTreeFromTopToBottom.java)
 - [32.2 分行从上到下打印二叉树](tree/PrintTreeInLines.java)
+- [32.3 按之字形顺序打印二叉树](tree/PrintTreeInZigzag.java)
 
 # 5. 栈和队列
 
