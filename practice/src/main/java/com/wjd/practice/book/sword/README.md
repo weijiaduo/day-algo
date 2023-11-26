@@ -29,6 +29,7 @@
 - [7. 重建二叉树](tree/ReconstructBinaryTree.java)
 - [8. 二叉树的下一个结点](tree/NextNodeInBinaryTrees.java)
 - [26. 树的子结构](tree/SubstructureInTree.java)
+- [27. 二叉树的镜像](tree/MirrorOfBinaryTree.java)
 
 # 5. 栈和队列
 
