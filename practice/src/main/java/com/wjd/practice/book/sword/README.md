@@ -24,6 +24,7 @@
 - [23. 链表中环的入口节点](list/EntryNodeOfLoop.java)
 - [24. 反转链表](list/ReverseList.java)
 - [25. 合并两个排序的链表](list/MergeSortedLists.java)
+- [35. 复杂链表的复制](list/RandomListNodeClone.java)
 
 # 4. 树
 
