@@ -39,6 +39,7 @@
 - [33. 二叉搜索树的后序遍历序列](tree/VerifySequenceOfBST.java)
 - [34. 二叉树中和为某一值的路径](tree/FindPathOfSumInTree.java)
 - [36. 二叉搜索树与双向链表](tree/ConvertTreeToLinkedList.java)
+- [37. 序列化二叉树](tree/SerializeBinaryTrees.java)
 
 # 5. 栈和队列
 
