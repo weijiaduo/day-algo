@@ -32,6 +32,7 @@
 - [26. 树的子结构](tree/SubstructureInTree.java)
 - [27. 二叉树的镜像](tree/MirrorOfBinaryTree.java)
 - [28. 对称的二叉树](tree/SymmetricalTree.java)
+- [32.1 从上到下打印二叉树](tree/PrintTreeFromTopToBottom.java)
 
 # 5. 栈和队列
 
