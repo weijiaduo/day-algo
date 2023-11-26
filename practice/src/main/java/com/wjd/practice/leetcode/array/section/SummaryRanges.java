@@ -70,7 +70,7 @@ public class SummaryRanges {
             while (rp + 1 < n && nums[rp] + 1 == nums[rp + 1]) {
                 rp++;
             }
-            if (nums[lp] == nums[rp]) {
+            if (lp == rp) {
                 result.add(String.valueOf(nums[rp]));
             } else {
                 result.add(nums[lp] + "->" + nums[rp]);
