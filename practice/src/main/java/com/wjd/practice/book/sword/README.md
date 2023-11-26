@@ -35,6 +35,7 @@
 - [32.1 从上到下打印二叉树](tree/PrintTreeFromTopToBottom.java)
 - [32.2 分行从上到下打印二叉树](tree/PrintTreeInLines.java)
 - [32.3 按之字形顺序打印二叉树](tree/PrintTreeInZigzag.java)
+- [33. 二叉搜索树的后序遍历序列](tree/VerifySequenceOfBST.java)
 
 # 5. 栈和队列
 
