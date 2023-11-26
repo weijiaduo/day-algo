@@ -43,29 +43,37 @@ public class SpiralOrder {
             output = {"[1,2,3,6,9,8,7,4,5]", "[1,2,3,4,8,12,11,10,9,5,6,7]"})
     public List<Integer> spiralOrder(int[][] matrix) {
         List<Integer> ans = new ArrayList<>();
-        int top = -1, bottom = matrix.length;
-        int left = -1, right = matrix[0].length;
-        while (top + 1 < bottom && left + 1 < right) {
-            // 上边
-            top++;
-            for (int i = left + 1; i < right && top < bottom; i++) {
-                ans.add(matrix[top][i]);
+        if (matrix == null || matrix.length == 0 || matrix[0].length == 0) {
+            return ans;
+        }
+
+        int rows = matrix.length, cols = matrix[0].length;
+        // 上下左右边界
+        int l = 0, r = cols - 1, u = 0, d = rows - 1;
+        while (l <= r && u <= d) {
+            // 从左到右
+            for (int i = l; u <= d && i <= r; i++) {
+                ans.add(matrix[u][i]);
             }
-            // 右边
-            right--;
-            for (int i = top + 1; i < bottom && left < right; i++) {
-                ans.add(matrix[i][right]);
+            u++;
+
+            // 从上到下
+            for (int i = u; l <= r && i <= d; i++) {
+                ans.add(matrix[i][r]);
             }
-            // 下边
-            bottom--;
-            for (int i = right - 1; i > left && top < bottom; i--) {
-                ans.add(matrix[bottom][i]);
+            r--;
+
+            // 从右到左
+            for (int i = r; u <= d && i >= l; i--) {
+                ans.add(matrix[d][i]);
             }
-            // 左边
-            left++;
-            for (int i = bottom - 1; i > top && left < right; i--) {
-                ans.add(matrix[i][left]);
+            d--;
+
+            // 从下到上
+            for (int i = d; l <= r && i >= u; i--) {
+                ans.add(matrix[i][l]);
             }
+            l++;
         }
         return ans;
     }

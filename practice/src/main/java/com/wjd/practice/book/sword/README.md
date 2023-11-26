@@ -6,6 +6,7 @@
 - [4. 二维数组中的查找](array/FindNumberInSortedArray.java)
 - [11. 旋转数组的最小数字](array/MinNumberInRotateArray.java)
 - [21. 调整数组顺序使奇数位于偶数前面](array/ReorderArray.java)
+- [29. 顺时针打印矩阵](array/PrintMatrix.java)
 
 # 2. 字符串
 
