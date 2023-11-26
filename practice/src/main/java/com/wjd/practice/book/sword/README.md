@@ -36,6 +36,7 @@
 # 5. 栈和队列
 
 - [9. 用两个栈实现队列](stack/TwoStackForQueue.java)
+- [30. 包含 min 函数的栈](stack/MinStack.java)
 
 # 6. 数学
 
