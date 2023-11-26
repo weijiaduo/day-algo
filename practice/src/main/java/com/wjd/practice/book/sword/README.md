@@ -37,6 +37,7 @@
 
 - [9. 用两个栈实现队列](stack/TwoStackForQueue.java)
 - [30. 包含 min 函数的栈](stack/MinStack.java)
+- [31. 栈的压入、弹出序列](stack/StackPushPopOrder.java)
 
 # 6. 数学
 
