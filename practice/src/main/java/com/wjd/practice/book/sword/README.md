@@ -7,6 +7,7 @@
 - [11. 旋转数组的最小数字](array/MinNumberInRotateArray.java)
 - [21. 调整数组顺序使奇数位于偶数前面](array/ReorderArray.java)
 - [29. 顺时针打印矩阵](array/PrintMatrix.java)
+- [39. 数组中出现次数超过一半的数字](array/MoreThanHalfNumber.java)
 
 # 2. 字符串
 
