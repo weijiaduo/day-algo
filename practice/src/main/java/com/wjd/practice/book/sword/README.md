@@ -18,6 +18,7 @@
 - [19. 正则表达式匹配](string/RegularExpressionsMatching.java)
 - [20. 表示数值的字符串](string/NumericStrings.java)
 - [38. 字符串的排列](string/StringPermutation.java)
+- [48. 最长不含重复字符的子字符串](string/LongestSubStringWithoutDup.java)
 
 # 3. 链表
 
