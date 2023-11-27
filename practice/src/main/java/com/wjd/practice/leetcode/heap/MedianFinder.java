@@ -2,6 +2,8 @@ package com.wjd.practice.leetcode.heap;
 
 import com.wjd.practice.TestCase;
 
+import java.util.ArrayList;
+import java.util.List;
 import java.util.PriorityQueue;
 
 /**
@@ -49,14 +51,15 @@ import java.util.PriorityQueue;
 public class MedianFinder {
 
     @TestCase(input = {"[1,2,3]"},
-            output = {})
-    public void test(int[] nums) {
+            output = {"[1,1.5,2]"})
+    public List<Double> test(int[] nums) {
+        List<Double> res = new ArrayList<>(nums.length);
         MedianFinder medianFinder = new MedianFinder();
-        medianFinder.addNum(nums[0]);
-        medianFinder.addNum(nums[1]);
-        System.out.println(medianFinder.findMedian());
-        medianFinder.addNum(nums[2]);
-        System.out.println(medianFinder.findMedian());
+        for (int num : nums) {
+            medianFinder.addNum(num);
+            res.add(medianFinder.findMedian());
+        }
+        return res;
     }
 
     /**
@@ -97,12 +100,13 @@ public class MedianFinder {
     }
 
     public double findMedian() {
-        if (maxHeap.size() == 0 && minHeap.size() == 0) {
+        int maxSize = maxHeap.size(), minSize = minHeap.size();
+        if (maxSize == 0 && minSize == 0) {
             return 0.0;
         }
-        if (maxHeap.size() == minHeap.size()) {
+        if (minSize == maxSize) {
             return (maxHeap.peek() + minHeap.peek()) / 2.0;
-        } else if (minHeap.size() > maxHeap.size()) {
+        } else if (minSize > maxSize) {
             return minHeap.peek();
         } else {
             return maxHeap.peek();

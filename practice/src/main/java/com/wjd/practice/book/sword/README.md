@@ -29,7 +29,13 @@
 - [25. 合并两个排序的链表](list/MergeSortedLists.java)
 - [35. 复杂链表的复制](list/RandomListNodeClone.java)
 
-# 4. 树
+# 4. 栈和队列
+
+- [9. 用两个栈实现队列](stack/TwoStackForQueue.java)
+- [30. 包含 min 函数的栈](stack/MinStack.java)
+- [31. 栈的压入、弹出序列](stack/StackPushPopOrder.java)
+
+# 5. 树
 
 - [7. 重建二叉树](tree/ReconstructBinaryTree.java)
 - [8. 二叉树的下一个结点](tree/NextNodeInBinaryTrees.java)
@@ -44,16 +50,9 @@
 - [36. 二叉搜索树与双向链表](tree/ConvertTreeToLinkedList.java)
 - [37. 序列化二叉树](tree/SerializeBinaryTrees.java)
 
-# 5. 栈和队列
+# 6. 堆
 
-- [9. 用两个栈实现队列](stack/TwoStackForQueue.java)
-- [30. 包含 min 函数的栈](stack/MinStack.java)
-- [31. 栈的压入、弹出序列](stack/StackPushPopOrder.java)
-
-# 6. 数学
-
-- [10. 斐波那契数列](math/Fibonacci.java)
-- [16. 数值的整数次方](math/Power.java)
+- [41. 数据流中的中位数](heap/MedianInStream.java)
 
 # 7. 回溯
 
@@ -64,6 +63,11 @@
 
 - [14. 剪绳子](dynamic/CuttingRope.java)
 
-# 9. 位运算
+# 9. 数学
+
+- [10. 斐波那契数列](math/Fibonacci.java)
+- [16. 数值的整数次方](math/Power.java)
+
+# 10. 位运算
 
 - [15. 二进制中 1 的个数](bit/NumberOf1InBinary.java)
