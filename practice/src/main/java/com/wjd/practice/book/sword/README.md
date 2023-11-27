@@ -62,6 +62,7 @@
 # 8. 动态规划
 
 - [14. 剪绳子](dynamic/CuttingRope.java)
+- [42. 连续子数组的最大和](dynamic/GreatestSumOfSubArrays.java)
 
 # 9. 数学
 
