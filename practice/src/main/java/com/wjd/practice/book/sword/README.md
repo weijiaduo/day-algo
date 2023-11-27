@@ -69,6 +69,7 @@
 - [10. 斐波那契数列](math/Fibonacci.java)
 - [16. 数值的整数次方](math/Power.java)
 - [43. 1~n 整数中 1 出现的次数](math/NumberOf1Between1AndN.java)
+- [44. 数字序列中某一位的数字](math/DigitInSequence.java)
 
 # 10. 位运算
 
