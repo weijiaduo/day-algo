@@ -64,6 +64,7 @@
 
 - [14. 剪绳子](dynamic/CuttingRope.java)
 - [42. 连续子数组的最大和](dynamic/GreatestSumOfSubArrays.java)
+- [46. 把数字翻译成字符串](dynamic/TranslateNumbersToStrings.java)
 
 # 9. 数学
 
