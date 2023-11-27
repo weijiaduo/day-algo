@@ -9,6 +9,7 @@
 - [29. 顺时针打印矩阵](array/PrintMatrix.java)
 - [39. 数组中出现次数超过一半的数字](array/MoreThanHalfNumber.java)
 - [40. 最小的 k 个数](array/KLeastNumbers.java)
+- [45. 把数组排成最小的数](array/MinNumber.java)
 
 # 2. 字符串
 
