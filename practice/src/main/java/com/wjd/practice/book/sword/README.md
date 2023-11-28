@@ -29,6 +29,7 @@
 - [48. 最长不含重复字符的子字符串](string/LongestSubStringWithoutDup.java)
 - [50.1 第一个只出现一次的字符](string/FirstNotRepeatingChar.java)
 - [50.2 字符流中第一个只出现一次的字符](string/FirstCharacterInStream.java)
+- [58.1 翻转单词顺序](string/ReverseWordsInSentence.java)
 
 # 3. 链表
 
