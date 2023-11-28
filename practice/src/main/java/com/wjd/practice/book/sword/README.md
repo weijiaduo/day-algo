@@ -11,7 +11,8 @@
 - [40. 最小的 k 个数](array/KLeastNumbers.java)
 - [45. 把数组排成最小的数](array/MinNumber.java)
 - [51. 数组中的逆序对](array/InversePairs.java)
-- [53. 在排序数组中查找数字](array/NumberOfKInSorted.java)
+- [53.1 在排序数组中查找数字](array/NumberOfKInSorted.java)
+- [53.2 0~n-1 中缺失的数字](array/MissingNumber.java)
 
 # 2. 字符串
 
