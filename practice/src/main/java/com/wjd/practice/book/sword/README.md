@@ -60,6 +60,7 @@
 - [37. 序列化二叉树](tree/SerializeBinaryTrees.java)
 - [54. 二叉搜索树的第 k 大节点](tree/KthNodeInBST.java)
 - [55.1 二叉树的深度](tree/TreeDepth.java)
+- [55.2 平衡二叉树](tree/IsBalancedTree.java)
 
 # 6. 堆
 
