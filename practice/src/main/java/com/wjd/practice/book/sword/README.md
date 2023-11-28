@@ -10,6 +10,7 @@
 - [39. 数组中出现次数超过一半的数字](array/MoreThanHalfNumber.java)
 - [40. 最小的 k 个数](array/KLeastNumbers.java)
 - [45. 把数组排成最小的数](array/MinNumber.java)
+- [51. 数组中的逆序对](array/InversePairs.java)
 
 # 2. 字符串
 
