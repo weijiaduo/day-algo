@@ -19,6 +19,7 @@
 - [20. 表示数值的字符串](string/NumericStrings.java)
 - [38. 字符串的排列](string/StringPermutation.java)
 - [48. 最长不含重复字符的子字符串](string/LongestSubStringWithoutDup.java)
+- [50. 第一个只出现一次的字符](string/FirstNotRepeatingChar.java)
 
 # 3. 链表
 
