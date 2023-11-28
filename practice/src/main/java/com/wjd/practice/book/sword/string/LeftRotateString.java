@@ -1,50 +1,73 @@
 package com.wjd.practice.book.sword.string;
 
+import com.wjd.practice.TestCase;
+
 /**
+ * 58.2 左旋转字符串
+ * <p>
  * 对于一个给定的字符序列S，请你把其循环左移K位后的序列输出。
+ * <p>
  * 例如，字符序列S=”abcXYZdef”,要求输出循环左移3位后的结果，即“XYZdefabc”。
+ *
+ * @author weijiaduo
+ * @since 2023/11/28
  */
 public class LeftRotateString {
 
-    public static void main(String[] args) {
-        String str = "asdfghjkl";
-        System.out.println(leftRotateString2(str, 12));
-    }
-
-    public static String leftRotateString(String str, int n) {
+    /**
+     * 思路：先左右两部分子串，再翻转整个字符串
+     * <p>
+     * 比如，原始字符串格式 <--<----
+     * <p>
+     * 先翻转左右子串 -->---->
+     * <p>
+     * 再翻转整个字符串 <----<--
+     * <p>
+     * 复杂度：时间 O(n) 空间 O(1)
+     */
+    @TestCase(input = {"\"abcXYZdef\"", "0",
+            "\"abcXYZdef\"", "9",
+            "\"abcXYZdef\"", "-1",
+            "\"abcXYZdef\"", "10",
+            "\"abcXYZdef\"", "3"},
+            output = {"\"abcXYZdef\"",
+                    "\"abcXYZdef\"",
+                    "\"abcXYZdef\"",
+                    "\"bcXYZdefa\"",
+                    "\"XYZdefabc\""})
+    public String leftRotateString(String str, int n) {
         if (str == null || str.length() == 0 || n <= 0) {
             return str;
         }
 
-        int tn = n % str.length();
-        char[] sChars = str.toCharArray();
-        reverse(sChars, 0, tn - 1);
-        reverse(sChars, tn, sChars.length - 1);
-        reverse(sChars, 0, sChars.length - 1);
+        // 转成字符数组，方便翻转
+        char[] chs = str.toCharArray();
+        int tn = n % chs.length;
 
-        return new String(sChars);
+        // 翻转左半部分
+        reverse(chs, 0, tn - 1);
+        // 翻转右半部分
+        reverse(chs, tn, chs.length - 1);
+        // 翻转整个字符串
+        reverse(chs, 0, chs.length - 1);
+
+        return new String(chs);
     }
 
-    public static String leftRotateString2(String str, int n) {
-        if (str == null || str.length() == 0 || n <= 0) {
-            return str;
-        }
-
-        int tn = n % str.length();
-        str += str;
-        return str.substring(tn, tn + (str.length() >> 1));
-    }
-
-    private static void reverse(char[] str, int start, int end) {
-        if (start < end) {
-            int lp = start, rp = end;
-            while (lp < rp) {
-                char ch = str[lp];
-                str[lp] = str[rp];
-                str[rp] = ch;
-                lp++;
-                rp--;
-            }
+    /**
+     * 翻转指定范围内的字符
+     *
+     * @param chs  字符数组
+     * @param low  [low, high]
+     * @param high [low, high]
+     */
+    private void reverse(char[] chs, int low, int high) {
+        int lp = low, rp = high;
+        while (lp < rp) {
+            char ch = chs[lp];
+            chs[lp++] = chs[rp];
+            chs[rp--] = ch;
         }
     }
+
 }
