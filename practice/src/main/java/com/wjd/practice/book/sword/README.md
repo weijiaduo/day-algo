@@ -14,6 +14,7 @@
 - [53.1 在排序数组中查找数字](array/NumberOfKInSorted.java)
 - [53.2 0~n-1 中缺失的数字](array/MissingNumber.java)
 - [53.3 数组中数值和下标相等的元素](array/NumberSameAsIndex.java)
+- [56.1 数组中数字出现的次数](array/NumbersAppearOnce.java)
 
 # 2. 字符串
 
