@@ -15,6 +15,7 @@
 - [53.2 0~n-1 中缺失的数字](array/MissingNumber.java)
 - [53.3 数组中数值和下标相等的元素](array/NumberSameAsIndex.java)
 - [56.1 数组中数字出现的次数](array/NumbersAppearOnce.java)
+- [56.2 数组中唯一只出现一次的数字](array/NumberAppearingOnce.java)
 
 # 2. 字符串
 
