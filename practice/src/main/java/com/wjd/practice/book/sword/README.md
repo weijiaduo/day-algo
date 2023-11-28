@@ -16,6 +16,7 @@
 - [53.3 数组中数值和下标相等的元素](array/NumberSameAsIndex.java)
 - [56.1 数组中数字出现的次数](array/NumbersAppearOnce.java)
 - [56.2 数组中唯一只出现一次的数字](array/NumberAppearingOnce.java)
+- [57.1 和为 s 的两个数字](array/TwoNumbersWithSum.java)
 
 # 2. 字符串
 
