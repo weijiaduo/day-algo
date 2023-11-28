@@ -59,6 +59,7 @@
 - [36. 二叉搜索树与双向链表](tree/ConvertTreeToLinkedList.java)
 - [37. 序列化二叉树](tree/SerializeBinaryTrees.java)
 - [54. 二叉搜索树的第 k 大节点](tree/KthNodeInBST.java)
+- [55.1 二叉树的深度](tree/TreeDepth.java)
 
 # 6. 堆
 
