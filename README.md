@@ -4,6 +4,14 @@
 
 [数据结构与算法介绍（待完善）](https://weijiaduo.github.io/)
 
+刷题记录：
+
+- [《剑指 Offer》](practice/src/main/java/com/wjd/practice/book/sword/README.md)
+- [力扣（LeetCode）](practice/src/main/java/com/wjd/practice/leetcode/README.md)
+- [牛客（NowCoder）](practice/src/main/java/com/wjd/practice/nowcoder/README.md)
+
+常见题目：
+
 ## 一、数组
 
 ### 二分查找
