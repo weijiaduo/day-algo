@@ -54,7 +54,7 @@ public class RegularExpressionsMatching {
         if (j < n - 1 && pat[j + 1] == '*') {
             if (str[i] == pat[j] || pat[j] == '.') {
                 return match(str, i + 1, pat, j)
-                        || match(str, i, pat, j + 2);
+                       || match(str, i, pat, j + 2);
             } else {
                 return match(str, i, pat, j + 2);
             }

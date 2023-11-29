@@ -61,16 +61,16 @@ public class HasPathInMatrix {
         }
 
         if (i < 0 || i >= matrix.length || j < 0 || j >= matrix[0].length
-                || visited[i][j] || matrix[i][j] != path.charAt(index)) {
+            || visited[i][j] || matrix[i][j] != path.charAt(index)) {
             return false;
         }
 
         // 递归前后，记得恢复现场
         visited[i][j] = true;
         boolean res = backtrack(matrix, i - 1, j, visited, path, index + 1)
-                || backtrack(matrix, i + 1, j, visited, path, index + 1)
-                || backtrack(matrix, i, j - 1, visited, path, index + 1)
-                || backtrack(matrix, i, j + 1, visited, path, index + 1);
+                      || backtrack(matrix, i + 1, j, visited, path, index + 1)
+                      || backtrack(matrix, i, j - 1, visited, path, index + 1)
+                      || backtrack(matrix, i, j + 1, visited, path, index + 1);
         visited[i][j] = false;
 
         return res;
