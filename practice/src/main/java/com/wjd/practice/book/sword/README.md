@@ -88,7 +88,11 @@
 - [47. 礼物的最大价值](dynamic/MaxValueOfGifts.java)
 - [60. n 个骰子的点数](dynamic/DicesProbability.java)
 
-# 9. 数学
+# 9. 贪心
+
+- [63. 股票的最大利润](greedy/MaximalProfit.java)
+
+# 10. 数学
 
 - [10. 斐波那契数列](math/Fibonacci.java)
 - [16. 数值的整数次方](math/Power.java)
@@ -97,6 +101,6 @@
 - [49. 丑数](math/UglyNumber.java)
 - [62. 圆圈中最后剩下的数字](math/LastNumberInCircle.java)
 
-# 10. 位运算
+# 11. 位运算
 
 - [15. 二进制中 1 的个数](bit/NumberOf1InBinary.java)
