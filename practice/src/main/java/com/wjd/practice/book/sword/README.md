@@ -50,6 +50,7 @@
 - [30. 包含 min 函数的栈](stack/MinStack.java)
 - [31. 栈的压入、弹出序列](stack/StackPushPopOrder.java)
 - [59.1 滑动窗口的最大值](queue/MaxInSlidingWindow.java)
+- [59.2 队列的最大值](queue/QueueWithMax.java)
 
 # 5. 树
 
