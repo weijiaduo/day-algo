@@ -19,6 +19,7 @@
 - [57.1 和为 s 的两个数字](array/TwoNumbersWithSum.java)
 - [57.2 和为 s 的连续正数序列](array/ContinuousSequenceWithSum.java)
 - [61. 扑克牌中的顺子](array/ContinuousCards.java)
+- [66. 构建乘积数组](array/MultiplyArray.java)
 
 # 2. 字符串
 
