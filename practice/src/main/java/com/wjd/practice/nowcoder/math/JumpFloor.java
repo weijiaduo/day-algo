@@ -1,4 +1,4 @@
-package com.wjd.practice.book.sword.math;
+package com.wjd.practice.nowcoder.math;
 
 /**
  * 一只青蛙一次可以跳上1级台阶，也可以跳上2级。

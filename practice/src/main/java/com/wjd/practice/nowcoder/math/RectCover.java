@@ -1,4 +1,4 @@
-package com.wjd.practice.book.sword.math;
+package com.wjd.practice.nowcoder.math;
 
 /**
  * 我们可以用2*1的小矩形横着或者竖着去覆盖更大的矩形。
