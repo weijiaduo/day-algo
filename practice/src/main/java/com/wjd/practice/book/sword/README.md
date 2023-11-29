@@ -33,6 +33,7 @@
 - [50.2 字符流中第一个只出现一次的字符](string/FirstCharacterInStream.java)
 - [58.1 翻转单词顺序](string/ReverseWordsInSentence.java)
 - [58.2 左旋转字符串](string/LeftRotateString.java)
+- [67. 把字符串转换成整数](string/StringToInt.java)
 
 # 3. 链表
 
