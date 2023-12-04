@@ -64,6 +64,7 @@
 - [48. 旋转图像](matrix/RotateMatrix.java)
 - [240. 搜索二维矩阵 II](array/binary/SearchMatrix2.java)
 - [1926. 迷宫中离入口最近的出口](matrix/NearestExit.java)
+- [289. 生命游戏](matrix/GameOfLife.java)
 
 ### 统计
 
@@ -201,6 +202,7 @@
 - [108. 将有序数组转换为二叉搜索树](tree/build/SortedArrayToBST.java)
 - [105. 从前序与中序遍历序列构造二叉树](tree/build/BuildTreeFromPreorderAndInorder.java)
 - [106. 从中序与后序遍历序列构造二叉树](tree/build/BuildTreeFromPostorderAndInorder.java)
+- [427. 建立四叉树](tree/build/ConstructFourTree.java)
 
 ### 遍历
 
@@ -259,6 +261,7 @@
 - [547. 省份数量](graph/FindCircleNum.java)
 - [1466. 重新规划路线](graph/MinReorder.java)
 - [399. 除法求值](graph/OrangesRotting.java)
+- [909. 蛇梯棋](graph/SnakesAndLadders.java)
 
 ## 十、回溯
 
