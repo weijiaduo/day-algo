@@ -249,6 +249,7 @@
 - [295. 数据流的中位数](heap/MedianFinder.java)
 - [2542. 最大子序列的分数](heap/MaxScore.java)
 - [2462. 雇佣 K 位工人的总代价](heap/TotalCost.java)
+- [373. 查找和最小的 K 对数字](heap/KSmallestPairs.java)
 
 ## 九、图论
 
