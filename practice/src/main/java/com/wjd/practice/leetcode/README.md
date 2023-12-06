@@ -300,6 +300,7 @@
 - [300. 最长递增子序列](array/sequence/LengthOfLIS.java)
 - [152. 乘积最大子数组](array/statistics/MaxProduct.java)
 - [32. 最长有效括号](string/sequence/LongestValidParentheses.java)
+- [343. 整数拆分](dynamic/one/IntegerBreak.java)
 
 ### 多维动态规划
 
