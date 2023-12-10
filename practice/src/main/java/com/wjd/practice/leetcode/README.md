@@ -268,6 +268,7 @@
 - [1466. 重新规划路线](graph/MinReorder.java)
 - [399. 除法求值](graph/OrangesRotting.java)
 - [909. 蛇梯棋](graph/SnakesAndLadders.java)
+- [433. 最小基因变化](graph/MinMutation.java)
 
 ## 十、回溯
 
