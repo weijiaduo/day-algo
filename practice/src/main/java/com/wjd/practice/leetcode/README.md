@@ -124,6 +124,10 @@
 - [1268. 搜索推荐系统](trie/SuggestedProducts.java)
 - [212. 单词搜索2](trie/FindWords.java)
 
+### 统计
+
+- [1419. 数青蛙](string/statistics/MinNumberOfFrogs.java)
+
 ## 三、链表
 
 ### 单链
