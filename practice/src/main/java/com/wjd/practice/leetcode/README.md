@@ -178,6 +178,7 @@
 - [2390. 从字符串中移除星号](stack/RemoveStars.java)
 - [735. 行星碰撞](stack/AsteroidCollision.java)
 - [901. 股票价格的跨度](stack/StockSpanner.java)
+- [224. 基本计算器](stack/Calculate.java)
 
 ## 五、队列
 
