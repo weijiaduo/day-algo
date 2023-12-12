@@ -7,6 +7,7 @@
 刷题记录：
 
 - [《剑指 Offer》](practice/src/main/java/com/wjd/practice/book/sword/README.md)
+- [《程序员面试金典》](practice/src/main/java/com/wjd/practice/book/cracking/README.md)
 - [力扣（LeetCode）](practice/src/main/java/com/wjd/practice/leetcode/README.md)
 - [牛客（NowCoder）](practice/src/main/java/com/wjd/practice/nowcoder/README.md)
 
