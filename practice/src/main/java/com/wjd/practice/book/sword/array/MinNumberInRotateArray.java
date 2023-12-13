@@ -21,13 +21,9 @@ public class MinNumberInRotateArray {
      * <p>
      * 复杂度：时间 O(logn) 空间 O(1)
      */
-    @TestCase(input = {"3,4,5,1,2", "2,2,2,2,2", "1,2,3,3,4"},
-            output = {"3", "0", "0"})
+    @TestCase(input = {"3,4,5,1,2", "2,2,2,2,2", "1,2,3,3,4", "2,1"},
+            output = {"1", "2", "1", "1"})
     public int find(int[] nums) {
-        if (nums == null || nums.length == 0) {
-            return -1;
-        }
-
         int left = 0, right = nums.length - 1;
         while (left < right) {
             // 已经是递增数组
@@ -36,10 +32,10 @@ public class MinNumberInRotateArray {
             }
             // 循环不变量：nums[left] >= nums[right]
             int mid = left + (right - left) / 2;
-            if (nums[left] < nums[mid] || nums[mid] > nums[right]) {
+            if (nums[mid] > nums[right]) {
                 // 左边递增，右边循环
                 left = mid + 1;
-            } else if (nums[left] > nums[mid] || nums[mid] < nums[right]) {
+            } else if (nums[mid] < nums[right]) {
                 // 左边循环，右边递增
                 right = mid;
             } else {
@@ -48,7 +44,7 @@ public class MinNumberInRotateArray {
                 right--;
             }
         }
-        return left;
+        return nums[left];
     }
 
 }
