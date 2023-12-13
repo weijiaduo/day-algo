@@ -119,7 +119,6 @@
 - [151. 颠倒字符串中的单词](string/transform/ReverseWords.java)
 - [443. 压缩字符串](string/transform/Compress.java)
 - [6. Z字形变换](string/transform/ZConvert.java)
-- [316. 去除重复字母](string/transform/RemoveDuplicateLetters.java)
 
 ### 字典树
 
@@ -181,6 +180,8 @@
 - [735. 行星碰撞](stack/AsteroidCollision.java)
 - [901. 股票价格的跨度](stack/StockSpanner.java)
 - [224. 基本计算器](stack/Calculate.java)
+- [316. 去除重复字母](stack/RemoveDuplicateLetters.java)
+- [402. 移掉 K 位数字](stack/RemoveKdigits.java)
 
 ## 五、队列
 
