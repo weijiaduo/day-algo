@@ -17,3 +17,7 @@
 
 - [面试题 01.07. 旋转矩阵](matrix/Rotate.java)
 - [面试题 01.08. 零矩阵](matrix/SetZeroes.java)
+
+## 四、链表
+
+- [面试题 02.01. 移除重复节点](list/RemoveDuplicateNodes.java)
