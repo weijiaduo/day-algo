@@ -17,10 +17,6 @@ import com.wjd.practice.TestCase;
  * <p>
  * 在这种情况下，你会怎样改变代码？
  * <p>
- * 致谢：
- * <p>
- * 特别感谢 @pbrother 添加此问题并且创建所有测试用例。
- * <p>
  * 示例 1：
  * <p>
  * 输入：s = "abc", t = "ahbgdc"
