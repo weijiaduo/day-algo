@@ -39,21 +39,20 @@ public class StrStr {
      * 复杂度：时间 O(nm) 空间 O(1)
      * <p>
      * 执行耗时:0 ms,击败了100.00% 的Java用户
-     * 内存消耗:39.6 MB,击败了12.14% 的Java用户
+     * 内存消耗:39.3 MB,击败了71.15% 的Java用户
      */
     @TestCase(input = {"sadbutsad", "sad", "leetcode", "leeto"},
             output = {"0", "-1"})
     public int indexOf(String haystack, String needle) {
         int n = haystack.length(), m = needle.length();
-        for (int i = 0; i + m <= n; i++) {
-            boolean flag = true;
-            for (int j = 0; j < m; j++) {
+        for (int i = 0; i + m - 1 < n; i++) {
+            int j = 0;
+            for (; j < m; j++) {
                 if (haystack.charAt(i + j) != needle.charAt(j)) {
-                    flag = false;
                     break;
                 }
             }
-            if (flag) {
+            if (j == m) {
                 return i;
             }
         }
