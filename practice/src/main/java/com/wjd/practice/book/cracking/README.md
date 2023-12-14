@@ -21,3 +21,4 @@
 ## 四、链表
 
 - [面试题 02.01. 移除重复节点](list/RemoveDuplicateNodes.java)
+- [面试题 02.02. 返回倒数第 k 个节点](list/KthToLast.java)
