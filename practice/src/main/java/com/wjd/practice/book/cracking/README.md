@@ -11,6 +11,7 @@
 - [面试题 01.04. 回文排列](string/PermutePalindrome.java)
 - [面试题 01.05. 一次编辑](string/OneEditAway.java)
 - [面试题 01.06. 字符串压缩](string/CompressString.java)
+- [面试题 01.09 字符串轮转](string/IsFlippedString.java)
 
 ## 三、矩阵
 
