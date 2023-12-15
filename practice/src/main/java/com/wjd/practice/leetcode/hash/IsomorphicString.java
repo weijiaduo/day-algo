@@ -65,14 +65,12 @@ public class IsomorphicString {
             char sc = s.charAt(i);
             char tc = t.charAt(i);
             Character stc = s2t.get(sc);
-            if (stc != null) {
-                // 当前字符已经映射过了
-                if (stc != tc) {
-                    return false;
-                }
-                continue;
-            } else if (t2s.containsKey(tc)) {
-                // 映射字符被别的字符映射了
+            if (stc != null && stc != tc) {
+                // 一个字符映射多个字符
+                return false;
+            }
+            if (stc == null && t2s.containsKey(tc)) {
+                // 多个字符映射一个字符
                 return false;
             }
             s2t.put(sc, tc);
