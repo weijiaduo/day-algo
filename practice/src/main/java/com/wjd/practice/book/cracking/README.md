@@ -25,3 +25,4 @@
 - [面试题 02.03. 删除中间节点](list/DeleteNode.java)
 - [面试题 02.04. 分割链表](list/Partition.java)
 - [面试题 02.05. 链表求和](list/AddTwoNumbers.java)
+- [面试题 02.06. 回文链表](list/IsPalindrome.java)
