@@ -54,8 +54,8 @@ public class SummaryRanges {
      * <p>
      * 复杂度：时间 O(n) 空间 O(1)
      * <p>
-     * 执行耗时:5 ms,击败了52.54% 的Java用户
-     * 内存消耗:40 MB,击败了5.29% 的Java用户
+     * 执行耗时:0 ms,击败了100%% 的Java用户
+     * 内存消耗:39.84 MB,击败了27.36% 的Java用户
      */
     @TestCase(input = {"[0,1,2,4,5,7]", "[0,2,3,4,6,8,9]"},
             output = {
@@ -64,21 +64,24 @@ public class SummaryRanges {
                     """
                             ["0","2->4","6","8->9"]"""})
     public List<String> doublePoint(int[] nums) {
-        int lp = 0, rp = 0, n = nums.length;
-        List<String> result = new ArrayList<>(n);
-        while (rp < n) {
-            while (rp + 1 < n && nums[rp] + 1 == nums[rp + 1]) {
-                rp++;
+        int n = nums.length;
+        List<String> ret = new ArrayList<>(n);
+        int low, high = 0;
+        while (high < n) {
+            low = high;
+            while (high + 1 < n && nums[high] + 1 == nums[high + 1]) {
+                high++;
             }
-            if (lp == rp) {
-                result.add(String.valueOf(nums[rp]));
-            } else {
-                result.add(nums[lp] + "->" + nums[rp]);
+            // 不使用 StringBuilder 的性能差别有点大
+            StringBuilder sb = new StringBuilder();
+            sb.append(nums[low]);
+            if (low != high) {
+                sb.append("->").append(nums[high]);
             }
-            rp++;
-            lp = rp;
+            ret.add(sb.toString());
+            high++;
         }
-        return result;
+        return ret;
     }
 
 }
