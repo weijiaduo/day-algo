@@ -28,3 +28,7 @@
 - [面试题 02.06. 回文链表](list/IsPalindrome.java)
 - [面试题 02.07. 链表相交](list/IntersectionNode.java)
 - [面试题 02.08. 环路检测](list/DetectCycle.java)
+
+## 五、栈
+
+- [面试题 03.01. 三合一](stack/TripleInOne.java)
