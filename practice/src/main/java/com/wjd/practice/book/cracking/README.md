@@ -32,3 +32,4 @@
 ## 五、栈
 
 - [面试题 03.01. 三合一](stack/TripleInOne.java)
+- [面试题 03.02. 栈的最小值](stack/MinStack.java)

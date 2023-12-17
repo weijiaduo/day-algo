@@ -1,8 +1,7 @@
 package com.wjd.practice.leetcode.stack;
 
-import java.util.ArrayList;
+import java.util.ArrayDeque;
 import java.util.Deque;
-import java.util.LinkedList;
 
 /**
  * 155. 最小栈
@@ -26,8 +25,14 @@ public class MinStack {
         return null;
     }
 
-    ArrayList<Integer> stack;
-    Deque<Integer> minStack;
+    /**
+     * 数据栈
+     */
+    private final Deque<Integer> dataStack;
+    /**
+     * 最小值栈
+     */
+    private final Deque<Integer> minStack;
 
     /**
      * 思路：数组保存栈结构，另外用一个栈保存最小值的索引，直接指向数组的最小值
@@ -36,30 +41,39 @@ public class MinStack {
      * 内存消耗:43.6 MB,击败了5.62% 的Java用户
      */
     public MinStack() {
-        stack = new ArrayList<>();
-        minStack = new LinkedList<>();
+        dataStack = new ArrayDeque<>();
+        minStack = new ArrayDeque<>();
     }
 
     public void push(int val) {
-        if (stack.isEmpty() || val <= getMin()) {
-            minStack.push(stack.size());
+        dataStack.push(val);
+        if (minStack.isEmpty() || val <= minStack.peek()) {
+            minStack.push(val);
         }
-        stack.add(val);
     }
 
     public void pop() {
-        stack.remove(stack.size() - 1);
-        if (!minStack.isEmpty() && minStack.peek() == stack.size()) {
+        if (dataStack.isEmpty()) {
+            return;
+        }
+        int x = dataStack.pop();
+        if (!minStack.isEmpty() && x == minStack.peek()) {
             minStack.pop();
         }
     }
 
     public int top() {
-        return stack.get(stack.size() - 1);
+        if (dataStack.isEmpty()) {
+            return -1;
+        }
+        return dataStack.peek();
     }
 
     public int getMin() {
-        return stack.get(minStack.peek());
+        if (minStack.isEmpty()) {
+            return -1;
+        }
+        return minStack.peek();
     }
 
 }
