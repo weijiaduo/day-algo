@@ -74,21 +74,21 @@ public class NextPermutation {
     public void reverseOrder(int[] nums) {
         // 寻找第一个逆序值
         int n = nums.length;
-        int index = n - 2;
-        while (index >= 0 && nums[index] >= nums[index + 1]) {
-            index--;
+        int i = n - 2;
+        while (i >= 0 && nums[i] >= nums[i + 1]) {
+            i--;
         }
         // 交换比逆序值大的最小值
-        for (int i = n - 1; index >= 0 && i > index; i--) {
-            if (nums[i] > nums[index]) {
-                int temp = nums[i];
-                nums[i] = nums[index];
-                nums[index] = temp;
+        for (int j = n - 1; i >= 0 && j > i; j--) {
+            if (nums[j] > nums[i]) {
+                int temp = nums[j];
+                nums[j] = nums[i];
+                nums[i] = temp;
                 break;
             }
         }
         // 后面这部分是降序的，倒过来转成升序
-        int lp = index + 1, rp = n - 1;
+        int lp = i + 1, rp = n - 1;
         while (lp < rp) {
             int temp = nums[lp];
             nums[lp++] = nums[rp];
