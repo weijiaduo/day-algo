@@ -46,18 +46,17 @@ public class DeleteDuplicates {
         }
 
         // 头节点不会变化，所以直接用就行
-        ListNode tail = head;
-        ListNode p = tail.next, q;
+        ListNode tail = head, p = tail.next;
         // 避免后面连着重复节点
         tail.next = null;
         while (p != null) {
-            q = p;
-            p = p.next;
-            if (tail.val != q.val) {
-                tail.next = q;
-                tail = q;
-                tail.next = null;
+            ListNode next = p.next;
+            if (tail.val != p.val) {
+                p.next = tail.next;
+                tail.next = p;
+                tail = tail.next;
             }
+            p = next;
         }
         return head;
     }
