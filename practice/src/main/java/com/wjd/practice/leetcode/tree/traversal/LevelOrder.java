@@ -42,12 +42,12 @@ public class LevelOrder {
      * <p>
      * 复杂度：时间 O(n) 最坏空间 O(n)
      * <p>
-     * 执行耗时:1 ms,击败了59.03% 的Java用户
-     * 内存消耗:41.7 MB,击败了9.30% 的Java用户
+     * 执行耗时:1 ms,击败了92.61% 的Java用户
+     * 内存消耗:43.2 MB,击败了7.43% 的Java用户
      */
-    @TestCase(input = {"[3,9,20,null,null,15,7]", "[1]", "[]"},
-            output = {"[[3],[9,20],[15,7]]", "[[1]]", "[]"})
-    public List<List<Integer>> levelOrder(TreeNode root) {
+    @TestCase(input = {"[3,9,20,null,null,15,7]", "[1]"},
+            output = {"[[3],[9,20],[15,7]]", "[[1]]"})
+    public List<List<Integer>> bfs(TreeNode root) {
         List<List<Integer>> list = new ArrayList<>();
         if (root == null) {
             return list;
@@ -74,6 +74,41 @@ public class LevelOrder {
             list.add(level);
         }
         return list;
+    }
+
+    /**
+     * 思路：深度优先遍历
+     * <p>
+     * 复杂度：时间 O(n) 最坏空间 O(n)
+     * <p>
+     * 执行耗时:0 ms,击败了100% 的Java用户
+     * 内存消耗:42.54 MB,击败了92.23% 的Java用户
+     */
+    @TestCase(input = {"[3,9,20,null,null,15,7]", "[1]"},
+            output = {"[[3],[9,20],[15,7]]", "[[1]]"})
+    public List<List<Integer>> dfs(TreeNode root) {
+        List<List<Integer>> list = new ArrayList<>();
+        dfs(root, 0, list);
+        return list;
+    }
+
+    /**
+     * 深度优先遍历
+     *
+     * @param root   当前节点
+     * @param level  当前层级
+     * @param levels 层级列表
+     */
+    private void dfs(TreeNode root, int level, List<List<Integer>> levels) {
+        if (root == null) {
+            return;
+        }
+        if (level >= levels.size()) {
+            levels.add(new ArrayList<>());
+        }
+        levels.get(level).add(root.val);
+        dfs(root.left, level + 1, levels);
+        dfs(root.right, level + 1, levels);
     }
 
 }
