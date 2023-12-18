@@ -50,17 +50,26 @@ public class IsValidBST {
         return dfs(root, null, null);
     }
 
-    private boolean dfs(TreeNode root, Integer min, Integer max) {
+    /**
+     * 验证树的阈值是否满足条件
+     *
+     * @param root 当前节点
+     * @param low [low, high]
+     * @param high [low, high]
+     * @return true/false
+     */
+    private boolean dfs(TreeNode root, Integer low, Integer high) {
         if (root == null) {
             return true;
         }
-        if (min != null && root.val <= min || max != null && root.val >= max) {
+        if (low != null && root.val <= low || high != null && root.val >= high) {
             return false;
         }
-        return dfs(root.left, min, root.val)
-                && dfs(root.right, root.val, max);
+        return dfs(root.left, low, root.val)
+                && dfs(root.right, root.val, high);
     }
 
+    // 上一个遍历节点
     TreeNode pre = null;
 
     /**
