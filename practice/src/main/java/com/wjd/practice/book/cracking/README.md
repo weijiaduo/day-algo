@@ -34,3 +34,7 @@
 - [面试题 03.01. 三合一](stack/TripleInOne.java)
 - [面试题 03.02. 栈的最小值](stack/MinStack.java)
 - [面试题 03.03. 堆盘子](stack/StackOfPlates.java)
+
+## 六、队列
+
+- [面试题 03.04. 化栈为队](queue/MyQueue.java)
