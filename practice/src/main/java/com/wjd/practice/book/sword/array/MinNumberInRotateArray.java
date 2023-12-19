@@ -41,7 +41,7 @@ public class MinNumberInRotateArray {
             } else {
                 // 不确定左边循环还是右边循环
                 // 但是可以肯定循环在 [left ,right] 内
-                right--;
+                left++;
             }
         }
         return nums[left];
