@@ -40,3 +40,7 @@
 
 - [面试题 03.04. 化栈为队](queue/MyQueue.java)
 - [面试题 03.06. 动物收容所](queue/AnimalShelf.java)
+
+## 七、树
+
+- [面试题 04.01. 节点间通路](tree/FindWhetherExistsPath.java)
