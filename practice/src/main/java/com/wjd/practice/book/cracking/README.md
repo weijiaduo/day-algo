@@ -46,3 +46,4 @@
 - [面试题 04.01. 节点间通路](tree/FindWhetherExistsPath.java)
 - [面试题 04.02. 最小高度树](tree/SortedArrayToBST.java)
 - [面试题 04.03. 特定深度节点链表](tree/ListOfDepth.java)
+- [面试题 04.04. 检查平衡性](tree/IsBalanced.java)
