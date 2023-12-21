@@ -49,3 +49,4 @@
 - [面试题 04.04. 检查平衡性](tree/IsBalanced.java)
 - [面试题 04.05. 合法二叉搜索树](tree/IsValidBST.java)
 - [面试题04.06 后继者](tree/InorderSuccessor.java)
+- [面试题 04.08. 首个共同祖先](tree/LowestCommonAncestor.java)
