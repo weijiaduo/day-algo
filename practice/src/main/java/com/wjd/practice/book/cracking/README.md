@@ -48,3 +48,4 @@
 - [面试题 04.03. 特定深度节点链表](tree/ListOfDepth.java)
 - [面试题 04.04. 检查平衡性](tree/IsBalanced.java)
 - [面试题 04.05. 合法二叉搜索树](tree/IsValidBST.java)
+- [面试题04.06 后继者](tree/InorderSuccessor.java)
