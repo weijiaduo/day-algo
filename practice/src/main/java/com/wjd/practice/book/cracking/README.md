@@ -52,3 +52,4 @@
 - [面试题 04.08. 首个共同祖先](tree/LowestCommonAncestor.java)
 - [面试题 04.10. 检查子树](tree/CheckSubTree.java)
 - [面试题 04.12. 求和路径](tree/PathSum.java)
+- [面试题 04.09. 二叉搜索树序列](tree/BSTSequences.java)
