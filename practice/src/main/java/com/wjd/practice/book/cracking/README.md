@@ -5,6 +5,7 @@
 - [面试题 01.01. 判定字符是否唯一](bit/IsUnique.java)
 - [面试题 05.01. 插入](bit/InsertBits.java)
 - [面试题 05.02. 二进制数转字符串](bit/PrintBin.java)
+- [面试题 05.03. 翻转数位](bit/ReverseBits.java)
 
 ## 二、字符串
 
