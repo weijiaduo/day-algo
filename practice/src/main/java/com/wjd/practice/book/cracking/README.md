@@ -3,6 +3,7 @@
 ## 一、位运算
 
 - [面试题 01.01. 判定字符是否唯一](bit/IsUnique.java)
+- [面试题 05.01. 插入](bit/InsertBits.java)
 
 ## 二、字符串
 
