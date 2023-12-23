@@ -1,4 +1,4 @@
-package com.wjd.practice.leetcode.math;
+package com.wjd.practice.book.cracking.bit;
 
 import com.wjd.practice.TestCase;
 
@@ -44,7 +44,7 @@ public class PrintBin {
      */
     @TestCase(input = {"0.625", "0.1"},
             output = {"0.101", "ERROR"})
-    public String printBin(double num) {
+    public String bin(double num) {
         StringBuilder sb = new StringBuilder();
         int d = (int) num;
         sb.append("0.");
