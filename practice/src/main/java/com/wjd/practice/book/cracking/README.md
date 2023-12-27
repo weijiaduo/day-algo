@@ -9,6 +9,7 @@
 - [面试题 05.04. 下一个数](bit/FindClosedNumbers.java)
 - [面试题 05.06. 整数转换](bit/ConvertInteger.java)
 - [面试题 05.07. 配对交换](bit/ExchangeBits.java)
+- [面试题 05.08. 绘制直线](bit/DrawLine.java)
 
 ## 二、字符串
 
