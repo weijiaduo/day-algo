@@ -7,6 +7,7 @@
 - [面试题 05.02. 二进制数转字符串](bit/PrintBin.java)
 - [面试题 05.03. 翻转数位](bit/ReverseBits.java)
 - [面试题 05.04. 下一个数](bit/FindClosedNumbers.java)
+- [面试题 05.06. 整数转换](bit/ConvertInteger.java)
 
 ## 二、字符串
 
