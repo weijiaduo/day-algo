@@ -60,3 +60,7 @@
 - [面试题 04.10. 检查子树](tree/CheckSubTree.java)
 - [面试题 04.12. 求和路径](tree/PathSum.java)
 - [面试题 04.09. 二叉搜索树序列](tree/BSTSequences.java)
+
+## 八、动态规划
+
+- [面试题 08.01. 三步问题](dp/WaysToStep.java)
