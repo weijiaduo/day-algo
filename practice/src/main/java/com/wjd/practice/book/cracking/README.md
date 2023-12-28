@@ -11,7 +11,11 @@
 - [面试题 05.07. 配对交换](bit/ExchangeBits.java)
 - [面试题 05.08. 绘制直线](bit/DrawLine.java)
 
-## 二、字符串
+## 二、数组
+
+- [面试题 08.03. 魔术索引](array/FindMagicIndex.java)
+
+## 三、字符串
 
 - [面试题 01.02. 判定是否互为字符重排](string/CheckPermutation.java)
 - [面试题 01.03. URL化](string/ReplaceSpaces.java)
@@ -20,12 +24,12 @@
 - [面试题 01.06. 字符串压缩](string/CompressString.java)
 - [面试题 01.09 字符串轮转](string/IsFlippedString.java)
 
-## 三、矩阵
+## 四、矩阵
 
 - [面试题 01.07. 旋转矩阵](matrix/Rotate.java)
 - [面试题 01.08. 零矩阵](matrix/SetZeroes.java)
 
-## 四、链表
+## 五、链表
 
 - [面试题 02.01. 移除重复节点](list/RemoveDuplicateNodes.java)
 - [面试题 02.02. 返回倒数第 k 个节点](list/KthToLast.java)
@@ -36,19 +40,19 @@
 - [面试题 02.07. 链表相交](list/IntersectionNode.java)
 - [面试题 02.08. 环路检测](list/DetectCycle.java)
 
-## 五、栈
+## 六、栈
 
 - [面试题 03.01. 三合一](stack/TripleInOne.java)
 - [面试题 03.02. 栈的最小值](stack/MinStack.java)
 - [面试题 03.03. 堆盘子](stack/StackOfPlates.java)
 - [面试题 03.05. 栈排序](stack/SortedStack.java)
 
-## 六、队列
+## 七、队列
 
 - [面试题 03.04. 化栈为队](queue/MyQueue.java)
 - [面试题 03.06. 动物收容所](queue/AnimalShelf.java)
 
-## 七、树
+## 八、树
 
 - [面试题 04.01. 节点间通路](tree/FindWhetherExistsPath.java)
 - [面试题 04.02. 最小高度树](tree/SortedArrayToBST.java)
@@ -61,7 +65,7 @@
 - [面试题 04.12. 求和路径](tree/PathSum.java)
 - [面试题 04.09. 二叉搜索树序列](tree/BSTSequences.java)
 
-## 八、动态规划
+## 九、动态规划
 
 - [面试题 08.01. 三步问题](dp/WaysToStep.java)
 - [面试题 08.02. 迷路的机器人](dp/PathWithObstacles.java)
