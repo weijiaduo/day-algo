@@ -1,4 +1,4 @@
-package com.wjd.practice.book.cracking.dp;
+package com.wjd.practice.book.cracking.backtrack;
 
 import com.wjd.practice.TestCase;
 

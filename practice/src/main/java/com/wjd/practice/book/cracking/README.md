@@ -68,4 +68,8 @@
 ## 九、动态规划
 
 - [面试题 08.01. 三步问题](dp/WaysToStep.java)
-- [面试题 08.02. 迷路的机器人](dp/PathWithObstacles.java)
+
+## 十、回溯
+
+- [面试题 08.02. 迷路的机器人](backtrack/PathWithObstacles.java)
+- [面试题 08.04. 幂集](backtrack/Subsets.java)
