@@ -75,6 +75,7 @@
 - [面试题 08.02. 迷路的机器人](backtrack/PathWithObstacles.java)
 - [面试题 08.04. 幂集](backtrack/Subsets.java)
 - [面试题 08.07. 无重复字符串的排列组合](backtrack/Permutation.java)
+- [面试题 08.08. 有重复字符串的排列组合](backtrack/PermutationUnique.java)
 
 ## 十一、数学
 

@@ -279,6 +279,7 @@
 
 - [77. 组合](backtrack/Combine.java)
 - [46. 全排列](backtrack/Permute.java)
+- [47. 全排列2](backtrack/PermuteUnique.java)
 - [39.组合总和](backtrack/CombinationSum.java)
 - [78. 子集](backtrack/Subsets.java)
 - [17. 电话号码得字母组合](backtrack/LetterCombinations.java)
