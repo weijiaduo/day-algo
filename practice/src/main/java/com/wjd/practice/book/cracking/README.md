@@ -72,6 +72,7 @@
 - [面试题 08.06. 汉诺塔问题](dp/Hanota.java)
 - [面试题 08.11. 硬币](dp/WaysToChange.java)
 - [面试题 08.13. 堆箱子](dp/PileBox.java)
+- [面试题 08.14. 布尔运算](dp/CountEval.java)
 
 ## 十、回溯
 
