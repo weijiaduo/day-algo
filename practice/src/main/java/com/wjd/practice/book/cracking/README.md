@@ -71,6 +71,7 @@
 - [面试题 08.01. 三步问题](dp/WaysToStep.java)
 - [面试题 08.06. 汉诺塔问题](dp/Hanota.java)
 - [面试题 08.11. 硬币](dp/WaysToChange.java)
+- [面试题 08.13. 堆箱子](dp/PileBox.java)
 
 ## 十、回溯
 
