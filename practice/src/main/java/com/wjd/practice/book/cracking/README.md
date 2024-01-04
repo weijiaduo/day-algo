@@ -24,6 +24,7 @@
 - [面试题 01.05. 一次编辑](string/OneEditAway.java)
 - [面试题 01.06. 字符串压缩](string/CompressString.java)
 - [面试题 01.09 字符串轮转](string/IsFlippedString.java)
+- [面试题 10.02. 变位词组](string/GroupAnagrams.java)
 
 ## 四、矩阵
 
