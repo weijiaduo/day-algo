@@ -78,6 +78,7 @@
 
 - [88. 合并两个有序数组](array/sort/MergeSortedArray.java)
 - [274. H指数](array/statistics/HIndex.java)
+- [324. 摆动排序2](array/sort/WiggleSort.java)
 
 ### 转换
 
