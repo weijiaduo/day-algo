@@ -16,6 +16,7 @@
 - [面试题 08.03. 魔术索引](array/FindMagicIndex.java)
 - [面试题 10.01. 合并排序的数组](array/MergeSortedArray.java)
 - [面试题 10.03. 搜索旋转数组](array/SearchInRotateArray.java)
+- [面试题 10.05. 稀疏数组搜索](array/FindString.java)
 
 ## 三、字符串
 
