@@ -60,7 +60,11 @@
 - [面试题 03.04. 化栈为队](queue/MyQueue.java)
 - [面试题 03.06. 动物收容所](queue/AnimalShelf.java)
 
-## 八、树
+## 八、哈希
+
+- [面试题 16.02. 单词频率](hash/WordsFrequency.java)
+
+## 九、树
 
 - [面试题 04.01. 节点间通路](tree/FindWhetherExistsPath.java)
 - [面试题 04.02. 最小高度树](tree/SortedArrayToBST.java)
@@ -73,7 +77,7 @@
 - [面试题 04.12. 求和路径](tree/PathSum.java)
 - [面试题 04.09. 二叉搜索树序列](tree/BSTSequences.java)
 
-## 九、动态规划
+## 十、动态规划
 
 - [面试题 08.01. 三步问题](dp/WaysToStep.java)
 - [面试题 08.06. 汉诺塔问题](dp/Hanota.java)
@@ -81,7 +85,7 @@
 - [面试题 08.13. 堆箱子](dp/PileBox.java)
 - [面试题 08.14. 布尔运算](dp/CountEval.java)
 
-## 十、回溯
+## 十一、回溯
 
 - [面试题 08.02. 迷路的机器人](backtrack/PathWithObstacles.java)
 - [面试题 08.04. 幂集](backtrack/Subsets.java)
@@ -90,6 +94,6 @@
 - [面试题 08.09. 括号](backtrack/GenerateParenthesis.java)
 - [面试题 08.12. 八皇后](backtrack/SolveNQueens.java)
 
-## 十一、数学
+## 十二、数学
 
 - [面试题 08.05. 递归乘法](math/Multiply.java)
