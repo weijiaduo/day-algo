@@ -98,3 +98,4 @@
 ## 十二、数学
 
 - [面试题 08.05. 递归乘法](math/Multiply.java)
+- [面试题 16.05. 阶乘尾数](math/TrailingZeroes.java)
