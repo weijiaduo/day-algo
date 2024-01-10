@@ -19,6 +19,7 @@
 - [面试题 10.03. 搜索旋转数组](array/SearchInRotateArray.java)
 - [面试题 10.05. 稀疏数组搜索](array/FindString.java)
 - [面试题 10.10. 数字流的秩](array/StreamRank.java)
+- [面试题 16.06. 最小差](array/SmallestDifference.java)
 
 ## 三、字符串
 
