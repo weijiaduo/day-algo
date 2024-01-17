@@ -347,6 +347,7 @@
 ## 十四、数学
 
 - [7. 整数反转](math/ReverseNumber.java)
+- [8. 字符串转换整数 (atoi)](math/MyAtoi.java)
 - [9. 回文数](math/PalindromeNumber.java)
 - [66. 加一](math/PlusOne.java)
 - [172. 阶乘后的零](math/TrailingZeroes.java)
