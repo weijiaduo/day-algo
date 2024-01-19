@@ -317,6 +317,7 @@
 
 ### 多维动态规划
 
+- [10. 正则表达式匹配](dynamic/multi/PatternMatch.java)
 - [120. 三角形最小路径和](dynamic/multi/MinimumTotal.java)
 - [416. 分割等和子集](dynamic/multi/CanPartition.java)
 - [62. 不同路径](dynamic/multi/UniquePaths.java)
