@@ -3,7 +3,10 @@ package com.wjd.practice.leetcode.list.transform;
 import com.wjd.practice.TestCase;
 import com.wjd.structure.list.ListNode;
 
+import java.util.Comparator;
 import java.util.List;
+import java.util.PriorityQueue;
+import java.util.Queue;
 
 /**
  * 23. 合并K个升序链表
@@ -49,37 +52,90 @@ import java.util.List;
 public class MergeKLists {
 
     /**
-     * 思路：分治法，链表两两合并起来，最后合成 1 条
-     * <p>
-     * 复杂度：时间 O(nlogn * l) 空间 O(logn)
-     * <p>
-     * 执行耗时:1 ms,击败了100.00% 的Java用户
-     * 内存消耗:42.1 MB,击败了94.83% 的Java用户
+     * 这里是因为 @TestCase 注解的问题，需要写成 List，才多增加一个方法
      */
     @TestCase(input = {"[[1,4,5],[1,3,4],[2,6]]"},
             output = {"[1,1,2,3,4,4,5,6]"})
-    public ListNode mergeKLists(List<ListNode> lists) {
-        return mergeKLists(lists.toArray(new ListNode[0]));
-    }
-
-    private ListNode mergeKLists(ListNode[] lists) {
-        if (lists.length == 0) {
-            return null;
-        }
-        return mergeLists(lists, 0, lists.length - 1);
+    public ListNode heap(List<ListNode> lists) {
+        return heap(lists.toArray(new ListNode[0]));
     }
 
     /**
-     * 分治法合并多条链表
+     * 思路：最小堆，保存每条链表的头节点
+     * <p>
+     * 然后每次从堆顶获取最小值，即是有序的
+     * <p>
+     * 复杂度：时间 O(kn * logk) 空间 O(logk)
+     * <p>
+     * 执行耗时:6 ms,击败了34.42% 的Java用户
+     * 内存消耗:43.4 MB,击败了15.18% 的Java用户
      */
-    private ListNode mergeLists(ListNode[] lists, int start, int end) {
+    private ListNode heap(ListNode[] lists) {
+        if (lists.length == 0) {
+            return null;
+        }
+        Queue<ListNode> heap = new PriorityQueue<>(Comparator.comparingInt(o -> o.val));
+        for (ListNode node : lists) {
+            if (node != null) {
+                heap.add(node);
+            }
+        }
+        ListNode dummy = new ListNode(-1), tail = dummy;
+        while (!heap.isEmpty()) {
+            ListNode cur = heap.poll();
+            ListNode next = cur.next;
+            tail.next = cur;
+            tail = tail.next;
+            cur = next;
+            if (cur != null) {
+                heap.add(cur);
+            }
+        }
+        return dummy.next;
+    }
+
+    /**
+     * 这里是因为 @TestCase 注解的问题，需要写成 List，才多增加一个方法
+     */
+    @TestCase(input = {"[[1,4,5],[1,3,4],[2,6]]"},
+            output = {"[1,1,2,3,4,4,5,6]"})
+    public ListNode divide(List<ListNode> lists) {
+        return divide(lists.toArray(new ListNode[0]));
+    }
+
+    /**
+     * 思路：分治法，链表两两合并起来，最后合成 1 条
+     * <p>
+     * 复杂度：时间 O(kn * logk) 空间 O(logk)
+     * <p>
+     * 执行耗时:1 ms,击败了100.00% 的Java用户
+     * 内存消耗:42.1 MB,击败了94.83% 的Java用户
+     * <p>
+     * 这里是因为 @TestCase 注解的问题，需要写成 List，才多增加一个方法
+     */
+    private ListNode divide(ListNode[] lists) {
+        if (lists.length == 0) {
+            return null;
+        }
+        return divide(lists, 0, lists.length - 1);
+    }
+
+    /**
+     * 分治法合并多条有序链表
+     *
+     * @param lists 链表集合
+     * @param start [start, end]
+     * @param end   [start, end]
+     * @return 合并链表
+     */
+    private ListNode divide(ListNode[] lists, int start, int end) {
         if (end <= start) {
             return lists[start];
         }
 
         int mid = start + (end - start) / 2;
-        ListNode left = mergeLists(lists, start, mid);
-        ListNode right = mergeLists(lists, mid + 1, end);
+        ListNode left = divide(lists, start, mid);
+        ListNode right = divide(lists, mid + 1, end);
         return merge(left, right);
     }
 
