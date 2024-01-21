@@ -1,5 +1,7 @@
 package com.wjd.practice.leetcode.math;
 
+import com.wjd.practice.TestCase;
+
 /**
  * 29. 两数相除
  * <p>
@@ -22,37 +24,60 @@ package com.wjd.practice.leetcode.math;
  */
 public class BitsDivide {
 
-    public int divide(int dividend, int divisor) {
-        boolean symbol1 = dividend > 0;
-        boolean symbol2 = divisor > 0;
+    /**
+     * 思路：快速乘 + 减法
+     * <p>
+     * 除法本质上就是减法，每减去一个值，商就+1
+     * <p>
+     * 因为可以利用减法来实现除法
+     * <p>
+     * 但是每次减一个值的速度太慢了，可以改成一次性减多个值
+     * <p>
+     * 比如 10 - 3 * 2，一次性减去 2 个 3
+     * <p>
+     * 但由于不能使用乘法，所以改成位操作 10 - (3 << 1)
+     * <p>
+     * 利用位操作可以实现快速乘法
+     * <p>
+     * (3 << 1) = 6
+     * <p>
+     * ((3 << 1) << 1) = 12
+     * <p>
+     * 以此加快减法的速度
+     * <p>
+     * 复杂度：时间 O(C) 空间 O(1)
+     * <p>
+     * 执行耗时:0 ms,击败了100.00% 的Java用户
+     * 内存消耗:39.9 MB,击败了9.84% 的Java用户
+     */
+    @TestCase(input = {"10", "3", "7", "-3"},
+            output = {"3", "-2"})
+    public int quickDivide(int dividend, int divisor) {
+        // 处理溢出的情况
+        if (dividend == Integer.MIN_VALUE) {
+            if (divisor == -1) {
+                return Integer.MAX_VALUE;
+            }
+        }
 
         // 取负数作为除法操作数，取正数的话会溢出
-        dividend = dividend > 0 ? -dividend : dividend;
-        divisor = divisor > 0 ? -divisor : divisor;
+        boolean sign1 = dividend > 0, sign2 = divisor > 0;
+        dividend = sign1 ? -dividend : dividend;
+        divisor = sign2 ? -divisor : divisor;
 
-        int result = 0;
+        int ans = 0;
         while (dividend <= divisor) {
-            int d = divisor;
-            int b = 1;
-            // 保证除数小于被除数，并且除数要始终小于0
+            int d = divisor, e = 1;
+            // 保证除数不大于被除数，并且除数要始终小于 0
             while (dividend <= (d << 1) && (d << 1) < 0) {
                 d <<= 1;
-                b <<= 1;
+                e <<= 1;
             }
             dividend -= d;
-            result |= b;
+            ans += e;
         }
 
-        if (symbol1 != symbol2) {
-            // 相反符号
-            result = -result;
-        } else {
-            // 相同符号，溢出判断
-            if (result == Integer.MIN_VALUE) {
-                result = Integer.MAX_VALUE;
-            }
-        }
-
-        return result;
+        // 判断二者的符号
+        return sign1 != sign2 ? -ans : ans;
     }
 }
