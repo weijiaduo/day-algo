@@ -60,11 +60,8 @@ public class RotateSearch {
      */
     @TestCase(input = {"[4,5,6,7,0,1,2]", "0", "[4,5,6,7,0,1,2]", "3", "[1]", "0"},
             output = {"4", "-1", "-1"})
-    public int search(int[] nums, int target) {
-        return binary(nums, 0, nums.length - 1, target);
-    }
-
-    private int binary(int[] nums, int l, int r, int target) {
+    public int binary(int[] nums, int target) {
+        int l = 0, r = nums.length - 1;
         while (l <= r) {
             int m = l + (r - l) / 2;
             if (nums[m] == target) {
