@@ -84,42 +84,49 @@ public class GetIntersectionNode {
     @TestCase(input = {"[4,1,8,4,5]", "[5,6,1,8,4,5]", "[1,9,1,2,4]", "[3,2,4]", "[2,6,4]", "[1,5]"},
             output = {"[8,4,5]", "[2,4]", ""})
     public ListNode getIntersectionNode(ListNode headA, ListNode headB) {
-        // 分别计算出长短链表的长度
-        int m = 0, n = 0;
-        ListNode p = headA, q = headB;
-        while (p != null) {
-            m++;
-            p = p.next;
-        }
-        while (q != null) {
-            n++;
-            q = q.next;
-        }
-        if (m == 0 || n == 0) {
+        if (headA == null || headB == null) {
             return null;
         }
 
-        // 长链表的指针先往前移动一段距离
-        int k;
-        if (m > n) {
-            p = headA;
-            q = headB;
-            k = m - n;
-        } else {
-            p = headB;
-            q = headA;
-            k = n - m;
-        }
-        for (int i = 0; i < k; i++) {
+        // 计算两条链表长度
+        ListNode p = headA, q = headB;
+        int al = 1, bl = 1;
+        while (p.next != null) {
             p = p.next;
+            al++;
+        }
+        while (q.next != null) {
+            q = q.next;
+            bl++;
         }
 
-        // 同时移动长短链表的指针，碰面的地方就是相交点
-        while (p != q) {
-            p = p.next;
-            q = q.next;
+        // 判断是否相交
+        if (p != q) {
+            return null;
         }
-        return p;
+
+        // 先分出长短链表
+        ListNode l, s;
+        int k = 0;
+        if (al < bl) {
+            l = headB;
+            s = headA;
+            k = bl - al;
+        } else {
+            l = headA;
+            s = headB;
+            k = al - bl;
+        }
+
+        // 前后指针，长链表先走，短链表后走
+        for (int i = 0; i < k; i++) {
+            l = l.next;
+        }
+        while (l != s) {
+            l = l.next;
+            s = s.next;
+        }
+        return l;
     }
 
     /**
