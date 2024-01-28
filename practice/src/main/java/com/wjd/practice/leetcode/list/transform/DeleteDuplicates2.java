@@ -39,22 +39,22 @@ public class DeleteDuplicates2 {
     @TestCase(input = {"[1,2,3,3,4,4,5]", "[1,1,1,2,3]"},
             output = {"[1,2,5]", "[2,3]"})
     public ListNode delete(ListNode head) {
-        ListNode dummy = new ListNode(0);
-        ListNode p = head, tail = dummy;
+        ListNode dummy = new ListNode(-1), tail = dummy;
+        ListNode p = head;
         while (p != null) {
-            if (p.next != null && p.next.val == p.val) {
-                // 重复元素
-                ListNode q = p;
-                while (p != null && p.val == q.val) {
+            ListNode next = p.next;
+            if (next != null && p.val == next.val) {
+                // 去除重复节点
+                int val = p.val;
+                while (p != null && p.val == val) {
                     p = p.next;
                 }
             } else {
-                // 非重复元素
+                // 非重复节点
+                p.next = tail.next;
                 tail.next = p;
-                tail = tail.next;
-                p = p.next;
-                // 这个必须设置为nul，如果后面都是重复元素的话，会连在后面
-                tail.next = null;
+                tail = p;
+                p = next;
             }
         }
         return dummy.next;
