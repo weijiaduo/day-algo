@@ -80,47 +80,66 @@ public class MyAtoi {
      * <p>
      * 复杂度：时间 O(n) 空间 O(1)
      * <p>
-     * 执行耗时:2 ms,击败了31.83% 的Java用户
-     * 内存消耗:41.3 MB,击败了20.68% 的Java用户
+     * 执行耗时:1 ms,击败了100.00% 的Java用户
+     * 内存消耗:41.57 MB,击败了13.91% 的Java用户
      */
     @TestCase(input = {"42", "  -42", "4193 with words", "0", "2147483647", "-2147483648", "-91283472332"},
             output = {"42", "-42", "4193", "0", "2147483647", "-2147483648", "-2147483648"})
     public int atoi(String s) {
-        // 去掉前后空格
-        s = s.trim();
-        if (s.isEmpty()) {
+        if (s == null) {
             return 0;
         }
 
-        int num = 0;
-        int max = Integer.MAX_VALUE, min = Integer.MIN_VALUE;
-        char ch = s.charAt(0);
-        boolean isNegative = ch == '-';
+        // 1. 跳过空格部分
         int n = s.length();
-        int i = (ch == '-' || ch == '+') ? 1 : 0;
-        for (; i < n; i++) {
-            ch = s.charAt(i);
+        int start = 0;
+        while (start < n && s.charAt(start) == ' ') {
+            start++;
+        }
+        if (start == n) {
+            return 0;
+        }
+
+        // 2. 判断符号位
+        char first = s.charAt(start);
+        boolean sign = first == '-';
+        if (first == '+' || first == '-') {
+            start++;
+        }
+
+        // 3. 转换数字
+        int number = 0;
+        int min = Integer.MIN_VALUE, max = Integer.MAX_VALUE;
+        for (int i = start; i < n; i++) {
+            // 判断非法数字
+            char ch = s.charAt(i);
             if (ch < '0' || ch > '9') {
                 break;
             }
-            int c = ch - '0';
-            if (isNegative) {
-                if (num < min / 10
-                    || num == min / 10 && -c < min % 10) {
-                    num = min;
+            int digit = ch - '0';
+            if (sign) {
+                // 负数
+                // 判断溢出
+                if (min / 10 > number
+                    || (min / 10 == number && min % 10 > -digit)) {
+                    number = min;
                     break;
                 }
-                num = num * 10 - c;
+                // 加上数字
+                number = number * 10 - digit;
             } else {
-                if (num > max / 10
-                    || num == max / 10 && c > max % 10) {
-                    num = max;
+                // 正数
+                // 判断溢出
+                if (max / 10 < number
+                    || (max / 10 == number && max % 10 < digit)) {
+                    number = max;
                     break;
                 }
-                num = num * 10 + c;
+                // 加上数字
+                number = number * 10 + digit;
             }
         }
-        return num;
+        return number;
     }
 
 }
