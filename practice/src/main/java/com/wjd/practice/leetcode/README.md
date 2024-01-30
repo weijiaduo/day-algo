@@ -284,6 +284,7 @@
 - [47. 全排列2](backtrack/PermuteUnique.java)
 - [39.组合总和](backtrack/CombinationSum.java)
 - [78. 子集](backtrack/Subsets.java)
+- [93. 复原IP地址](backtrack/RestoreIpAddresses.java)
 - [17. 电话号码得字母组合](backtrack/LetterCombinations.java)
 - [22. 括号生成](backtrack/GenerateParenthesis.java)
 - [79. 单词搜索](backtrack/MatrixExistWord.java)
