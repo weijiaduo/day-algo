@@ -5,7 +5,7 @@ import com.wjd.practice.TestCase;
 import java.util.*;
 
 /**
- * 9. 用两个栈实现队列
+ * 9. 用两个栈实现队列、232. 用栈实现队列
  * <p>
  * 用两个栈来实现一个队列，完成队列的 Push 和 Pop 操作。
  *
@@ -17,26 +17,51 @@ public class TwoStackForQueue {
     /**
      * 数据入栈
      */
-    Deque<Integer> inStack = new ArrayDeque<>();
+    Deque<Integer> inStack;
     /**
      * 数据出栈
      */
-    Deque<Integer> outStack = new ArrayDeque<>();
+    Deque<Integer> outStack;
 
-    public void push(int node) {
-        inStack.push(node);
+    /**
+     * 执行耗时:0 ms,击败了100.00% 的Java用户
+     * 内存消耗:40.39 MB,击败了11.58% 的Java用户
+     */
+    public TwoStackForQueue() {
+        inStack = new ArrayDeque<>();
+        outStack = new ArrayDeque<>();
+    }
+
+    public void push(int x) {
+        inStack.push(x);
     }
 
     public int pop() {
-        if (outStack.isEmpty() && inStack.isEmpty()) {
-            throw new NoSuchElementException();
+        if (empty()) {
+            throw new NoSuchElementException("Empty Queue!");
         }
+        ensureQueue();
+        return outStack.pop();
+    }
+
+    public int peek() {
+        if (empty()) {
+            throw new NoSuchElementException("Empty Queue!");
+        }
+        ensureQueue();
+        return outStack.peek();
+    }
+
+    private void ensureQueue() {
         if (outStack.isEmpty()) {
             while (!inStack.isEmpty()) {
                 outStack.push(inStack.pop());
             }
         }
-        return outStack.pop();
+    }
+
+    public boolean empty() {
+        return outStack.isEmpty() && inStack.isEmpty();
     }
 
     @TestCase(input = {"1"}, output = {})
