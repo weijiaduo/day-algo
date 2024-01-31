@@ -335,6 +335,7 @@
 - [123. 买卖股票的最佳时机 III](dynamic/multi/MaxProfit3.java)
 - [188. 买卖股票的最佳时机 IV](dynamic/multi/MaxProfit4.java)
 - [72. 编辑距离](dynamic/multi/MinDistance.java)
+- [718. 最长重复子数组](dynamic/multi/FindLength.java)
 
 ## 十三、位运算
 
