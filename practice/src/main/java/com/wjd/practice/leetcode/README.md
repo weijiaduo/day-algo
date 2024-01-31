@@ -153,6 +153,10 @@
 - [141. 环形链表](list/doublepoint/HasCycle.java)
 - [142. 环形链表2](list/doublepoint/DetectCycle.java)
 
+### 查找
+
+- [LCR 140. 训练计划 II](list/doublepoint/TrainingPlan.java)
+
 ### 转换
 
 - [206. 反转链表](list/transform/ReverseList.java)
