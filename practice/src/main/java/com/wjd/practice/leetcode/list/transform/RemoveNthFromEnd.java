@@ -138,22 +138,20 @@ public class RemoveNthFromEnd {
             return head;
         }
 
+        // 哨兵节点，方便删除头节点
         ListNode dummy = new ListNode(-1);
         dummy.next = head;
+        // 1. 前指针先行
         ListNode p = dummy, q = dummy;
-        int k = n;
-        while (p.next != null) {
-            // p 最终指向倒数第1个节点
+        for (int i = 0; i < n; i++) {
             p = p.next;
-            if (k == 0) {
-                // q 最终指向倒数第n+1个节点
-                q = q.next;
-            } else {
-                // 走过n个节点
-                k--;
-            }
         }
-        // 删除倒数第 n 个节点
+        // 2. 前后指针同时走
+        while (p.next != null) {
+            p = p.next;
+            q = q.next;
+        }
+        // 3. 找到倒数第 n 个节点，删除
         q.next = q.next.next;
         return dummy.next;
     }
