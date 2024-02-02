@@ -14,6 +14,7 @@
 - [162. 寻找峰值](array/binary/FindPeakElement.java)
 - [875. 爱吃香蕉的珂珂](array/binary/MinEatingSpeed.java)
 - [215. 数组中的第K个最大元素](array/binary/FindKthLargest.java)
+- [LCR 159. 库存管理 III](array/binary/InventoryManagement.java)
 
 ### 双指针
 
