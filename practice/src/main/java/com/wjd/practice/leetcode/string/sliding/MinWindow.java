@@ -54,7 +54,7 @@ public class MinWindow {
      * <p>
      * 但是覆盖了还不行，还需要最小子串，所以需要去掉字符串左右两边不属于 t 的字符
      * <p>
-     * 复杂度：时间 O(n^2) 空间 O(1)
+     * 复杂度：时间 O(n + m) 空间 O(1)
      * <p>
      * 执行耗时:2 ms,击败了98.76% 的Java用户
      * 内存消耗:42.6 MB,击败了34.44% 的Java用户
@@ -69,16 +69,16 @@ public class MinWindow {
 
         // 统计 t 的字符频率
         int n = s.length(), m = t.length();
-        int[] tc = new int[128];
+        int[] cs = new int[128];
         for (int i = 0; i < m; i++) {
-            tc[t.charAt(i)]--;
+            cs[t.charAt(i)]--;
         }
 
         int minLp = -1, minRp = -1;
         int lp = 0, rp = 0, cnt = 0;
         while (rp < n) {
             // 扩展右边界，增加新的字符
-            if (++tc[s.charAt(rp++)] <= 0) {
+            if (++cs[s.charAt(rp++)] <= 0) {
                 cnt++;
             }
             // 未找到包含全部字符的窗口
@@ -87,8 +87,8 @@ public class MinWindow {
             }
 
             // 收缩左边界，去掉多余字符
-            while (tc[s.charAt(lp)] > 0) {
-                tc[s.charAt(lp++)]--;
+            while (cs[s.charAt(lp)] > 0) {
+                cs[s.charAt(lp++)]--;
             }
 
             // 更新最小子串
