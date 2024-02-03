@@ -359,6 +359,7 @@
 - [8. 字符串转换整数 (atoi)](math/MyAtoi.java)
 - [9. 回文数](math/PalindromeNumber.java)
 - [29. 两数相除](math/BitsDivide.java)
+- [43. 字符串相乘](math/StrMultiply.java)
 - [66. 加一](math/PlusOne.java)
 - [172. 阶乘后的零](math/TrailingZeroes.java)
 - [69. x的平方根](math/IntSqrt.java)
