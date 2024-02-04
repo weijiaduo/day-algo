@@ -55,10 +55,12 @@ public class MyPow {
         if (n == -1) {
             return 1 / x;
         }
-        int mid = n / 2;
-        int r = n - mid * 2;
-        double midPow = dfs(x, mid);
-        return midPow * midPow * dfs(x, r);
+
+        // 一半的幂
+        double hv = dfs(x, n / 2);
+        // 剩余的幂
+        double rv = dfs(x, n % 2);
+        return hv * hv * rv;
     }
 
     /**
