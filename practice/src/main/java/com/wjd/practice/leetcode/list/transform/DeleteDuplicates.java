@@ -29,9 +29,7 @@ import com.wjd.structure.list.ListNode;
 public class DeleteDuplicates {
 
     /**
-     * 思路：新开链表，追加节点时判断是否和链尾的值相等
-     * <p>
-     * 如果相等，就不添加；反之添加
+     * 思路：直接判断下一个节点是否重复，重复则删除
      * <p>
      * 复杂度：时间 O(n) 空间 O(1)
      * <p>
@@ -41,22 +39,15 @@ public class DeleteDuplicates {
     @TestCase(input = {"[1,1,2]", "[1,1,2,3,3]"},
             output = {"[1,2]", "[1,2,3]"})
     public ListNode delete(ListNode head) {
-        if (head == null || head.next == null) {
-            return head;
-        }
-
-        // 头节点不会变化，所以直接用就行
-        ListNode tail = head, p = tail.next;
-        // 避免后面连着重复节点
-        tail.next = null;
-        while (p != null) {
+        ListNode p = head;
+        while (p != null && p.next != null) {
             ListNode next = p.next;
-            if (tail.val != p.val) {
-                p.next = tail.next;
-                tail.next = p;
-                tail = tail.next;
+            if (p.val == next.val) {
+                p.next = next.next;
+                next.next = null;
+            } else {
+                p = next;
             }
-            p = next;
         }
         return head;
     }
