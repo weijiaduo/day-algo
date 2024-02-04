@@ -107,7 +107,7 @@ public class ReverseWords {
     }
 
     /**
-     * 思路：快慢指针，从右往左遍历，倒着放单词
+     * 思路：从右往左遍历，倒着放单词
      * <p>
      * 复杂度：时间 O(n) 空间 O(1)
      * <p>
@@ -118,20 +118,24 @@ public class ReverseWords {
             output = {"blue is sky the", "world hello", "example good a"})
     public String sfPoint(String s) {
         StringBuilder sb = new StringBuilder();
-        // 用于避免特殊判断
-        String str = " " + s;
-        int n = str.length();
-        int l = n - 1, r = n;
-        while (l >= 0) {
-            // 碰到空格，可能得到了一个单词
-            if (str.charAt(l) == ' ') {
-                // 只有一个空格，不是单词
-                if (l + 1 < r) {
-                    sb.append(str, l + 1, r).append(' ');
-                }
-                r = l;
+        int n = s.length();
+        int i = n - 1, j = n - 1;
+        while (i >= 0) {
+            // 跳过空格
+            while (i >= 0 && s.charAt(i) == ' ') {
+                i--;
             }
-            l--;
+            if (i < 0) {
+                break;
+            }
+
+            // 找出单词
+            j = i;
+            while (i >= 0 && s.charAt(i) != ' ') {
+                i--;
+            }
+            String word = s.substring(i + 1, j + 1);
+            sb.append(word).append(" ");
         }
         // 去掉末尾多余的空格
         return sb.substring(0, sb.length() - 1);
