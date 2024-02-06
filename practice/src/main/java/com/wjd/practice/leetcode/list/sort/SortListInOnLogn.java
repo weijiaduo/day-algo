@@ -49,37 +49,44 @@ public class SortListInOnLogn {
         }
 
         // 快慢指针找到中点，分割成2条链表
-        ListNode fast = head, slow = head;
-        while (fast.next != null && fast.next.next != null) {
-            slow = slow.next;
+        ListNode fast = head.next, slow = head;
+        while (fast != null && fast.next != null) {
             fast = fast.next.next;
+            slow = slow.next;
         }
-
-        // 分别对2条链表进行排序
-        ListNode right = mergeSort(slow.next);
+        ListNode head2 = slow.next;
         slow.next = null;
-        ListNode left = mergeSort(head);
 
-        // 合并排序好的2条链表
-        return merge(left, right);
+        // 分别对两段进行排序
+        head = mergeSort(head);
+        head2 = mergeSort(head2);
+
+        // 合并两条链表
+        return merge(head, head2);
     }
 
     /**
      * 合并有序链表
      */
-    private ListNode merge(ListNode left, ListNode right) {
+    private ListNode merge(ListNode h1, ListNode h2) {
         ListNode dummy = new ListNode(-1), tail = dummy;
-        while (left != null && right != null) {
-            if (left.val > right.val) {
-                tail.next = right;
-                right = right.next;
+        ListNode p1 = h1, p2 = h2;
+        while (p1 != null && p2 != null) {
+            if (p1.val < p2.val) {
+                ListNode next = p1.next;
+                p1.next = tail.next;
+                tail.next = p1;
+                tail = tail.next;
+                p1 = next;
             } else {
-                tail.next = left;
-                left = left.next;
+                ListNode next = p2.next;
+                p2.next = tail.next;
+                tail.next = p2;
+                tail = tail.next;
+                p2 = next;
             }
-            tail = tail.next;
         }
-        tail.next = left != null ? left : right;
+        tail.next = p1 != null ? p1 : p2;
         return dummy.next;
     }
 
