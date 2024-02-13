@@ -44,30 +44,23 @@ public class FirstMissingPositive {
     @TestCase(input = {"[1,2,0]", "[3,4,-1,1]", "[7,8,9,11,12]"},
             output = {"3", "2", "1"})
     public int firstMissingPositive(int[] nums) {
-        int n = nums.length;
-        for (int i = 0; i < n; i++) {
-            int num = nums[i];
-            if (i == num - 1) {
-                // 数字在正确的位置
+        // 1. 遍历数组，放到对应的索引位置
+        int n = nums.length, i = 0;
+        while (i < n) {
+            int x = nums[i];
+            // 交换结束
+            if (x <= 0 || x > n || x == nums[x - 1]) {
+                i++;
                 continue;
             }
-
-            if (0 < num && num <= n) {
-                int temp = nums[num - 1];
-                if (temp != num) {
-                    // 避免重复数字出现死循环
-                    nums[num - 1] = num;
-                    nums[i] = temp;
-                    // 交换后，i 不用变
-                    i--;
-                }
-            }
+            // 交换位置
+            nums[i] = nums[x - 1];
+            nums[x - 1] = x;
         }
-
-        // 顺序遍历数字，找到缺失的数字
-        for (int i = 1; i <= n; i++) {
-            if (nums[i - 1] != i) {
-                return i;
+        // 2. 再遍历数组，找到丢失的最小正数
+        for (i = 0; i < n; i++) {
+            if (nums[i] != i + 1) {
+                return i + 1;
             }
         }
         return n + 1;
