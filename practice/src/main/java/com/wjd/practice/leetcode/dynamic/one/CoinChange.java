@@ -112,6 +112,42 @@ public class CoinChange {
     }
 
     /**
+     * 思路：动态规划
+     * <p>
+     * dp[i][j] 表示以 i 种硬币凑成金额 j 的最少硬币个数
+     * <p>
+     * dp[i][j] = min(dp[i-1][j], dp[i][j - coins[i]])
+     * <p>
+     * 复杂度：时间 O(Sn) 空间 O(n)
+     * <p>
+     * 执行耗时:16 ms,击败了30.49% 的Java用户
+     * 内存消耗:43.95 MB,击败了5.05% 的Java用户
+     */
+    @TestCase(input = {"[1, 2, 5]", "11", "[2]", "3", "[1]", "0"},
+            output = {"3", "-1", "0"})
+    public int dynamic2(int[] coins, int amount) {
+        Arrays.sort(coins);
+        // 1. 状态定义
+        int n = coins.length;
+        int[][] dp = new int[n + 1][amount + 1];
+        // 2. 状态初始化
+        for (int j = 0; j <= amount; j++) {
+            dp[0][j] = amount + 1;
+        }
+        // 3. 状态转移
+        for (int i = 1; i <= n; i++) {
+            int coin = coins[i - 1];
+            for (int j = 1; j <= amount; j++) {
+                dp[i][j] = dp[i - 1][j];
+                if (j >= coin) {
+                    dp[i][j] = Math.min(dp[i][j - coin] + 1, dp[i][j]);
+                }
+            }
+        }
+        return dp[n][amount] > amount ? -1 : dp[n][amount];
+    }
+
+    /**
      * 思路：动态规划，将记忆化搜索转成动态规划
      * <p>
      * 记忆化搜搜是自顶向下，动态规划则是反过来，自底向上
