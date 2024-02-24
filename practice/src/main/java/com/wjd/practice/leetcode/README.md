@@ -238,6 +238,7 @@
 - [700. 二叉搜索树中的搜索](tree/search/SearchBST.java)
 - [230. 二叉搜索树中第K小的元素](tree/search/KthSmallest.java)
 - [236. 二叉树的最近公共祖先](tree/path/LowestCommonAncestor2.java)
+- [113. 路径总和2](tree/path/PathSum.java)
 - [437. 路径总和 III](tree/path/PathSum3.java)
 
 ### 统计
