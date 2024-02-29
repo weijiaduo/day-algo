@@ -43,45 +43,53 @@ public class PalindromeList {
             return true;
         }
 
-        // 快慢指针定位到中点
-        ListNode slow = head, fast = head;
+        // 1. 快慢指针对半分链表
+        ListNode slow = head, fast = head.next;
         while (fast != null && fast.next != null) {
             fast = fast.next.next;
             slow = slow.next;
         }
+        ListNode head2 = slow.next;
+        slow.next = null;
 
-        // 反转后半部分链表指针（这里结束后有个自环）
-        ListNode head2 = slow, p = slow;
-        while (p != null) {
-            ListNode tmp = p.next;
-            p.next = head2;
-            head2 = p;
-            p = tmp;
-        }
+        // 2. 翻转链表
+        head2 = reverse(head2);
 
-        // 判断回文（利用自环判断遍历结束）
-        boolean flag = true;
-        ListNode l = head, r = head2;
-        while (l != r) {
-            if (l.val != r.val) {
-                flag = false;
+        // 3. 对比两半连接是否一致
+        boolean ans = true;
+        ListNode p1 = head, p2 = head2;
+        while (p1 != null && p2 != null) {
+            if (p1.val != p2.val) {
+                ans = false;
                 break;
             }
-            l = l.next;
-            r = r.next;
+            p1 = p1.next;
+            p2 = p2.next;
         }
 
-        // 恢复后半部分的链表
-        l = head2;
-        r = null;
-        while (r != slow) {
-            ListNode tmp = l.next;
-            l.next = r;
-            r = l;
-            l = tmp;
-        }
+        // 4. 恢复链表
+        head2 = reverse(head2);
+        slow.next = head2;
 
-        return flag;
+        return ans;
+    }
+
+    /**
+     * 翻转链表
+     *
+     * @param head 链表头节点
+     * @return 翻转后的链头
+     */
+    private ListNode reverse(ListNode head) {
+        ListNode dummy = new ListNode(-1);
+        ListNode p = head;
+        while (p != null) {
+            ListNode next = p.next;
+            p.next = dummy.next;
+            dummy.next = p;
+            p = next;
+        }
+        return dummy.next;
     }
 
 }
