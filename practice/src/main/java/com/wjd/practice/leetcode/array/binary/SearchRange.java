@@ -40,7 +40,9 @@ import com.wjd.practice.TestCase;
 public class SearchRange {
 
     /**
-     * 思路：二分查找，找到第一个大于等于，最后一个小于等于 target 的位置
+     * 思路：二分查找
+     * <p>
+     * 找到第一个大于等于 target 的位置，和第一个大于等于 target + 1 的位置
      * <p>
      * 复杂度：时间 O(logn) 空间 O(1)
      * <p>
@@ -50,49 +52,31 @@ public class SearchRange {
     @TestCase(input = {"[5,7,7,8,8,10]", "8", "[5,7,7,8,8,10]", "6", "[]", "0"},
             output = {"[3,4]", "[-1,-1]", "[-1,-1]"})
     public int[] searchRange(int[] nums, int target) {
-        int n = nums.length;
-        int l = firstGreatEqual(nums, 0, n - 1, target);
-        if (l == -1 || nums[l] != target) {
+        int left = firstGreatEqual(nums, target);
+        if (left >= nums.length || nums[left] != target) {
             return new int[]{-1, -1};
         }
-        int r = lastLessEqual(nums, l, n - 1, target);
-        return new int[]{l, r};
+        int right = firstGreatEqual(nums, target + 1);
+        return new int[]{left, right - 1};
     }
 
     /**
      * 第一个大于等于 target 的位置
      */
-    private int firstGreatEqual(int[] nums, int l, int r, int target) {
-        while (l <= r) {
-            int m = l + (r - l) / 2;
-            if (nums[m] >= target) {
-                if (m == l || nums[m - 1] < target) {
-                    return m;
+    private int firstGreatEqual(int[] nums, int target) {
+        int left = 0, right = nums.length - 1;
+        while (left <= right) {
+            int mid = left + (right - left) / 2;
+            if (nums[mid] >= target) {
+                if (mid == 0 || nums[mid - 1] < target) {
+                    return mid;
                 }
-                r = m - 1;
+                right = mid - 1;
             } else {
-                l = m + 1;
+                left = mid + 1;
             }
         }
-        return -1;
-    }
-
-    /**
-     * 最后一个小于等于 target 的位置
-     */
-    private int lastLessEqual(int[] nums, int l, int r, int target) {
-        while (l <= r) {
-            int m = l + (r - l) / 2;
-            if (nums[m] <= target) {
-                if (m == r || nums[m + 1] > target) {
-                    return m;
-                }
-                l = m + 1;
-            } else {
-                r = m - 1;
-            }
-        }
-        return -1;
+        return nums.length;
     }
 
 }
