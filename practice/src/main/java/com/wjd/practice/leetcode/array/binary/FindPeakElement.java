@@ -48,31 +48,23 @@ public class FindPeakElement {
     @TestCase(input = {"[1,2,3,1]", "[1,2,1,3,5,6,4]"},
             output = {"2", "5"})
     public int binary(int[] nums) {
-        return binarySearch(nums, 0, nums.length - 1);
-    }
-
-    /**
-     * 二分法
-     */
-    private int binarySearch(int[] nums, int left, int right) {
-        if (left > right) {
-            return -1;
+        int left = 0, right = nums.length - 1;
+        while (left < right) {
+            int mid = left + (right - left) / 2;
+            boolean gl = mid == left || nums[mid] > nums[mid - 1];
+            boolean gr = mid == right || nums[mid] > nums[mid + 1];
+            if (gl && gr) {
+                // 峰值
+                return mid;
+            } else if (gl) {
+                // 右边不小于当前值
+                left = mid + 1;
+            } else {
+                // 左边不小于当前值
+                right = mid - 1;
+            }
         }
-
-        int mid = left + (right - left) / 2;
-        // 判断是否是峰值
-        boolean gl = (mid == 0 || nums[mid] > nums[mid - 1]);
-        boolean gr = (mid == nums.length - 1 || nums[mid] > nums[mid + 1]);
-        if (gl && gr) {
-            return mid;
-        }
-        if (!gl) {
-            // 比左边小，在左边寻找峰值
-            return binarySearch(nums, left, mid - 1);
-        } else {
-            // 比右边小，在右边寻找峰值
-            return binarySearch(nums, mid + 1, right);
-        }
+        return left;
     }
 
     /**
