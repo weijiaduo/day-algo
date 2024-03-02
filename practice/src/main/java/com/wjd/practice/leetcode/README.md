@@ -273,6 +273,7 @@
 
 - [200. 岛屿数量](graph/NumIslands.java)
 - [130. 被围绕的区域](graph/SurroundBoard.java)
+- [695. 岛屿的最大面积](graph/MaxAreaOfIsland.java)
 - [994. 腐烂的橘子](graph/OrangesRotting.java)
 - [207. 课程表](graph/FinishCourses.java)
 - [210. 课程表2](graph/FindCoursesOrder.java)
