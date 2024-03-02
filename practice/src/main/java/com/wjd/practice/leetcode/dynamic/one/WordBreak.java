@@ -69,7 +69,7 @@ public class WordBreak {
         }
         for (String word : wordDict) {
             if (i + word.length() > s.length()
-                    || !word.equals(s.substring(i, i + word.length()))) {
+                || !word.equals(s.substring(i, i + word.length()))) {
                 continue;
             }
             if (meno(s, i + word.length(), wordDict, cache)) {
@@ -85,15 +85,12 @@ public class WordBreak {
      * <p>
      * 复杂度：时间 O(n^2 * m)，空间 O(n^2)
      * <p>
-     * 执行耗时:6 ms,击败了74.67% 的Java用户
-     * 内存消耗:41.8 MB,击败了12.75% 的Java用户
+     * 执行耗时:2 ms,击败了94.75% 的Java用户
+     * 内存消耗:40.40 MB,击败了95.16% 的Java用户
      */
     @TestCase(input = {"leetcode", "[\"leet\", \"code\"]", "applepenapple", "[\"apple\", \"pen\"]"},
             output = {"true", "true"})
     public boolean dynamic(String s, List<String> wordDict) {
-        // 单词转成Set可提高速度
-        Set<String> words = new HashSet<>(wordDict);
-
         // 状态定义
         // dp[i] 表示长度为 i 的子串是否能够由字典单词拼成
         int n = s.length();
@@ -102,17 +99,39 @@ public class WordBreak {
         // 状态初始化
         dp[0] = true;
 
-        // 动态计算
+        // 状态转移
         for (int i = 1; i <= n; i++) {
-            for (int j = 0; j < i; j++) {
-                if (dp[j] && words.contains(s.substring(j, i))) {
-                    dp[i] = true;
+            for (String word : wordDict) {
+                if (dp[i]) {
                     break;
                 }
+                int wn = word.length();
+                if (wn > i) {
+                    continue;
+                }
+                dp[i] = dp[i - wn] && endWith(s, i, word);
             }
         }
 
         return dp[n];
+    }
+
+    /**
+     * 是否以某个单词为结尾
+     *
+     * @param s    字符串
+     * @param len  字符串长度
+     * @param word 单词
+     * @return true 表示以某个单位为结尾，false 表示不是
+     */
+    private boolean endWith(String s, int len, String word) {
+        int n = word.length();
+        for (int i = 0; i < n; i++) {
+            if (word.charAt(n - 1 - i) != s.charAt(len - 1 - i)) {
+                return false;
+            }
+        }
+        return true;
     }
 
     /**
