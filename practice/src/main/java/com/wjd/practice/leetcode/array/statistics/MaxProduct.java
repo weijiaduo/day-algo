@@ -76,6 +76,42 @@ public class MaxProduct {
     }
 
     /**
+     * 思路：动态规划
+     * <p>
+     * max[i] 表示以 i 为结尾的子数组的乘积最大值
+     * <p>
+     * min[i] 表示以 i 为结尾的子数组的乘积最小值
+     * <p>
+     * max[i] = max(nums[i], nums[i]*max[i-1], nums[i]*min[i-1])
+     * <p>
+     * min[i] = min(nums[i], nums[i]*max[i-1], nums[i]*min[i-1])
+     * <p>
+     * 复杂度：时间 O(n) 空间 O(n)
+     * <p>
+     * 执行耗时:3 ms,击败了23.21% 的Java用户
+     * 内存消耗:43.68 MB,击败了49.50% 的Java用户
+     */
+    public int dynamic1(int[] nums) {
+        // 状态定义
+        int n = nums.length;
+        int[] max = new int[n];
+        int[] min = new int[n];
+        // 状态初始化
+        max[0] = min[0] = nums[0];
+        // 状态转移
+        int ans = max[0];
+        for (int i = 1; i < n; i++) {
+            int mx = nums[i] * max[i - 1];
+            int mn = nums[i] * min[i - 1];
+            max[i] = Math.max(nums[i], Math.max(mx, mn));
+            min[i] = Math.min(nums[i], Math.min(mx, mn));
+            ans = Math.max(max[i], ans);
+        }
+        // 返回结果
+        return ans;
+    }
+
+    /**
      * 思路：动态规划，分为2种情况：1、仅当前元素 2、当前元素*连续子数组
      * <p>
      * 复杂度：时间 O(n) 空间 O(1)
