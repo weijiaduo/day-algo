@@ -1,4 +1,4 @@
-package com.wjd.practice.leetcode.stack;
+package com.wjd.practice.leetcode.math;
 
 import com.wjd.practice.TestCase;
 

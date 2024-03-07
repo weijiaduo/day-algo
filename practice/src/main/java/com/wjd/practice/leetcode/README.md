@@ -187,7 +187,6 @@
 - [2390. 从字符串中移除星号](stack/RemoveStars.java)
 - [735. 行星碰撞](stack/AsteroidCollision.java)
 - [901. 股票价格的跨度](stack/StockSpanner.java)
-- [224. 基本计算器](stack/Calculate.java)
 - [316. 去除重复字母](stack/RemoveDuplicateLetters.java)
 - [402. 移掉 K 位数字](stack/RemoveKdigits.java)
 
@@ -370,3 +369,5 @@
 - [12. 整数转罗马数字](math/IntToRoman.java)
 - [13. 罗马数字转整数](math/RomanToInt.java)
 - [149. 直线上最多的点数](math/MaxPoints.java)
+- [224. 基本计算器](math/Calculate.java)
+- [227. 基本计算器 II](math/Calculate.java)
