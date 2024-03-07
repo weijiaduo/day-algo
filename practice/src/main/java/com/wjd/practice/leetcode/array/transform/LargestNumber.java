@@ -1,5 +1,7 @@
 package com.wjd.practice.leetcode.array.transform;
 
+import com.wjd.practice.TestCase;
+
 import java.util.Arrays;
 
 /**
@@ -9,8 +11,20 @@ import java.util.Arrays;
  * <p>
  * 注意：输出结果可能非常大，所以你需要返回一个字符串而不是整数。
  * <p>
+ * 示例 1：
+ * <p>
+ * 输入：nums = [10,2]
+ * 输出："210"
+ * <p>
+ * 示例 2：
+ * <p>
  * 输入：nums = [3,30,34,5,9]
  * 输出："9534330"
+ * <p>
+ * 提示：
+ * <p>
+ * 1 <= nums.length <= 100
+ * 0 <= nums[i] <= 10⁹
  *
  * @author weijiaduo
  * @since 2022/7/7
@@ -18,29 +32,36 @@ import java.util.Arrays;
 public class LargestNumber {
 
     /**
-     * 比我预料的要慢很多啊
-     * <p>
      * 思路：对数字进行排序，不是按照数值排序，而是他们从前往后的数字大小排序，大的在前，最后拼成字符串即可
      * <p>
-     * 复杂度：时间 O(nlogn) 空间O(n)
+     * 复杂度：时间 O(m * nlogn) 空间O(n)
      * <p>
-     * 执行耗时:9 ms,击败了10.84% 的Java用户
-     * 内存消耗:41.3 MB,击败了25.60% 的Java用户
+     * 执行耗时:5 ms,击败了79.64% 的Java用户
+     * 内存消耗:42.1 MB,击败了48.89% 的Java用户
      */
-    private String largestNumber(int[] nums) {
-        // 1、转成字符串
-        // 2、对字符串进行排序，按拼接字符串结果，从大到小排序
-        // 3、连接所有字符串
-        StringBuilder sb = Arrays.stream(nums)
-                .mapToObj(value -> "" + value)
-                .sorted((o1, o2) -> (o2 + o1).compareTo(o1 + o2))
-                .collect(StringBuilder::new, StringBuilder::append, StringBuilder::append);
-        // 去掉字符串前面的0
+    @TestCase(input = {"[10,2]", "[3,30,34,5,9]"},
+            output = {"210", "9534330"})
+    public String sort(int[] nums) {
+        int n = nums.length;
+        String[] strs = new String[n];
+        for (int i = 0; i < n; i++) {
+            strs[i] = String.valueOf(nums[i]);
+        }
+
+        // 字典序排序
+        Arrays.sort(strs, (a, b) -> (b + a).compareTo(a + b));
+
+        // 拼接结果
+        StringBuilder sb = new StringBuilder();
+        for (String str : strs) {
+            sb.append(str);
+        }
+
+        // 去掉前导 0
         int i = 0;
-        for (; i < sb.length() - 1; i++) {
-            if (sb.charAt(i) != '0') {
-                break;
-            }
+        n = sb.length();
+        while (i < n - 1 && sb.charAt(i) == '0') {
+            i++;
         }
         return sb.substring(i);
     }

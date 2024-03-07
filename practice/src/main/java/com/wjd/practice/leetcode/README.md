@@ -87,6 +87,7 @@
 - [27. 移除元素](array/transform/RemoveElement.java)
 - [26. 删除有序数组中的重复项](array/transform/RemoveDuplicates1.java)
 - [80. 删除有序数组中的重复项](array/transform/RemoveDuplicates2.java)
+- [179. 最大数](array/transform/LargestNumber.java)
 - [189. 轮转数组](array/transform/RotateArray.java)
 
 ## 二、字符串
