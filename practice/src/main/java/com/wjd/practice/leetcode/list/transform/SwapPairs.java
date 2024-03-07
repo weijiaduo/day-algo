@@ -45,27 +45,20 @@ public class SwapPairs {
     @TestCase(input = {"[1,2,3,4]", "[]", "[1]"},
             output = {"[2,1,4,3]", "[]", "[1]"})
     public ListNode iterate(ListNode head) {
-        ListNode dummy = new ListNode(0);
-        ListNode tail = dummy;
-        ListNode first, second, p = head;
-        while (p != null) {
-            // 只剩一个节点了
-            if (p.next == null) {
-                tail.next = p;
-                break;
-            }
-
-            // 下2个节点
-            first = p;
-            second = first.next;
-            p = second.next;
-
-            // 交换位置
-            tail.next = second;
-            second.next = first;
-            first.next = p;
-            tail = first;
+        ListNode dummy = new ListNode(-1), tail = dummy;
+        ListNode p = head;
+        while (p != null && p.next != null) {
+            ListNode p1 = p, p2 = p.next;
+            ListNode next = p2.next;
+            // 交换节点
+            tail.next = p2;
+            p2.next = p1;
+            // 下一轮
+            tail = p1;
+            p = next;
         }
+        // 末尾的 0 个或 1个节点
+        tail.next = p;
         return dummy.next;
     }
 
