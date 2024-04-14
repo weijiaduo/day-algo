@@ -101,4 +101,4 @@
 
 - [面试题 08.05. 递归乘法](math/Multiply.java)
 - [面试题 16.05. 阶乘尾数](math/TrailingZeroes.java)
-- [面试题 16.07. 最大数值](math/Maximum.java)
+- [面试题 16.09. 运算](math/Operations.java)
