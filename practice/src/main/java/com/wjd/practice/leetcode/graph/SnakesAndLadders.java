@@ -81,18 +81,16 @@ public class SnakesAndLadders {
             output = {"4", "1", "2", "4"})
     public int bfs(int[][] board) {
         int n = board.length;
+        boolean[] visited = new boolean[n * n + 1];
         Queue<Integer> queue = new ArrayDeque<>();
         queue.offer(1);
-        boolean[] visited = new boolean[n * n + 1];
         visited[1] = true;
-        int steps = -1;
-        while (!queue.isEmpty()) {
-            steps++;
+        for (int level = 0; !queue.isEmpty(); level++) {
             int size = queue.size();
             for (int i = 0; i < size; i++) {
                 int cur = queue.poll();
                 if (cur == n * n) {
-                    return steps;
+                    return level;
                 }
 
                 // 遍历当前位置的下一步
