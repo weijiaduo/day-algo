@@ -81,7 +81,7 @@ public class CoinChange {
     public int memo(int[] coins, int amount) {
         // -2 表示还未计算
         // -1 表示计算失败
-        //  0 表示计算成功
+        // >= 0 表示计算成功
         int[] cache = new int[amount + 1];
         Arrays.fill(cache, -2);
         return meno(coins, amount, cache);
@@ -95,7 +95,6 @@ public class CoinChange {
             return cache[amount];
         }
         if (amount == 0) {
-            cache[amount] = 0;
             return 0;
         }
 
@@ -114,9 +113,11 @@ public class CoinChange {
     /**
      * 思路：动态规划
      * <p>
+     * 记忆化搜搜是自顶向下，动态规划则是反过来，自底向上
+     * <p>
      * dp[i][j] 表示以 i 种硬币凑成金额 j 的最少硬币个数
      * <p>
-     * dp[i][j] = min(dp[i-1][j], dp[i][j - coins[i]])
+     * dp[i][j] = min(dp[i-1][j], dp[i][j - coins[i]] + 1)
      * <p>
      * 复杂度：时间 O(Sn) 空间 O(n)
      * <p>
@@ -152,23 +153,26 @@ public class CoinChange {
      * <p>
      * 记忆化搜搜是自顶向下，动态规划则是反过来，自底向上
      * <p>
+     * dp[i] 表示金额为 i 时的最少硬币数量
+     * <p>
+     * dp[i] = min(dp[i], dp[i - coins[j]] + 1)
+     * <p>
      * 复杂度：时间 O(Sn) 空间 O(n)
      * <p>
-     * 执行耗时:13 ms,击败了53.16% 的Java用户
-     * 内存消耗:41.7 MB,击败了56.34% 的Java用户
+     * 执行耗时:13 ms,击败了75.84% 的Java用户
+     * 内存消耗:43.3 MB,击败了86.19% 的Java用户
      */
     @TestCase(input = {"[1, 2, 5]", "11", "[2]", "3", "[1]", "0"},
             output = {"3", "-1", "0"})
     public int dynamic1(int[] coins, int amount) {
-        // 状态定义
-        // dp[i] 表示金额为 i 时的最少硬币数量
+        // 1. 状态定义
         int[] dp = new int[amount + 1];
 
-        // 状态初始化
+        // 2. 状态初始化
         Arrays.fill(dp, amount + 1);
         dp[0] = 0;
 
-        // 状态转移
+        // 3. 状态转移
         for (int i = 1; i <= amount; i++) {
             for (int c : coins) {
                 if (i - c >= 0) {
